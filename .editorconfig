@@ -1,0 +1,57 @@
+# EditorConfig for C# with Google C# Style Guide
+
+# Top-most EditorConfig file
+root = true
+
+# C# files
+[*.cs]
+
+# Indentation style
+indent_style = tab
+indent_size = 4
+
+# Max line length
+max_line_length = 80
+
+# End of line character
+end_of_line = lf
+charset = utf-8
+
+# Newline at the end of files
+insert_final_newline = true
+
+# C# specific formatting rules
+[*.cs]
+
+# Braces style: start braces on the next line
+csharp_brace_style = next_line
+
+# Spacing around operators
+csharp_space_around_operators = true
+
+# Naming conventions
+# Class names use PascalCase
+csharp_naming_convention_class = pascal_case
+# Method names use PascalCase
+csharp_naming_convention_method = pascal_case
+# Local variables use camelCase
+csharp_naming_convention_variable = camel_case
+# Constants use UPPER_CASE_WITH_UNDERSCORES
+csharp_naming_convention_constant = upper_case_with_underscores
+# Private fields use _camelCase
+csharp_naming_convention_private_field = _camel_case
+
+# No trailing whitespace
+trim_trailing_whitespace = true
+
+# Allow 1 blank line between methods
+csharp_blank_lines_between_methods = 1
+
+# No multiple blank lines in a row
+max_blank_lines = 1
+
+# Require the use of parentheses for method parameters
+csharp_require_parentheses_for_method_invocations = true
+
+# Allow for a space before the opening parenthesis in method declarations
+csharp_space_before_method_declaration_parentheses = true
