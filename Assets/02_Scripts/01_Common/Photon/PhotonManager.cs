@@ -4,8 +4,8 @@ using Photon.Realtime;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using System;
 using ExitGames.Client.Photon;
+using TMPro;
 
 public enum RoomLevel
 {
@@ -18,11 +18,12 @@ public class PhotonManager : MonoBehaviourPunCallbacks
 	[SerializeField]private string nickName;
 
 	[SerializeField] private List<Button> roomInBtns;
-
 	Hashtable customRoomOption = new Hashtable();
+
+
 	private void Awake()
 	{
-		for(int i=0;i<roomInBtns.Count;)
+		for(int i=0;i<roomInBtns.Count;i++)
 			roomInBtns[i].interactable = false;
 		
 
@@ -37,10 +38,20 @@ public class PhotonManager : MonoBehaviourPunCallbacks
 
 	private void Start()
 	{
-		for(int i=0;i<roomInBtns.Count;i++)
-			roomInBtns[i].onClick.AddListener(()=>MakeRoom((RoomLevel)i));
+		roomInBtns[0].onClick.AddListener(() => MakeRoomBtnOnClick(RoomLevel.One));
+		roomInBtns[1].onClick.AddListener(() => MakeRoomBtnOnClick(RoomLevel.Two));
+		roomInBtns[2].onClick.AddListener(() => MakeRoomBtnOnClick(RoomLevel.Three));
 		customRoomOption.Add("Level", RoomLevel.One);
 	}
+
+	void MakeRoomBtnOnClick(RoomLevel level)
+	{
+		if (roomInBtns[(int)level].GetComponent<RoomData>().RoomInfo == null || roomInBtns[(int)level].GetComponent<RoomData>().RoomInfo.MaxPlayers == 0)
+			MakeRoom(level);
+		else
+			PhotonNetwork.JoinRoom(roomInBtns[(int)level].GetComponent<RoomData>().RoomInfo.Name);
+	}
+
 
 	private void MakeRoom(RoomLevel roomLevel)
 	{
@@ -52,7 +63,7 @@ public class PhotonManager : MonoBehaviourPunCallbacks
 			IsVisible = true,
 			CustomRoomProperties = customRoomOption
 		};
-		//print(roomOption.CustomRoomProperties["Level"]);
+		print(roomOption.CustomRoomProperties["Level"]);
 		PhotonNetwork.CreateRoom("Lv"+roomOption.CustomRoomProperties["Level"], roomOption);
 	}
 
@@ -60,7 +71,14 @@ public class PhotonManager : MonoBehaviourPunCallbacks
 	{
 		foreach (var room in roomList)
 		{
-
+			print("방 리스트 이름 = " + room.Name);
+			foreach(var roomdata in roomInBtns)
+			{
+				if (roomdata.gameObject.name.Contains(room.Name))
+				{
+					roomdata.GetComponent<RoomData>().RoomInfo = room;
+				}
+			}
 		}
 	}
 
@@ -75,12 +93,13 @@ public class PhotonManager : MonoBehaviourPunCallbacks
 	public override void OnJoinedLobby()
 	{
 		print("로비입장");
-		for (int i = 0; i < roomInBtns.Count;)
+		for (int i = 0; i < roomInBtns.Count;i++)
 			roomInBtns[i].interactable = true;
 	}
 
 	public override void OnJoinedRoom()
 	{
+		print("방입장 :" + PhotonNetwork.CurrentRoom.Name);
 		SceneManager.LoadScene(PhotonNetwork.CurrentRoom.Name);
 	}
 
