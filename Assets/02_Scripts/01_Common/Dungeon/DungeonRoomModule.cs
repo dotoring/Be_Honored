@@ -29,6 +29,7 @@ public class DungeonRoomModule
 		moduleType = ModuleType.Empty;
 	}
 
+	//포톤에서 사용하기 위한 직렬화
 	public static byte[] Serialize(object customType)
 	{
 		var c = (DungeonRoomModule)customType;

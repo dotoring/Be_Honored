@@ -21,6 +21,7 @@ public class DungeonGenerator : MonoBehaviour
 
 	private void Awake()
 	{
+		//DungeonRoomModule타입 포톤에 등록하기
 		PhotonPeer.RegisterType(typeof(DungeonRoomModule), 0, DungeonRoomModule.Serialize, DungeonRoomModule.Deserialize);
 	}
 
