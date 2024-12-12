@@ -1,3 +1,5 @@
+using ExitGames.Client.Photon;
+using Photon.Pun;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,14 +10,92 @@ public class DungeonGenerator : MonoBehaviour
 	[SerializeField] int exceptCount; //제외할 모듈 수
 	[SerializeField] float gridLength; //모듈 폭
 
-	[SerializeField]
 	List<List<DungeonRoomModule>> modules = new List<List<DungeonRoomModule>>();
 
-	[SerializeField] GameObject modulePref;
+	[SerializeField] GameObject[] modulePrefs;
 	[SerializeField] GameObject wallPref;
 	[SerializeField] GameObject doorPref;
 
+	[SerializeField] PlayerSpawnMgr spawnMgr;
+	[SerializeField] PhotonView photonView;
+
+	private void Awake()
+	{
+		PhotonPeer.RegisterType(typeof(DungeonRoomModule), 0, DungeonRoomModule.Serialize, DungeonRoomModule.Deserialize);
+	}
+
 	private void Start()
+	{
+		//방장만 실행
+		if (photonView.IsMine)
+		{
+			//생성될 모듈들 설정
+			SetModules();
+
+			//생성된 모듈 통신을 위해 1차원 배열로 바꾸기
+			DungeonRoomModule[] oneDimModules = MakeModulesToArray(modules);
+
+			//모듈들 생성, 나중에 입장하는 플레이어에게도 실행시켜주기
+			photonView.RPC(nameof(GenModulesRPC), RpcTarget.AllBuffered, oneDimModules);
+			//모듈간 통로 생성, 나중에 입장하는 플레이어에게도 실행시켜주기
+			photonView.RPC(nameof(GenWaysRPC), RpcTarget.AllBuffered, oneDimModules);
+		}
+	}
+
+	//2차원 리스트 1차원 배열로 바꾸는 함수
+	DungeonRoomModule[] MakeModulesToArray(List<List<DungeonRoomModule>> _modules)
+	{
+		List<DungeonRoomModule> flattened = new List<DungeonRoomModule>();
+
+		foreach (var m in modules)
+		{
+			foreach (var module in m)
+			{
+				flattened.Add(module);
+			}
+		}
+
+		DungeonRoomModule[] result = flattened.ToArray();
+		return result;
+	}
+
+	//중복 제외 랜덤 뽑기 함수
+	List<int> RandomWithoutDup(int min, int max, int count)
+	{
+		List<int> nums = new List<int>();
+
+		for (int i = 0; i < count;)
+		{
+			bool isSame = false;
+			int rand = Random.Range(min, max);
+
+			//중복 검사
+			for (int j = 0; j < nums.Count; j++)
+			{
+				if (nums[j] == rand)
+				{
+					isSame = true;
+					break;
+				}
+			}
+
+			//중복이면 다시
+			if (isSame)
+			{
+				continue;
+			}
+			else
+			{
+				//제외 리스트에 추가
+				nums.Add(rand);
+				i++;
+			}
+		}
+
+		return nums;
+	}
+
+	void SetModules()
 	{
 		//가로, 세로 길이 그리드의 던전모듈들 생성
 		for (int i = 0; i < width; i++)
@@ -32,33 +112,7 @@ public class DungeonGenerator : MonoBehaviour
 		while (true)
 		{
 			//비활성화 할 모듈 선정
-			for (int i = 0; i < exceptCount;)
-			{
-				bool isSame = false;
-				int rand = Random.Range(0, 9);
-
-				//중복 검사
-				for (int j = 0; j < points.Count; j++)
-				{
-					if (points[j] == rand)
-					{
-						isSame = true;
-						break;
-					}
-				}
-
-				//중복이면 다시
-				if (isSame)
-				{
-					continue;
-				}
-				else
-				{
-					//제외 리스트에 추가
-					points.Add(rand);
-					i++;
-				}
-			}
+			points = RandomWithoutDup(0, width * length, exceptCount);
 
 			//모듈 고립상황 예외처리
 			if (points.Contains(1) && points.Contains(3) ||
@@ -148,27 +202,86 @@ public class DungeonGenerator : MonoBehaviour
 		//	modules[coord.x][coord.y].isExcepted = true;
 		//}
 
-		//모듈들 생성
+		//생성될 모듈들의 타입 정하기
+		List<ModuleType> types = new List<ModuleType> { ModuleType.Start, ModuleType.End };
+		for (int i = 0; i < (width * length) - exceptCount - 2; i++)
+		{
+			var enumValues = System.Enum.GetValues(enumType: typeof(ModuleType));
+			ModuleType moduleType = (ModuleType)enumValues.GetValue(Random.Range(2, enumValues.Length));
+			types.Add(moduleType);
+		}
+
 		foreach (var a in modules)
 		{
-			foreach (var b in a)
+			foreach (var module in a)
 			{
-				if (!b.isExcepted)
+				if (!module.isExcepted)
 				{
-					Vector3 position = new Vector3(b.x * gridLength, 0, b.y * gridLength);
-					Instantiate(modulePref, position, Quaternion.identity);
+					int rand = Random.Range(0, types.Count);
+					module.moduleType = types[rand];
+					types.RemoveAt(rand);
 				}
 			}
 		}
+	}
 
-		//BFS 시작
+	[PunRPC]
+	void GenModulesRPC(DungeonRoomModule[] _modules)
+	{
+		foreach (DungeonRoomModule module in _modules)
+		{
+			if (!module.isExcepted)
+			{
+				Vector3 position = new Vector3(module.x * gridLength, 0, module.y * gridLength);
+
+				switch (module.moduleType)
+				{
+					case ModuleType.Start:
+						GameObject sm = Instantiate(modulePrefs[(int)ModuleType.Start], position, Quaternion.identity);
+						Transform spawnPoint = sm.GetComponent<StartModule>().GetSpawnPoint();
+						spawnMgr.SetSpawnPoint(spawnPoint);
+						break;
+					case ModuleType.End:
+						Instantiate(modulePrefs[(int)ModuleType.End], position, Quaternion.identity);
+						break;
+					case ModuleType.Monsters:
+						Instantiate(modulePrefs[(int)ModuleType.Monsters], position, Quaternion.identity);
+						break;
+					case ModuleType.Scraps:
+						Instantiate(modulePrefs[(int)ModuleType.Monsters], position, Quaternion.identity);
+						break;
+					case ModuleType.Empty:
+						Instantiate(modulePrefs[(int)ModuleType.Monsters], position, Quaternion.identity);
+						break;
+				}
+			}
+		}
+	}
+
+	[PunRPC]
+	void GenWaysRPC(DungeonRoomModule[] _modules)
+	{
+		//1차원 배열 다시 2차원으로 만들어주기
+		List<List<DungeonRoomModule>> tempModules = new List<List<DungeonRoomModule>>();
+		int count = 0;
+		for (int i = 0; i < width; i++)
+		{
+			List<DungeonRoomModule> temp = new List<DungeonRoomModule>();
+			for (int j = 0; j < length; j++)
+			{
+				temp.Add(_modules[count++]);
+			}
+			tempModules.Add(temp);
+		}
+
+		//BFS로 통로 만들기
 		Queue<DungeonRoomModule> q = new Queue<DungeonRoomModule>();
-		for(int i = 0; i < 3; i++)
+		for (int i = 0; i < 3; i++)
 		{
 			//제외되지 않은 모듈을 처음으로 넣기
-			if (!modules[i][0].isExcepted)
+			if (!tempModules[i][0].isExcepted)
 			{
-				q.Enqueue(modules[i][0]);
+				q.Enqueue(tempModules[i][0]);
 				break;
 			}
 		}
@@ -187,13 +300,13 @@ public class DungeonGenerator : MonoBehaviour
 				try
 				{
 					//모듈 가져오기
-					DungeonRoomModule next = modules[now.x + dx[i]][now.y + dy[i]];
+					DungeonRoomModule next = tempModules[now.x + dx[i]][now.y + dy[i]];
 					//방문한 곳이 아니고 제외된 곳이 아니면
 					if (!next.isVisited && !next.isExcepted)
 					{
 						//다음 모듈 방향에 문 생성, 다음 모듈 큐에 넣기
-						Vector3 point = new Vector3(now.x*gridLength + dx[i]*(gridLength/2), 0, now.y*gridLength + dy[i]*(gridLength / 2));
-						if(i < 2)
+						Vector3 point = new Vector3(now.x * gridLength + dx[i] * (gridLength / 2), 0, now.y * gridLength + dy[i] * (gridLength / 2));
+						if (i < 2)
 						{
 							Instantiate(doorPref, point, Quaternion.Euler(0, 90, 0));
 						}
@@ -204,10 +317,10 @@ public class DungeonGenerator : MonoBehaviour
 						q.Enqueue(next);
 					}
 					//방향이 제외된 모듈이면
-					if(next.isExcepted)
+					if (next.isExcepted)
 					{
 						//모듈 방향에 벽 세우기
-						Vector3 point = new Vector3(now.x*gridLength + dx[i]*(gridLength/2), 0, now.y*gridLength + dy[i]*(gridLength / 2));
+						Vector3 point = new Vector3(now.x * gridLength + dx[i] * (gridLength / 2), 0, now.y * gridLength + dy[i] * (gridLength / 2));
 						if (i < 2)
 						{
 							Instantiate(wallPref, point, Quaternion.Euler(0, 90, 0));
