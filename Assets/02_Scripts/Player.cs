@@ -24,10 +24,10 @@ public struct Stat
 
 public struct Armor
 {
-	public Equipment head;
-	public Equipment Body;
-	public Equipment Leg;
-	public Equipment Arm;
+	public EquipmentSO head;
+	public EquipmentSO Body;
+	public EquipmentSO Leg;
+	public EquipmentSO Arm;
 
 }
 
@@ -46,7 +46,7 @@ public class Player : MonoBehaviour
 		SetStat(_armor.Arm);
 	}
 
-	private void SetStat(Equipment equip)
+	private void SetStat(EquipmentSO equip)
 	{
 		_curStat.Str = _stat.Str + equip.str;
 		_curStat.Dex = _stat.Dex + equip.dex;
