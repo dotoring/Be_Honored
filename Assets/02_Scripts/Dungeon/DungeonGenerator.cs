@@ -18,6 +18,7 @@ public class DungeonGenerator : MonoBehaviour
 
 	[SerializeField] PlayerSpawnMgr spawnMgr;
 	[SerializeField] PhotonView photonView;
+	[SerializeField] NavMeshCtrl navMeshCtrl;
 
 	private void Awake()
 	{
@@ -291,7 +292,14 @@ public class DungeonGenerator : MonoBehaviour
 		{
 			DungeonRoomModule now = q.Dequeue();
 			//방문 설정
-			now.isVisited = true;
+			if(now.isVisited)
+			{
+				continue;
+			}
+			else
+			{
+				now.isVisited = true;
+			}
 
 			int[] dx = { 0, 0, -1, 1 };
 			int[] dy = { 1, -1, 0, 0 };
@@ -348,6 +356,8 @@ public class DungeonGenerator : MonoBehaviour
 				}
 			}
 		}
+
+		navMeshCtrl.BakeSurface();
 	}
 }
 
