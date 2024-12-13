@@ -20,6 +20,7 @@ public class DungeonGenerator : MonoBehaviour
 	[SerializeField] PhotonView photonView;
 	[SerializeField] NavMeshCtrl navMeshCtrl;
 	[SerializeField] MonsterFactory monsterFactory;
+	[SerializeField] ScrapFactory scrapFactory;
 
 	private void Awake()
 	{
@@ -249,7 +250,7 @@ public class DungeonGenerator : MonoBehaviour
 						break;
 					case ModuleType.Monsters:
 						moduleObject = Instantiate(modulePrefs[(int)ModuleType.Monsters], position, Quaternion.identity);
-						moduleObject.GetComponent<MonsterSpawner>().SetFactory(monsterFactory);
+						moduleObject.GetComponent<MonsterSpawner>().SetFactory(monsterFactory, scrapFactory);
 						break;
 					case ModuleType.Scraps:
 						Instantiate(modulePrefs[(int)ModuleType.Scraps], position, Quaternion.identity);

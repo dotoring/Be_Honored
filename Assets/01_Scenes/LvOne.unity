@@ -531,6 +531,52 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5369989239659784363, guid: 5de334ca3666ad646a57035190ce7070, type: 3}
   m_PrefabInstance: {fileID: 839440633}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1023675865
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1023675867}
+  - component: {fileID: 1023675866}
+  m_Layer: 0
+  m_Name: ScrapFactory
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1023675866
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1023675865}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3929d15710c8f94796a6092a102d55e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scraps:
+  - {fileID: 1951225913900136845, guid: c3854d39c7504724288b2fc02d298050, type: 3}
+--- !u!4 &1023675867
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1023675865}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1068850652
 GameObject:
   m_ObjectHideFlags: 0
@@ -606,7 +652,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monsters:
-  - {fileID: 100084, guid: 60fcd6bc230afdf4581b691c3ffec991, type: 3}
+  - {fileID: 6802575969540919369, guid: ce9a58c338097bf42a593a661f9ebf81, type: 3}
 --- !u!4 &1271212317
 Transform:
   m_ObjectHideFlags: 0
@@ -842,3 +888,4 @@ SceneRoots:
   - {fileID: 1068850654}
   - {fileID: 599908898}
   - {fileID: 1271212317}
+  - {fileID: 1023675867}

@@ -1,19 +1,21 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
-public class MonsterFactory : MonoBehaviour
+public class MonsterFactory : Factory
 {
 	public List<GameObject> monsters = new List<GameObject>();
 
-	public void SpawnMonster(int type, Vector3 position)
+	public override GameObject GetPref(int type)
 	{
-		if (type < monsters.Count)
+		try
 		{
-			Instantiate(monsters[0], position, Quaternion.identity);
+			return monsters[type];
 		}
-		else
+		catch
 		{
 			Debug.LogWarning("Wrong number of monster type");
+			return null;
 		}
 	}
 }
