@@ -258,6 +258,7 @@ public class DungeonGenerator : MonoBehaviour
 				}
 			}
 		}
+		navMeshCtrl.BakeSurface();
 	}
 
 	[PunRPC]
@@ -357,7 +358,6 @@ public class DungeonGenerator : MonoBehaviour
 			}
 		}
 
-		navMeshCtrl.BakeSurface();
 	}
 }
 
