@@ -19,9 +19,5 @@ public partial class DieStateAction : Action
 		}
         return Status.Success;
     }
-
-    protected override void OnEnd()
-    {
-    }
 }
 

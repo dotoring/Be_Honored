@@ -48,9 +48,5 @@ public partial class ChangeStateAction : Action
 		}
 		return Status.Success;
     }
-
-    protected override void OnEnd()
-    {
-    }
 }
 

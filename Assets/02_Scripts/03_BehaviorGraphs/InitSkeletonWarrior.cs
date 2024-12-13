@@ -28,11 +28,5 @@ public partial class InitSkeletonWarrior : Action
     {
         return Status.Success;
     }
-
-    protected override void OnEnd()
-    {
-    }
-
-
 }
 
