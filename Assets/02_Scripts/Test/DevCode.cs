@@ -9,11 +9,11 @@ public class DevCode : MonoBehaviour
 
 	private void Awake()
 	{
-		xrprimary.action.performed += clickA;
+		xrprimary.action.performed += ClickA;
 	}
 
-	private void clickA(InputAction.CallbackContext context)
+	private void ClickA(InputAction.CallbackContext context)
 	{
-		photon.MakeRoomBtnOnClick(RoomLevel.One);
+		//photon.MakeRoomBtnOnClick(RoomLevel.One);
 	}
 }
