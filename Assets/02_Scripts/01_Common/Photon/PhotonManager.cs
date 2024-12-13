@@ -69,17 +69,24 @@ public class PhotonManager : MonoBehaviourPunCallbacks
 
 	public override void OnRoomListUpdate(List<RoomInfo> roomList)
 	{
-		foreach (var room in roomList)
+		foreach(var roomdata in roomInBtns)
 		{
-			print("방 리스트 이름 = " + room.Name);
-			foreach(var roomdata in roomInBtns)
+			bool ismatch = false;
+			foreach (var room in roomList)
 			{
+				print("방 리스트 이름 = " + room.Name);
 				if (roomdata.gameObject.name.Contains(room.Name))
 				{
+					ismatch = true;
 					roomdata.GetComponent<RoomData>().RoomInfo = room;
 				}
 			}
+			if(ismatch==false)
+			{
+				roomdata.GetComponent<RoomData>().RoomInfo = null;
+			}
 		}
+		
 	}
 
 
@@ -93,8 +100,10 @@ public class PhotonManager : MonoBehaviourPunCallbacks
 	public override void OnJoinedLobby()
 	{
 		print("로비입장");
-		for (int i = 0; i < roomInBtns.Count;i++)
+		for (int i = 0; i < roomInBtns.Count; i++)
+		{
 			roomInBtns[i].interactable = true;
+		}
 	}
 
 	public override void OnJoinedRoom()

@@ -17,9 +17,11 @@ public class RoomData : MonoBehaviour
 		set
 		{
 			roomInfo = value;
-			roomName.text = roomInfo.Name + "\n" + roomInfo.PlayerCount + " / " + roomInfo.MaxPlayers;
+			if(roomInfo != null)
+				roomName.text = roomInfo.Name + "\n" + roomInfo.PlayerCount + " / " + roomInfo.MaxPlayers;
+			else
+				roomName.text = roomNameBase + "\n0 / 0";
 		}
-
 	}
 
 	private void Update()
