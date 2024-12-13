@@ -3,18 +3,15 @@ using UnityEngine;
 public class MonsterSpawner : MonoBehaviour
 {
 	[SerializeField] Transform[] monSpawnPoints;
-	[SerializeField] GameObject monPref;
+	[SerializeField] MonsterFactory monsterFactory;
 
 	private void Start()
 	{
-		foreach(Transform t in monSpawnPoints)
-		{
-			SpawnMonster(t.position);
-		}
+		monsterFactory.SpawnMonster(0, monSpawnPoints[0].position);
 	}
 
-	void SpawnMonster(Vector3 position)
+	public void SetFactory(MonsterFactory factory)
 	{
-		Instantiate(monPref, position, Quaternion.identity);
+		monsterFactory = factory;
 	}
 }
