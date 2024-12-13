@@ -9,13 +9,13 @@ using TMPro;
 
 public enum RoomLevel
 {
-	One,Two,Three
+	One, Two, Three
 }
 
 public class PhotonManager : MonoBehaviourPunCallbacks
 {
-	[SerializeField]private string version;
-	[SerializeField]private string nickName;
+	[SerializeField] private string version;
+	[SerializeField] private string nickName;
 
 	[SerializeField] private List<Button> roomInBtns;
 	Hashtable customRoomOption = new Hashtable();
@@ -23,9 +23,9 @@ public class PhotonManager : MonoBehaviourPunCallbacks
 
 	private void Awake()
 	{
-		for(int i=0;i<roomInBtns.Count;i++)
+		for (int i = 0; i < roomInBtns.Count; i++)
 			roomInBtns[i].interactable = false;
-		
+
 
 		PhotonNetwork.GameVersion = version;
 		PhotonNetwork.NickName = nickName;
@@ -44,7 +44,7 @@ public class PhotonManager : MonoBehaviourPunCallbacks
 		customRoomOption.Add("Level", RoomLevel.One);
 	}
 
-	void MakeRoomBtnOnClick(RoomLevel level)
+	public void MakeRoomBtnOnClick(RoomLevel level)
 	{
 		if (roomInBtns[(int)level].GetComponent<RoomData>().RoomInfo == null || roomInBtns[(int)level].GetComponent<RoomData>().RoomInfo.MaxPlayers == 0)
 			MakeRoom(level);
@@ -64,7 +64,7 @@ public class PhotonManager : MonoBehaviourPunCallbacks
 			CustomRoomProperties = customRoomOption
 		};
 		print(roomOption.CustomRoomProperties["Level"]);
-		PhotonNetwork.CreateRoom("Lv"+roomOption.CustomRoomProperties["Level"], roomOption);
+		PhotonNetwork.CreateRoom("Lv" + roomOption.CustomRoomProperties["Level"], roomOption);
 	}
 
 	public override void OnRoomListUpdate(List<RoomInfo> roomList)
@@ -72,7 +72,7 @@ public class PhotonManager : MonoBehaviourPunCallbacks
 		foreach (var room in roomList)
 		{
 			print("방 리스트 이름 = " + room.Name);
-			foreach(var roomdata in roomInBtns)
+			foreach (var roomdata in roomInBtns)
 			{
 				if (roomdata.gameObject.name.Contains(room.Name))
 				{
@@ -93,7 +93,7 @@ public class PhotonManager : MonoBehaviourPunCallbacks
 	public override void OnJoinedLobby()
 	{
 		print("로비입장");
-		for (int i = 0; i < roomInBtns.Count;i++)
+		for (int i = 0; i < roomInBtns.Count; i++)
 			roomInBtns[i].interactable = true;
 	}
 

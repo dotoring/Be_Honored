@@ -14,13 +14,17 @@ public class DragItem : MonoBehaviour
 	XRGrabInteractable xRGrabInteractable;
 	bool OnSellPoint = false;
 	EquipType equipPart;
-
+	RectTransform rectTransform;
+	Rigidbody rig;
+	[SerializeField] ItemManager itemManager;
 
 	private void Awake()
 	{
+		rig = GetComponent<Rigidbody>();
 		mrenderer = GetComponent<MeshRenderer>();
 		xRGrabInteractable = GetComponent<XRGrabInteractable>();
-		parentToReturnTo = transform.parent;
+		rectTransform = GetComponent<RectTransform>();
+		//parentToReturnTo = transform.parent;
 		xRGrabInteractable.selectEntered.AddListener(_ => OnSelectEnter());
 		xRGrabInteractable.selectExited.AddListener(_ => OnSelectExit());
 	}
@@ -35,14 +39,22 @@ public class DragItem : MonoBehaviour
 		}
 		else
 		{
-			transform.SetParent(parentToReturnTo);
-			transform.rotation = Quaternion.identity;
+			Debug.Log($"Return Object");
+			itemManager.AddItem(this.gameObject);
+			//transform.parent = parentToReturnTo;
+			// transform.rotation = Quaternion.identity;
+			// rig.isKinematic = true;
+			// rectTransform.rotation = Quaternion.identity;
+			// rectTransform.anchoredPosition = Vector3.zero;
+			// transform.SetParent(parentToReturnTo);
+			// rig.isKinematic = false;
 		}
 	}
 
 	void OnSelectEnter()
 	{
-		parentToReturnTo = transform.parent;
+		//parentToReturnTo = transform.parent;
+		itemManager.RemoveItem(this.gameObject);
 
 	}
 	private void OnTriggerEnter(Collider other)
@@ -66,4 +78,5 @@ public class DragItem : MonoBehaviour
 		}
 	}
 
+	
 }

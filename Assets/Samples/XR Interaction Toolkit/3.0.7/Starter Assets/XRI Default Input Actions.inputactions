@@ -3313,6 +3313,34 @@
                     "isPartOfComposite": true
                 }
             ]
+        },
+        {
+            "name": "XRI DEv",
+            "id": "a5522868-d049-4df3-9b35-f8ad689da34e",
+            "actions": [
+                {
+                    "name": "New action",
+                    "type": "Button",
+                    "id": "301c19ce-9c2f-4cc0-863c-b1f2422e2bc5",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "0b11c339-67f3-49e8-ac74-2bb71f03f2fe",
+                    "path": "<XRController>{RightHand}/primaryButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "New action",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": []
