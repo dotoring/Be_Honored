@@ -22,6 +22,7 @@ public class DragEquip : MonoBehaviour
 	public Transform parentToReturnTo = null;
 	XRGrabInteractable xRGrabInteractable;
 	bool OnSellPoint = false;
+	[SerializeField] ItemManager itemManager;
 
 
 	private void Awake()
@@ -39,23 +40,26 @@ public class DragEquip : MonoBehaviour
 		{
 			Debug.Log($" selling item");
 			// TODO : Add Gold
-			Destroy(this.gameObject);
+			Destroy(gameObject);
 		}
 		else
 		{
-			transform.SetParent(parentToReturnTo);
-			transform.rotation = Quaternion.identity;
+			Debug.Log("Return Object");
+			itemManager.AddItem(gameObject);
+			// transform.SetParent(parentToReturnTo);
+			// transform.parent = parentToReturnTo;
+			// transform.rotation = Quaternion.identity;
 		}
 	}
 
 	void OnSelectEnter()
 	{
-		parentToReturnTo = transform.parent;
+		itemManager.RemoveItem(gameObject);
 
 	}
 	private void OnTriggerEnter(Collider other)
 	{
-
+		//Debug.Log($" other type is  {other.GetComponent<Equipment>().type.ToString()} , equipPart is {equipPart.ToString()}");
 		if ((((1 << other.gameObject.layer) & targetlayer) != 0) && other.GetComponent<Equipment>().type == equipPart)
 		{
 			Debug.Log($" trigger enter ");
