@@ -29,7 +29,7 @@ public class DragEquip : MonoBehaviour
 	{
 		mrenderer = GetComponent<MeshRenderer>();
 		xRGrabInteractable = GetComponent<XRGrabInteractable>();
-		parentToReturnTo = transform.parent;
+		//parentToReturnTo = transform.parent;
 		xRGrabInteractable.selectEntered.AddListener(_ => OnSelectEnter());
 		xRGrabInteractable.selectExited.AddListener(_ => OnSelectExit());
 	}

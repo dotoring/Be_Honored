@@ -1,20 +1,52 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class MonsterSpawner : MonoBehaviour
 {
 	[SerializeField] Transform[] monSpawnPoints;
-	[SerializeField] GameObject monPref;
+	[SerializeField] List<GameObject> spawnedMonsters;
+	MonsterFactory monsterFactory;
+	ScrapFactory scrapFactory;
 
 	private void Start()
 	{
-		foreach(Transform t in monSpawnPoints)
+		int monsterCount = Random.Range(1, 4);
+		for (int i = 0; i < monsterCount; i++)
 		{
-			SpawnMonster(t.position);
+			GameObject go = Instantiate(monsterFactory.GetPref(0), monSpawnPoints[i].position, Quaternion.identity);
+			spawnedMonsters.Add(go);
 		}
 	}
 
-	void SpawnMonster(Vector3 position)
+	public void SetFactory(MonsterFactory _monsterFactory, ScrapFactory _scrapFactory)
 	{
-		Instantiate(monPref, position, Quaternion.identity);
+		monsterFactory = _monsterFactory;
+		scrapFactory = _scrapFactory;
+	}
+
+	public void RemoveFromList(GameObject monster)
+	{
+		try
+		{
+			spawnedMonsters.Remove(monster);
+			CheckMonsters();
+		}
+		catch
+		{
+			Debug.LogWarning($"{monster.name} is not in monster list");
+		}
+	}
+
+	void CheckMonsters()
+	{
+		if(spawnedMonsters.Count <= 0)
+		{
+			SpawnScraps();
+		}
+	}
+
+	void SpawnScraps()
+	{
+		Instantiate(scrapFactory.GetPref(0), monSpawnPoints[0].position, Quaternion.identity);
 	}
 }

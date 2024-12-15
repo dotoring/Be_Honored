@@ -12,7 +12,6 @@ public class DoorCtrl : MonoBehaviour
 		if (!isOpen)
 		{
 			StartCoroutine(RotateDoor());
-			//door.transform.rotation = Quaternion.Euler(0, 90, 0);
 			isOpen = true;
 		}
 	}

@@ -19,6 +19,8 @@ public class DungeonGenerator : MonoBehaviour
 	[SerializeField] PlayerSpawnMgr spawnMgr;
 	[SerializeField] PhotonView photonView;
 	[SerializeField] NavMeshCtrl navMeshCtrl;
+	[SerializeField] MonsterFactory monsterFactory;
+	[SerializeField] ScrapFactory scrapFactory;
 
 	private void Awake()
 	{
@@ -235,25 +237,26 @@ public class DungeonGenerator : MonoBehaviour
 			if (!module.isExcepted)
 			{
 				Vector3 position = new Vector3(module.x * gridLength, 0, module.y * gridLength);
-
+				GameObject moduleObject;
 				switch (module.moduleType)
 				{
 					case ModuleType.Start:
-						GameObject sm = Instantiate(modulePrefs[(int)ModuleType.Start], position, Quaternion.identity);
-						Transform spawnPoint = sm.GetComponent<StartModule>().GetSpawnPoint();
+						moduleObject = Instantiate(modulePrefs[(int)ModuleType.Start], position, Quaternion.identity);
+						Transform spawnPoint = moduleObject.GetComponent<StartModule>().GetSpawnPoint();
 						spawnMgr.SetSpawnPoint(spawnPoint);
 						break;
 					case ModuleType.End:
 						Instantiate(modulePrefs[(int)ModuleType.End], position, Quaternion.identity);
 						break;
 					case ModuleType.Monsters:
-						Instantiate(modulePrefs[(int)ModuleType.Monsters], position, Quaternion.identity);
+						moduleObject = Instantiate(modulePrefs[(int)ModuleType.Monsters], position, Quaternion.identity);
+						moduleObject.GetComponent<MonsterSpawner>().SetFactory(monsterFactory, scrapFactory);
 						break;
 					case ModuleType.Scraps:
-						Instantiate(modulePrefs[(int)ModuleType.Monsters], position, Quaternion.identity);
+						Instantiate(modulePrefs[(int)ModuleType.Scraps], position, Quaternion.identity);
 						break;
 					case ModuleType.Empty:
-						Instantiate(modulePrefs[(int)ModuleType.Monsters], position, Quaternion.identity);
+						Instantiate(modulePrefs[(int)ModuleType.Empty], position, Quaternion.identity);
 						break;
 				}
 			}
