@@ -14,6 +14,8 @@ public class MonsterSpawner : MonoBehaviour
 		for (int i = 0; i < monsterCount; i++)
 		{
 			GameObject go = Instantiate(monsterFactory.GetPref(0), monSpawnPoints[i].position, Quaternion.identity);
+			go.GetComponent<Monster>().spawner = this;
+			go.GetComponent<Monster>().hp = 10;
 			spawnedMonsters.Add(go);
 		}
 	}
@@ -29,17 +31,17 @@ public class MonsterSpawner : MonoBehaviour
 		try
 		{
 			spawnedMonsters.Remove(monster);
-			CheckMonsters();
 		}
 		catch
 		{
 			Debug.LogWarning($"{monster.name} is not in monster list");
 		}
+		CheckMonsters();
 	}
 
 	void CheckMonsters()
 	{
-		if(spawnedMonsters.Count <= 0)
+		if (spawnedMonsters.Count <= 0)
 		{
 			SpawnScraps();
 		}
