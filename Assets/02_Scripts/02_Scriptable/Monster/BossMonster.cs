@@ -15,17 +15,15 @@ public class BossMonster : MonoBehaviour
 	public List<GameObject> playerList;
 
 	public System.Action dieEvent;
-	public System.Action doorOpenEvent;
 
 	private void Start()
 	{
 		dieEvent += () => spawner.RemoveFromList(this.gameObject);
-		
-			GameObject[] temp = GameObject.FindGameObjectsWithTag("Player");
-			foreach (GameObject go in temp)
-			{
-				playerList.Add(go);
-			}
+		GameObject[] temp = GameObject.FindGameObjectsWithTag("Player");
+		foreach (GameObject go in temp)
+		{
+			playerList.Add(go);
+		}
 		
 	}
 }
