@@ -494,8 +494,8 @@ GameObject:
   - component: {fileID: 369075896}
   - component: {fileID: 369075897}
   m_Layer: 10
-  m_Name: GameObject
-  m_TagString: Untagged
+  m_Name: Player2
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2569,6 +2569,8 @@ GameObject:
   - component: {fileID: 4279786147484496}
   - component: {fileID: 111383844055643754}
   - component: {fileID: 111383844055643755}
+  - component: {fileID: 111383844055643756}
+  - component: {fileID: 111383844055643757}
   m_Layer: 0
   m_Name: Cerberus
   m_TagString: Untagged
@@ -3708,7 +3710,7 @@ Transform:
   m_GameObject: {fileID: 1234956932895434}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.07, y: 1, z: -18.94}
+  m_LocalPosition: {x: -9.02, y: 1, z: -18.94}
   m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4808,10 +4810,77 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Graph: {fileID: -1948341256901230601, guid: 481205800863e934aa8739b934202a7f, type: 2}
-  m_BlackboardVariableOverridesList: []
+  m_BlackboardVariableOverridesList:
+  - rid: 7900159638921806569
+  - rid: 7900159640574362380
+  - rid: 7900159640574362516
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 7900159638921806569
+      type: {class: 'BlackboardVariable`1[[UnityEngine.Animation, UnityEngine.AnimationModule]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 936332844319625359
+          m_Value1: 7584574682942090614
+        Name: Animation
+        m_Value: {fileID: 111383844055643754}
+    - rid: 7900159640574362380
+      type: {class: 'BlackboardVariable`1[[BossMonster, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 8710623250471415234
+          m_Value1: 9446843662567639972
+        Name: BossMonster
+        m_Value: {fileID: 111383844055643756}
+    - rid: 7900159640574362516
+      type: {class: 'BlackboardVariable`1[[UnityEngine.GameObject, UnityEngine.CoreModule]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 1
+          m_Value1: 0
+        Name: Self
+        m_Value: {fileID: 1234956932895434}
+--- !u!114 &111383844055643756
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1234956932895434}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5441d4af6797014a86779819c406341, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawner: {fileID: 0}
+  detectRange: 10
+  attackRange: 2
+  attackPower: 2
+  hp: 10
+  isDoorOpen: 0
+  playerList: []
+--- !u!65 &111383844055643757
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1234956932895434}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.4760652, y: 2.6747754, z: 3.8966727}
+  m_Center: {x: -0.05667925, y: 0.36015287, z: 0.45708537}
 --- !u!137 &137083553141402436
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 0
