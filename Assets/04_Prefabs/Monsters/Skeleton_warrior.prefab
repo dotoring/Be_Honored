@@ -1335,6 +1335,7 @@ GameObject:
   - component: {fileID: 2329026107893350230}
   - component: {fileID: 3634983807119677238}
   - component: {fileID: 3170130159670014129}
+  - component: {fileID: -256071039055338045}
   m_Layer: 0
   m_Name: Skeleton_warrior
   m_TagString: Untagged
@@ -1472,6 +1473,19 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &-256071039055338045
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6802575969540919369}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24217fda8d84034438ff5592524cbd48, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spowner: {fileID: 0}
 --- !u!1 &6947079179803565841
 GameObject:
   m_ObjectHideFlags: 0
