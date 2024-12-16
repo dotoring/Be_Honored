@@ -21,6 +21,7 @@ public class DungeonGenerator : MonoBehaviour
 	[SerializeField] NavMeshCtrl navMeshCtrl;
 	[SerializeField] MonsterFactory monsterFactory;
 	[SerializeField] ScrapFactory scrapFactory;
+	[SerializeField] ExitMgr exitMgr;
 
 	private void Awake()
 	{
@@ -246,7 +247,8 @@ public class DungeonGenerator : MonoBehaviour
 						spawnMgr.SetSpawnPoint(spawnPoint);
 						break;
 					case ModuleType.End:
-						Instantiate(modulePrefs[(int)ModuleType.End], position, Quaternion.identity);
+						moduleObject = Instantiate(modulePrefs[(int)ModuleType.End], position, Quaternion.identity);
+						moduleObject.GetComponentInChildren<ExitPortal>().SetExitMgr(exitMgr);
 						break;
 					case ModuleType.Monsters:
 						moduleObject = Instantiate(modulePrefs[(int)ModuleType.Monsters], position, Quaternion.identity);
