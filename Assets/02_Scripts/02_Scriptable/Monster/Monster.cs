@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Monster : MonoBehaviour
 {
-	public MonsterSpawner spowner;
+	public MonsterSpawner spawner;
 	public float detectRange;
 	public float attackRange;
 	public float attackPower;
@@ -13,13 +13,6 @@ public class Monster : MonoBehaviour
 
 	private void Start()
 	{
-		dieEvent += Test;
-		dieEvent += () => spowner.RemoveFromList(this.gameObject);
-	}
-
-
-	private void Test()
-	{
-		Debug.Log("죽었다!");
+		dieEvent += () => spawner.RemoveFromList(this.gameObject);
 	}
 }
