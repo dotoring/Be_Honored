@@ -31,19 +31,26 @@ public partial class StateChangeAction : Action
 		else if (IsDoorOpen.Value == true)
 		{
 			Debug.Log("dd");
-			Distance.Value = BossMonster.Value.detectRange;
-			foreach (GameObject obj in BossMonster.Value.playerList)
+			if (BossMonster.Value.canUseSkill == true)
+				State.Value = BossState.Skill;
+			else
 			{
-				float dis2 = Vector3.Distance(BossMonster.Value.transform.position, obj.transform.position);
-				if (Distance.Value > dis2)
+				Distance.Value = BossMonster.Value.detectRange;
+
+				foreach (GameObject obj in BossMonster.Value.playerList)
 				{
-					Distance.Value = dis2;
-					Player.Value = obj;
+					float dis2 = Vector3.Distance(BossMonster.Value.transform.position, obj.transform.position);
+					if (Distance.Value > dis2)
+					{
+						Distance.Value = dis2;
+						Player.Value = obj;
+					}
+					State.Value = BossState.Move;
 				}
-				State.Value = BossState.Move;
+
+				if (Distance.Value < BossMonster.Value.attackRange)
+					State.Value = BossState.Attack;
 			}
-			if(Distance.Value <BossMonster.Value.attackRange)
-				State.Value = BossState.Attack;
 		}
 		
         return Status.Success;

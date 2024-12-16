@@ -11,6 +11,9 @@ public class BossMonster : MonoBehaviour
 	public float attackPower;
 	public float hp;
 	public bool isDoorOpen;
+	public float skillCoolTime;
+	public float skillWaitTime=0;
+	public bool canUseSkill;
 
 	public List<GameObject> playerList;
 
@@ -24,6 +27,14 @@ public class BossMonster : MonoBehaviour
 		{
 			playerList.Add(go);
 		}
-		
+	}
+	private void Update()
+	{
+		if (isDoorOpen == true)
+		{
+			skillWaitTime += Time.deltaTime;
+			if (skillCoolTime <= skillWaitTime)
+				canUseSkill = true;
+		}
 	}
 }
