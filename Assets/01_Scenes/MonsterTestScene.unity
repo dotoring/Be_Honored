@@ -4855,10 +4855,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawner: {fileID: 0}
   detectRange: 10
-  attackRange: 2
+  attackRange: 3
   attackPower: 2
   hp: 10
   isDoorOpen: 0
+  skillCoolTime: 0
+  skillWaitTime: 0
+  canUseSkill: 0
   playerList: []
 --- !u!65 &111383844055643757
 BoxCollider:
