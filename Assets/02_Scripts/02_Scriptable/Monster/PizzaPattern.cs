@@ -29,7 +29,7 @@ public class PizzaPattern : MonoBehaviour
 		{
 			foreach(GameObject obj in playerInConelist)
 			{
-				obj.GetComponentInChildren<TestPlayer>().hp -= 10;
+				obj.GetComponentInChildren<Player>().Damaged(10);
 			}
 			//플레이어 리스트에 남은 플레이어들의 hp를 깎는 로직
 			Destroy(gameObject);
