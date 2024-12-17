@@ -5,14 +5,14 @@ using Action = Unity.Behavior.Action;
 using Unity.Properties;
 
 [Serializable, GeneratePropertyBag]
-[NodeDescription(name: "SkillUse", story: "랜덤으로 [BossSkills] 를 발동시킴", category: "Action", id: "ca63998d8a38d39693297503a29a1027")]
-public partial class SkillUseAction : Action
+[NodeDescription(name: "TestSkill", story: "스킬을 사용이 끝나면 [BossMonster] 에 신호를 줌", category: "Action", id: "a13d0f0bc7715ccc5f113a34a5ce318f")]
+public partial class TestSkillAction : Action
 {
-    [SerializeReference] public BlackboardVariable<BossSkills> BossSkills;
+    [SerializeReference] public BlackboardVariable<BossMonster> BossMonster;
 
     protected override Status OnStart()
     {
-		BossSkills.Value=(BossSkills)UnityEngine.Random.Range(0, 4);
+		BossMonster.Value.ResetSkill();
         return Status.Running;
     }
 

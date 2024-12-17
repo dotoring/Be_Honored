@@ -7,13 +7,14 @@ using Unity.Properties;
 using Unity.VisualScripting.FullSerializer;
 
 [Serializable, GeneratePropertyBag]
-[NodeDescription(name: "StateChange", story: "문이 열리면 [BossMonster] 를 이용해 [State] 를 변경하고 가장 [Distance] 가 가장 가까운 [Player] 를 추적합니다", category: "Action", id: "6a07177c187212baf861e0bd3746a4f0")]
+[NodeDescription(name: "BossStateChange", story: "문이 열리면 [BossMonster] 를 이용해 [State] 를 변경하고 가장 [Distance] 가 가장 가까운 [Player] 를 추적합니다. 스킬 사용시 [BossSkills] 를 랜덤으로 정해줌", category: "Action", id: "6a07177c187212baf861e0bd3746a4f0")]
 public partial class StateChangeAction : Action
 {
     [SerializeReference] public BlackboardVariable<BossMonster> BossMonster;
     [SerializeReference] public BlackboardVariable<BossState> State;
     [SerializeReference] public BlackboardVariable<float> Distance;
     [SerializeReference] public BlackboardVariable<GameObject> Player;
+    [SerializeReference] public BlackboardVariable<BossSkills> BossSkills;
     [SerializeReference] public BlackboardVariable<bool> IsDoorOpen;
 
 
@@ -30,9 +31,12 @@ public partial class StateChangeAction : Action
 		}
 		else if (IsDoorOpen.Value == true)
 		{
-			Debug.Log("dd");
-			if (BossMonster.Value.canUseSkill == true)
+			if (BossMonster.Value.canUseSkill == true&&State.Value!=BossState.Skill)
+			{
+				//BossSkills.Value = (BossSkills)UnityEngine.Random.Range(0, 4);
+				BossSkills.Value = global::BossSkills.Pizza;
 				State.Value = BossState.Skill;
+			}
 			else
 			{
 				Distance.Value = BossMonster.Value.detectRange;
