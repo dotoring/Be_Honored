@@ -37,7 +37,7 @@ public class Player : MonoBehaviour
 	[SerializeField] Stat _stat;
 	[SerializeField] Stat _curStat;
 	[SerializeField] Armor _armor;
-	float hp;
+	float hp = 50;
 	[SerializeField] AudioClip hited;
 	AudioSource audioSource;
 
@@ -66,6 +66,11 @@ public class Player : MonoBehaviour
 	{
 		hp -= damage;
 		audioSource.PlayOneShot(hited);
+		Debug.Log($" Player {damage} Damaged remain {hp}");
+		if (hp <= 0)
+		{
+			App.Instance.Resetposition.Invoke();
+		}
 	}
 
 }

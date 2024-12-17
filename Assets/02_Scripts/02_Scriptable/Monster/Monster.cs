@@ -75,9 +75,9 @@ public class Monster : MonoBehaviour
 
 	public void Damaged(int damage)
 	{
-		Debug.Log($" {damage} Damaged");
 		UnityEditor.EditorApplication.Beep();
 		hp -= damage;
+		Debug.Log($" Monster {damage} Damaged remain {hp}");
 		btAgent.BlackboardReference.GetVariable("Hp", out tem);
 		tem.Value -= damage;
 		btAgent.BlackboardReference.SetVariableValue("Hp", tem);
