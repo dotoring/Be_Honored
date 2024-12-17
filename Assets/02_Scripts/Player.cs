@@ -37,6 +37,8 @@ public class Player : MonoBehaviour
 	[SerializeField] Stat _stat;
 	[SerializeField] Stat _curStat;
 	[SerializeField] Armor _armor;
+	int hp;
+
 
 	void ArmorChange()
 	{
@@ -52,4 +54,10 @@ public class Player : MonoBehaviour
 		_curStat.Dex = _stat.Dex + equip.dex;
 		_curStat.Inteli = _stat.Inteli + equip.intelli;
 	}
+
+	public void Damaged(int damage)
+	{
+		hp -= damage;
+	}
+
 }

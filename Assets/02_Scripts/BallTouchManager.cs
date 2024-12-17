@@ -1,4 +1,6 @@
+using System;
 using System.Threading.Tasks;
+using UnityEditor;
 using UnityEngine;
 
 public class BallTouchManager : MonoBehaviour
@@ -16,23 +18,27 @@ public class BallTouchManager : MonoBehaviour
 
 	private async void OnTriggerEnter(Collider other)
 	{
-		Debug.Log($"other name {other.name}");
-		if (isProcessing)
-			return; // 현재 비동기 작업 중이라면 무시
+		//Debug.Log($"other name {other.name}");
+		// if (isProcessing)
+		// 	return; // 현재 비동기 작업 중이라면 무시
 
 		// 터치된 공이 순서대로 올 때만 처리
 		if (other.CompareTag("Ball"))
 		{
+			Debug.Log($"touch object : {other.gameObject.name}");
 			if (other.gameObject == ballA && touchOrder == 0)
 			{
+				//		Debug.Log($"Ball 1 touch");
 				await HandleBallTouch(ballA, 1); // A 공 터치
 			}
 			else if (other.gameObject == ballB && touchOrder == 1)
 			{
+				//		Debug.Log($"Ball 2 touch");
 				await HandleBallTouch(ballB, 2); // B 공 터치
 			}
 			else if (other.gameObject == ballC && touchOrder == 2)
 			{
+				//		Debug.Log($"Ball 3 touch");
 				await HandleBallTouch(ballC, 3); // C 공 터치
 			}
 		}
@@ -74,6 +80,8 @@ public class BallTouchManager : MonoBehaviour
 			{
 				// 마지막 공까지 터치되면 종료
 				Debug.Log("All balls touched in order!");
+				touchOrder = 0;
+				Attack();
 				return false; // 리셋 필요 없음
 			}
 
@@ -83,6 +91,12 @@ public class BallTouchManager : MonoBehaviour
 		}
 
 		return true; // 유효 시간 내에 다음 공이 터치되지 않으면 true 반환
+	}
+
+	private void Attack()
+	{
+		EditorApplication.Beep();
+		ResetBallMaterials();
 	}
 
 	private void ResetBallMaterials()

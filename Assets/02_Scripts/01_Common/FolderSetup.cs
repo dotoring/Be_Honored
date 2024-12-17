@@ -16,9 +16,11 @@ public class FolderSetup : EditorWindow
             "Assets/02_Scripts/02_Scriptable",
             "Assets/03_Art/Textures",
             "Assets/03_Art/Models",
-            "Assets/03_Art/Animations", // 03_Art가 먼저 생성되어야 함
+            "Assets/03_Art/Animations", 
             "Assets/04_Prefabs",
             "Assets/05_Audio",
+            "Assets/Resources",
+            "Assets/StreamingAssets",
         };
 
         // 폴더가 없다면 생성
