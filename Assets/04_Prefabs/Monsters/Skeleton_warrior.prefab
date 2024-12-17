@@ -1401,9 +1401,18 @@ MonoBehaviour:
   - rid: 7900159544617336832
   - rid: 7900159545017369003
   - rid: 7900159546358759427
+  - rid: 5525057314778776207
   references:
     version: 2
     RefIds:
+    - rid: 5525057314778776207
+      type: {class: 'BlackboardVariable`1[[Monster, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 2640542662011302925
+          m_Value1: 8802682990319284743
+        Name: monster
+        m_Value: {fileID: -256071039055338045}
     - rid: 7900159544617336832
       type: {class: 'BlackboardVariable`1[[UnityEngine.GameObject, UnityEngine.CoreModule]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
@@ -1485,7 +1494,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24217fda8d84034438ff5592524cbd48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spowner: {fileID: 0}
+  spawner: {fileID: 0}
+  typeOfMonster: 0
+  detectRange: 0
+  attackRange: 0
+  attackPower: 0
+  hp: 0
+  btAgent: {fileID: 0}
+  warriorStat: {fileID: 11400000, guid: 601a5fd1a86563244b3b0e851ac993c9, type: 2}
 --- !u!1 &6947079179803565841
 GameObject:
   m_ObjectHideFlags: 0

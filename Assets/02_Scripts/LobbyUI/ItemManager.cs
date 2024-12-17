@@ -6,7 +6,7 @@ public class ItemManager : MonoBehaviour
 	public GameObject itemPrefab;  // 아이템 프리팹
 	public float itemSpacing = 0.2f; // 아이템 간의 간격
 
-	private List<GameObject> items = new List<GameObject>(); // 아이템을 저장할 리스트
+	private List<GameObject> items = new(); // 아이템을 저장할 리스트
 
 	void Start()
 	{
@@ -39,7 +39,7 @@ public class ItemManager : MonoBehaviour
 		for (int i = 0; i < items.Count; i++)
 		{
 			// 각 아이템의 위치를 세로로 배치
-			Vector3 newPosition = new Vector3(0, i * itemSpacing, 0);
+			Vector3 newPosition = new(0, i * itemSpacing, 0);
 			items[i].transform.localPosition = newPosition; // Y축을 기준으로 배치
 			items[i].transform.localRotation = Quaternion.identity;
 		}

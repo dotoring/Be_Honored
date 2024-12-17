@@ -37,7 +37,14 @@ public class Player : MonoBehaviour
 	[SerializeField] Stat _stat;
 	[SerializeField] Stat _curStat;
 	[SerializeField] Armor _armor;
-	int hp;
+	float hp;
+	[SerializeField] AudioClip hited;
+	AudioSource audioSource;
+
+	private void Awake()
+	{
+		audioSource = GetComponent<AudioSource>();
+	}
 
 
 	void ArmorChange()
@@ -55,9 +62,10 @@ public class Player : MonoBehaviour
 		_curStat.Inteli = _stat.Inteli + equip.intelli;
 	}
 
-	public void Damaged(int damage)
+	public void Damaged(float damage)
 	{
 		hp -= damage;
+		audioSource.PlayOneShot(hited);
 	}
 
 }
