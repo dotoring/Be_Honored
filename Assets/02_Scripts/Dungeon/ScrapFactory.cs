@@ -17,4 +17,9 @@ public class ScrapFactory : Factory
 			return null;
 		}
 	}
+
+	public override GameObject SpawnObejct(string name, Vector3 position, int id)
+	{
+		throw new System.NotImplementedException();
+	}
 }

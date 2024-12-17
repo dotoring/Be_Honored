@@ -22,6 +22,7 @@ public class DungeonGenerator : MonoBehaviour
 	[SerializeField] MonsterFactory monsterFactory;
 	[SerializeField] ScrapFactory scrapFactory;
 	[SerializeField] ExitMgr exitMgr;
+	[SerializeField] DungeonMgr dungeonMgr;
 
 	private void Awake()
 	{
@@ -233,12 +234,13 @@ public class DungeonGenerator : MonoBehaviour
 	[PunRPC]
 	void GenModulesRPC(DungeonRoomModule[] _modules)
 	{
+		int id = 0;
 		foreach (DungeonRoomModule module in _modules)
 		{
 			if (!module.isExcepted)
 			{
 				Vector3 position = new Vector3(module.x * gridLength, 0, module.y * gridLength);
-				GameObject moduleObject;
+				GameObject moduleObject = null;
 				switch (module.moduleType)
 				{
 					case ModuleType.Start:
@@ -255,12 +257,13 @@ public class DungeonGenerator : MonoBehaviour
 						moduleObject.GetComponent<MonsterSpawner>().SetFactory(monsterFactory, scrapFactory);
 						break;
 					case ModuleType.Scraps:
-						Instantiate(modulePrefs[(int)ModuleType.Scraps], position, Quaternion.identity);
+						moduleObject = Instantiate(modulePrefs[(int)ModuleType.Scraps], position, Quaternion.identity);
 						break;
 					case ModuleType.Empty:
-						Instantiate(modulePrefs[(int)ModuleType.Empty], position, Quaternion.identity);
+						moduleObject = Instantiate(modulePrefs[(int)ModuleType.Empty], position, Quaternion.identity);
 						break;
 				}
+				moduleObject.GetComponent<ModuleMgr>().moduleId = id++;
 			}
 		}
 		navMeshCtrl.BakeSurface();
