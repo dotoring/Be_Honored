@@ -5,17 +5,16 @@ using Action = Unity.Behavior.Action;
 using Unity.Properties;
 
 [Serializable, GeneratePropertyBag]
-[NodeDescription(name: "PizzaPatternAni", story: "[Self] 의 [PizzaAni] 를 [Animation] 을 실행한다", category: "Action", id: "31d04283b939039f7581990f9162c6fd")]
-public partial class PizzaPatternAniAction : Action
+[NodeDescription(name: "BossAttack", story: "[Self] 의 [AttackAni] 를 [Animation] 으로 실행한다", category: "Action", id: "9ba506786b29c946d202813922f5d0c2")]
+public partial class AttackAction : Action
 {
     [SerializeReference] public BlackboardVariable<GameObject> Self;
-    [SerializeReference] public BlackboardVariable<AnimationClip> PizzaAni;
+    [SerializeReference] public BlackboardVariable<AnimationClip> AttackAni;
     [SerializeReference] public BlackboardVariable<Animation> Animation;
-
     protected override Status OnStart()
     {
-		PizzaAni.Value.wrapMode = WrapMode.Once;
-		Animation.Value.Play("PizzaPattern");
+		AttackAni.Value.wrapMode = WrapMode.Once;
+		Animation.Value.Play("attack");
 		return Status.Running;
     }
 

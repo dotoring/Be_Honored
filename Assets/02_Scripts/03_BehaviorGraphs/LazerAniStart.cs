@@ -5,17 +5,16 @@ using Action = Unity.Behavior.Action;
 using Unity.Properties;
 
 [Serializable, GeneratePropertyBag]
-[NodeDescription(name: "Attack", story: "[Self] 의 [AttackAni] 를 [Animation] 으로 실행한다", category: "Action", id: "9ba506786b29c946d202813922f5d0c2")]
-public partial class AttackAction : Action
+[NodeDescription(name: "LazerAniStart", story: "[Self] [LazerAni] [Animation]", category: "Action", id: "4168b5d863880ad1b6b2266100828fe0")]
+public partial class LazerAniStart : Action
 {
     [SerializeReference] public BlackboardVariable<GameObject> Self;
-    [SerializeReference] public BlackboardVariable<AnimationClip> AttackAni;
+    [SerializeReference] public BlackboardVariable<AnimationClip> LazerAni;
     [SerializeReference] public BlackboardVariable<Animation> Animation;
+
     protected override Status OnStart()
     {
-		AttackAni.Value.wrapMode = WrapMode.Once;
-		Animation.Value.Play("attack");
-		return Status.Running;
+        return Status.Running;
     }
 
     protected override Status OnUpdate()

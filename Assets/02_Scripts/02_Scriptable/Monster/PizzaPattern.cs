@@ -9,10 +9,7 @@ public class PizzaPattern : MonoBehaviour
 	private float angle=60.0f;
 	private float radius=10.0f;
 
-	private float castingTime = 0;
-	private float castTime = 3.0f;
-
-	[SerializeField]private List<GameObject> playerInConelist = new List<GameObject>();
+	[SerializeField] private List<GameObject> playerInConelist = new();
 
 
 	public void InitThis(BossMonster bossmonster)

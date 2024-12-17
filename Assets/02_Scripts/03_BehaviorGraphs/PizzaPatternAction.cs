@@ -5,13 +5,12 @@ using Action = Unity.Behavior.Action;
 using Unity.Properties;
 
 [Serializable, GeneratePropertyBag]
-[NodeDescription(name: "PizzaTest", story: "[PizzaObj] 를 생성하고 [BossMonster] 를 준다", category: "Action", id: "c647d813db2399aee6063ab38da111db")]
+[NodeDescription(name: "PizzaPatternAction", story: "[PizzaObj] 를 생성하고 [BossMonster] 를 준다", category: "Action", id: "c647d813db2399aee6063ab38da111db")]
 public partial class PizzaTestAction : Action
 {
     [SerializeReference] public BlackboardVariable<GameObject> PizzaObj;
-    [SerializeReference] public BlackboardVariable<GameObject> Self;
     [SerializeReference] public BlackboardVariable<BossMonster> BossMonster;
-
+    [SerializeReference] public BlackboardVariable<GameObject> Self;
     protected override Status OnStart()
     {
 		GameObject pizzaobj = (GameObject)GameObject.Instantiate(PizzaObj);

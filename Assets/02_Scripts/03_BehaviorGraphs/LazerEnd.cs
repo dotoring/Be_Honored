@@ -5,10 +5,10 @@ using Action = Unity.Behavior.Action;
 using Unity.Properties;
 
 [Serializable, GeneratePropertyBag]
-[NodeDescription(name: "CastingTimeLeft", story: "[CastingTime] 이 지나간다", category: "Action", id: "27be6883cae091045a21ad88e995d600")]
-public partial class CastingTimeLeftAction : Action
+[NodeDescription(name: "LazerEnd", story: "[BossMonster] 에게 스킬이 끝났음을 보냄", category: "Action", id: "5fe2d72d1393d140275c8fa60fcfe77f")]
+public partial class LazerEnd : Action
 {
-    [SerializeReference] public BlackboardVariable<float> CastingTime;
+    [SerializeReference] public BlackboardVariable<BossMonster> BossMonster;
 
     protected override Status OnStart()
     {
@@ -17,7 +17,6 @@ public partial class CastingTimeLeftAction : Action
 
     protected override Status OnUpdate()
     {
-		CastingTime.Value += Time.deltaTime;
         return Status.Success;
     }
 
