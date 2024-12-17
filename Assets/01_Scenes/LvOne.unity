@@ -795,6 +795,50 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1567894162
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1567894164}
+  - component: {fileID: 1567894163}
+  m_Layer: 0
+  m_Name: DungeonMgr
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1567894163
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1567894162}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32522b95811a74e45a602bc3b8071802, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1567894164
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1567894162}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1911191205
 GameObject:
   m_ObjectHideFlags: 0
@@ -911,6 +955,7 @@ MonoBehaviour:
   monsterFactory: {fileID: 1271212316}
   scrapFactory: {fileID: 1023675866}
   exitMgr: {fileID: 418964814}
+  dungeonMgr: {fileID: 1567894163}
 --- !u!4 &2090325549
 Transform:
   m_ObjectHideFlags: 0
@@ -934,9 +979,10 @@ SceneRoots:
   - {fileID: 1364234398}
   - {fileID: 839440633}
   - {fileID: 1911191207}
-  - {fileID: 2090325549}
   - {fileID: 1068850654}
+  - {fileID: 2090325549}
   - {fileID: 599908898}
   - {fileID: 1271212317}
   - {fileID: 1023675867}
   - {fileID: 418964813}
+  - {fileID: 1567894164}

@@ -1,7 +1,8 @@
-using System;
 using Unity.Behavior;
-using UnityEditor.Rendering;
 using UnityEngine;
+using UnityEngine.AI;
+using Photon.Pun;
+
 
 public enum MonsterType
 {
@@ -10,7 +11,9 @@ public enum MonsterType
 
 public enum MonsterLevel
 {
-	A, B, C
+	A,
+	B,
+	C
 }
 
 public class Monster : MonoBehaviour
@@ -27,18 +30,27 @@ public class Monster : MonoBehaviour
 
 	BlackboardVariable<float> tem;
 
+	public int moduleId;
+
+	public PhotonView pv;
+	public BehaviorGraphAgent behaviorAgent;
+	public NavMeshAgent navMeshAgent;
 
 	private void Awake()
 	{
 		btAgent = GetComponent<BehaviorGraphAgent>();
-		//behaviorGraphAgent = GetComponent<BehaviorGraphAgent>();
-		//blackboard = GetComponent<BlackboardReference>();
-		//btAgent.BlackboardReference;
 	}
-
 
 	private void Start()
 	{
+		if (!PhotonNetwork.IsMasterClient)
+		{
+			behaviorAgent.enabled = false;
+			navMeshAgent.enabled = false;
+		}
+		spawner = DungeonMgr.instance?.SetModule(moduleId).GetComponent<MonsterSpawner>();
+		spawner.AddToList(this.gameObject);
+
 		dieEvent += () => spawner.RemoveFromList(this.gameObject);
 		LoadData();
 	}
@@ -75,7 +87,6 @@ public class Monster : MonoBehaviour
 
 	public void Damaged(int damage)
 	{
-		UnityEditor.EditorApplication.Beep();
 		hp -= damage;
 		Debug.Log($" Monster {damage} Damaged remain {hp}");
 		btAgent.BlackboardReference.GetVariable("Hp", out tem);
@@ -83,5 +94,11 @@ public class Monster : MonoBehaviour
 		btAgent.BlackboardReference.SetVariableValue("Hp", tem);
 
 
+	}
+
+	[PunRPC]
+	public void SetId(int id)
+	{
+		moduleId = id;
 	}
 }
