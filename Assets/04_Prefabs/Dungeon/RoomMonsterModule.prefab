@@ -165,6 +165,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6709198915644218847}
   - component: {fileID: 946407626724179941}
+  - component: {fileID: 7248309254128422135}
   m_Layer: 0
   m_Name: RoomMonsterModule
   m_TagString: Untagged
@@ -214,7 +215,21 @@ MonoBehaviour:
   - {fileID: 2011981847331772496}
   - {fileID: 4277045687161158983}
   - {fileID: 6095877343009588067}
-  monsterFactory: {fileID: 0}
+  spawnedMonsters: []
+--- !u!114 &7248309254128422135
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5597666366898459991}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a89ffc4b4ef7c745a8732b9a155d676, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moduleId: 0
+  dungeonMgr: {fileID: 0}
 --- !u!1 &6187990094237042417
 GameObject:
   m_ObjectHideFlags: 0

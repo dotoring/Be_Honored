@@ -4,6 +4,10 @@ public class PlayerSpawnMgr : MonoBehaviour
 {
 	[SerializeField] GameObject xrOrigin;
 	Transform spawnPoint;
+	private void Awake()
+	{
+		App.Instance.Resetposition += SpawnPlayer;
+	}
 
 	public void SetSpawnPoint(Transform point)
 	{
@@ -13,6 +17,7 @@ public class PlayerSpawnMgr : MonoBehaviour
 
 	void SpawnPlayer()
 	{
+		Debug.Log($" spawnPlayered");
 		xrOrigin.transform.position = spawnPoint.position;
 	}
 }
