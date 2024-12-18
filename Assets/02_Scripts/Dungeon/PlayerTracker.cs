@@ -1,11 +1,23 @@
+using Photon.Pun;
 using UnityEngine;
 
 public class PlayerTracker : MonoBehaviour
 {
 	public PlayerPositionTest pp;
+	[SerializeField] GameObject model;
 	[SerializeField] Transform head;
 	[SerializeField] Transform rightHand;
 	[SerializeField] Transform leftHand;
+
+	[SerializeField] PhotonView pv;
+
+	private void Start()
+	{
+		if (pv.IsMine)
+		{
+			model.SetActive(false);
+		}
+	}
 
 	private void Update()
 	{

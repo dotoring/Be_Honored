@@ -7,7 +7,6 @@ public class PlayerSpawnMgr : MonoBehaviour
 	Transform spawnPoint;
 
 	[SerializeField] PlayerPositionTest pp;
-	[SerializeField] GameObject playerPref;
 
 	private void Awake()
 	{
