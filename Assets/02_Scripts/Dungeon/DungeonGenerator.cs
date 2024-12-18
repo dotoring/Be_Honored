@@ -326,11 +326,18 @@ public class DungeonGenerator : MonoBehaviour
 						Vector3 point = new Vector3(now.x * gridLength + dx[i] * (gridLength / 2), 0, now.y * gridLength + dy[i] * (gridLength / 2));
 						if (i < 2)
 						{
-							Instantiate(doorPref, point, Quaternion.Euler(0, 90, 0));
+							if (PhotonNetwork.IsMasterClient)
+							{
+								PhotonNetwork.InstantiateRoomObject("Door", point, Quaternion.Euler(0, 90, 0));
+							}
 						}
 						else
 						{
-							Instantiate(doorPref, point, Quaternion.identity);
+							if (PhotonNetwork.IsMasterClient)
+							{
+								PhotonNetwork.InstantiateRoomObject("Door", point, Quaternion.identity);
+							}
+							//Instantiate(doorPref, point, Quaternion.identity);
 						}
 						q.Enqueue(next);
 					}
