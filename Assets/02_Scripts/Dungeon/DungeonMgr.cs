@@ -21,7 +21,6 @@ public class DungeonMgr : MonoBehaviour
 
 	public void AddModule(int id, GameObject module)
 	{
-		Debug.Log($"{id} Module {module.name}");
 		modules.Add(id, module);
 	}
 
