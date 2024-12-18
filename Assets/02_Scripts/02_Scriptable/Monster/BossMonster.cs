@@ -16,6 +16,7 @@ public class BossMonster : MonoBehaviour
 	public bool canUseSkill;
 
 	public List<GameObject> playerList;
+	public List<Transform> fireStartPoint;
 
 	public System.Action dieEvent;
 

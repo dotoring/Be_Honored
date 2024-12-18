@@ -14,7 +14,25 @@ public class LazerPattern : MonoBehaviour
 
 	private void Update()
 	{
-		transform.root.transform.eulerAngles+=rotateAngle * Time.deltaTime*Vector3.up;
+		if (chargingTime < 2.0f)
+		{
+			chargingTime += Time.deltaTime;
+			transform.position += Vector3.up*2*Time.deltaTime;
+		}
+		else
+		{
+			range.SetActive(false);
+			syl.SetActive(true);
+			if (lazingTime < 2.0f)
+			{
+				lazingTime += Time.deltaTime;
+				transform.root.transform.eulerAngles += rotateAngle * Time.deltaTime * Vector3.up;
+			}
+			else
+			{
+				Destroy(gameObject);
+			}
+		}
 	}
 
 
@@ -22,5 +40,20 @@ public class LazerPattern : MonoBehaviour
 	{
 		bossMonster = bossmonster;
 		rotateAngle = angle;
+	}
+
+	private void OnTriggerEnter(Collider other)
+	{
+		if (other.gameObject.tag == "Player")
+		{
+			if (chargingTime < 2.0f)
+			{
+				print("경고");
+			}
+			else
+			{
+				print("데미지");
+			}
+		}
 	}
 }
