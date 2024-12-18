@@ -24,6 +24,10 @@ public class PlayerTracker : MonoBehaviour
 		if (pp != null)
 		{
 			head.position = pp.mc.position;
+			Quaternion rotation = pp.mc.rotation;
+			rotation.x = 0;
+			rotation.z = 0;
+			head.rotation = rotation;
 
 			rightHand.position = pp.rc.position;
 			rightHand.rotation = pp.rc.rotation;
