@@ -38,8 +38,8 @@ public partial class StateChangeAction : Action
 			{
 				if (State.Value != BossState.Skill)
 				{
-					//BossSkills.Value = (BossSkills)UnityEngine.Random.Range(0, 4);
-					BossSkills.Value = global::BossSkills.FireBall;
+					BossSkills.Value = (BossSkills)UnityEngine.Random.Range(0, 4);
+					//BossSkills.Value = global::BossSkills.Lazer;
 					State.Value = BossState.Skill;
 					BossNavMeshAgent.Value.ResetPath();
 				}
@@ -55,6 +55,7 @@ public partial class StateChangeAction : Action
 					{
 						Distance.Value = dis2;
 						Player.Value = obj;
+						BossMonster.Value.targetPlayer= obj;
 					}
 					State.Value = BossState.Move;
 				}

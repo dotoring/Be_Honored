@@ -14,10 +14,13 @@ public partial class FireBallStart : Action
     [SerializeReference] public BlackboardVariable<List<GameObject>> FirePointList;
     [SerializeReference] public BlackboardVariable<GameObject> Self;
 
-    private List<GameObject> targetList;
+    private List<GameObject> targetList=new();
     protected override Status OnStart()
     {
-		targetList = BossMonster.Value.playerList;
+		foreach(var item in BossMonster.Value.playerList)
+		{
+			targetList.Add(item);
+		}
 		float mindis = 99.0f;
 		GameObject remove=new GameObject();
 		foreach (var item in BossMonster.Value.playerList)

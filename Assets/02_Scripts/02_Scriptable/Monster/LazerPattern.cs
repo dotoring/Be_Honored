@@ -1,5 +1,7 @@
+using System;
 using UnityEngine;
 using UnityEngine.Rendering;
+using UnityEngine.UIElements;
 
 public class LazerPattern : MonoBehaviour
 {
@@ -30,7 +32,23 @@ public class LazerPattern : MonoBehaviour
 			}
 			else
 			{
-				Destroy(gameObject);
+				syl.SetActive(false);
+				float curTime = 0;
+				float goalTime = 1f;
+				if (curTime < goalTime)
+				{
+					// 경과 시간 업데이트
+					curTime += Time.deltaTime * 3;
+
+					// 0 ~ 1 사이 비율 계산
+					float progress = curTime / goalTime;
+
+					// 선형 보간(Lerp)을 통해 벡터 변경
+					transform.root.transform.forward = Vector3.Lerp(
+					transform.root.transform.forward,
+					(bossMonster.targetPlayer.transform.position - transform.root.transform.position).normalized, progress);
+				}
+				Destroy(gameObject, 3f);
 			}
 		}
 	}

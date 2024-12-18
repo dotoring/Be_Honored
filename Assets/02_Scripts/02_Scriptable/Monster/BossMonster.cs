@@ -18,7 +18,11 @@ public class BossMonster : MonoBehaviour
 	public List<GameObject> playerList;
 	public List<Transform> fireStartPoint;
 
+	public GameObject targetPlayer;
+
 	public System.Action dieEvent;
+
+	
 
 	private void Start()
 	{

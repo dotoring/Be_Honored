@@ -16,16 +16,24 @@ public class FireBall : MonoBehaviour
 		this.startPoint=startPoint;
 	}
 
+	private void OnDrawGizmos()
+	{
+		Gizmos.color = Color.yellow;
+		Gizmos.DrawLine(transform.position, target.transform.position);
+	}
+
 	private void Update()
 	{
-		transform.position += speed * Time.deltaTime * (target.transform.position - startPoint.position);
+		transform.position += speed * Time.deltaTime * (target.transform.position - startPoint.position).normalized;
 	}
 
 	private void OnTriggerEnter(Collider other)
 	{
 		if (other.tag=="FirePoint")
 		{
+			Destroy(target);
 			Instantiate(floor, target.transform.position,Quaternion.identity);
+			Destroy(gameObject);
 		}
 	}
 }
