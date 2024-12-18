@@ -1,3 +1,4 @@
+using Photon.Pun;
 using Suntail;
 using System.Collections;
 using UnityEngine;
@@ -11,9 +12,15 @@ public class DoorCtrl : MonoBehaviour
 	{
 		if (!isOpen)
 		{
-			StartCoroutine(RotateDoor());
+			GetComponent<PhotonView>().RPC(nameof(OpenCoroutine), RpcTarget.AllBuffered);
 			isOpen = true;
 		}
+	}
+
+	[PunRPC]
+	void OpenCoroutine()
+	{
+		StartCoroutine(RotateDoor());
 	}
 
 	IEnumerator RotateDoor()
