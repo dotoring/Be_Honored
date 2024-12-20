@@ -14,11 +14,9 @@ public partial class LazerPatternAction : Action
     [SerializeReference] public BlackboardVariable<float> LazerRotateAngle;
     protected override Status OnStart()
     {
-		GameObject lazerObj = (GameObject)GameObject.Instantiate(LazerObj);
-		lazerObj.transform.parent = Self.Value.transform;
-		lazerObj.transform.localPosition = Vector3.zero + (Vector3.up * -3);
-		lazerObj.transform.forward = Self.Value.transform.forward;
-		lazerObj.GetComponent<LazerPattern>().InitThis(BossMonster.Value,LazerRotateAngle);
+		LazerObj.Value.SetActive(true);
+		LazerObj.Value.transform.localPosition = Vector3.zero + (Vector3.up * -3);
+		LazerObj.Value.GetComponent<LazerPattern>().InitThis(BossMonster.Value,LazerRotateAngle);
 		return Status.Running;
     }
 

@@ -13,6 +13,13 @@ public class LazerPattern : MonoBehaviour
 	[SerializeField] private float chargingTime;
 	[SerializeField] private float lazingTime;
 
+	private void OnEnable()
+	{
+		chargingTime = 0;
+		lazingTime = 0;
+		range.SetActive(true);
+	}
+
 
 	private void Update()
 	{
@@ -52,7 +59,7 @@ public class LazerPattern : MonoBehaviour
 						(bossMonster.targetPlayer.transform.position - transform.root.transform.position).normalized, progress);
 					
 				}
-				Destroy(gameObject, 3f);
+				gameObject.SetActive(false);
 			}
 		}
 	}

@@ -38,8 +38,8 @@ public partial class StateChangeAction : Action
 			{
 				if (State.Value != BossState.Skill)
 				{
-					//BossSkills.Value = (BossSkills)UnityEngine.Random.Range(0, 4);
-					BossSkills.Value = global::BossSkills.Lazer;
+					BossSkills.Value = (BossSkills)UnityEngine.Random.Range(0, 4);
+					//BossSkills.Value = global::BossSkills.Lazer; //디버그용
 					State.Value = BossState.Skill;
 					BossNavMeshAgent.Value.ResetPath();
 				}

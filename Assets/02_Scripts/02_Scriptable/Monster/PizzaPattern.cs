@@ -8,7 +8,8 @@ public class PizzaPattern : MonoBehaviour
 
 	private float angle=60.0f;
 	private float radius=10.0f;
-
+	[SerializeField]MeshFilter meshFilter;
+	[SerializeField]MeshRenderer meshRenderer;
 	[SerializeField] private List<GameObject> playerInConelist = new();
 
 
@@ -17,9 +18,9 @@ public class PizzaPattern : MonoBehaviour
 		bossMonster = bossmonster;
 	}
 
-	private void Start()
+	private void OnEnable()
 	{
-		CreateSectorMesh(radius,angle,30);
+		CreateSectorMesh(radius, angle, 30);
 	}
 
 	private void Update()
@@ -32,7 +33,7 @@ public class PizzaPattern : MonoBehaviour
 				obj.GetComponentInChildren<Player>()?.Damaged(10);
 			}
 			//플레이어 리스트에 남은 플레이어들의 hp를 깎는 로직
-			Destroy(gameObject);
+			gameObject.SetActive(false);
 		}
 	}
 
@@ -65,10 +66,6 @@ public class PizzaPattern : MonoBehaviour
 		mesh.vertices = vertices.ToArray();
 		mesh.triangles = triangles.ToArray();
 		mesh.RecalculateNormals();
-
-		// MeshRenderer와 MeshFilter 추가
-		MeshFilter meshFilter = gameObject.AddComponent<MeshFilter>();
-		MeshRenderer meshRenderer = gameObject.AddComponent<MeshRenderer>();
 
 		meshFilter.mesh = mesh;
 		meshRenderer.material = new Material(Shader.Find("Standard"));
