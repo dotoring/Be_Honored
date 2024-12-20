@@ -26,7 +26,6 @@ public class Monster : MonoBehaviour
 	public float attackPower;
 	public float hp;
 	public System.Action dieEvent;
-	[SerializeField] BehaviorGraphAgent btAgent;
 
 	BlackboardVariable<float> tem;
 
@@ -38,10 +37,10 @@ public class Monster : MonoBehaviour
 
 	private void Awake()
 	{
-		btAgent = GetComponent<BehaviorGraphAgent>();
+		behaviorAgent = GetComponent<BehaviorGraphAgent>();
 	}
 
-	private void Start()
+	protected virtual void Start()
 	{
 		if (!PhotonNetwork.IsMasterClient)
 		{
@@ -65,15 +64,15 @@ public class Monster : MonoBehaviour
 					case MonsterLevel.A:
 					case MonsterLevel.B:
 					case MonsterLevel.C:
-						btAgent.BlackboardReference.GetVariable("DetectRange", out tem);
+						behaviorAgent.BlackboardReference.GetVariable("DetectRange", out tem);
 						tem.Value = App.Instance.warrior1.detectRange;
-						btAgent.BlackboardReference.SetVariableValue("DetectRange", tem);
-						btAgent.BlackboardReference.GetVariable("AttackRange", out tem);
+						behaviorAgent.BlackboardReference.SetVariableValue("DetectRange", tem);
+						behaviorAgent.BlackboardReference.GetVariable("AttackRange", out tem);
 						tem.Value = App.Instance.warrior1.attackRange;
-						btAgent.BlackboardReference.SetVariableValue("AttackRange", tem);
-						btAgent.BlackboardReference.GetVariable("AttackPower", out tem);
+						behaviorAgent.BlackboardReference.SetVariableValue("AttackRange", tem);
+						behaviorAgent.BlackboardReference.GetVariable("AttackPower", out tem);
 						tem.Value = App.Instance.warrior1.attackPower;
-						btAgent.BlackboardReference.SetVariableValue("AttackPower", tem);
+						behaviorAgent.BlackboardReference.SetVariableValue("AttackPower", tem);
 						break;
 				}
 				break;
@@ -89,12 +88,19 @@ public class Monster : MonoBehaviour
 	{
 		hp -= damage;
 		Debug.Log($" Monster {damage} Damaged remain {hp}");
-		btAgent.BlackboardReference.GetVariable("Hp", out tem);
+		behaviorAgent.BlackboardReference.GetVariable("Hp", out tem);
 		tem.Value -= damage;
-		btAgent.BlackboardReference.SetVariableValue("Hp", tem);
+		behaviorAgent.BlackboardReference.SetVariableValue("Hp", tem);
 
 
 	}
+
+	public virtual void ActiveSelf()
+	{
+		behaviorAgent.enabled = true;
+		navMeshAgent.enabled = true;
+	}
+
 
 	[PunRPC]
 	public void SetId(int id)

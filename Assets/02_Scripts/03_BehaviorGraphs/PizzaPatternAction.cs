@@ -13,12 +13,8 @@ public partial class PizzaTestAction : Action
     [SerializeReference] public BlackboardVariable<GameObject> Self;
     protected override Status OnStart()
     {
-		GameObject pizzaobj = (GameObject)GameObject.Instantiate(PizzaObj);
-		pizzaobj.transform.parent = Self.Value.transform;
-		pizzaobj.transform.localPosition = Vector3.zero+(Vector3.up*1);
-		pizzaobj.transform.forward = Self.Value.transform.forward;
-		pizzaobj.GetComponent<PizzaPattern>().InitThis(BossMonster.Value);
-
+		PizzaObj.Value.gameObject.SetActive(true);
+		PizzaObj.Value.GetComponent<PizzaPattern>().InitThis(BossMonster.Value);
         return Status.Running;
     }
 
