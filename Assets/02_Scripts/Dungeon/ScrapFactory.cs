@@ -1,25 +1,23 @@
-using System.Collections.Generic;
+using Photon.Pun;
 using UnityEngine;
 
-public class ScrapFactory : Factory
+public class ScrapFactory : MonoBehaviour
 {
-	[SerializeField] List<GameObject> scraps;
-
-	public override GameObject GetPref(int type)
+	public void SpawnScrap(Transform[] positions)
 	{
-		try
-		{
-			return scraps[type];
-		}
-		catch
-		{
-			Debug.LogWarning("Wrong number of scrap type");
-			return null;
-		}
-	}
+		int rand = Random.Range(0, 2);
 
-	public override GameObject SpawnObejct(string name, Vector3 position, int id = 0)
-	{
-		throw new System.NotImplementedException();
+		switch (rand)
+		{
+			case 0:
+				PhotonNetwork.InstantiateRoomObject("GoldCup_02", positions[0].position, Quaternion.identity);
+				break;
+			case 1:
+				PhotonNetwork.InstantiateRoomObject("Candlestick_01", positions[0].position, Quaternion.identity);
+				break;
+			case 2:
+				PhotonNetwork.InstantiateRoomObject("Candlestick_02", positions[0].position, Quaternion.identity);
+				break;
+		}
 	}
 }

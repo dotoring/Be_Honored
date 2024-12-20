@@ -209,6 +209,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4f399484708ffb4a86ea4d8b6736647, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moduleMgr: {fileID: 0}
   monSpawnPoints:
   - {fileID: 5588503263478036709}
   - {fileID: 8431249029130145184}
@@ -229,7 +230,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moduleId: 0
-  dungeonMgr: {fileID: 0}
+  moduleType: 3
 --- !u!1 &6187990094237042417
 GameObject:
   m_ObjectHideFlags: 0

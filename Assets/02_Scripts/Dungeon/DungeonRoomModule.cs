@@ -9,7 +9,6 @@ public enum ModuleType
 	Boss,
 	Monsters,
 	Scraps,
-	Empty,
 }
 public class DungeonRoomModule
 {
@@ -27,7 +26,6 @@ public class DungeonRoomModule
 
 		isExcepted = false;
 		isVisited = false;
-		moduleType = ModuleType.Empty;
 	}
 
 	//포톤에서 사용하기 위한 직렬화

@@ -4,6 +4,7 @@ using UnityEngine;
 public class ModuleMgr : MonoBehaviour
 {
 	public int moduleId;
+	public ModuleType moduleType;
 
 	void Start()
 	{

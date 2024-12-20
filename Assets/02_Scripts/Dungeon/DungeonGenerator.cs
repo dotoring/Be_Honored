@@ -19,8 +19,7 @@ public class DungeonGenerator : MonoBehaviour
 	[SerializeField] PlayerSpawnMgr spawnMgr;
 	[SerializeField] PhotonView photonView;
 	[SerializeField] NavMeshCtrl navMeshCtrl;
-	[SerializeField] MonsterFactory monsterFactory;
-	[SerializeField] ScrapFactory scrapFactory;
+	[SerializeField] MainFactory mainFactory;
 	[SerializeField] ExitMgr exitMgr;
 	[SerializeField] DungeonMgr dungeonMgr;
 
@@ -255,17 +254,14 @@ public class DungeonGenerator : MonoBehaviour
 						break;
 					case ModuleType.Monsters:
 						moduleObject = Instantiate(modulePrefs[(int)ModuleType.Monsters], position, Quaternion.identity);
-						moduleObject.GetComponent<MonsterSpawner>().SetFactory(monsterFactory, scrapFactory);
+						moduleObject.GetComponent<MonsterSpawner>().SetFactory(mainFactory);
 						break;
 					case ModuleType.Scraps:
 						moduleObject = Instantiate(modulePrefs[(int)ModuleType.Scraps], position, Quaternion.identity);
 						break;
-					case ModuleType.Empty:
-						moduleObject = Instantiate(modulePrefs[(int)ModuleType.Empty], position, Quaternion.identity);
-						break;
 					case ModuleType.Boss:
 						moduleObject = Instantiate(modulePrefs[(int)ModuleType.Boss], position, Quaternion.identity);
-						moduleObject.GetComponent<MonsterSpawner>().SetFactory(monsterFactory, scrapFactory);
+						moduleObject.GetComponent<MonsterSpawner>().SetFactory(mainFactory);
 						break;
 				}
 				moduleObject.GetComponent<ModuleMgr>().moduleId = id++;
