@@ -5,17 +5,17 @@ using Action = Unity.Behavior.Action;
 using Unity.Properties;
 
 [Serializable, GeneratePropertyBag]
-[NodeDescription(name: "LazerAniStart", story: "[Self] [LazerAni] [Animation]", category: "Action", id: "4168b5d863880ad1b6b2266100828fe0")]
-public partial class LazerAniStart : Action
+[NodeDescription(name: "HowlingAniStart", story: "[Self] [HowlingAni] [Animation]", category: "Action", id: "f4bd8edb1dbe2e6c564cfcec675f4c9b")]
+public partial class HowlingAniStart : Action
 {
     [SerializeReference] public BlackboardVariable<GameObject> Self;
-    [SerializeReference] public BlackboardVariable<AnimationClip> LazerAni;
+    [SerializeReference] public BlackboardVariable<AnimationClip> HowlingAni;
     [SerializeReference] public BlackboardVariable<Animation> Animation;
 
     protected override Status OnStart()
     {
-		LazerAni.Value.wrapMode = WrapMode.Once;
-		Animation.Value.Play("LazerPattern");
+		HowlingAni.Value.wrapMode = WrapMode.Once;
+		Animation.Value.Play("HowlingPattern");
 		return Status.Running;
     }
 

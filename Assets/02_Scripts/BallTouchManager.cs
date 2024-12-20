@@ -19,6 +19,13 @@ public class BallTouchManager : MonoBehaviour
 	Vector3 offset = new(0, 0, 1);
 	Vector3 sizeOfBox = new(1, 1, 1.5f);
 	public LayerMask m_LayerMask;
+	[SerializeField] AudioClip attacksound;
+	AudioSource audioSource;
+
+	private void Awake()
+	{
+		audioSource = GetComponent<AudioSource>();
+	}
 
 	private async void OnTriggerEnter(Collider other)
 	{
@@ -83,7 +90,7 @@ public class BallTouchManager : MonoBehaviour
 			if (touchOrder == 3)
 			{
 				// 마지막 공까지 터치되면 종료
-				Debug.Log("All balls touched in order!");
+				//Debug.Log("All balls touched in order!");
 				touchOrder = 0;
 				Attack();
 				return false; // 리셋 필요 없음
@@ -99,7 +106,7 @@ public class BallTouchManager : MonoBehaviour
 
 	private void Attack()
 	{
-		
+
 		Collider[] hitColliders = Physics.OverlapBox(gameObject.transform.position + transform.forward * offset.z + transform.right * offset.x + transform.up * offset.y, sizeOfBox / 2, Quaternion.identity, m_LayerMask);
 
 		// int i = 0;
@@ -115,6 +122,7 @@ public class BallTouchManager : MonoBehaviour
 		{
 			item.GetComponent<Monster>()?.Damaged(1);
 		}
+		audioSource.PlayOneShot(attacksound);
 		ResetBallMaterials();
 	}
 

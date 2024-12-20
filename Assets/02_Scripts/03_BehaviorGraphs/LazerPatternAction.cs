@@ -16,7 +16,7 @@ public partial class LazerPatternAction : Action
     {
 		GameObject lazerObj = (GameObject)GameObject.Instantiate(LazerObj);
 		lazerObj.transform.parent = Self.Value.transform;
-		lazerObj.transform.localPosition = Vector3.zero + (Vector3.up * 1);
+		lazerObj.transform.localPosition = Vector3.zero + (Vector3.up * -3);
 		lazerObj.transform.forward = Self.Value.transform.forward;
 		lazerObj.GetComponent<LazerPattern>().InitThis(BossMonster.Value,LazerRotateAngle);
 		return Status.Running;

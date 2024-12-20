@@ -5,17 +5,17 @@ using Action = Unity.Behavior.Action;
 using Unity.Properties;
 
 [Serializable, GeneratePropertyBag]
-[NodeDescription(name: "LazerAniStart", story: "[Self] [LazerAni] [Animation]", category: "Action", id: "4168b5d863880ad1b6b2266100828fe0")]
-public partial class LazerAniStart : Action
+[NodeDescription(name: "FireBallAniStart", story: "[Self] [FireBallAni] [Animation]", category: "Action", id: "391901d0b85aa1afdc24f75f463439ee")]
+public partial class FireBallAniStart : Action
 {
     [SerializeReference] public BlackboardVariable<GameObject> Self;
-    [SerializeReference] public BlackboardVariable<AnimationClip> LazerAni;
+    [SerializeReference] public BlackboardVariable<AnimationClip> FireBallAni;
     [SerializeReference] public BlackboardVariable<Animation> Animation;
 
     protected override Status OnStart()
     {
-		LazerAni.Value.wrapMode = WrapMode.Once;
-		Animation.Value.Play("LazerPattern");
+		FireBallAni.Value.wrapMode = WrapMode.Once;
+		Animation.Value.Play("FireBallPattern");
 		return Status.Running;
     }
 
