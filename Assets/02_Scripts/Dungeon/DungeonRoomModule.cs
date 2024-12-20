@@ -6,6 +6,7 @@ public enum ModuleType
 {
 	Start = 0,
 	End,
+	Boss,
 	Monsters,
 	Scraps,
 	Empty,

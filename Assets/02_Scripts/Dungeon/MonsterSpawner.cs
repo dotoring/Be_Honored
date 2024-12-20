@@ -6,6 +6,7 @@ using Unity.Behavior;
 public class MonsterSpawner : MonoBehaviourPunCallbacks
 {
 	int id;
+	[SerializeField] bool isBoss;
 	[SerializeField] ModuleMgr moduleMgr;
 	[SerializeField] Transform[] monSpawnPoints;
 	[SerializeField] List<GameObject> spawnedMonsters;
@@ -18,13 +19,20 @@ public class MonsterSpawner : MonoBehaviourPunCallbacks
 		id = moduleMgr.moduleId;
 		if(PhotonNetwork.IsMasterClient)
 		{
-			int monsterCount = Random.Range(1, 4);
-			for (int i = 0; i < monsterCount; i++)
+			if(isBoss)
 			{
-				//GameObject go = PhotonNetwork.InstantiateRoomObject("Skeleton_warrior", monSpawnPoints[i].position, Quaternion.identity);
-				//go.GetComponent<PhotonView>().RPC("SetId", RpcTarget.AllBuffered, id);
+				monsterFactory.SpawnObejct("Cerberus", monSpawnPoints[0].position, id);
+			}
+			else
+			{
+				int monsterCount = Random.Range(1, 4);
+				for (int i = 0; i < monsterCount; i++)
+				{
+					//GameObject go = PhotonNetwork.InstantiateRoomObject("Skeleton_warrior", monSpawnPoints[i].position, Quaternion.identity);
+					//go.GetComponent<PhotonView>().RPC("SetId", RpcTarget.AllBuffered, id);
 
-				monsterFactory.SpawnObejct("Skeleton_warrior", monSpawnPoints[i].position, id);
+					monsterFactory.SpawnObejct("Skeleton_warrior", monSpawnPoints[i].position, id);
+				}
 			}
 		}
 	}

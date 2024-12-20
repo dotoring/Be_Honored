@@ -209,11 +209,12 @@ public class DungeonGenerator : MonoBehaviour
 		//}
 
 		//생성될 모듈들의 타입 정하기
-		List<ModuleType> types = new List<ModuleType> { ModuleType.Start, ModuleType.End };
-		for (int i = 0; i < (width * length) - exceptCount - 2; i++)
+		List<ModuleType> types = new List<ModuleType> { ModuleType.Start, ModuleType.End, ModuleType.Boss };
+		int baseNum = types.Count;
+		for (int i = 0; i < (width * length) - exceptCount - baseNum; i++)
 		{
 			var enumValues = System.Enum.GetValues(enumType: typeof(ModuleType));
-			ModuleType moduleType = (ModuleType)enumValues.GetValue(Random.Range(2, enumValues.Length));
+			ModuleType moduleType = (ModuleType)enumValues.GetValue(Random.Range(3, enumValues.Length));
 			types.Add(moduleType);
 		}
 
@@ -261,6 +262,10 @@ public class DungeonGenerator : MonoBehaviour
 						break;
 					case ModuleType.Empty:
 						moduleObject = Instantiate(modulePrefs[(int)ModuleType.Empty], position, Quaternion.identity);
+						break;
+					case ModuleType.Boss:
+						moduleObject = Instantiate(modulePrefs[(int)ModuleType.Boss], position, Quaternion.identity);
+						moduleObject.GetComponent<MonsterSpawner>().SetFactory(monsterFactory, scrapFactory);
 						break;
 				}
 				moduleObject.GetComponent<ModuleMgr>().moduleId = id++;

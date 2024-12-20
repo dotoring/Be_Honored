@@ -148,6 +148,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4f399484708ffb4a86ea4d8b6736647, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isBoss: 0
   moduleMgr: {fileID: 0}
   monSpawnPoints:
   - {fileID: 0}
@@ -2004,9 +2005,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Door
       objectReference: {fileID: 0}
+    - target: {fileID: 6499495471754087197, guid: fdc58dc04c2e07b43a4f747d99e7061a, type: 3}
+      propertyPath: sceneViewId
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6839791403534464428, guid: fdc58dc04c2e07b43a4f747d99e7061a, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0.045000065
+      objectReference: {fileID: 0}
+    - target: {fileID: 8833597829550130533, guid: fdc58dc04c2e07b43a4f747d99e7061a, type: 3}
+      propertyPath: sceneViewId
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

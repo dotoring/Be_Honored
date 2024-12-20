@@ -18,7 +18,7 @@ public class ScrapFactory : Factory
 		}
 	}
 
-	public override GameObject SpawnObejct(string name, Vector3 position, int id)
+	public override GameObject SpawnObejct(string name, Vector3 position, int id = 0)
 	{
 		throw new System.NotImplementedException();
 	}
