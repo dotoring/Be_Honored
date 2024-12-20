@@ -17,7 +17,7 @@ public class MainFactory : MonoBehaviour
 				sf.SpawnScrap(positions);
 				break;
 			case ModuleType.Boss:
-				//bmf.SpawnMonster(positions, moduleId);
+				bmf.SpawnMonster(positions, moduleId);
 				break;
 		}
 	}
