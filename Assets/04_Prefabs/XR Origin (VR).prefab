@@ -309,10 +309,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6950682386807687125}
-  - component: {fileID: 621776092098759576}
   - component: {fileID: 8474947225289436368}
   - component: {fileID: 7660894443889990769}
   - component: {fileID: 7038426848395006813}
+  - component: {fileID: 1430726624578498542}
   m_Layer: 10
   m_Name: Attach transfrom
   m_TagString: Untagged
@@ -335,27 +335,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 396896556361045678}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &621776092098759576
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1035361559939594004}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 327fda0986dcd3c47bce9fd2ff075540, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ballA: {fileID: 163054657270832632}
-  ballB: {fileID: 48328960769936932}
-  ballC: {fileID: 6387554762393422450}
-  matRed: {fileID: 2100000, guid: c70dbaf8b30f431489d43b4544809f4c, type: 2}
-  matGray: {fileID: 2100000, guid: abe9705f4e8f3dc4e946f73fe172899f, type: 2}
-  m_LayerMask:
-    serializedVersion: 2
-    m_Bits: 2048
-  attacksound: {fileID: 8300000, guid: 4274b063fee4ff747b8489ab4fcfb25d, type: 3}
 --- !u!65 &8474947225289436368
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -501,6 +480,24 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1430726624578498542
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1035361559939594004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a5aeac978e277b469b0a60466466f4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  triggerAreas:
+  - {fileID: 163054657270832632}
+  - {fileID: 48328960769936932}
+  - {fileID: 6387554762393422450}
+  matgray: {fileID: 2100000, guid: abe9705f4e8f3dc4e946f73fe172899f, type: 2}
+  matred: {fileID: 2100000, guid: c70dbaf8b30f431489d43b4544809f4c, type: 2}
 --- !u!1 &1550565880833230370
 GameObject:
   m_ObjectHideFlags: 0
