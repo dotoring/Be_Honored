@@ -11,7 +11,6 @@ public class BossMonster : Monster
 	public bool canUseSkill;
 
 	public List<GameObject> playerList;
-	public List<Transform> fireStartPoint;
 
 	public GameObject targetPlayer;
 
