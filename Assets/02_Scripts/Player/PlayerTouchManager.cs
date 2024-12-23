@@ -9,6 +9,17 @@ public class PlayerTouchManager : MonoBehaviour
 
 	private int currentOrder = 0;
 	private float lastTriggerTime = 0f;
+	[SerializeField] AudioClip attacksound;
+	AudioSource audioSource;
+
+	Vector3 offset = new(0, 0, 1);
+	Vector3 sizeOfBox = new(1, 1, 1.5f);
+	public LayerMask m_LayerMask;
+
+	private void Awake()
+	{
+		audioSource = GetComponent<AudioSource>();
+	}
 
 	private void Start()
 	{
@@ -37,6 +48,7 @@ public class PlayerTouchManager : MonoBehaviour
 					if (currentOrder >= triggerAreas.Count)
 					{
 						Debug.Log("성공!");
+						Attack();
 						ResetGame(); // 게임 리셋 함수 호출
 					}
 				}
@@ -68,5 +80,17 @@ public class PlayerTouchManager : MonoBehaviour
 		{
 			area.GetComponent<Renderer>().material = matgray;
 		}
+	}
+
+	private void Attack()
+	{
+
+		Collider[] hitColliders = Physics.OverlapBox(gameObject.transform.position + transform.forward * offset.z + transform.right * offset.x + transform.up * offset.y, sizeOfBox / 2, Quaternion.identity, m_LayerMask);
+
+		foreach (var item in hitColliders)
+		{
+			item.GetComponent<Monster>()?.Damaged(1);
+		}
+		audioSource.PlayOneShot(attacksound);
 	}
 }
