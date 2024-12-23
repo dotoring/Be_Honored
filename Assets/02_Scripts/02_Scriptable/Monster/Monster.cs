@@ -51,8 +51,6 @@ public class Monster : MonoBehaviour
 		spawner.AddToList(this.gameObject);
 
 		dieEvent += () => spawner.RemoveFromList(this.gameObject);
-
-		LoadData();
 	}
 
 	private void LoadData()
@@ -101,6 +99,7 @@ public class Monster : MonoBehaviour
 		if (PhotonNetwork.IsMasterClient)
 		{
 			behaviorAgent.enabled = true;
+			LoadData();
 		}
 	}
 

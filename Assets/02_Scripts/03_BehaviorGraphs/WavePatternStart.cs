@@ -14,6 +14,7 @@ public partial class WavePatternStart : Action
     protected override Status OnStart()
     {
 		WaveObj.Value.SetActive(true);
+		WaveObj.Value.GetComponent<WavePattern>().bossMonster = BossMonster.Value;
         return Status.Running;
     }
 
