@@ -11972,7 +11972,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0038c16c34866b4f9e25c9c0dc0f7e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Graph: {fileID: -1948341256901230601, guid: 481205800863e934aa8739b934202a7f, type: 2}
+  m_Graph: {fileID: -1948341256901230601, guid: c544456db6c36f048b77b49c95e063b0, type: 2}
   m_BlackboardVariableOverridesList:
   - rid: 7900159638921806569
   - rid: 7900159640574362380
@@ -11984,6 +11984,7 @@ MonoBehaviour:
   - rid: 7900159681410105683
   - rid: 7900159684556882267
   - rid: 7900159684556882268
+  - rid: 7900159794900107317
   references:
     version: 2
     RefIds:
@@ -12050,7 +12051,7 @@ MonoBehaviour:
           m_Value0: 18275342330717264329
           m_Value1: 6747237904297091488
         Name: BossNavMeshAgent
-        m_Value: {fileID: 2987729308756095445}
+        m_Value: {fileID: 0}
     - rid: 7900159684556882267
       type: {class: 'BlackboardVariable`1[[UnityEngine.GameObject, UnityEngine.CoreModule]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
@@ -12067,6 +12068,17 @@ MonoBehaviour:
           m_Value1: 9933428675131425935
         Name: FireBallObj
         m_Value: {fileID: 3280925522133896336, guid: e8c21b0c757de014694b895c697194ac, type: 3}
+    - rid: 7900159794900107317
+      type: {class: 'BlackboardVariable`1[[System.Collections.Generic.List`1[[UnityEngine.GameObject, UnityEngine.CoreModule]], mscorlib]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 7506611191424718190
+          m_Value1: 10879488715711616417
+        Name: FireStartPoint
+        m_Value:
+        - {fileID: 0}
+        - {fileID: 0}
+        - {fileID: 0}
 --- !u!114 &2688970201548770074
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12095,10 +12107,6 @@ MonoBehaviour:
   skillWaitTime: 0
   canUseSkill: 0
   playerList: []
-  fireStartPoint:
-  - {fileID: 9218751057316801329}
-  - {fileID: 41628815911239443}
-  - {fileID: 3275898223215662743}
   targetPlayer: {fileID: 0}
 --- !u!65 &3223420636314140525
 BoxCollider:
