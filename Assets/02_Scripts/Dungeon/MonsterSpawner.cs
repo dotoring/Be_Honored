@@ -5,7 +5,6 @@ using Unity.Behavior;
 
 public class MonsterSpawner : MonoBehaviourPunCallbacks
 {
-	int id;
 	[SerializeField] ModuleMgr moduleMgr;
 	[SerializeField] Transform[] monSpawnPoints;
 	[SerializeField] List<GameObject> spawnedMonsters;

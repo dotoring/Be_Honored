@@ -258,6 +258,7 @@ public class DungeonGenerator : MonoBehaviour
 						break;
 					case ModuleType.Scraps:
 						moduleObject = Instantiate(modulePrefs[(int)ModuleType.Scraps], position, Quaternion.identity);
+						moduleObject.GetComponent<ScrapSpawner>().SetFactory(mainFactory);
 						break;
 					case ModuleType.Boss:
 						moduleObject = Instantiate(modulePrefs[(int)ModuleType.Boss], position, Quaternion.identity);

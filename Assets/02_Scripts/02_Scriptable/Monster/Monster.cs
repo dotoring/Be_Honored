@@ -47,8 +47,8 @@ public class Monster : MonoBehaviour
 			behaviorAgent.enabled = false;
 			navMeshAgent.enabled = false;
 		}
-		//spawner = DungeonMgr.instance?.SetModule(moduleId).GetComponent<MonsterSpawner>();
-		//spawner.AddToList(this.gameObject);
+		spawner = DungeonMgr.instance?.SetModule(moduleId).GetComponent<MonsterSpawner>();
+		spawner.AddToList(this.gameObject);
 
 		dieEvent += () => spawner.RemoveFromList(this.gameObject);
 
