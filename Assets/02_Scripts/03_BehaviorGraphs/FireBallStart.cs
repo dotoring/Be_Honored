@@ -13,7 +13,6 @@ public partial class FireBallStart : Action
     [SerializeReference] public BlackboardVariable<GameObject> FirePoint;
     [SerializeReference] public BlackboardVariable<List<GameObject>> FirePointList;
     [SerializeReference] public BlackboardVariable<GameObject> Self;
-
     private List<GameObject> targetList=new();
     protected override Status OnStart()
     {
