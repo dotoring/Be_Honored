@@ -28,43 +28,36 @@ public partial class StateChangeAction : Action
 
 	protected override Status OnUpdate()
 	{
-		if (IsDoorOpen.Value == false)
+		if (BossMonster.Value.canUseSkill == true)
 		{
-			IsDoorOpen.Value = BossMonster.Value.isDoorOpen;
-		}
-		else if (IsDoorOpen.Value == true)
-		{
-			if (BossMonster.Value.canUseSkill == true)
+			if (State.Value != BossState.Skill)
 			{
-				if (State.Value != BossState.Skill)
-				{
-					BossSkills.Value = (CerberusSkills)UnityEngine.Random.Range(0, 4);
-					//BossSkills.Value = global::BossSkills.Lazer; //디버그용
-					State.Value = BossState.Skill;
-					BossNavMeshAgent.Value.ResetPath();
-				}
+				BossSkills.Value = (CerberusSkills)UnityEngine.Random.Range(0, 4);
+				//BossSkills.Value = global::BossSkills.Lazer; //디버그용
+				State.Value = BossState.Skill;
+				BossNavMeshAgent.Value.ResetPath();
 			}
-			else
-			{
-				Distance.Value = BossMonster.Value.detectRange;
+		}
+		else
+		{
+			Distance.Value = BossMonster.Value.detectRange;
 
-				foreach (GameObject obj in BossMonster.Value.playerList)
+			foreach (GameObject obj in BossMonster.Value.playerList)
+			{
+				float dis2 = Vector3.Distance(BossMonster.Value.transform.position, obj.transform.position);
+				if (Distance.Value > dis2)
 				{
-					float dis2 = Vector3.Distance(BossMonster.Value.transform.position, obj.transform.position);
-					if (Distance.Value > dis2)
-					{
-						Distance.Value = dis2;
-						Player.Value = obj;
-						BossMonster.Value.targetPlayer = obj;
-					}
+					Distance.Value = dis2;
+					Player.Value = obj;
+					BossMonster.Value.targetPlayer = obj;
+				}
 				State.Value = BossState.Move;
 			}
 
 			if (Distance.Value < BossMonster.Value.attackRange)
-					State.Value = BossState.Attack;
-		}
-		}
+				State.Value = BossState.Attack;
 
+		}
 			return Status.Success;
 	}
 

@@ -5,7 +5,6 @@ using NUnit.Framework;
 
 public class BossMonster : Monster
 {
-	public bool isDoorOpen;
 	public float skillCoolTime;
 	public float skillWaitTime=0;
 	public bool canUseSkill;
@@ -28,18 +27,12 @@ public class BossMonster : Monster
 	private void Update()
 	{
 
-		if (isDoorOpen == true)
+		if (behaviorAgent.enabled == true)
 		{
 			skillWaitTime += Time.deltaTime;
 			if (skillCoolTime <= skillWaitTime)
 				canUseSkill = true;
 		}
-	}
-
-	public override void ActiveSelf()
-	{
-		base.ActiveSelf();
-		isDoorOpen = true;
 	}
 
 	public void ResetSkill()

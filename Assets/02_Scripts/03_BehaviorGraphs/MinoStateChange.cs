@@ -13,7 +13,6 @@ public partial class MinoStateChangeAction : Action
     [SerializeReference] public BlackboardVariable<float> Distance;
     [SerializeReference] public BlackboardVariable<GameObject> Player;
     [SerializeReference] public BlackboardVariable<MinoSkill> BossSkills;
-    [SerializeReference] public BlackboardVariable<bool> IsDoorOpen;
     [SerializeReference] public BlackboardVariable<UnityEngine.AI.NavMeshAgent> BossNavMeshAgent;
     protected override Status OnStart()
     {
@@ -22,43 +21,36 @@ public partial class MinoStateChangeAction : Action
 
 	protected override Status OnUpdate()
 	{
-		if (IsDoorOpen.Value == false)
-		{
-			IsDoorOpen.Value = BossMonster.Value.isDoorOpen;
-		}
-		else if (IsDoorOpen.Value == true)
-		{
-			if (BossMonster.Value.canUseSkill == true)
-			{
-				if (State.Value != BossState.Skill)
-				{
-					BossSkills.Value = (MinoSkill)UnityEngine.Random.Range(0, 4);
-					//BossSkills.Value = global::BossSkills.Lazer; //디버그용
-					State.Value = BossState.Skill;
-					BossNavMeshAgent.Value.ResetPath();
-				}
-			}
-			else
-			{
-				Distance.Value = BossMonster.Value.detectRange;
 
-				foreach (GameObject obj in BossMonster.Value.playerList)
-				{
-					float dis2 = Vector3.Distance(BossMonster.Value.transform.position, obj.transform.position);
-					if (Distance.Value > dis2)
-					{
-						Distance.Value = dis2;
-						Player.Value = obj;
-						BossMonster.Value.targetPlayer = obj;
-					}
-					State.Value = BossState.Move;
-				}
-
-				if (Distance.Value < BossMonster.Value.attackRange)
-					State.Value = BossState.Attack;
+		if (BossMonster.Value.canUseSkill == true)
+		{
+			if (State.Value != BossState.Skill)
+			{
+				BossSkills.Value = (MinoSkill)UnityEngine.Random.Range(0, 4);
+				//BossSkills.Value = global::BossSkills.Lazer; //디버그용
+				State.Value = BossState.Skill;
+				BossNavMeshAgent.Value.ResetPath();
 			}
 		}
+		else
+		{
+			Distance.Value = BossMonster.Value.detectRange;
 
+			foreach (GameObject obj in BossMonster.Value.playerList)
+			{
+				float dis2 = Vector3.Distance(BossMonster.Value.transform.position, obj.transform.position);
+				if (Distance.Value > dis2)
+				{
+					Distance.Value = dis2;
+					Player.Value = obj;
+					BossMonster.Value.targetPlayer = obj;
+				}
+				State.Value = BossState.Move;
+			}
+
+			if (Distance.Value < BossMonster.Value.attackRange)
+				State.Value = BossState.Attack;
+		}
 		return Status.Success;
 	}
 

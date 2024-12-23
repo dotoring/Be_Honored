@@ -45,14 +45,14 @@ public class Monster : MonoBehaviour
 		if (!PhotonNetwork.IsMasterClient)
 		{
 			behaviorAgent.enabled = false;
-			navMeshAgent.enabled = false;
+			//navMeshAgent.enabled = false;
 		}
-		spawner = DungeonMgr.instance?.SetModule(moduleId).GetComponent<MonsterSpawner>();
-		spawner.AddToList(this.gameObject);
+		//spawner = DungeonMgr.instance?.SetModule(moduleId).GetComponent<MonsterSpawner>();
+		//spawner.AddToList(this.gameObject);
 
 		dieEvent += () => spawner.RemoveFromList(this.gameObject);
 
-		LoadData();
+		//LoadData();
 	}
 
 	private void LoadData()
@@ -96,9 +96,12 @@ public class Monster : MonoBehaviour
 
 	}
 
-	public virtual void ActiveSelf()
+	public void ActiveSelf()
 	{
-		behaviorAgent.enabled = true;
+		if (PhotonNetwork.IsMasterClient)
+		{
+			behaviorAgent.enabled = true;
+		}
 	}
 
 
