@@ -5193,14 +5193,30 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5207134256066198850, guid: 27a87e9871accf946b04c1885dcf1789, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5207134256066198850, guid: 27a87e9871accf946b04c1885dcf1789, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 83bbd909e42ec5f4aab081a294d7733e, type: 2}
     - target: {fileID: 5482905665301909779, guid: 27a87e9871accf946b04c1885dcf1789, type: 3}
       propertyPath: m_Name
       value: Cerberus
+      objectReference: {fileID: 0}
+    - target: {fileID: 6200567467033271950, guid: 27a87e9871accf946b04c1885dcf1789, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6237443138919186765, guid: 27a87e9871accf946b04c1885dcf1789, type: 3}
       propertyPath: sceneViewId
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7021791494222695844, guid: 27a87e9871accf946b04c1885dcf1789, type: 3}
+      propertyPath: patMat
+      value: 
+      objectReference: {fileID: 2100000, guid: 83bbd909e42ec5f4aab081a294d7733e, type: 2}
     - target: {fileID: 7219358413278482726, guid: 27a87e9871accf946b04c1885dcf1789, type: 3}
       propertyPath: m_Enabled
       value: 0

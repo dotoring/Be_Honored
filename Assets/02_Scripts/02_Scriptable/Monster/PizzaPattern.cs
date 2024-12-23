@@ -11,6 +11,7 @@ public class PizzaPattern : MonoBehaviour
 	[SerializeField]MeshFilter meshFilter;
 	[SerializeField]MeshRenderer meshRenderer;
 	[SerializeField] private List<GameObject> playerInConelist = new();
+	[SerializeField] private Material patMat;
 
 
 	public void InitThis(BossMonster bossmonster)
@@ -68,7 +69,7 @@ public class PizzaPattern : MonoBehaviour
 		mesh.RecalculateNormals();
 
 		meshFilter.mesh = mesh;
-		meshRenderer.material = new Material(Shader.Find("Standard"));
+		meshRenderer.material = patMat;
 
 	}
 
