@@ -51,6 +51,7 @@ public class Monster : MonoBehaviour
 		spawner.AddToList(this.gameObject);
 
 		dieEvent += () => spawner.RemoveFromList(this.gameObject);
+
 		LoadData();
 	}
 
@@ -98,7 +99,6 @@ public class Monster : MonoBehaviour
 	public virtual void ActiveSelf()
 	{
 		behaviorAgent.enabled = true;
-		navMeshAgent.enabled = true;
 	}
 
 

@@ -1,5 +1,6 @@
 using Photon.Pun;
 using Suntail;
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -8,12 +9,15 @@ public class DoorCtrl : MonoBehaviour
 	[SerializeField] GameObject door;
 	bool isOpen;
 
+	public Action OnDoorOpen = () => { };
+
     public void OpenDoor()
 	{
 		if (!isOpen)
 		{
 			GetComponent<PhotonView>().RPC(nameof(OpenCoroutine), RpcTarget.AllBuffered);
 			isOpen = true;
+			OnDoorOpen.Invoke();
 		}
 	}
 
