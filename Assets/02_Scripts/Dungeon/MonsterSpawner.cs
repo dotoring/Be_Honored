@@ -18,6 +18,8 @@ public class MonsterSpawner : MonoBehaviourPunCallbacks
 		{
 			mainFactory.ModuleInfo(moduleMgr.moduleType, monSpawnPoints, moduleMgr.moduleId);
 		}
+
+		moduleMgr.OnRoomOpen += BeginMonsterBT;
 	}
 
 	public void SetFactory(MainFactory _mainFactory)
@@ -66,6 +68,14 @@ public class MonsterSpawner : MonoBehaviourPunCallbacks
 				monster.GetComponent<Monster>().behaviorAgent.enabled = true;
 				monster.GetComponent<Monster>().navMeshAgent.enabled = true;
 			}
+		}
+	}
+
+	void BeginMonsterBT()
+	{
+		foreach(GameObject monster in spawnedMonsters)
+		{
+			monster.GetComponent<Monster>().ActiveSelf();
 		}
 	}
 }
