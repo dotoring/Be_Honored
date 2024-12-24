@@ -35,4 +35,9 @@ public class DoorCtrl : MonoBehaviour
 			yield return new WaitForSeconds(0.02f);
 		}
 	}
+
+	private void OnDestroy()
+	{
+		OnDoorOpen = null;
+	}
 }

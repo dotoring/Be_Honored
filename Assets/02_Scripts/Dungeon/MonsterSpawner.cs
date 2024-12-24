@@ -21,6 +21,11 @@ public class MonsterSpawner : MonoBehaviourPunCallbacks
 		moduleMgr.OnRoomOpen += BeginMonsterBT;
 	}
 
+	private void OnDestroy()
+	{
+		moduleMgr.OnRoomOpen -= BeginMonsterBT;
+	}
+
 	public void SetFactory(MainFactory _mainFactory)
 	{
 		mainFactory = _mainFactory;
