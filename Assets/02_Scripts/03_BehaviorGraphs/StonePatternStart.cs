@@ -12,6 +12,7 @@ public partial class StonePatternStart : Action
 
     protected override Status OnStart()
     {
+		StoneObj.Value.SetActive(true);
         return Status.Running;
     }
 

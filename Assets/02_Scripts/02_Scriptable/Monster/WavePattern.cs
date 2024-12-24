@@ -7,17 +7,16 @@ public class WavePattern : MonoBehaviour
 	public BossMonster bossMonster;
 	[SerializeField] private GameObject ironBall;
 	[SerializeField] private List<Transform> startPoints;
+	[SerializeField] private List<Transform> endPoints;
 	[SerializeField] private List<GameObject> currentBalls;
 	[SerializeField] private float speed = 3.0f;
 
 	[SerializeField] private float waitTime=1.0f;
 	[SerializeField] private float curTime=0.0f;
-	[SerializeField] private float cur2Time=0.0f;
-	//각도 0 90 180 270
+
 	private void OnEnable()
 	{
 		curTime = 0;
-		cur2Time = 0;
 		transform.eulerAngles = Random.Range(0, 4) * 90.0f * Vector3.up;
 		int i=Random.Range(0, 2);
 		if (i == 0)
@@ -31,15 +30,16 @@ public class WavePattern : MonoBehaviour
 			curTime += Time.deltaTime;
 		else
 		{
-			cur2Time += Time.deltaTime;
+			int i = 0;
 			foreach (var ball in currentBalls)
 			{
 				ball.transform.position += ball.transform.forward * Time.deltaTime * speed;
-				if(ball.transform.localPosition.z>=8)
-				{
-					gameObject.SetActive(false);
-					break;
-				}
+				//if (ball.transform.position.z >= endPoints[i].position.z)
+				//{
+				//	gameObject.SetActive(false);
+				//	break;
+				//}
+				i++;
 			}
 		}
 	}
@@ -58,7 +58,7 @@ public class WavePattern : MonoBehaviour
 		{
 			if(i!=num)
 			{
-				MakeBall(startPoints[i]);
+				MakeBall(startPoints[i], endPoints[i]);
 			}	
 		}
 	}
@@ -68,15 +68,16 @@ public class WavePattern : MonoBehaviour
 		{
 			if (i%2==num)
 			{
-				MakeBall(startPoints[i]);
+				MakeBall(startPoints[i], endPoints[i]);
 			}
 		}
 	}
 
-	void MakeBall(Transform point)
+	void MakeBall(Transform startPoint,Transform endPoint)
 	{
-		GameObject ball = Instantiate(ironBall, point);
+		GameObject ball = Instantiate(ironBall, startPoint.position, Quaternion.identity);
+		ball.transform.forward = startPoint.forward;
 		currentBalls.Add(ball);
-		ball.GetComponent<IronBall>().InitBall(bossMonster.attackPower);
+		ball.GetComponent<IronBall>().InitBall(bossMonster.attackPower,endPoint.position);
 	}
 }
