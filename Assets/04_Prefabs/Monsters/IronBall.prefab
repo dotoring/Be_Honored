@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6186496790085832901}
   - component: {fileID: 7928694549030563639}
   - component: {fileID: 3207498043523710996}
+  - component: {fileID: 6636399570041269656}
   m_Layer: 0
   m_Name: IronBall
   m_TagString: Untagged
@@ -108,3 +109,15 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &6636399570041269656
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 447483762469998364}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d7e3bc4cbe3fd44ebed6f59ea5f1b54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

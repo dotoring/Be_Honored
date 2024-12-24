@@ -12,12 +12,18 @@ public class WavePattern : MonoBehaviour
 
 	[SerializeField] private float waitTime=1.0f;
 	[SerializeField] private float curTime=0.0f;
+	[SerializeField] private float cur2Time=0.0f;
 	//각도 0 90 180 270
 	private void OnEnable()
 	{
 		curTime = 0;
+		cur2Time = 0;
 		transform.eulerAngles = Random.Range(0, 4) * 90.0f * Vector3.up;
-		PatternOne(Random.Range(0, startPoints.Count));
+		int i=Random.Range(0, 2);
+		if (i == 0)
+			PatternOne(Random.Range(0, startPoints.Count));
+		else
+			PatternTwo(Random.Range(0, 2));
 	}
 	private void Update()
 	{
@@ -25,9 +31,15 @@ public class WavePattern : MonoBehaviour
 			curTime += Time.deltaTime;
 		else
 		{
+			cur2Time += Time.deltaTime;
 			foreach (var ball in currentBalls)
 			{
 				ball.transform.position += ball.transform.forward * Time.deltaTime * speed;
+				if(ball.transform.localPosition.z>=8)
+				{
+					gameObject.SetActive(false);
+					break;
+				}
 			}
 		}
 	}
@@ -35,16 +47,10 @@ public class WavePattern : MonoBehaviour
 	{
 		foreach(var ball in currentBalls)
 		{
-			Destroy(ball);
+			Destroy(ball.gameObject);
 		}
 		currentBalls.Clear();
 	}
-	//공 갯수 > 5개?
-
-	//패턴
-	//1. 공 갯수 중에 한군데 빵꾸
-	//2. 0 2 0 4 0 공 나오게
-	//3. 1 0 3 0 5 공 나오게
 
 	void PatternOne(int num)
 	{
@@ -52,8 +58,7 @@ public class WavePattern : MonoBehaviour
 		{
 			if(i!=num)
 			{
-				GameObject ball = Instantiate(ironBall, startPoints[i]);
-				currentBalls.Add(ball);
+				MakeBall(startPoints[i]);
 			}	
 		}
 	}
@@ -63,10 +68,15 @@ public class WavePattern : MonoBehaviour
 		{
 			if (i%2==num)
 			{
-				GameObject ball = Instantiate(ironBall, startPoints[i]);
-				currentBalls.Add(ball);
+				MakeBall(startPoints[i]);
 			}
 		}
 	}
 
+	void MakeBall(Transform point)
+	{
+		GameObject ball = Instantiate(ironBall, point);
+		currentBalls.Add(ball);
+		ball.GetComponent<IronBall>().InitBall(bossMonster.attackPower);
+	}
 }
