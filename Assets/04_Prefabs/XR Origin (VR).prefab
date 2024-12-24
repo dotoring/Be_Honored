@@ -259,7 +259,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8515216988239219049}
-  - component: {fileID: 4768425389212938907}
   m_Layer: 10
   m_Name: Attack
   m_TagString: Untagged
@@ -285,21 +284,6 @@ Transform:
   - {fileID: 5198824222659254265}
   m_Father: {fileID: 5909511960500466914}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4768425389212938907
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 936466133558410523}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1dfdc5967ba30ee498c7fc4f98fe7426, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_LayerMask:
-    serializedVersion: 2
-    m_Bits: 2048
 --- !u!1 &1035361559939594004
 GameObject:
   m_ObjectHideFlags: 0
@@ -498,6 +482,10 @@ MonoBehaviour:
   - {fileID: 6387554762393422450}
   matgray: {fileID: 2100000, guid: abe9705f4e8f3dc4e946f73fe172899f, type: 2}
   matred: {fileID: 2100000, guid: c70dbaf8b30f431489d43b4544809f4c, type: 2}
+  attacksound: {fileID: 8300000, guid: 4274b063fee4ff747b8489ab4fcfb25d, type: 3}
+  m_LayerMask:
+    serializedVersion: 2
+    m_Bits: 2048
 --- !u!1 &1550565880833230370
 GameObject:
   m_ObjectHideFlags: 0
