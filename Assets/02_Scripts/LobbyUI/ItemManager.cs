@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class ItemManager : MonoBehaviour
@@ -8,10 +9,27 @@ public class ItemManager : MonoBehaviour
 
 	private List<GameObject> items = new(); // 아이템을 저장할 리스트
 
-	void Start()
+	void OnEnable()
 	{
+
+		foreach (var item in App.Instance.inventory)
+		{
+			DragItem sellingitem = Instantiate(itemPrefab, transform.position, Quaternion.identity, transform).GetComponent<DragItem>();
+			// sellingitem.GetComponent<DragItem>().textOfItem.text = item;
+			sellingitem.setItem(transform, this, item);
+			items.Add(sellingitem.gameObject);
+
+		}
 		// 초기 아이템 배치
 		ArrangeItems();
+	}
+
+	private void OnDisable()
+	{
+		foreach (var item in items)
+		{
+			App.Instance.inventory.Add(item.GetComponent<DragItem>().textOfItemIninven.text.ToString());
+		}
 	}
 
 	// 아이템을 추가하는 함수

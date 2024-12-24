@@ -1,4 +1,4 @@
-using System;
+using TMPro;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
 
@@ -17,6 +17,18 @@ public class DragItem : MonoBehaviour
 	RectTransform rectTransform;
 	Rigidbody rig;
 	[SerializeField] ItemManager itemManager;
+	[SerializeField] TMP_Text textOfItemGrab;
+	public TMP_Text textOfItemIninven;
+	[SerializeField] GameObject grabed;
+	[SerializeField] GameObject ininven;
+
+	public void setItem(Transform par, ItemManager manager, string itemName)
+	{
+		parentToReturnTo = par;
+		itemManager = manager;
+		textOfItemGrab.text = itemName;
+		textOfItemIninven.text = itemName;
+	}
 
 	private void Awake()
 	{
@@ -41,13 +53,10 @@ public class DragItem : MonoBehaviour
 		{
 			Debug.Log($"Return Object");
 			itemManager.AddItem(this.gameObject);
-			//transform.parent = parentToReturnTo;
-			// transform.rotation = Quaternion.identity;
-			// rig.isKinematic = true;
-			// rectTransform.rotation = Quaternion.identity;
-			// rectTransform.anchoredPosition = Vector3.zero;
-			// transform.SetParent(parentToReturnTo);
-			// rig.isKinematic = false;
+			rectTransform.localScale = Vector3.one * 0.3f;
+			grabed.SetActive(false);
+			ininven.SetActive(true);
+
 		}
 	}
 
@@ -55,6 +64,8 @@ public class DragItem : MonoBehaviour
 	{
 		//parentToReturnTo = transform.parent;
 		itemManager.RemoveItem(this.gameObject);
+		grabed.SetActive(true);
+		ininven.SetActive(false);
 
 	}
 	private void OnTriggerEnter(Collider other)
@@ -78,5 +89,5 @@ public class DragItem : MonoBehaviour
 		}
 	}
 
-	
+
 }
