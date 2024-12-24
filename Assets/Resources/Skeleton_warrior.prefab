@@ -1402,9 +1402,36 @@ MonoBehaviour:
   - rid: 7900159544617336832
   - rid: 7900159545017369003
   - rid: 7900159546358759427
+  - rid: 7516498409974399574
+  - rid: 7516498409974399575
+  - rid: 7516498409974399576
   references:
     version: 2
     RefIds:
+    - rid: 7516498409974399574
+      type: {class: 'BlackboardVariable`1[[System.Single, mscorlib]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 911865653014992848
+          m_Value1: 5711882419777586739
+        Name: DetectRange
+        m_Value: 0
+    - rid: 7516498409974399575
+      type: {class: 'BlackboardVariable`1[[System.Single, mscorlib]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 15487078395254756351
+          m_Value1: 10578701391293626
+        Name: AttackRange
+        m_Value: 0
+    - rid: 7516498409974399576
+      type: {class: 'BlackboardVariable`1[[System.Single, mscorlib]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 14563197665923073898
+          m_Value1: 7970989689133410719
+        Name: AttackPower
+        m_Value: 0
     - rid: 7900159544617336832
       type: {class: 'BlackboardVariable`1[[UnityEngine.GameObject, UnityEngine.CoreModule]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
@@ -1489,9 +1516,9 @@ MonoBehaviour:
   spawner: {fileID: 0}
   typeOfMonster: 0
   monsterLevel: 0
-  detectRange: 0
-  attackRange: 0
-  attackPower: 0
+  detectRange: 99
+  attackRange: 3
+  attackPower: 2
   hp: 10
   moduleId: 0
   pv: {fileID: 1104055828518455709}
