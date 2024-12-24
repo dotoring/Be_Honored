@@ -1891,6 +1891,10 @@ PrefabInstance:
       propertyPath: detectRange
       value: 99
       objectReference: {fileID: 0}
+    - target: {fileID: -256071039055338045, guid: ce9a58c338097bf42a593a661f9ebf81, type: 3}
+      propertyPath: navMeshAgent
+      value: 
+      objectReference: {fileID: 4874577395527813689}
     - target: {fileID: 2329026107893350230, guid: ce9a58c338097bf42a593a661f9ebf81, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -5480,6 +5484,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24217fda8d84034438ff5592524cbd48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!195 &4874577395527813689 stripped
+NavMeshAgent:
+  m_CorrespondingSourceObject: {fileID: 3170130159670014129, guid: ce9a58c338097bf42a593a661f9ebf81, type: 3}
+  m_PrefabInstance: {fileID: 347615546496803183}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

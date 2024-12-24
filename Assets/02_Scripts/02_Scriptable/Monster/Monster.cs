@@ -51,6 +51,8 @@ public class Monster : MonoBehaviour
 		spawner.AddToList(this.gameObject);
 
 		dieEvent += () => spawner.RemoveFromList(this.gameObject);
+
+		LoadData();
 	}
 
 	private void LoadData()
@@ -63,15 +65,10 @@ public class Monster : MonoBehaviour
 					case MonsterLevel.A:
 					case MonsterLevel.B:
 					case MonsterLevel.C:
-						behaviorAgent.BlackboardReference.GetVariable("DetectRange", out tem);
-						tem.Value = App.Instance.warrior1.detectRange;
-						behaviorAgent.BlackboardReference.SetVariableValue("DetectRange", tem);
-						behaviorAgent.BlackboardReference.GetVariable("AttackRange", out tem);
-						tem.Value = App.Instance.warrior1.attackRange;
-						behaviorAgent.BlackboardReference.SetVariableValue("AttackRange", tem);
-						behaviorAgent.BlackboardReference.GetVariable("AttackPower", out tem);
-						tem.Value = App.Instance.warrior1.attackPower;
-						behaviorAgent.BlackboardReference.SetVariableValue("AttackPower", tem);
+						detectRange = App.Instance.warrior1.detectRange;
+						attackRange = App.Instance.warrior1.attackRange;
+						attackPower = App.Instance.warrior1.attackPower;
+						hp			= App.Instance.warrior1.hp;
 						break;
 				}
 				break;
@@ -99,7 +96,6 @@ public class Monster : MonoBehaviour
 		if (PhotonNetwork.IsMasterClient)
 		{
 			behaviorAgent.enabled = true;
-			LoadData();
 		}
 	}
 
