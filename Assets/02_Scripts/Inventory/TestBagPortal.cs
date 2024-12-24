@@ -2,12 +2,20 @@ using UnityEngine;
 
 public class TestBagPortal : MonoBehaviour
 {
+	[SerializeField] GameObject bagPref;
 
 	private void OnTriggerEnter(Collider other)
 	{
-		if(other.gameObject.name == "BagSensor")
+		if(other.gameObject.CompareTag("BagSensor"))
 		{
-			BagCtrl.Instance.gameObject.transform.position = transform.position;
+			if(BagCtrl.Instance == null)
+			{
+				Instantiate(bagPref, transform.position, Quaternion.identity);
+			}
+			else
+			{
+				BagCtrl.Instance.gameObject.transform.position = transform.position;
+			}
 		}
 	}
 }

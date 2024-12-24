@@ -3,6 +3,7 @@ using UnityEngine.SceneManagement;
 using Photon.Pun;
 using UnityEngine.UI;
 using System.Collections;
+using System;
 
 public class ExitMgr : MonoBehaviourPunCallbacks
 {
@@ -12,7 +13,7 @@ public class ExitMgr : MonoBehaviourPunCallbacks
 
 	public void ExitDungeon()
 	{
-		OnExitDungeon();
+		OnExitDungeon?.Invoke();
 		PhotonNetwork.LeaveRoom();
 	}
 
