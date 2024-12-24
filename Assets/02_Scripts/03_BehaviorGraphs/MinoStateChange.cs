@@ -26,8 +26,8 @@ public partial class MinoStateChangeAction : Action
 		{
 			if (State.Value != BossState.Skill)
 			{
-				BossSkills.Value = (MinoSkill)UnityEngine.Random.Range(0, 4);
-				//BossSkills.Value = global::BossSkills.Lazer; //디버그용
+				//BossSkills.Value = (MinoSkill)UnityEngine.Random.Range(0, 4);
+				BossSkills.Value = global::MinoSkill.Stomp; //디버그용
 				State.Value = BossState.Skill;
 				BossNavMeshAgent.Value.ResetPath();
 			}

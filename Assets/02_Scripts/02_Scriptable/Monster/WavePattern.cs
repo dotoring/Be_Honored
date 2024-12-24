@@ -21,9 +21,9 @@ public class WavePattern : MonoBehaviour
 		transform.eulerAngles = Random.Range(0, 4) * 90.0f * Vector3.up;
 		int i=Random.Range(0, 2);
 		if (i == 0)
-			PatternOne(Random.Range(0, startPoints.Count));
+			DoPatternOne(Random.Range(0, startPoints.Count));
 		else
-			PatternTwo(Random.Range(0, 2));
+			DoPatternTwo(Random.Range(0, 2));
 	}
 	private void Update()
 	{
@@ -52,7 +52,7 @@ public class WavePattern : MonoBehaviour
 		currentBalls.Clear();
 	}
 
-	void PatternOne(int num)
+	void DoPatternOne(int num)
 	{
 		for (int i = 0; i < startPoints.Count; i++)
 		{
@@ -62,7 +62,7 @@ public class WavePattern : MonoBehaviour
 			}	
 		}
 	}
-	void PatternTwo(int num)
+	void DoPatternTwo(int num)
 	{
 		for (int i = 0; i < startPoints.Count; i++)
 		{
