@@ -11,25 +11,26 @@ public class ItemManager : MonoBehaviour
 
 	void OnEnable()
 	{
+		if (itemPrefab != null)
+			foreach (var item in App.Instance.inventory)
+			{
+				DragItem sellingitem = Instantiate(itemPrefab, transform.position, Quaternion.identity, transform).GetComponent<DragItem>();
+				// sellingitem.GetComponent<DragItem>().textOfItem.text = item;
+				sellingitem.setItem(transform, this, item);
+				items.Add(sellingitem.gameObject);
 
-		foreach (var item in App.Instance.inventory)
-		{
-			DragItem sellingitem = Instantiate(itemPrefab, transform.position, Quaternion.identity, transform).GetComponent<DragItem>();
-			// sellingitem.GetComponent<DragItem>().textOfItem.text = item;
-			sellingitem.setItem(transform, this, item);
-			items.Add(sellingitem.gameObject);
-
-		}
+			}
 		// 초기 아이템 배치
 		ArrangeItems();
 	}
 
 	private void OnDisable()
 	{
-		foreach (var item in items)
-		{
-			App.Instance.inventory.Add(item.GetComponent<DragItem>().textOfItemIninven.text.ToString());
-		}
+		if (App.Instance != null)
+			foreach (var item in items)
+			{
+				App.Instance.inventory.Add(item.GetComponent<DragItem>().textOfItemIninven.text.ToString());
+			}
 	}
 
 	// 아이템을 추가하는 함수
