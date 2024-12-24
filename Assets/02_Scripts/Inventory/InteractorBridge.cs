@@ -12,6 +12,9 @@ public class InteractorBridge : MonoBehaviour
 
 	private void Start()
 	{
-		BagCtrl.Instance.SetInteractionMgr(interactorManager);
+		if (BagCtrl.Instance != null)
+		{
+			BagCtrl.Instance.SetInteractionMgr(interactorManager);
+		}
 	}
 }

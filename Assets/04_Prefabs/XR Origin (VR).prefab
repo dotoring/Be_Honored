@@ -338,8 +338,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.5, y: 0.5, z: 0.5}
+  m_Center: {x: 0, y: 0, z: -0.21}
 --- !u!54 &7660894443889990769
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -482,10 +482,10 @@ MonoBehaviour:
   - {fileID: 6387554762393422450}
   matgray: {fileID: 2100000, guid: abe9705f4e8f3dc4e946f73fe172899f, type: 2}
   matred: {fileID: 2100000, guid: c70dbaf8b30f431489d43b4544809f4c, type: 2}
-  attacksound: {fileID: 0}
+  attacksound: {fileID: 8300000, guid: 4274b063fee4ff747b8489ab4fcfb25d, type: 3}
   m_LayerMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 2048
 --- !u!1 &1550565880833230370
 GameObject:
   m_ObjectHideFlags: 0
@@ -793,7 +793,7 @@ GameObject:
   - component: {fileID: 7641722443051736094}
   m_Layer: 10
   m_Name: XR Origin (VR)
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1022,9 +1022,9 @@ GameObject:
   - component: {fileID: 3219210964552320711}
   - component: {fileID: 5775672100864907667}
   - component: {fileID: 878897134831427126}
-  m_Layer: 10
+  m_Layer: 13
   m_Name: BagSensor
-  m_TagString: Untagged
+  m_TagString: BagSensor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1787,7 +1787,7 @@ GameObject:
   - component: {fileID: 2140262367417826360}
   - component: {fileID: 6171012438363563960}
   - component: {fileID: 393154193919413634}
-  m_Layer: 10
+  m_Layer: 13
   m_Name: BagPortal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1922,6 +1922,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82951d27da0f5904d92b7f89a3f28763, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bagPref: {fileID: 4130928169224751713, guid: 1da0a5a375d03c04991d36312f2d6600, type: 3}
 --- !u!1 &8341260129998241629
 GameObject:
   m_ObjectHideFlags: 0
