@@ -22,6 +22,18 @@ public class positiontestcode : MonoBehaviour
 		{
 			ball3.parent = attack;
 		}
+		else if (Input.GetKeyDown(KeyCode.UpArrow))
+		{
+			ball1.parent = this.transform;
+			ball2.parent = this.transform;
+			ball3.parent = this.transform;
+			ball1.localPosition = Vector3.zero; ;
+			ball2.localPosition = Vector3.zero; ;
+			ball3.localPosition = Vector3.zero; ;
+
+
+
+		}
 	}
 
 
