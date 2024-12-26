@@ -8,7 +8,7 @@ public class WavePattern : MonoBehaviour
 	[SerializeField] private GameObject ironBall;
 	[SerializeField] private List<Transform> startPoints;
 	[SerializeField] private List<Transform> endPoints;
-	[SerializeField] private List<GameObject> currentBalls;
+	[SerializeField] private List<GameObject> ironBalls;
 	[SerializeField] private float speed = 3.0f;
 
 	[SerializeField] private float waitTime=1.0f;
@@ -31,25 +31,20 @@ public class WavePattern : MonoBehaviour
 		else
 		{
 			int i = 0;
-			foreach (var ball in currentBalls)
+			foreach (var ball in ironBalls)
 			{
+				if(ball==null)
+					continue;
 				ball.transform.position += ball.transform.forward * Time.deltaTime * speed;
-				//if (ball.transform.position.z >= endPoints[i].position.z)
-				//{
-				//	gameObject.SetActive(false);
-				//	break;
-				//}
+				float dis = Vector3.Distance(ball.transform.position, endPoints[i].position);
+				if (dis <= 0.01)
+				{
+					gameObject.SetActive(false);
+					break;
+				}
 				i++;
 			}
 		}
-	}
-	private void OnDisable()
-	{
-		foreach(var ball in currentBalls)
-		{
-			Destroy(ball.gameObject);
-		}
-		currentBalls.Clear();
 	}
 
 	void DoPatternOne(int num)
@@ -58,8 +53,12 @@ public class WavePattern : MonoBehaviour
 		{
 			if(i!=num)
 			{
-				MakeBall(startPoints[i], endPoints[i]);
-			}	
+				ActiveBall(i);
+			}
+			else
+			{
+				ironBalls[i].gameObject.SetActive(false);
+			}
 		}
 	}
 	void DoPatternTwo(int num)
@@ -68,16 +67,20 @@ public class WavePattern : MonoBehaviour
 		{
 			if (i%2==num)
 			{
-				MakeBall(startPoints[i], endPoints[i]);
+				ActiveBall(i);
+			}
+			else
+			{
+				ironBalls[i].gameObject.SetActive(false);
 			}
 		}
 	}
 
-	void MakeBall(Transform startPoint,Transform endPoint)
+	void ActiveBall(int num)
 	{
-		GameObject ball = Instantiate(ironBall, startPoint.position, Quaternion.identity);
-		ball.transform.forward = startPoint.forward;
-		currentBalls.Add(ball);
-		ball.GetComponent<IronBall>().InitBall(bossMonster.attackPower,endPoint.position);
+		GameObject ball = ironBalls[num].gameObject;
+		ball.SetActive(true);
+		ball.transform.position = startPoints[num].position;
+		ball.transform.rotation = startPoints[num].rotation;
 	}
 }
