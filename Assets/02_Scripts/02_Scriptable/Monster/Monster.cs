@@ -34,6 +34,7 @@ public class Monster : MonoBehaviour
 	public PhotonView pv;
 	public BehaviorGraphAgent behaviorAgent;
 	public NavMeshAgent navMeshAgent;
+	public GameObject hpBar;
 
 	private void Awake()
 	{
@@ -46,6 +47,7 @@ public class Monster : MonoBehaviour
 		{
 			behaviorAgent.enabled = false;
 			navMeshAgent.enabled = false;
+			hpBar.SetActive(false);
 		}
 		spawner = DungeonMgr.instance?.SetModule(moduleId).GetComponent<MonsterSpawner>();
 		spawner.AddToList(this.gameObject);
@@ -82,13 +84,13 @@ public class Monster : MonoBehaviour
 
 	public void Damaged(int damage)
 	{
+		if(hpBar!=null)
+			hpBar.SetActive(true);
 		hp -= damage;
 		Debug.Log($" Monster {damage} Damaged remain {hp}");
 		behaviorAgent.BlackboardReference.GetVariable("Hp", out tem);
 		tem.Value -= damage;
 		behaviorAgent.BlackboardReference.SetVariableValue("Hp", tem);
-
-
 	}
 
 	public void ActiveSelf()
