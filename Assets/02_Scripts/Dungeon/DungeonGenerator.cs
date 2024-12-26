@@ -210,9 +210,11 @@ public class DungeonGenerator : MonoBehaviour
 		//생성될 모듈들의 타입 정하기
 		List<ModuleType> types = new List<ModuleType> { ModuleType.Start, ModuleType.End, ModuleType.Boss };
 		int baseNum = types.Count;
-		for (int i = 0; i < (width * length) - exceptCount - baseNum; i++)
+		for (int i = baseNum; i < (width * length) - exceptCount; i++)
 		{
+			//모듈타입의 값들을 가져온다
 			var enumValues = System.Enum.GetValues(enumType: typeof(ModuleType));
+			//모듈타입의 첫 3가지를 뺀 나머지를 랜덤으로 고르기
 			ModuleType moduleType = (ModuleType)enumValues.GetValue(Random.Range(3, enumValues.Length));
 			types.Add(moduleType);
 		}

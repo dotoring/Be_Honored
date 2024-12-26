@@ -8,11 +8,8 @@ public class InteractorBridge : MonoBehaviour
 	private void Awake()
 	{
 		interactorManager = GetComponent<XRInteractionManager>();
-	}
 
-	private void Start()
-	{
-		if(App.Instance.interactorManager == null)
+		if (App.Instance.interactorManager == null)
 		{
 			App.Instance.interactorManager = new Observable<XRInteractionManager>(interactorManager);
 		}
