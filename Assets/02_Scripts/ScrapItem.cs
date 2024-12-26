@@ -124,6 +124,7 @@ public class ScrapItem : MonoBehaviour
 	void DestroyPhotonView()
 	{
 		Destroy(pv);
+		Destroy(GetComponent<PhotonTransformView>());
 	}
 
 	public void SetInteractionMgr(XRInteractionManager mgr)
