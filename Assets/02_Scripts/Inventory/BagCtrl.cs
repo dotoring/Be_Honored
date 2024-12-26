@@ -11,6 +11,7 @@ public class BagCtrl : MonoBehaviour
 	{
 		xRGrabInteractable = GetComponent<XRGrabInteractable>();
 
+
 		if(Instance != null && Instance != this)
 		{
 			Destroy(this.gameObject);
@@ -18,6 +19,14 @@ public class BagCtrl : MonoBehaviour
 
 		Instance = this;
 		DontDestroyOnLoad(gameObject);
+	}
+
+	private void Start()
+	{
+		App.Instance.interactorManager.AddListener((mgr) =>
+		{
+			SetInteractionMgr(mgr);
+		});
 	}
 
 	public void SetInteractionMgr(XRInteractionManager mgr)

@@ -1,16 +1,26 @@
+using Photon.Pun;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
-using Photon.Pun;
+
+public enum TypeOfItem
+{
+	EQUIP,
+	SCRAP,
+}
 
 public class ScrapItem : MonoBehaviour
 {
+	[SerializeField] TypeOfItem typeOfItem = TypeOfItem.SCRAP;
 	XRGrabInteractable xRGrabInteractable;
 	PhotonView pv;
 	Rigidbody rb;
 	Collider col;
 	GameObject bag;
 	bool isInBag;
+	private int price = 1;
+
+	public int Price { get => price; set => price = value; }
 
 	private void Awake()
 	{
@@ -28,7 +38,10 @@ public class ScrapItem : MonoBehaviour
 		{
 			//오브젝트의 PhotonView에서 Ownership Transfer를 Takeover로 설정하면 소유권(컨트롤러 포함)을 강제로 가져올 수 있도록 한다
 			//TransferOwnership(Player) -> 현재 PhotonView의 소유권을 Player로 바꾸는 함수
-			pv.TransferOwnership(PhotonNetwork.LocalPlayer);
+			if (pv != null)
+			{
+				pv.TransferOwnership(PhotonNetwork.LocalPlayer);
+			}
 
 			col.isTrigger = true;
 
@@ -39,6 +52,29 @@ public class ScrapItem : MonoBehaviour
 			col.isTrigger = false;
 			CheckInBag();
 		});
+
+		App.Instance.interactorManager.AddListener((mgr) =>
+		{
+			SetInteractionMgr(mgr);
+		});
+
+		ItemSetter();
+	}
+
+	private void ItemSetter()
+	{
+		Price = Random.Range(1, 30);
+	}
+
+	private void OnDestroy()
+	{
+		if (App.Instance != null)
+		{
+			App.Instance.interactorManager.RemoveListener((mgr) =>
+			{
+				SetInteractionMgr(mgr);
+			});
+		}
 	}
 
 	void CheckInBag()
@@ -55,20 +91,34 @@ public class ScrapItem : MonoBehaviour
 
 	void SetInBag()
 	{
+		if (pv != null)
+		{
+			pv.RPC(nameof(SetItemActive), RpcTarget.OthersBuffered, false);
+		}
+
 		rb.isKinematic = true;
 		rb.useGravity = false;
 
 		transform.SetParent(bag.transform, true);
-
-		Destroy(pv);
 	}
 
 	void PullOut()
 	{
+		if (pv != null)
+		{
+			pv.RPC(nameof(SetItemActive), RpcTarget.OthersBuffered, true);
+		}
+
 		rb.isKinematic = false;
 		rb.useGravity = true;
 
 		transform.SetParent(null, true);
+	}
+
+	[PunRPC]
+	void SetItemActive(bool b)
+	{
+		gameObject.SetActive(b);
 	}
 
 	void DestroyPhotonView()
@@ -76,12 +126,10 @@ public class ScrapItem : MonoBehaviour
 		Destroy(pv);
 	}
 
-	//private void grabed(SelectEnterEventArgs arg0)
-	//{
-	//	Debug.Log($" selected ");
-	//	App.Instance.inventory.Add(this.name);
-	//	Destroy(this.gameObject);
-	//}
+	public void SetInteractionMgr(XRInteractionManager mgr)
+	{
+		xRGrabInteractable.interactionManager = mgr;
+	}
 
 	private void OnTriggerEnter(Collider other)
 	{
@@ -101,5 +149,10 @@ public class ScrapItem : MonoBehaviour
 		{
 			isInBag = false;
 		}
+	}
+
+	public int Getvalue()
+	{
+		return Price;
 	}
 }
