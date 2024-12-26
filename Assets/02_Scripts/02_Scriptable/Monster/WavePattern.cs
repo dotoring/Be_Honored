@@ -5,7 +5,6 @@ using UnityEngine;
 public class WavePattern : MonoBehaviour
 {
 	public BossMonster bossMonster;
-	[SerializeField] private GameObject ironBall;
 	[SerializeField] private List<Transform> startPoints;
 	[SerializeField] private List<Transform> endPoints;
 	[SerializeField] private List<GameObject> ironBalls;
@@ -13,6 +12,14 @@ public class WavePattern : MonoBehaviour
 
 	[SerializeField] private float waitTime=1.0f;
 	[SerializeField] private float curTime=0.0f;
+
+	private void Start()
+	{
+		foreach(var ball in ironBalls)
+		{
+			ball.GetComponent<IronBall>().InitBall(bossMonster.attackPower * 2f);
+		}
+	}
 
 	private void OnEnable()
 	{
@@ -33,8 +40,6 @@ public class WavePattern : MonoBehaviour
 			int i = 0;
 			foreach (var ball in ironBalls)
 			{
-				if(ball==null)
-					continue;
 				ball.transform.position += ball.transform.forward * Time.deltaTime * speed;
 				float dis = Vector3.Distance(ball.transform.position, endPoints[i].position);
 				if (dis <= 0.01)
