@@ -1,7 +1,7 @@
+using Photon.Pun;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
-using Photon.Pun;
 
 public class ScrapItem : MonoBehaviour
 {
@@ -39,6 +39,22 @@ public class ScrapItem : MonoBehaviour
 			col.isTrigger = false;
 			CheckInBag();
 		});
+
+		App.Instance.interactorManager.AddListener((mgr) =>
+		{
+			SetInteractionMgr(mgr);
+		});
+	}
+
+	private void OnDestroy()
+	{
+		if (App.Instance != null)
+		{
+			App.Instance.interactorManager.RemoveListener((mgr) =>
+			{
+				SetInteractionMgr(mgr);
+			});
+		}
 	}
 
 	void CheckInBag()
@@ -55,20 +71,28 @@ public class ScrapItem : MonoBehaviour
 
 	void SetInBag()
 	{
+		pv.RPC(nameof(SetItemActive), RpcTarget.OthersBuffered, false);
+
 		rb.isKinematic = true;
 		rb.useGravity = false;
 
 		transform.SetParent(bag.transform, true);
-
-		Destroy(pv);
 	}
 
 	void PullOut()
 	{
+		pv.RPC(nameof(SetItemActive), RpcTarget.OthersBuffered, true);
+
 		rb.isKinematic = false;
 		rb.useGravity = true;
 
 		transform.SetParent(null, true);
+	}
+
+	[PunRPC]
+	void SetItemActive(bool b)
+	{
+		gameObject.SetActive(b);
 	}
 
 	void DestroyPhotonView()
@@ -76,12 +100,10 @@ public class ScrapItem : MonoBehaviour
 		Destroy(pv);
 	}
 
-	//private void grabed(SelectEnterEventArgs arg0)
-	//{
-	//	Debug.Log($" selected ");
-	//	App.Instance.inventory.Add(this.name);
-	//	Destroy(this.gameObject);
-	//}
+	public void SetInteractionMgr(XRInteractionManager mgr)
+	{
+		xRGrabInteractable.interactionManager = mgr;
+	}
 
 	private void OnTriggerEnter(Collider other)
 	{

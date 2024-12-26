@@ -12,9 +12,13 @@ public class InteractorBridge : MonoBehaviour
 
 	private void Start()
 	{
-		if (BagCtrl.Instance != null)
+		if(App.Instance.interactorManager == null)
 		{
-			BagCtrl.Instance.SetInteractionMgr(interactorManager);
+			App.Instance.interactorManager = new Observable<XRInteractionManager>(interactorManager);
+		}
+		else
+		{
+			App.Instance.interactorManager.Value = interactorManager;
 		}
 	}
 }
