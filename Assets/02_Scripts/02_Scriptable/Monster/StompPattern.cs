@@ -24,7 +24,6 @@ public class StompPattern : MonoBehaviour
 	{
 		if (other.TryGetComponent<Player>(out Player player))
 		{
-			print(player.name+" 들어옴");
 			targets.Add(player.gameObject);
 		}
 	}
@@ -32,7 +31,6 @@ public class StompPattern : MonoBehaviour
 	{
 		if (other.TryGetComponent<Player>(out Player player))
 		{
-			print(player.name+" 나감");
 			targets.Remove(player.gameObject);
 		}
 	}
