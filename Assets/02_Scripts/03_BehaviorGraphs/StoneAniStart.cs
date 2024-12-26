@@ -5,17 +5,17 @@ using Action = Unity.Behavior.Action;
 using Unity.Properties;
 
 [Serializable, GeneratePropertyBag]
-[NodeDescription(name: "RoarAniStart", story: "[Self] [RoarAni] [Animation]", category: "Action", id: "bf677c802ff0ef6a7cda241129d1bd81")]
-public partial class RoarAniStartAction : Action
+[NodeDescription(name: "StoneAniStart", story: "[self] [stoneAni] [Animation]", category: "Action", id: "e9ad1b10f554b4a62a507ba22b768d1c")]
+public partial class StoneAniStart : Action
 {
     [SerializeReference] public BlackboardVariable<GameObject> Self;
-    [SerializeReference] public BlackboardVariable<AnimationClip> RoarAni;
+    [SerializeReference] public BlackboardVariable<AnimationClip> StoneAni;
     [SerializeReference] public BlackboardVariable<Animation> Animation;
 
     protected override Status OnStart()
     {
-		RoarAni.Value.wrapMode = WrapMode.Once;
-		Animation.Value.Play("roar");
+		StoneAni.Value.wrapMode = WrapMode.Once;
+		Animation.Value.Play("StonePattern");
 		return Status.Running;
     }
 

@@ -2,13 +2,11 @@ using UnityEngine;
 
 public class IronBall : MonoBehaviour
 {
-	private float damage;
-	[SerializeField] private Vector3 endPoint;
+	[SerializeField]private float damage;
 
-	public void InitBall(float damage,Vector3 endPoint)
+	public void InitBall(float damage)
 	{
 		this.damage = damage;
-		this.endPoint = endPoint;
 	}
 
 	private void OnTriggerEnter(Collider other)

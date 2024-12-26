@@ -9,13 +9,14 @@ using Unity.Properties;
 public partial class HowlingAction : Action
 {
     [SerializeReference] public BlackboardVariable<GameObject> Self;
+    [SerializeReference] public BlackboardVariable<BossMonster> BossMonster;
 
     protected override Status OnStart()
     {
 		Collider[] cols = Physics.OverlapSphere(Self.Value.transform.position, 7.0f, 1 << 10);
 		for(int i=0;i<cols.Length;i++)
 		{
-			cols[i].GetComponent<Player>()?.Damaged(10);
+			cols[i].GetComponent<Player>()?.Damaged(BossMonster.Value.attackPower);
 		}
         return Status.Running;
     }
