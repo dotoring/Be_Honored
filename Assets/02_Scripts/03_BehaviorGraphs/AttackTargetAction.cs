@@ -9,11 +9,13 @@ using Unity.Properties;
 public partial class AttackTargetAction : Action
 {
 	[SerializeReference] public BlackboardVariable<Transform> Player;
+	[SerializeReference] public BlackboardVariable<GameObject> Self;
 	[SerializeReference] public BlackboardVariable<float> Attackpower;
 
 	protected override Status OnStart()
 	{
 		Player.Value.GetComponent<Player>()?.Damaged(Attackpower.Value);
+		Self.Value.transform.forward = (Player.Value.position - Self.Value.transform.position).normalized;
 		return Status.Running;
 	}
 

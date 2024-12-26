@@ -3,14 +3,24 @@ using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
 
+public enum TypeOfItem
+{
+	EQUIP,
+	SCRAP,
+}
+
 public class ScrapItem : MonoBehaviour
 {
+	[SerializeField] TypeOfItem typeOfItem = TypeOfItem.SCRAP;
 	XRGrabInteractable xRGrabInteractable;
 	PhotonView pv;
 	Rigidbody rb;
 	Collider col;
 	GameObject bag;
 	bool isInBag;
+	private int price = 1;
+
+	public int Price { get => price; set => price = value; }
 
 	private void Awake()
 	{
@@ -47,6 +57,13 @@ public class ScrapItem : MonoBehaviour
 		{
 			SetInteractionMgr(mgr);
 		});
+
+		ItemSetter();
+	}
+
+	private void ItemSetter()
+	{
+		Price = Random.Range(1, 30);
 	}
 
 	private void OnDestroy()
@@ -74,7 +91,7 @@ public class ScrapItem : MonoBehaviour
 
 	void SetInBag()
 	{
-		if(pv != null)
+		if (pv != null)
 		{
 			pv.RPC(nameof(SetItemActive), RpcTarget.OthersBuffered, false);
 		}
@@ -133,5 +150,10 @@ public class ScrapItem : MonoBehaviour
 		{
 			isInBag = false;
 		}
+	}
+
+	public int Getvalue()
+	{
+		return Price;
 	}
 }

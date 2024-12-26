@@ -14,7 +14,9 @@ public partial class RoarAniStartAction : Action
 
     protected override Status OnStart()
     {
-        return Status.Running;
+		RoarAni.Value.wrapMode = WrapMode.Once;
+		Animation.Value.Play("roar");
+		return Status.Running;
     }
 
     protected override Status OnUpdate()

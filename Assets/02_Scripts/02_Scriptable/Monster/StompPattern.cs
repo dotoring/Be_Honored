@@ -24,7 +24,6 @@ public class StompPattern : MonoBehaviour
 	{
 		if (other.TryGetComponent<Player>(out Player player))
 		{
-			print(player.name+" 들어옴");
 			targets.Add(player.gameObject);
 		}
 	}
@@ -32,7 +31,6 @@ public class StompPattern : MonoBehaviour
 	{
 		if (other.TryGetComponent<Player>(out Player player))
 		{
-			print(player.name+" 나감");
 			targets.Remove(player.gameObject);
 		}
 	}
@@ -51,7 +49,7 @@ public class StompPattern : MonoBehaviour
 	{
 		foreach (var target in targets)
 		{
-			target.GetComponent<Player>()?.Damaged(10);
+			target.GetComponent<Player>()?.Damaged(bossMonster.attackPower*2);
 		}
 	}
 
