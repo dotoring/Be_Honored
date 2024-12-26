@@ -2,6 +2,7 @@ using System;
 using Unity.VisualScripting;
 using UnityEditor.Rendering;
 using UnityEngine;
+using UnityEngine.UI;
 
 public enum KindOfclass
 {
@@ -39,6 +40,7 @@ public class Player : MonoBehaviour
 	[SerializeField] Armor _armor;
 	float hp = 50;
 	[SerializeField] AudioClip hited;
+	[SerializeField] Image hpBar;
 	AudioSource audioSource;
 
 	private void Awake()
@@ -71,6 +73,8 @@ public class Player : MonoBehaviour
 		{
 			App.Instance.Resetposition.Invoke();
 		}
+
+		hpBar.fillAmount = hp / 50;
 	}
 
 }
