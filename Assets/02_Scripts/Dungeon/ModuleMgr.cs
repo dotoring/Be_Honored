@@ -6,7 +6,7 @@ public class ModuleMgr : MonoBehaviour
 {
 	public int moduleId;
 	public ModuleType moduleType;
-	public bool isRoomOpened;
+	//public bool isRoomOpened;
 	public Action OnRoomOpen = () => { };
 
 	void Start()
@@ -14,7 +14,6 @@ public class ModuleMgr : MonoBehaviour
 		DungeonMgr.instance?.AddModule(moduleId, gameObject);
 
 		Invoke(nameof(CheckDoors), 1f);
-		
 	}
 
 	void CheckDoors()

@@ -28,7 +28,10 @@ public class ScrapItem : MonoBehaviour
 		{
 			//오브젝트의 PhotonView에서 Ownership Transfer를 Takeover로 설정하면 소유권(컨트롤러 포함)을 강제로 가져올 수 있도록 한다
 			//TransferOwnership(Player) -> 현재 PhotonView의 소유권을 Player로 바꾸는 함수
-			pv.TransferOwnership(PhotonNetwork.LocalPlayer);
+			if (pv != null)
+			{
+				pv.TransferOwnership(PhotonNetwork.LocalPlayer);
+			}
 
 			col.isTrigger = true;
 
@@ -71,7 +74,10 @@ public class ScrapItem : MonoBehaviour
 
 	void SetInBag()
 	{
-		pv.RPC(nameof(SetItemActive), RpcTarget.OthersBuffered, false);
+		if(pv != null)
+		{
+			pv.RPC(nameof(SetItemActive), RpcTarget.OthersBuffered, false);
+		}
 
 		rb.isKinematic = true;
 		rb.useGravity = false;
@@ -81,7 +87,10 @@ public class ScrapItem : MonoBehaviour
 
 	void PullOut()
 	{
-		pv.RPC(nameof(SetItemActive), RpcTarget.OthersBuffered, true);
+		if (pv != null)
+		{
+			pv.RPC(nameof(SetItemActive), RpcTarget.OthersBuffered, true);
+		}
 
 		rb.isKinematic = false;
 		rb.useGravity = true;
