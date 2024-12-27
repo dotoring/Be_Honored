@@ -9,9 +9,10 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: Leafs
   m_Shader: {fileID: 4800000, guid: 1d10d370c3f169448b4d855d9b93645f, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
   - _COLOR2ENABLE_ON
-  - _ENABLEWIND_ON
   - _SECONDCOLOROVERLAYTYPE_WORLD_POSITION
   m_InvalidKeywords:
   - _COLOR2OVERLAYTYPE_VERTEX_POSITION_BASED
@@ -24,6 +25,7 @@ Material:
   m_CustomRenderQueue: -1
   stringTagMap: {}
   disabledShaderPasses: []
+  m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
@@ -131,7 +133,7 @@ Material:
     - _DirectLightOffset: 0.7
     - _DirectLightOffset2: 1
     - _DstBlend: 0
-    - _EnableWind: 1
+    - _EnableWind: 0
     - _EnvironmentReflections: 1
     - _Float0: 2
     - _Float1: 0
@@ -205,3 +207,4 @@ Material:
     - _SecondColor: {r: 0.67843205, g: 0.75471693, b: 0, a: 0}
     - _SpecularColor: {r: 0.39215687, g: 0.39215687, b: 0.39215687, a: 1}
   m_BuildTextureStacks: []
+  m_AllowLocking: 1
