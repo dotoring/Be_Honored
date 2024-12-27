@@ -1,4 +1,5 @@
 using Photon.Pun;
+using System;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
@@ -19,6 +20,7 @@ public class ScrapItem : MonoBehaviour
 	GameObject bag;
 	bool isInBag;
 	private int price = 1;
+	Action<XRInteractionManager> action;
 
 	public int Price { get => price; set => price = value; }
 
@@ -33,6 +35,7 @@ public class ScrapItem : MonoBehaviour
 	private void Start()
 	{
 		ExitMgr.OnExitDungeon += DestroyPhotonView;
+		action += SetInteractionMgr;
 
 		xRGrabInteractable.selectEntered.AddListener((args) =>
 		{
@@ -53,27 +56,21 @@ public class ScrapItem : MonoBehaviour
 			CheckInBag();
 		});
 
-		App.Instance.interactorManager.AddListener((mgr) =>
-		{
-			SetInteractionMgr(mgr);
-		});
+		App.Instance.interactorManager.AddListener(action);
 
 		ItemSetter();
 	}
 
 	private void ItemSetter()
 	{
-		Price = Random.Range(1, 30);
+		Price = UnityEngine.Random.Range(1, 30);
 	}
 
 	private void OnDestroy()
 	{
 		if (App.Instance != null)
 		{
-			App.Instance.interactorManager.RemoveListener((mgr) =>
-			{
-				SetInteractionMgr(mgr);
-			});
+			App.Instance.interactorManager.RemoveListener(action);
 		}
 	}
 

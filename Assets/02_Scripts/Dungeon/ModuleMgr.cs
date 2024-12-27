@@ -6,7 +6,6 @@ public class ModuleMgr : MonoBehaviour
 {
 	public int moduleId;
 	public ModuleType moduleType;
-	//public bool isRoomOpened;
 	public Action OnRoomOpen = () => { };
 
 	void Start()

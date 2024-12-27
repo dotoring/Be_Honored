@@ -7,7 +7,8 @@ public enum ModuleType
 	Start = 0,
 	End,
 	Boss,
-	Monsters,
+	WeakMonsters,
+	StrongMonsters,
 	Scraps,
 }
 public class DungeonRoomModule

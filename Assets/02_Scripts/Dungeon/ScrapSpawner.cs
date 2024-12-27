@@ -20,6 +20,6 @@ public class ScrapSpawner : MonoBehaviour
 
 	void SpawnScraps()
 	{
-		mainFactory.ModuleInfo(ModuleType.Scraps, scrapSpawnPoints, moduleMgr.moduleId);
+		mainFactory.ModuleSpawn(ModuleType.Scraps, scrapSpawnPoints, moduleMgr.moduleId);
 	}
 }
