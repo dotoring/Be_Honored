@@ -149,6 +149,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wmf: {fileID: 1899254919}
+  smf: {fileID: 2017374495}
   bmf: {fileID: 1587582503}
   sf: {fileID: 1519270658}
 --- !u!4 &310397306
@@ -1013,6 +1014,50 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df423c0c2140e254babfa1ce3fb791ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &2017374494
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2017374496}
+  - component: {fileID: 2017374495}
+  m_Layer: 0
+  m_Name: StrongMonsterFactory
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2017374495
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2017374494}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38d68087c9efda54197199b5b17d7696, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &2017374496
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2017374494}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2090325546
 GameObject:
   m_ObjectHideFlags: 0
@@ -1074,6 +1119,7 @@ MonoBehaviour:
   - {fileID: 4569310204241023628, guid: cd039163c556589418d10e069423d281, type: 3}
   - {fileID: 5597666366898459991, guid: 5f21b14dba6b28b4a9fb3a13137edac8, type: 3}
   - {fileID: 5597666366898459991, guid: 35627d460dedf94479ae88d25659cc1c, type: 3}
+  - {fileID: 5597666366898459991, guid: 35627d460dedf94479ae88d25659cc1c, type: 3}
   - {fileID: 2306786123960149345, guid: d39e4024583bbff47bc027c490445bec, type: 3}
   wallPref: {fileID: 119101808046050165, guid: 869030b9777417846bbd75028daede9c, type: 3}
   doorPref: {fileID: 3808903728713582772, guid: fdc58dc04c2e07b43a4f747d99e7061a, type: 3}
@@ -1114,5 +1160,6 @@ SceneRoots:
   - {fileID: 648251519}
   - {fileID: 310397306}
   - {fileID: 1899254920}
+  - {fileID: 2017374496}
   - {fileID: 1587582504}
   - {fileID: 1519270659}

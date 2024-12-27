@@ -15,7 +15,7 @@ public class MonsterSpawner : MonoBehaviourPunCallbacks
 		moduleMgr = GetComponent<ModuleMgr>();
 		if(PhotonNetwork.IsMasterClient)
 		{
-			mainFactory.ModuleInfo(moduleMgr.moduleType, monSpawnPoints, moduleMgr.moduleId);
+			mainFactory.ModuleSpawn(moduleMgr.moduleType, monSpawnPoints, moduleMgr.moduleId);
 		}
 
 		moduleMgr.OnRoomOpen += BeginMonsterBT;
@@ -59,8 +59,7 @@ public class MonsterSpawner : MonoBehaviourPunCallbacks
 
 	void SpawnScraps()
 	{
-		//Instantiate(scrapFactory.GetPref(0), monSpawnPoints[0].position, Quaternion.identity);
-		mainFactory.ModuleInfo(ModuleType.Scraps, monSpawnPoints, moduleMgr.moduleId);
+		mainFactory.ModuleReward(moduleMgr.moduleType, monSpawnPoints);
 	}
 
 	public override void OnMasterClientSwitched(Photon.Realtime.Player newMasterClient)
