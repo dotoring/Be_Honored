@@ -5,8 +5,9 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 public class App : Singleton<App>
 {
-	public MonsterStat warrior1;
+	public MonsterStat Warrior1;
+	public MonsterStat Archer1;
 	public Action Resetposition;
-	public List<String> inventory;
+
 	public Observable<XRInteractionManager> interactorManager;
 }

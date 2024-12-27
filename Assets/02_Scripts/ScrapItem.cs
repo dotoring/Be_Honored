@@ -13,18 +13,19 @@ public enum TypeOfItem
 public class ScrapItem : MonoBehaviour
 {
 	[SerializeField] TypeOfItem typeOfItem = TypeOfItem.SCRAP;
-	XRGrabInteractable xRGrabInteractable;
-	PhotonView pv;
-	Rigidbody rb;
-	Collider col;
-	GameObject bag;
-	bool isInBag;
-	private int price = 1;
+	protected XRGrabInteractable xRGrabInteractable;
+	protected PhotonView pv;
+	protected Rigidbody rb;
+	protected Collider col;
+	protected GameObject bag;
+	protected bool isInBag;
+	protected private int price = 1;
+
 	Action<XRInteractionManager> action;
 
 	public int Price { get => price; set => price = value; }
 
-	private void Awake()
+	protected void Awake()
 	{
 		xRGrabInteractable = GetComponent<XRGrabInteractable>();
 		pv = GetComponent<PhotonView>();
@@ -32,7 +33,7 @@ public class ScrapItem : MonoBehaviour
 		col = GetComponent<Collider>();
 	}
 
-	private void Start()
+	protected void Start()
 	{
 		ExitMgr.OnExitDungeon += DestroyPhotonView;
 		action += SetInteractionMgr;
@@ -58,15 +59,15 @@ public class ScrapItem : MonoBehaviour
 
 		App.Instance.interactorManager.AddListener(action);
 
-		ItemSetter();
+		//ItemSetter();
 	}
 
-	private void ItemSetter()
+	public virtual void ItemSetter(int value)
 	{
-		Price = UnityEngine.Random.Range(1, 30);
+		Price = value;
 	}
 
-	private void OnDestroy()
+	protected void OnDestroy()
 	{
 		if (App.Instance != null)
 		{
@@ -74,7 +75,7 @@ public class ScrapItem : MonoBehaviour
 		}
 	}
 
-	void CheckInBag()
+	protected virtual void CheckInBag()
 	{
 		if (isInBag)
 		{
@@ -86,7 +87,7 @@ public class ScrapItem : MonoBehaviour
 		}
 	}
 
-	void SetInBag()
+	protected void SetInBag()
 	{
 		if (pv != null)
 		{
@@ -99,7 +100,7 @@ public class ScrapItem : MonoBehaviour
 		transform.SetParent(bag.transform, true);
 	}
 
-	void PullOut()
+	protected void PullOut()
 	{
 		if (pv != null)
 		{
@@ -113,12 +114,12 @@ public class ScrapItem : MonoBehaviour
 	}
 
 	[PunRPC]
-	void SetItemActive(bool b)
+	protected void SetItemActive(bool b)
 	{
 		gameObject.SetActive(b);
 	}
 
-	void DestroyPhotonView()
+	protected void DestroyPhotonView()
 	{
 		Destroy(pv);
 		Destroy(GetComponent<PhotonTransformView>());
@@ -129,7 +130,7 @@ public class ScrapItem : MonoBehaviour
 		xRGrabInteractable.interactionManager = mgr;
 	}
 
-	private void OnTriggerEnter(Collider other)
+	protected void OnTriggerEnter(Collider other)
 	{
 		if (other.gameObject.CompareTag("Bag"))
 		{
@@ -141,7 +142,7 @@ public class ScrapItem : MonoBehaviour
 		}
 	}
 
-	private void OnTriggerExit(Collider other)
+	protected void OnTriggerExit(Collider other)
 	{
 		if (other.gameObject.CompareTag("Bag"))
 		{

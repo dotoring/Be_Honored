@@ -6,7 +6,9 @@ using Photon.Pun;
 
 public enum MonsterType
 {
-	warrior,
+	WARRIOR,
+	ARCHER,
+
 }
 
 public enum MonsterLevel
@@ -54,27 +56,47 @@ public class Monster : MonoBehaviour
 
 		dieEvent += () => spawner.RemoveFromList(this.gameObject);
 
+		//LoadData();
+	}
+
+	public void MonsterSetUP(MonsterType monsterTypePram, MonsterLevel monsterLevelPram)
+	{
+		typeOfMonster = monsterTypePram;
+		monsterLevel = monsterLevelPram;
 		LoadData();
 	}
+
 
 	private void LoadData()
 	{
 		switch (typeOfMonster)
 		{
-			case MonsterType.warrior:
+			case MonsterType.WARRIOR:
 				switch (monsterLevel)
 				{
 					case MonsterLevel.A:
 					case MonsterLevel.B:
 					case MonsterLevel.C:
-						detectRange = App.Instance.warrior1.detectRange;
-						attackRange = App.Instance.warrior1.attackRange;
-						attackPower = App.Instance.warrior1.attackPower;
-						hp			= App.Instance.warrior1.hp;
+						detectRange = App.Instance.Warrior1.detectRange;
+						attackRange = App.Instance.Warrior1.attackRange;
+						attackPower = App.Instance.Warrior1.attackPower;
+						hp = App.Instance.Warrior1.hp;
 						break;
 				}
 				break;
-
+			case MonsterType.ARCHER:
+				switch (monsterLevel)
+				{
+					case MonsterLevel.A:
+					case MonsterLevel.B:
+					case MonsterLevel.C:
+						detectRange = App.Instance.Archer1.detectRange;
+						attackRange = App.Instance.Archer1.attackRange;
+						attackPower = App.Instance.Archer1.attackPower;
+						hp = App.Instance.Archer1.hp;
+						break;
+				}
+				break;
 
 			default:
 				Debug.Log($" Error of {typeOfMonster}");
@@ -84,7 +106,7 @@ public class Monster : MonoBehaviour
 
 	public void Damaged(int damage)
 	{
-		if(hpBar!=null)
+		if (hpBar != null)
 			hpBar.SetActive(true);
 		hp -= damage;
 		Debug.Log($" Monster {damage} Damaged remain {hp}");
