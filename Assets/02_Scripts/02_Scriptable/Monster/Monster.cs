@@ -53,16 +53,16 @@ public class Monster : MonoBehaviour
 
 	protected virtual void Start()
 	{
-		//if (!PhotonNetwork.IsMasterClient)
-		//{
-		//	behaviorAgent.enabled = false;
-		//	navMeshAgent.enabled = false;
-		//	hpBar.SetActive(false);
-		//}
-		////디버그 할때 주석
-		//spawner = DungeonMgr.instance?.SetModule(moduleId).GetComponent<MonsterSpawner>();
-		//spawner.AddToList(this.gameObject);
-		//dieEvent += () => spawner.RemoveFromList(this.gameObject);
+		if (!PhotonNetwork.IsMasterClient)
+		{
+			behaviorAgent.enabled = false;
+			navMeshAgent.enabled = false;
+			hpBar.SetActive(false);
+		}
+		//디버그 할때 주석
+		spawner = DungeonMgr.instance?.SetModule(moduleId).GetComponent<MonsterSpawner>();
+		spawner.AddToList(this.gameObject);
+		dieEvent += () => spawner.RemoveFromList(this.gameObject);
 		LoadData();
 	}
 
