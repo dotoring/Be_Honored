@@ -6,7 +6,7 @@ public struct PlayerEquipMent
 	public EQUIPSTAT Body;
 	public EQUIPSTAT Leg;
 	public EQUIPSTAT Arm;
-	
+
 
 }
 public partial class Player : MonoBehaviour

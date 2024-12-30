@@ -34,7 +34,7 @@ public partial class Player : MonoBehaviour
 	/// naked body stat;
 	/// </summary>
 	[SerializeField] EQUIPSTAT bodyStat;
-	[SerializeField] PlayerEquipMent _armor;
+	public PlayerEquipMent _armor;
 	float hp = 50;
 	[SerializeField] AudioClip hited;
 	[SerializeField] Image hpBar;
@@ -44,6 +44,7 @@ public partial class Player : MonoBehaviour
 	private void Awake()
 	{
 		audioSource = GetComponent<AudioSource>();
+		App.Instance.player = this;
 	}
 
 

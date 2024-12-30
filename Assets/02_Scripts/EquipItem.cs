@@ -18,7 +18,7 @@ public class EquipItem : ScrapItem
 
 
 
-	private void Awake()
+	private new void Awake()
 	{
 		base.Awake();
 		materialOrigin = GetComponent<MeshRenderer>().material;
@@ -71,7 +71,7 @@ public class EquipItem : ScrapItem
 	int GetWeightedRandomCount()
 	{
 		// 가중치 설정: 0 -> 50%, 1 -> 35%, 2 -> 15%
-		int[] weights = new int[] { 50, 35, 15 };
+		int[] weights = new int[] { 1, 35, 15 };
 
 		// 0부터 100까지의 범위에서 가중치를 반영한 값을 생성
 		int totalWeight = weights[0] + weights[1] + weights[2];
@@ -150,5 +150,9 @@ public class EquipItem : ScrapItem
 	private void PutItOn()
 	{
 		App.Instance.player.ArmorChange(typeOfEquip, equipStat);
+		Debug.Log($" equip item in  {typeOfEquip}");
+		App.Instance.ChangeEquip.Invoke();
+		Destroy(gameObject);
+
 	}
 }

@@ -10,12 +10,13 @@ public class App : Singleton<App>
 
 	public Observable<XRInteractionManager> interactorManager;
 
+	public Action ChangeEquip;
+
 	public Player player;
 
 	protected override void Awake()
 	{
 		base.Awake();
-		player = new();
 
 	}
 }

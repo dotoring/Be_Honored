@@ -1,6 +1,7 @@
 using Photon.Pun;
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
 
@@ -42,7 +43,7 @@ public class ScrapItem : MonoBehaviour
 		{
 			//오브젝트의 PhotonView에서 Ownership Transfer를 Takeover로 설정하면 소유권(컨트롤러 포함)을 강제로 가져올 수 있도록 한다
 			//TransferOwnership(Player) -> 현재 PhotonView의 소유권을 Player로 바꾸는 함수
-			if (pv != null)
+			if (pv != null || !SceneManager.GetActiveScene().name.Equals("lobbySample_Working1"))
 			{
 				pv.TransferOwnership(PhotonNetwork.LocalPlayer);
 			}
@@ -89,7 +90,7 @@ public class ScrapItem : MonoBehaviour
 
 	protected void SetInBag()
 	{
-		if (pv != null)
+		if (pv != null || !SceneManager.GetActiveScene().name.Equals("lobbySample_Working1"))
 		{
 			pv.RPC(nameof(SetItemActive), RpcTarget.OthersBuffered, false);
 		}
@@ -102,7 +103,7 @@ public class ScrapItem : MonoBehaviour
 
 	protected void PullOut()
 	{
-		if (pv != null)
+		if (pv != null || !SceneManager.GetActiveScene().name.Equals("lobbySample_Working1"))
 		{
 			pv.RPC(nameof(SetItemActive), RpcTarget.OthersBuffered, true);
 		}
