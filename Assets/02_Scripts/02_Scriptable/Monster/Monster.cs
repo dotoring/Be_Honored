@@ -154,10 +154,8 @@ public class Monster : MonoBehaviour
 
 	public void ActiveSelf()
 	{
-		Debug.Log("what");
 		if (PhotonNetwork.IsMasterClient)
 		{
-			Debug.Log("the");
 			behaviorAgent.enabled = true;
 		}
 	}
