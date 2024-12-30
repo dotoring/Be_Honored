@@ -119,6 +119,50 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &91556275
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 91556277}
+  - component: {fileID: 91556276}
+  m_Layer: 0
+  m_Name: StrongMonsterFactory
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &91556276
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 91556275}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38d68087c9efda54197199b5b17d7696, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &91556277
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 91556275}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &167972506
 GameObject:
   m_ObjectHideFlags: 0
@@ -149,7 +193,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wmf: {fileID: 2127935426}
-  smf: {fileID: 0}
+  smf: {fileID: 91556276}
   bmf: {fileID: 1747575328}
   sf: {fileID: 265860123}
 --- !u!4 &167972508
@@ -1262,7 +1306,9 @@ SceneRoots:
   m_Roots:
   - {fileID: 1475759781}
   - {fileID: 879207527}
+  - {fileID: 167972508}
   - {fileID: 2127935427}
+  - {fileID: 91556277}
   - {fileID: 1747575329}
   - {fileID: 1178904263}
   - {fileID: 265860124}
@@ -1271,6 +1317,5 @@ SceneRoots:
   - {fileID: 2078692965}
   - {fileID: 1761866248}
   - {fileID: 981916037}
-  - {fileID: 167972508}
   - {fileID: 1334024894}
   - {fileID: 179428689}

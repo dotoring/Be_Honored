@@ -10,7 +10,7 @@ public class PlayerSpawnMgr : MonoBehaviour
 
 	private void Awake()
 	{
-		App.Instance.Resetposition += SpawnPlayer;
+		App.Instance.Resetposition += Respawn;
 	}
 
 	public void SetSpawnPoint(Transform point)
@@ -21,10 +21,19 @@ public class PlayerSpawnMgr : MonoBehaviour
 
 	void SpawnPlayer()
 	{
-		Debug.Log($" spawnPlayered");
 		xrOrigin.transform.position = spawnPoint.position;
 
 		GameObject go = PhotonNetwork.Instantiate("Player", spawnPoint.position, Quaternion.identity);
 		go.GetComponent<PlayerTracker>().pp = this.pp;
+	}
+
+	void Respawn()
+	{
+		xrOrigin.transform.position = spawnPoint.position;
+	}
+
+	private void OnDestroy()
+	{
+		App.Instance.Resetposition -= Respawn;
 	}
 }
