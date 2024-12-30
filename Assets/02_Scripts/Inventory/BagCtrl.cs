@@ -10,7 +10,7 @@ public class BagCtrl : MonoBehaviour
 	private void Awake()
 	{
 		xRGrabInteractable = GetComponent<XRGrabInteractable>();
-
+		App.Instance.Resetposition += DestroyBag;
 
 		if(Instance != null && Instance != this)
 		{
@@ -32,5 +32,15 @@ public class BagCtrl : MonoBehaviour
 	public void SetInteractionMgr(XRInteractionManager mgr)
 	{
 		xRGrabInteractable.interactionManager = mgr;
+	}
+
+	void DestroyBag()
+	{
+		Destroy(gameObject);
+	}
+
+	private void OnDestroy()
+	{
+		App.Instance.Resetposition -= DestroyBag;
 	}
 }
