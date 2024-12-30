@@ -42,7 +42,7 @@ public class LazerPattern : MonoBehaviour
 			{
 				lazingTime += Time.deltaTime;
 				transform.root.transform.eulerAngles += rotateAngle * Time.deltaTime * Vector3.up;
-				vec = transform.root.transform.forward;
+				vec = transform.root.transform.forward;//종료당시 전방 벡터를 저장함
 			}
 			else
 			{
