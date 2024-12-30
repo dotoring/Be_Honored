@@ -12091,8 +12091,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawner: {fileID: 0}
-  typeOfMonster: 0
+  typeOfMonster: 2
   monsterLevel: 0
+  bossType: 1
   detectRange: 99
   attackRange: 3
   attackPower: 2
@@ -22861,6 +22862,10 @@ MonoBehaviour:
   syl: {fileID: 978782223311630815}
   chargingTime: 0
   lazingTime: 0
+  returnTime: 0
+  goalTime: 1.1
+  progress: 0
+  vec: {x: 0, y: 0, z: 0}
 --- !u!65 &4215199836119996481
 BoxCollider:
   m_ObjectHideFlags: 0

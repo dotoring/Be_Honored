@@ -9,6 +9,13 @@ public enum MonsterType
 	WARRIOR,
 	ARCHER,
 
+	BOSS,
+}
+public enum BossType
+{
+	NOTBOSS,
+	CERBERUS,
+	MINOTAUR
 }
 
 public enum MonsterLevel
@@ -23,6 +30,7 @@ public class Monster : MonoBehaviour
 	public MonsterSpawner spawner;
 	[SerializeField] MonsterType typeOfMonster;
 	[SerializeField] MonsterLevel monsterLevel;
+	[SerializeField] BossType bossType;
 	public float detectRange;
 	public float attackRange;
 	public float attackPower;
@@ -45,16 +53,16 @@ public class Monster : MonoBehaviour
 
 	protected virtual void Start()
 	{
-		if (!PhotonNetwork.IsMasterClient)
-		{
-			behaviorAgent.enabled = false;
-			navMeshAgent.enabled = false;
-			hpBar.SetActive(false);
-		}
-		//디버그 할때 주석
-		spawner = DungeonMgr.instance?.SetModule(moduleId).GetComponent<MonsterSpawner>();
-		spawner.AddToList(this.gameObject);
-		dieEvent += () => spawner.RemoveFromList(this.gameObject);
+		//if (!PhotonNetwork.IsMasterClient)
+		//{
+		//	behaviorAgent.enabled = false;
+		//	navMeshAgent.enabled = false;
+		//	hpBar.SetActive(false);
+		//}
+		////디버그 할때 주석
+		//spawner = DungeonMgr.instance?.SetModule(moduleId).GetComponent<MonsterSpawner>();
+		//spawner.AddToList(this.gameObject);
+		//dieEvent += () => spawner.RemoveFromList(this.gameObject);
 		LoadData();
 	}
 
@@ -76,10 +84,10 @@ public class Monster : MonoBehaviour
 					case MonsterLevel.A:
 					case MonsterLevel.B:
 					case MonsterLevel.C:
-						detectRange = App.Instance.Warrior1.detectRange;
-						attackRange = App.Instance.Warrior1.attackRange;
-						attackPower = App.Instance.Warrior1.attackPower;
-						hp = App.Instance.Warrior1.hp;
+						detectRange		= App.Instance.Warrior1.detectRange;
+						attackRange		= App.Instance.Warrior1.attackRange;
+						attackPower		= App.Instance.Warrior1.attackPower;
+						hp				= App.Instance.Warrior1.hp;
 						break;
 				}
 				break;
@@ -89,10 +97,41 @@ public class Monster : MonoBehaviour
 					case MonsterLevel.A:
 					case MonsterLevel.B:
 					case MonsterLevel.C:
-						detectRange = App.Instance.Archer1.detectRange;
-						attackRange = App.Instance.Archer1.attackRange;
-						attackPower = App.Instance.Archer1.attackPower;
-						hp = App.Instance.Archer1.hp;
+						detectRange		= App.Instance.Archer1.detectRange;
+						attackRange		= App.Instance.Archer1.attackRange;
+						attackPower		= App.Instance.Archer1.attackPower;
+						hp				= App.Instance.Archer1.hp;
+						break;
+				}
+				break;
+			case MonsterType.BOSS:
+				switch (bossType)
+				{
+					case BossType.CERBERUS:
+						switch (monsterLevel)
+						{
+							case MonsterLevel.A:
+							case MonsterLevel.B:
+							case MonsterLevel.C:
+								detectRange		= App.Instance.Cerbe1.detectRange;
+								attackRange		= App.Instance.Cerbe1.attackRange;
+								attackPower		= App.Instance.Cerbe1.attackPower;
+								hp				= App.Instance.Cerbe1.hp;
+								break;
+						}
+						break;
+					case BossType.MINOTAUR:
+						switch (monsterLevel)
+						{
+							case MonsterLevel.A:
+							case MonsterLevel.B:
+							case MonsterLevel.C:
+								detectRange		= App.Instance.Mino1.detectRange;
+								attackRange		= App.Instance.Mino1.attackRange;
+								attackPower		= App.Instance.Mino1.attackPower;
+								hp				= App.Instance.Mino1.hp;
+								break;
+						}
 						break;
 				}
 				break;

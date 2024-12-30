@@ -25,10 +25,6 @@ public class Stone : MonoBehaviour
 	{
 		curTime = 0;
 	}
-	private void OnDisable()
-	{
-		print(gameObject.name+"disable");
-	}
 	private void Update()
 	{
 		if (curTime < waitTime)

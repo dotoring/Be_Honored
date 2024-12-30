@@ -871,8 +871,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawner: {fileID: 0}
-  typeOfMonster: 0
+  typeOfMonster: 2
   monsterLevel: 0
+  bossType: 2
   detectRange: 99
   attackRange: 3
   attackPower: 2
@@ -881,6 +882,7 @@ MonoBehaviour:
   pv: {fileID: 3814357136974911071}
   behaviorAgent: {fileID: 3335746561713010632}
   navMeshAgent: {fileID: 2421345553411630911}
+  hpBar: {fileID: 0}
   skillCoolTime: 4
   skillWaitTime: 0
   canUseSkill: 0
