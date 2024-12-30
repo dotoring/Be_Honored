@@ -45,16 +45,17 @@ public class Monster : MonoBehaviour
 
 	protected virtual void Start()
 	{
-		if (!PhotonNetwork.IsMasterClient)
-		{
-			behaviorAgent.enabled = false;
-			navMeshAgent.enabled = false;
-			hpBar.SetActive(false);
-		}
-		spawner = DungeonMgr.instance?.SetModule(moduleId).GetComponent<MonsterSpawner>();
-		spawner.AddToList(this.gameObject);
+		//if (!PhotonNetwork.IsMasterClient)
+		//{
+		//	behaviorAgent.enabled = false;
+		//	navMeshAgent.enabled = false;
+		//	hpBar.SetActive(false);
+		//}
+		////디버그 할때 주석
+		//spawner = DungeonMgr.instance?.SetModule(moduleId).GetComponent<MonsterSpawner>();
+		//spawner.AddToList(this.gameObject);
 
-		dieEvent += () => spawner.RemoveFromList(this.gameObject);
+		//dieEvent += () => spawner.RemoveFromList(this.gameObject);
 
 		//LoadData();
 	}
@@ -108,7 +109,7 @@ public class Monster : MonoBehaviour
 	{
 		if (hpBar != null)
 			hpBar.SetActive(true);
-		hp -= damage;
+		//hp -= damage;
 		Debug.Log($" Monster {damage} Damaged remain {hp}");
 		behaviorAgent.BlackboardReference.GetVariable("Hp", out tem);
 		tem.Value -= damage;
