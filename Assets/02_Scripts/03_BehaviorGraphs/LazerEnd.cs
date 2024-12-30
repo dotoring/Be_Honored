@@ -19,6 +19,7 @@ public partial class LazerEnd : Action
 
     protected override Status OnUpdate()
     {
+		Debug.Log("원래대로 돌리는중");
 		Self.Value.transform.forward = Vector3.Lerp(Self.Value.transform.forward, (Player.Value.transform.position - Self.Value.transform.position).normalized, 1f*Time.deltaTime);
 		return Status.Success;
     }

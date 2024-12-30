@@ -18,11 +18,9 @@ public class StonePattern : MonoBehaviour
 	{
 		endPattern += () =>
 		{
-			print("엔드패턴");
 			count++;
 			if (count >= stones.Count)
 			{
-				print("dd");
 				this.gameObject.SetActive(false);
 			}
 		};

@@ -13,8 +13,14 @@ public class LazerPattern : MonoBehaviour
 	[SerializeField] private float chargingTime;
 	[SerializeField] private float lazingTime;
 
+	[SerializeField] float returnTime;
+	[SerializeField] float goalTime = 1.1f;
+	[SerializeField] float progress;
+	[SerializeField] Vector3 vec;
+
 	private void OnEnable()
 	{
+		returnTime = 0;
 		chargingTime = 0;
 		lazingTime = 0;
 		range.SetActive(true);
@@ -36,30 +42,31 @@ public class LazerPattern : MonoBehaviour
 			{
 				lazingTime += Time.deltaTime;
 				transform.root.transform.eulerAngles += rotateAngle * Time.deltaTime * Vector3.up;
+				vec = transform.root.transform.forward;//종료당시 전방 벡터를 저장함
 			}
 			else
 			{
 				syl.SetActive(false);
 				this.GetComponent<BoxCollider>().enabled = false;
-				float curTime = 0;
-				float goalTime = 1.1f;
-				if (curTime < goalTime)
+				if (returnTime < goalTime)
 				{
-					// 경과 시간 업데이트
-					curTime += Time.deltaTime * 3;
 
-					
+					// 경과 시간 업데이트
+					returnTime += Time.deltaTime;
+
+		
 					// 0 ~ 1 사이 비율 계산
 					
-						float progress = curTime / goalTime;
+					progress = returnTime / goalTime;
 
 						// 선형 보간(Lerp)을 통해 벡터 변경
-						transform.root.transform.forward = Vector3.Lerp(
-						transform.root.transform.forward,
-						(bossMonster.targetPlayer.transform.position - transform.root.transform.position).normalized, progress);
+					transform.root.transform.forward = Vector3.Lerp(
+					vec,
+					(bossMonster.targetPlayer.transform.position-bossMonster.transform.position).normalized, progress);
 					
 				}
-				gameObject.SetActive(false);
+			    else
+					gameObject.SetActive(false);
 			}
 		}
 	}

@@ -48,7 +48,8 @@ public class PlayerSkillMgr : MonoBehaviour
 		switch (skill)
 		{
 			case "012345":
-				Instantiate(ball, transform.position, Quaternion.identity);
+				GameObject go = Instantiate(ball, transform.position, Quaternion.identity);
+				go.GetComponent<Rigidbody>().AddForce(transform.forward * 200f);
 				break;
 			case "0235":
 				Instantiate(box, transform.position, Quaternion.identity);

@@ -9,10 +9,14 @@ public class TestGoLobby : MonoBehaviourPunCallbacks
 
 	private void Start()
 	{
-		LobbyBtn.onClick.AddListener(()=>PhotonNetwork.LeaveRoom());
+		LobbyBtn.onClick.AddListener(() => LessHpMonster());
 	}
-	public override void OnLeftRoom()
+	public void LessHpMonster()
 	{
-		SceneManager.LoadScene("LobbyScene");
+		Monster[] monsters = GameObject.FindObjectsByType<Monster>(FindObjectsSortMode.None);
+		for(int i=0;i<monsters.Length;i++)
+		{
+			monsters[i].Damaged(1);
+		}
 	}
 }

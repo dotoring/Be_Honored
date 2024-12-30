@@ -13,7 +13,7 @@ public partial class BossDieChangeAction : Action
 
     protected override Status OnStart()
     {
-		if (Hp.Value < 0)
+		if (Hp.Value <= 0)
 			BossState.Value = global::BossState.Die;
         return Status.Running;
     }

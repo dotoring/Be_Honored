@@ -19,8 +19,10 @@ public class ScrapItem : MonoBehaviour
 	protected Rigidbody rb;
 	protected Collider col;
 	protected GameObject bag;
+	protected BagCtrl bagCtrl;
 	protected bool isInBag;
 	protected private int price = 1;
+	public int weight = 5;
 
 	protected Action<XRInteractionManager> action;
 
@@ -80,11 +82,16 @@ public class ScrapItem : MonoBehaviour
 	{
 		if (isInBag)
 		{
-			SetInBag();
+			if (bagCtrl.CheckWeight(weight))
+			{
+				SetInBag();
+				bagCtrl.AddScrap(this);
+			}
 		}
 		else
 		{
 			PullOut();
+			bagCtrl.RemoveScrap(this);
 		}
 	}
 
@@ -139,6 +146,7 @@ public class ScrapItem : MonoBehaviour
 			if (bag == null)
 			{
 				bag = other.gameObject;
+				bagCtrl = bag.GetComponent<BagCtrl>();
 			}
 		}
 	}
