@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3278676427478951446}
   - component: {fileID: 1269275468614569740}
   - component: {fileID: 8671982093849312271}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: EVADE
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -148,7 +148,7 @@ GameObject:
   - component: {fileID: 6483939647072656614}
   - component: {fileID: 3895636283014110906}
   - component: {fileID: 3671868569450599126}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: HPMAX VALUE
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -284,7 +284,7 @@ GameObject:
   - component: {fileID: 4251720103642652602}
   - component: {fileID: 7411513218465700020}
   - component: {fileID: 2906749620031471583}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: ATTACK VALUE
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -420,7 +420,7 @@ GameObject:
   - component: {fileID: 2974498642550838306}
   - component: {fileID: 4011404714689789663}
   - component: {fileID: 4102207728042345930}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: EVADE VALUE
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -556,7 +556,7 @@ GameObject:
   - component: {fileID: 7272589529787418919}
   - component: {fileID: 7842079731334519164}
   - component: {fileID: 7058215197637136699}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: DEFENCE VALUE
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -696,8 +696,8 @@ GameObject:
   - component: {fileID: 4469218344537962891}
   - component: {fileID: 2582195838202213604}
   - component: {fileID: 4638149516849169145}
-  - component: {fileID: 6035600845073425333}
-  m_Layer: 10
+  - component: {fileID: 8506620525365805553}
+  m_Layer: 0
   m_Name: Helmet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -809,7 +809,7 @@ MonoBehaviour:
   typeOfItem: 0
   weight: 5
   typeOfEquip: 0
-  materialRed: {fileID: 0}
+  materialRed: {fileID: 2100000, guid: c70dbaf8b30f431489d43b4544809f4c, type: 2}
   TextHp: {fileID: 3671868569450599126}
   TextAttack: {fileID: 2906749620031471583}
   TextDefence: {fileID: 7058215197637136699}
@@ -963,7 +963,7 @@ MonoBehaviour:
   m_StartingMultipleGrabTransformers: []
   m_AddDefaultGrabTransformers: 1
   m_FarAttachMode: 0
---- !u!114 &6035600845073425333
+--- !u!114 &8506620525365805553
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -982,7 +982,7 @@ MonoBehaviour:
   OwnershipTransfer: 0
   observableSearch: 2
   ObservedComponents: []
-  sceneViewId: 0
+  sceneViewId: 4
   InstantiationId: 0
   isRuntimeInstantiated: 0
 --- !u!1 &6649472641387129823
@@ -996,7 +996,7 @@ GameObject:
   - component: {fileID: 2573797037107172065}
   - component: {fileID: 3025954276331786130}
   - component: {fileID: 5713171178464587576}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1074,7 +1074,7 @@ GameObject:
   - component: {fileID: 7636153030015364364}
   - component: {fileID: 8803901492018834077}
   - component: {fileID: 5920194538684244217}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1207,7 +1207,7 @@ GameObject:
   - component: {fileID: 2421744527938117065}
   - component: {fileID: 3462317631222321165}
   - component: {fileID: 7164889479309776308}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: ATTACK
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1345,7 +1345,7 @@ GameObject:
   - component: {fileID: 8256764357431337324}
   - component: {fileID: 5060293754972646067}
   - component: {fileID: 5897172100651645904}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: HPMAX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1481,7 +1481,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5288781784862930784}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Helmet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1515,7 +1515,7 @@ GameObject:
   - component: {fileID: 5777809666089522179}
   - component: {fileID: 2677568516107331416}
   - component: {fileID: 3452903891166101945}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: DEFENCE
   m_TagString: Untagged
   m_Icon: {fileID: 0}

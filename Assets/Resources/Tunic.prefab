@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7773536092793943571}
   - component: {fileID: 4458207099036623798}
   - component: {fileID: 801391480374344592}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Canvas (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -147,7 +147,7 @@ GameObject:
   - component: {fileID: 888269389582707567}
   - component: {fileID: 563536438226895501}
   - component: {fileID: 3486642892985985804}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: DEFENCE VALUE
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -283,7 +283,7 @@ GameObject:
   - component: {fileID: 9166768846352863923}
   - component: {fileID: 3303099076146904401}
   - component: {fileID: 4281621292151111029}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: HPMAX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -421,7 +421,7 @@ GameObject:
   - component: {fileID: 6014042367041258804}
   - component: {fileID: 2439262770251193729}
   - component: {fileID: 3810361449462489409}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: EVADE VALUE
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -557,7 +557,7 @@ GameObject:
   - component: {fileID: 2025235412332336067}
   - component: {fileID: 2633408597184840384}
   - component: {fileID: 7733032135802186531}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: ATTACK
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -695,7 +695,7 @@ GameObject:
   - component: {fileID: 4124481624107527080}
   - component: {fileID: 4388873893445480538}
   - component: {fileID: 6336616139637234931}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: HPMAX VALUE
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -836,7 +836,7 @@ GameObject:
   - component: {fileID: 328988337798994932}
   - component: {fileID: 9165284207445217043}
   - component: {fileID: 5241629765954956952}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Tunic
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -946,8 +946,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   typeOfItem: 0
+  weight: 5
   typeOfEquip: 1
-  materialRed: {fileID: 0}
+  materialRed: {fileID: 2100000, guid: c70dbaf8b30f431489d43b4544809f4c, type: 2}
   TextHp: {fileID: 6336616139637234931}
   TextAttack: {fileID: 3991757228323840859}
   TextDefence: {fileID: 3486642892985985804}
@@ -1120,7 +1121,7 @@ MonoBehaviour:
   OwnershipTransfer: 0
   observableSearch: 2
   ObservedComponents: []
-  sceneViewId: 0
+  sceneViewId: 1
   InstantiationId: 0
   isRuntimeInstantiated: 0
 --- !u!1 &6953454076576105356
@@ -1134,7 +1135,7 @@ GameObject:
   - component: {fileID: 7808497187262600670}
   - component: {fileID: 649473230069355833}
   - component: {fileID: 3991757228323840859}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: ATTACK VALUE
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1270,7 +1271,7 @@ GameObject:
   - component: {fileID: 6115606260019214081}
   - component: {fileID: 1971848369334911735}
   - component: {fileID: 2747811744844130883}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: EVADE
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1407,7 +1408,7 @@ GameObject:
   - component: {fileID: 7760086285389877626}
   - component: {fileID: 5684313919596069073}
   - component: {fileID: 4679224734457986044}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: DEFENCE
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1543,7 +1544,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5566710705281038163}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Tunic
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1577,7 +1578,7 @@ GameObject:
   - component: {fileID: 8946715522357873267}
   - component: {fileID: 7964307826986628673}
   - component: {fileID: 2993073265536500182}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
