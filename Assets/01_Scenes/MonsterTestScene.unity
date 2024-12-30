@@ -1599,8 +1599,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf0ceef0abb7d444b91a1a66921b3050, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Warrior1: {fileID: 0}
-  Archer1: {fileID: 0}
+  Warrior1: {fileID: 11400000, guid: 601a5fd1a86563244b3b0e851ac993c9, type: 2}
+  Archer1: {fileID: 11400000, guid: 87fd36ff340b95146a04a5982df4eba1, type: 2}
   player: {fileID: 0}
 --- !u!4 &1741713025
 Transform:
@@ -1899,7 +1899,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3246646716704802451, guid: ce9a58c338097bf42a593a661f9ebf81, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6802575969540919369, guid: ce9a58c338097bf42a593a661f9ebf81, type: 3}
       propertyPath: m_Name
@@ -1915,7 +1915,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7893223513945082672, guid: ce9a58c338097bf42a593a661f9ebf81, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -21.3
+      value: -20.485
       objectReference: {fileID: 0}
     - target: {fileID: 7893223513945082672, guid: ce9a58c338097bf42a593a661f9ebf81, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2042,6 +2042,22 @@ PrefabInstance:
     - target: {fileID: 4750607080078222670, guid: 642a61a29bafde84bad6ce7c9a788d57, type: 3}
       propertyPath: m_Name
       value: Skeleton_archier
+      objectReference: {fileID: 0}
+    - target: {fileID: 5062185563418416240, guid: 642a61a29bafde84bad6ce7c9a788d57, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5062185563418416240, guid: 642a61a29bafde84bad6ce7c9a788d57, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5062185563418416240, guid: 642a61a29bafde84bad6ce7c9a788d57, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 2.178
+      objectReference: {fileID: 0}
+    - target: {fileID: 5422782672739946690, guid: 642a61a29bafde84bad6ce7c9a788d57, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7217033288126697582, guid: 642a61a29bafde84bad6ce7c9a788d57, type: 3}
       propertyPath: m_LocalPosition.x
