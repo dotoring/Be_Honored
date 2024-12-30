@@ -12,7 +12,7 @@ public enum TypeOfItem
 
 public class ScrapItem : MonoBehaviour
 {
-	[SerializeField] TypeOfItem typeOfItem = TypeOfItem.SCRAP;
+	[SerializeField] protected TypeOfItem typeOfItem = TypeOfItem.SCRAP;
 	protected XRGrabInteractable xRGrabInteractable;
 	protected PhotonView pv;
 	protected Rigidbody rb;
@@ -21,7 +21,7 @@ public class ScrapItem : MonoBehaviour
 	protected bool isInBag;
 	protected private int price = 1;
 
-	Action<XRInteractionManager> action;
+	protected Action<XRInteractionManager> action;
 
 	public int Price { get => price; set => price = value; }
 
@@ -33,7 +33,7 @@ public class ScrapItem : MonoBehaviour
 		col = GetComponent<Collider>();
 	}
 
-	protected void Start()
+	protected virtual void Start()
 	{
 		ExitMgr.OnExitDungeon += DestroyPhotonView;
 		action += SetInteractionMgr;
