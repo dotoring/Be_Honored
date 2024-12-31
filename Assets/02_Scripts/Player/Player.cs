@@ -1,7 +1,4 @@
-using System;
-using CrusaderUI.Scripts;
-using Unity.VisualScripting;
-using UnityEditor.Rendering;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -29,7 +26,7 @@ public partial class Player : MonoBehaviour
 	/// <summary>
 	/// current totoal stat
 	/// </summary>
-	[SerializeField] EQUIPSTAT _stat;
+	public EQUIPSTAT _stat;
 	/// <summary>
 	/// naked body stat;
 	/// </summary>
@@ -50,7 +47,11 @@ public partial class Player : MonoBehaviour
 
 	public void Damaged(float damage)
 	{
-		hp -= damage;
+		if (CheckEvade())
+		{
+			return;
+		}
+		hp -= math.max(damage - _stat.defence, 1);
 		audioSource.PlayOneShot(hited);
 		Debug.Log($" Player {damage} Damaged remain {hp}");
 		if (hp <= 0)
@@ -61,6 +62,16 @@ public partial class Player : MonoBehaviour
 		hpBar.fillAmount = hp / 50;
 	}
 
+	private bool CheckEvade()
+	{
+		int roll = UnityEngine.Random.Range(0, 100);
+		if (roll > _stat.evade * 2)
+		{
+			return false;
+		}
+		return true;
+	}
+
 	/// <summary>
 	/// summary stat in equip + body
 	/// </summary>
@@ -68,6 +79,11 @@ public partial class Player : MonoBehaviour
 	{
 
 		_stat = _armor.Head + _armor.Body + _armor.Leg + _armor.Arm + bodyStat;
+	}
+
+	public void Enterroom()
+	{
+		hp += _stat.hpmax * 10;
 	}
 
 }

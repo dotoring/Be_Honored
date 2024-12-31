@@ -15,6 +15,7 @@ public class PlayerTouchManager : MonoBehaviour
 	Vector3 offset = new(0, 0, 1);
 	Vector3 sizeOfBox = new(1, 1, 1.5f);
 	public LayerMask m_LayerMask;
+	bool hited = false;
 
 	private void Awake()
 	{
@@ -84,13 +85,17 @@ public class PlayerTouchManager : MonoBehaviour
 
 	private void Attack()
 	{
-
+		hited = false;
 		Collider[] hitColliders = Physics.OverlapBox(gameObject.transform.position + transform.forward * offset.z + transform.right * offset.x + transform.up * offset.y, sizeOfBox / 2, Quaternion.identity, m_LayerMask);
 
 		foreach (var item in hitColliders)
 		{
-			item.GetComponent<Monster>()?.Damaged(1);
+			item.GetComponent<Monster>()?.Damaged(1 + App.Instance.player._stat.attack);
+			if (item.gameObject.layer.Equals("Monster"))
+			{
+				hited = true;
+			}
 		}
-		audioSource.PlayOneShot(attacksound);
+		if (hited) audioSource.PlayOneShot(attacksound);
 	}
 }
