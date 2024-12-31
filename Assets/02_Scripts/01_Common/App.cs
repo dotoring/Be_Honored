@@ -21,6 +21,10 @@ public class App : Singleton<App>
 		base.Awake();
 
 	}
+	private void Start()
+	{
+		ChangeEquip.Invoke();
+	}
 }
 
 

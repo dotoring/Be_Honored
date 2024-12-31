@@ -2515,7 +2515,7 @@ GameObject:
   - component: {fileID: 8128304677188166487}
   - component: {fileID: 1841661948827987448}
   m_Layer: 10
-  m_Name: Canvas (4)
+  m_Name: Glove_C
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3478,7 +3478,7 @@ GameObject:
   - component: {fileID: 1583869311077580549}
   - component: {fileID: 1100038392129234767}
   m_Layer: 10
-  m_Name: Canvas (1)
+  m_Name: Head_C
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4719,7 +4719,7 @@ GameObject:
   - component: {fileID: 8318652989182031120}
   - component: {fileID: 6461160257182859920}
   m_Layer: 10
-  m_Name: Canvas (2)
+  m_Name: Leg_C
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5541,7 +5541,7 @@ GameObject:
   - component: {fileID: 7964907272248810528}
   - component: {fileID: 203455169785251382}
   m_Layer: 10
-  m_Name: Canvas (5)
+  m_Name: ToTal_C
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5672,6 +5672,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7102731303440746569}
+  - component: {fileID: 7735989975589739146}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -5703,6 +5704,22 @@ Transform:
   - {fileID: 2848066580392313740}
   m_Father: {fileID: 757242263053523395}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7735989975589739146
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4603859694209681350}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5451d75f1dd2c99439b76c5d41908edc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TextHp: {fileID: 3073763833601233796}
+  TextAttack: {fileID: 3966339326009540358}
+  TextDefence: {fileID: 5467081037984881611}
+  TextEveda: {fileID: 2720538730212991433}
 --- !u!1 &4645807225268689720
 GameObject:
   m_ObjectHideFlags: 0
@@ -8221,7 +8238,7 @@ GameObject:
   - component: {fileID: 1263684777761022433}
   - component: {fileID: 6434923383650569886}
   m_Layer: 10
-  m_Name: Canvas (3)
+  m_Name: Body_C
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
