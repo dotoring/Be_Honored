@@ -25,21 +25,26 @@ public class PhotonManager : MonoBehaviourPunCallbacks
 
 	private void Awake()
 	{
-		for (int i = 0; i < roomInBtns.Count; i++)
-			roomInBtns[i].interactable = false;
-
-
-		PhotonNetwork.GameVersion = version;
-		PhotonNetwork.NickName = nickName;
-
-		PhotonNetwork.AutomaticallySyncScene = true;
-
+		print("pm Awake");
 		if (!PhotonNetwork.IsConnected)
+		{
+			print("pn 연결 없음");
+			for (int i = 0; i < roomInBtns.Count; i++)
+				roomInBtns[i].interactable = false;
+
+
+			PhotonNetwork.GameVersion = version;
+			PhotonNetwork.NickName = nickName;
+
+			PhotonNetwork.AutomaticallySyncScene = true;
+
 			PhotonNetwork.ConnectUsingSettings();
+		}
 	}
 
 	private void Start()
 	{
+		print("PM Start : 버튼 이벤트 설정");
 		roomInBtns[0].onClick.AddListener(() => MakeRoomBtnOnClick(RoomLevel.One));
 		roomInBtns[1].onClick.AddListener(() => MakeRoomBtnOnClick(RoomLevel.Two));
 		roomInBtns[2].onClick.AddListener(() => MakeRoomBtnOnClick(RoomLevel.Three));
@@ -71,6 +76,7 @@ public class PhotonManager : MonoBehaviourPunCallbacks
 
 	public override void OnRoomListUpdate(List<RoomInfo> roomList)
 	{
+		print("방 리스트 변경 콜백");
 		foreach (var roomdata in roomInBtns)
 		{
 			bool ismatch = false;

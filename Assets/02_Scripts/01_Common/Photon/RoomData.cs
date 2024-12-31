@@ -11,6 +11,11 @@ public class RoomData : MonoBehaviour
 	private RoomInfo roomInfo;
 	[SerializeField] private bool isRoomInfoNull;
 
+	private void Start()
+	{
+		RoomInfo = RoomInfo;
+	}
+
 	public RoomInfo RoomInfo
 	{
 		get { return roomInfo; }
@@ -26,6 +31,7 @@ public class RoomData : MonoBehaviour
 
 	private void Update()
 	{
-		isRoomInfoNull = roomInfo == null;
+		isRoomInfoNull = (roomInfo == null);
+		print(gameObject.name + "방 정보 있냐? : "+isRoomInfoNull);
 	}
 }
