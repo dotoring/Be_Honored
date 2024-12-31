@@ -15,9 +15,8 @@ public class DoorCtrl : MonoBehaviour
 	{
 		if (!isOpen)
 		{
-			GetComponent<PhotonView>().RPC(nameof(OpenCoroutine), RpcTarget.AllBuffered);
+			GetComponent<PhotonView>().RPC(nameof(OpenCoroutine), RpcTarget.MasterClient);
 			isOpen = true;
-			OnDoorOpen.Invoke();
 		}
 	}
 
@@ -25,6 +24,7 @@ public class DoorCtrl : MonoBehaviour
 	void OpenCoroutine()
 	{
 		StartCoroutine(RotateDoor());
+		OnDoorOpen.Invoke();
 	}
 
 	IEnumerator RotateDoor()
