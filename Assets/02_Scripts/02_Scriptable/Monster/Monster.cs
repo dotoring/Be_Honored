@@ -63,6 +63,7 @@ public class Monster : MonoBehaviour
 		spawner = DungeonMgr.instance?.SetModule(moduleId).GetComponent<MonsterSpawner>();
 		spawner.AddToList(this.gameObject);
 		dieEvent += () => spawner.RemoveFromList(this.gameObject);
+		dieEvent += () => MainFactory.Inst.MonsterDrop(transform);
 		LoadData();
 	}
 

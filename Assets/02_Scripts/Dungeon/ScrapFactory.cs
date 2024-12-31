@@ -5,19 +5,23 @@ public class ScrapFactory : MonoBehaviour
 {
 	public void SpawnScrap(Transform position)
 	{
-		int rand = Random.Range(0, 3);
+		int rand = Random.Range(0, 4);
 
 		switch (rand)
 		{
 			case 0:
-				PhotonNetwork.InstantiateRoomObject("GoldCup_02", position.position, Quaternion.identity);
+				PhotonNetwork.InstantiateRoomObject("Glove", position.position, Quaternion.identity);
 				break;
 			case 1:
-				PhotonNetwork.InstantiateRoomObject("Candlestick_01", position.position, Quaternion.identity);
+				PhotonNetwork.InstantiateRoomObject("Helmet", position.position, Quaternion.identity);
 				break;
 			case 2:
-				PhotonNetwork.InstantiateRoomObject("Candlestick_02", position.position, Quaternion.identity);
+				PhotonNetwork.InstantiateRoomObject("Pants", position.position, Quaternion.identity);
 				break;
+			case 3:
+				PhotonNetwork.InstantiateRoomObject("Tunic", position.position, Quaternion.identity);
+				break;
+
 		}
 	}
 
@@ -57,6 +61,7 @@ public class ScrapFactory : MonoBehaviour
 		}
 	}
 
+	//스크랩 생성 테이블
 	void InstScrap(int i, Transform[] positions)
 	{
 		switch (i)

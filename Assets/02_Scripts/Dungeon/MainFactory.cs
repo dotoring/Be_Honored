@@ -2,12 +2,22 @@ using UnityEngine;
 
 public class MainFactory : MonoBehaviour
 {
+	public static MainFactory Inst;
 	[SerializeField] WeakMonsterFactory wmf;
 	[SerializeField] StrongMonsterFactory smf;
 	[SerializeField] BossMonsterFactory bmf;
 	[SerializeField] ScrapFactory sf;
 
-    public void ModuleSpawn(ModuleType moduleType, Transform[] positions, int moduleId)
+	private void Awake()
+	{
+		if (Inst != null)
+		{
+			Destroy(gameObject);
+		}
+		Inst = this;
+	}
+
+	public void ModuleSpawn(ModuleType moduleType, Transform[] positions, int moduleId = 0)
 	{
 		switch (moduleType)
 		{
@@ -29,5 +39,10 @@ public class MainFactory : MonoBehaviour
 	public void ModuleReward(ModuleType moduleType, Transform[] positions)
 	{
 		sf.SpawnScraps(positions, moduleType);
+	}
+
+	public void MonsterDrop(Transform pos)
+	{
+		sf.SpawnScrap(pos);
 	}
 }

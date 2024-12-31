@@ -256,21 +256,17 @@ public class DungeonGenerator : MonoBehaviour
 						break;
 					case ModuleType.WeakMonsters:
 						moduleObject = Instantiate(modulePrefs[(int)ModuleType.WeakMonsters], position, Quaternion.identity);
-						moduleObject.GetComponent<MonsterSpawner>().SetFactory(mainFactory);
 						moduleObject.GetComponent<ModuleMgr>().moduleType = ModuleType.WeakMonsters;
 						break;
 					case ModuleType.StrongMonsters:
 						moduleObject = Instantiate(modulePrefs[(int)ModuleType.StrongMonsters], position, Quaternion.identity);
-						moduleObject.GetComponent<MonsterSpawner>().SetFactory(mainFactory);
 						moduleObject.GetComponent<ModuleMgr>().moduleType = ModuleType.StrongMonsters;
 						break;
 					case ModuleType.Scraps:
 						moduleObject = Instantiate(modulePrefs[(int)ModuleType.Scraps], position, Quaternion.identity);
-						moduleObject.GetComponent<ScrapSpawner>().SetFactory(mainFactory);
 						break;
 					case ModuleType.Boss:
 						moduleObject = Instantiate(modulePrefs[(int)ModuleType.Boss], position, Quaternion.identity);
-						moduleObject.GetComponent<MonsterSpawner>().SetFactory(mainFactory);
 						break;
 				}
 				moduleObject.GetComponent<ModuleMgr>().moduleId = id++;
