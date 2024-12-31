@@ -1395,7 +1395,8 @@ MonoBehaviour:
   detectRange: 99
   attackRange: 5
   attackPower: 3
-  hp: 1
+  maxHp: 0
+  curHp: 0
   moduleId: 0
   pv: {fileID: 2351624728300816609}
   behaviorAgent: {fileID: 8291106744728855052}
@@ -1914,7 +1915,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainCam: {fileID: 0}
   hpImg: {fileID: 8885190515483040795}
-  agent: {fileID: 8291106744728855052}
 --- !u!1 &5833966504662296035
 GameObject:
   m_ObjectHideFlags: 0

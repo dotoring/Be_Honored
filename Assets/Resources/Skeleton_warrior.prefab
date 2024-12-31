@@ -784,7 +784,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainCam: {fileID: 0}
   hpImg: {fileID: 2701161767415225672}
-  agent: {fileID: 2329026107893350230}
 --- !u!1 &3691087700842329503
 GameObject:
   m_ObjectHideFlags: 0
@@ -1839,7 +1838,8 @@ MonoBehaviour:
   detectRange: 99
   attackRange: 3
   attackPower: 2
-  hp: 10
+  maxHp: 0
+  curHp: 0
   moduleId: 0
   pv: {fileID: 1104055828518455709}
   behaviorAgent: {fileID: 2329026107893350230}
@@ -1865,6 +1865,7 @@ MonoBehaviour:
   observableSearch: 2
   ObservedComponents:
   - {fileID: 1681245201068522652}
+  - {fileID: 6926304408706942}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
