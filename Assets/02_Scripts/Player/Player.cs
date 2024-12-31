@@ -75,7 +75,7 @@ public partial class Player : MonoBehaviour
 	/// <summary>
 	/// summary stat in equip + body
 	/// </summary>
-	void ToTalStat()
+	public void ToTalStat()
 	{
 
 		_stat = _armor.Head + _armor.Body + _armor.Leg + _armor.Arm + bodyStat;
