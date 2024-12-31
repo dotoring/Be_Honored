@@ -34,7 +34,8 @@ public class Monster : MonoBehaviour
 	public float detectRange;
 	public float attackRange;
 	public float attackPower;
-	public float hp;
+	public float maxHp;
+	public float curHp;
 	public System.Action dieEvent;
 
 	BlackboardVariable<float> tem;
@@ -44,7 +45,7 @@ public class Monster : MonoBehaviour
 	public PhotonView pv;
 	public BehaviorGraphAgent behaviorAgent;
 	public NavMeshAgent navMeshAgent;
-	public GameObject hpBar;
+	public Canvas hpBar;
 
 	private void Awake()
 	{
@@ -58,7 +59,8 @@ public class Monster : MonoBehaviour
 		{
 			behaviorAgent.enabled = false;
 			navMeshAgent.enabled = false;
-			hpBar.SetActive(false);
+			if(hpBar!=null)
+				hpBar.gameObject.SetActive(false);
 		}
 		spawner = DungeonMgr.instance?.SetModule(moduleId).GetComponent<MonsterSpawner>();
 		spawner.AddToList(this.gameObject);
@@ -87,7 +89,8 @@ public class Monster : MonoBehaviour
 						detectRange		= App.Instance.Warrior1.detectRange;
 						attackRange		= App.Instance.Warrior1.attackRange;
 						attackPower		= App.Instance.Warrior1.attackPower;
-						hp				= App.Instance.Warrior1.hp;
+						maxHp			= App.Instance.Warrior1.hp;
+						curHp			= maxHp;
 						break;
 				}
 				break;
@@ -100,7 +103,8 @@ public class Monster : MonoBehaviour
 						detectRange		= App.Instance.Archer1.detectRange;
 						attackRange		= App.Instance.Archer1.attackRange;
 						attackPower		= App.Instance.Archer1.attackPower;
-						hp				= App.Instance.Archer1.hp;
+						maxHp			= App.Instance.Archer1.hp;
+						curHp = maxHp;
 						break;
 				}
 				break;
@@ -116,7 +120,8 @@ public class Monster : MonoBehaviour
 								detectRange		= App.Instance.Cerbe1.detectRange;
 								attackRange		= App.Instance.Cerbe1.attackRange;
 								attackPower		= App.Instance.Cerbe1.attackPower;
-								hp				= App.Instance.Cerbe1.hp;
+								maxHp			= App.Instance.Cerbe1.hp;
+								curHp = maxHp;
 								break;
 						}
 						break;
@@ -129,7 +134,8 @@ public class Monster : MonoBehaviour
 								detectRange		= App.Instance.Mino1.detectRange;
 								attackRange		= App.Instance.Mino1.attackRange;
 								attackPower		= App.Instance.Mino1.attackPower;
-								hp				= App.Instance.Mino1.hp;
+								maxHp			= App.Instance.Mino1.hp;
+								curHp = maxHp;
 								break;
 						}
 						break;
@@ -142,14 +148,19 @@ public class Monster : MonoBehaviour
 		}
 	}
 
+	[PunRPC]
 	public void Damaged(int damage)
 	{
-		if (hpBar != null)
-			hpBar.SetActive(true);
-		Debug.Log($" {gameObject.name} {damage} Damaged remain {hp}");
-		behaviorAgent.BlackboardReference.GetVariable("Hp", out tem);
-		tem.Value -= damage;
+		Debug.Log($" {gameObject.name} {damage} Damaged remain {curHp}");
+		curHp -= damage;
+		tem.Value = curHp;
 		behaviorAgent.BlackboardReference.SetVariableValue("Hp", tem);
+		if (hpBar != null)
+		{
+			hpBar.gameObject.SetActive(true);
+			float hpPer = curHp / maxHp;
+			hpBar.GetComponent<LookCamera>().UpdateUI(hpPer);
+		}
 	}
 
 	public void ActiveSelf()

@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using Photon.Pun;
 
 public class PlayerTouchManager : MonoBehaviour
 {
@@ -90,9 +91,9 @@ public class PlayerTouchManager : MonoBehaviour
 
 		foreach (var item in hitColliders)
 		{
-			item.GetComponent<Monster>()?.Damaged(1 + App.Instance.player._stat.attack);
 			if (item.gameObject.layer.Equals("Monster"))
 			{
+				item.GetComponent<PhotonView>().RPC("Damaged", RpcTarget.AllBuffered, 1 + App.Instance.player._stat.attack);
 				hited = true;
 			}
 		}

@@ -22,7 +22,7 @@ public partial class InitSkeletonWarrior : Action
 		DetectRange.Value = Monster.Value.detectRange;
 		AttackRange.Value = Monster.Value.attackRange;
 		AttackPower.Value = Monster.Value.attackPower;
-		Hp.Value = Monster.Value.hp;
+		Hp.Value = Monster.Value.curHp;
         return Status.Running;
     }
 

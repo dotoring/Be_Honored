@@ -13,7 +13,7 @@ public partial class DieStateAction : Action
 
     protected override Status OnUpdate()
     {
-		if (Hp.Value <= 0f)
+		if (Hp.Value <= 0)
 		{
 			State.Value = global::State.Die;
 		}
