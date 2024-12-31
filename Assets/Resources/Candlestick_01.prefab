@@ -11,9 +11,8 @@ GameObject:
   - component: {fileID: 2165115581590341608}
   - component: {fileID: 6160929057901847834}
   - component: {fileID: 8116710108239132013}
-  - component: {fileID: 1089159463679376334}
+  - component: {fileID: 112734175635414324}
   - component: {fileID: 3057292115704113094}
-  - component: {fileID: 1249034429209655433}
   - component: {fileID: 7290425365336062553}
   - component: {fileID: 3806830445742949517}
   - component: {fileID: 5123636262464913518}
@@ -93,8 +92,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &1089159463679376334
-CapsuleCollider:
+--- !u!65 &112734175635414324
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -111,10 +110,8 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.21607172
-  m_Height: 0.70650697
-  m_Direction: 1
+  serializedVersion: 3
+  m_Size: {x: 0.43214345, y: 0.70650697, z: 0.4321434}
   m_Center: {x: -0.0005047992, y: 0.35326695, z: -0.0008479282}
 --- !u!54 &3057292115704113094
 Rigidbody:
@@ -143,27 +140,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!65 &1249034429209655433
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2733774602214631171}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.25, y: 0.01, z: 0.25}
-  m_Center: {x: -0.0005047992, y: 0, z: -0.0008479282}
 --- !u!114 &7290425365336062553
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -252,7 +228,7 @@ MonoBehaviour:
   m_StartingInteractionStrengthFilters: []
   m_AttachTransform: {fileID: 0}
   m_SecondaryAttachTransform: {fileID: 0}
-  m_UseDynamicAttach: 0
+  m_UseDynamicAttach: 1
   m_MatchAttachPosition: 1
   m_MatchAttachRotation: 1
   m_SnapToColliderVolume: 1
@@ -299,7 +275,7 @@ MonoBehaviour:
   m_StartingSingleGrabTransformers: []
   m_StartingMultipleGrabTransformers: []
   m_AddDefaultGrabTransformers: 1
-  m_FarAttachMode: 0
+  m_FarAttachMode: 1
 --- !u!114 &5123636262464913518
 MonoBehaviour:
   m_ObjectHideFlags: 0
