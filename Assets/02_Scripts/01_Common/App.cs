@@ -25,7 +25,7 @@ public class App : Singleton<App>
 	{
 		ChangeEquip.Invoke();
 	}
-}
+}  
 
 
 public enum EquipType
