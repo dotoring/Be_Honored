@@ -27,6 +27,7 @@ public class DoorCtrl : MonoBehaviour
 		StartCoroutine(RotateDoor());
 	}
 
+	[PunRPC]
 	void InvokeDoorOpen()
 	{
 		OnDoorOpen.Invoke();
