@@ -81,4 +81,6 @@ public class MonsterSpawner : MonoBehaviourPunCallbacks
 			monster.GetComponent<Monster>().ActiveSelf();
 		}
 	}
+
+	
 }

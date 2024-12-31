@@ -666,7 +666,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7089348920107805803
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1697,6 +1697,7 @@ MonoBehaviour:
   - rid: 7516498409974399576
   - rid: 7900159867323679398
   - rid: 7900159867323679399
+  - rid: 7900159976238481668
   references:
     version: 2
     RefIds:
@@ -1764,6 +1765,14 @@ MonoBehaviour:
           m_Value1: 7442031742086720048
         Name: NavDis
         m_Value: 1.3
+    - rid: 7900159976238481668
+      type: {class: 'BlackboardVariable`1[[Monster, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 2640542662011302925
+          m_Value1: 8802682990319284743
+        Name: monster
+        m_Value: {fileID: -256071039055338045}
 --- !u!136 &3634983807119677238
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1824,6 +1833,7 @@ MonoBehaviour:
   spawner: {fileID: 0}
   typeOfMonster: 0
   monsterLevel: 0
+  bossType: 0
   detectRange: 99
   attackRange: 3
   attackPower: 2
@@ -1832,7 +1842,7 @@ MonoBehaviour:
   pv: {fileID: 1104055828518455709}
   behaviorAgent: {fileID: 2329026107893350230}
   navMeshAgent: {fileID: 3170130159670014129}
-  hpBar: {fileID: 0}
+  hpBar: {fileID: 3558215976725744645}
 --- !u!114 &1104055828518455709
 MonoBehaviour:
   m_ObjectHideFlags: 0
