@@ -1,3 +1,4 @@
+using Photon.Pun;
 using TMPro;
 using UnityEngine;
 
@@ -27,34 +28,24 @@ public class EquipItem : ScrapItem
 	}
 	private void OnEnable()
 	{
-		int[] vars = new int[] { equipStat.hpmax, equipStat.attack, equipStat.defence, equipStat.evade };
-
-		// Random으로 선택할 변수의 개수 (0, 1, 2 중에서 선택)
-		int selectedCount = GetWeightedRandomCount();
-
-		// 선택된 변수들에 1~3 사이의 값 부여
-		for (int i = 0; i < selectedCount; i++)
+		if (PhotonNetwork.IsMasterClient)
 		{
-			// 0부터 3까지의 랜덤 인덱스를 선택
-			int selectedIndex = Random.Range(0, 4);  // 0 ~ 3
+			int[] vars = new int[] { equipStat.hpmax, equipStat.attack, equipStat.defence, equipStat.evade };
 
-			// 해당 인덱스 변수에 1~3 사이의 랜덤 값 부여
-			vars[selectedIndex] = Random.Range(1, 4);  // 1, 2, 3 중 랜덤 값
-		}
+			// Random으로 선택할 변수의 개수 (0, 1, 2 중에서 선택)
+			int selectedCount = GetWeightedRandomCount();
 
-		// 결과 출력 (디버그용)
-		Debug.Log($"  {typeOfEquip,-10}{vars[0],-10}{vars[1],-10}{vars[2],-10}{vars[3],-10}");
-		equipStat.hpmax = vars[0];
-		equipStat.attack = vars[1];
-		equipStat.defence = vars[2];
-		equipStat.evade = vars[3];
-		if (typeOfItem == TypeOfItem.EQUIP)
-		{
-			TextHp.text = vars[0].ToString();
-			TextAttack.text = vars[1].ToString();
-			TextDefence.text = vars[2].ToString();
-			TextEveda.text = vars[3].ToString();
+			// 선택된 변수들에 1~3 사이의 값 부여
+			for (int i = 0; i < selectedCount; i++)
+			{
+				// 0부터 3까지의 랜덤 인덱스를 선택
+				int selectedIndex = Random.Range(0, 4);  // 0 ~ 3
 
+				// 해당 인덱스 변수에 1~3 사이의 랜덤 값 부여
+				vars[selectedIndex] = Random.Range(1, 4);  // 1, 2, 3 중 랜덤 값
+			}
+
+			pv.RPC(nameof(SetState), RpcTarget.AllBuffered, vars);
 		}
 	}
 	protected override void Start()
@@ -91,6 +82,24 @@ public class EquipItem : ScrapItem
 		else
 		{
 			return 2;  // 15% 확률
+		}
+	}
+
+	[PunRPC]
+	void SetState(int[] vars)
+	{
+		// 결과 출력 (디버그용)
+		Debug.Log($"  {typeOfEquip,-10}{vars[0],-10}{vars[1],-10}{vars[2],-10}{vars[3],-10}");
+		equipStat.hpmax = vars[0];
+		equipStat.attack = vars[1];
+		equipStat.defence = vars[2];
+		equipStat.evade = vars[3];
+		if (typeOfItem == TypeOfItem.EQUIP)
+		{
+			TextHp.text = vars[0].ToString();
+			TextAttack.text = vars[1].ToString();
+			TextDefence.text = vars[2].ToString();
+			TextEveda.text = vars[3].ToString();
 		}
 	}
 

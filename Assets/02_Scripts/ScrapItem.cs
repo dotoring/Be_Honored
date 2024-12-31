@@ -51,12 +51,15 @@ public class ScrapItem : MonoBehaviour
 			}
 
 			col.isTrigger = true;
-
+			rb.isKinematic = true;
+			rb.useGravity = false;
 		});
 
 		xRGrabInteractable.selectExited.AddListener((args) =>
 		{
 			col.isTrigger = false;
+			rb.isKinematic = false;
+			rb.useGravity = true;
 			CheckInBag();
 		});
 
