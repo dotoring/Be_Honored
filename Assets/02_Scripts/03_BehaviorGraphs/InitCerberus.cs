@@ -20,7 +20,7 @@ public partial class InitCerberusAction : Action
 		DetectRange.Value	= BossMonster.Value.detectRange;
 		AttackRange.Value	= BossMonster.Value.attackRange;
 		AttackPower.Value	= BossMonster.Value.attackPower;
-		Hp.Value			= BossMonster.Value.hp;
+		Hp.Value			= BossMonster.Value.curHp;
         return Status.Running;
     }
 

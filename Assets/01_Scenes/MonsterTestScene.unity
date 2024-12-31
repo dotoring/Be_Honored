@@ -1151,10 +1151,15 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 964678127}
   m_CullTransparentMesh: 1
---- !u!1 &979941540 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5422782672739946690, guid: 642a61a29bafde84bad6ce7c9a788d57, type: 3}
+--- !u!223 &979941545 stripped
+Canvas:
+  m_CorrespondingSourceObject: {fileID: 4714333954948476398, guid: 642a61a29bafde84bad6ce7c9a788d57, type: 3}
   m_PrefabInstance: {fileID: 5859400140030983655}
+  m_PrefabAsset: {fileID: 0}
+--- !u!223 &1205793325 stripped
+Canvas:
+  m_CorrespondingSourceObject: {fileID: 1433524754646761370, guid: ce9a58c338097bf42a593a661f9ebf81, type: 3}
+  m_PrefabInstance: {fileID: 347615546496803183}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1364234395
 GameObject:
@@ -1938,6 +1943,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -256071039055338045, guid: ce9a58c338097bf42a593a661f9ebf81, type: 3}
+      propertyPath: hpBar
+      value: 
+      objectReference: {fileID: 1205793325}
+    - target: {fileID: 3246646716704802451, guid: ce9a58c338097bf42a593a661f9ebf81, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6802575969540919369, guid: ce9a58c338097bf42a593a661f9ebf81, type: 3}
       propertyPath: m_Name
       value: Skeleton_warrior
@@ -2087,7 +2100,7 @@ PrefabInstance:
     - target: {fileID: 6323096054150206656, guid: 642a61a29bafde84bad6ce7c9a788d57, type: 3}
       propertyPath: hpBar
       value: 
-      objectReference: {fileID: 979941540}
+      objectReference: {fileID: 979941545}
     - target: {fileID: 7217033288126697582, guid: 642a61a29bafde84bad6ce7c9a788d57, type: 3}
       propertyPath: m_LocalPosition.x
       value: 18.55

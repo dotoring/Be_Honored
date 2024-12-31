@@ -59,7 +59,8 @@ public class Monster : MonoBehaviour
 		{
 			behaviorAgent.enabled = false;
 			navMeshAgent.enabled = false;
-			hpBar.gameObject.SetActive(false);
+			if(hpBar!=null)
+				hpBar.gameObject.SetActive(false);
 		}
 		spawner = DungeonMgr.instance?.SetModule(moduleId).GetComponent<MonsterSpawner>();
 		spawner.AddToList(this.gameObject);
@@ -89,6 +90,7 @@ public class Monster : MonoBehaviour
 						attackRange		= App.Instance.Warrior1.attackRange;
 						attackPower		= App.Instance.Warrior1.attackPower;
 						maxHp			= App.Instance.Warrior1.hp;
+						curHp			= maxHp;
 						break;
 				}
 				break;
@@ -102,6 +104,7 @@ public class Monster : MonoBehaviour
 						attackRange		= App.Instance.Archer1.attackRange;
 						attackPower		= App.Instance.Archer1.attackPower;
 						maxHp			= App.Instance.Archer1.hp;
+						curHp = maxHp;
 						break;
 				}
 				break;
@@ -118,6 +121,7 @@ public class Monster : MonoBehaviour
 								attackRange		= App.Instance.Cerbe1.attackRange;
 								attackPower		= App.Instance.Cerbe1.attackPower;
 								maxHp			= App.Instance.Cerbe1.hp;
+								curHp = maxHp;
 								break;
 						}
 						break;
@@ -131,6 +135,7 @@ public class Monster : MonoBehaviour
 								attackRange		= App.Instance.Mino1.attackRange;
 								attackPower		= App.Instance.Mino1.attackPower;
 								maxHp			= App.Instance.Mino1.hp;
+								curHp = maxHp;
 								break;
 						}
 						break;
