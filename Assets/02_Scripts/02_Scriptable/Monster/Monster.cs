@@ -38,7 +38,7 @@ public class Monster : MonoBehaviour
 	public float curHp;
 	public System.Action dieEvent;
 
-	BlackboardVariable<float> tem;
+	BlackboardVariable<float> tem = new ();
 
 	public int moduleId;
 

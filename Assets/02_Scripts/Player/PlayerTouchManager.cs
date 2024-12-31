@@ -91,11 +91,8 @@ public class PlayerTouchManager : MonoBehaviour
 
 		foreach (var item in hitColliders)
 		{
-			if (item.gameObject.layer.Equals("Monster"))
-			{
-				item.GetComponent<PhotonView>().RPC("Damaged", RpcTarget.AllBuffered, 1 + App.Instance.player._stat.attack);
-				hited = true;
-			}
+			item.GetComponent<PhotonView>().RPC("Damaged", RpcTarget.AllBuffered, 1 + App.Instance.player._stat.attack);
+			hited = true;
 		}
 		if (hited) audioSource.PlayOneShot(attacksound);
 	}
