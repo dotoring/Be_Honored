@@ -11,8 +11,7 @@ GameObject:
   - component: {fileID: 1011041797354259032}
   - component: {fileID: 5358325741668811144}
   - component: {fileID: 7403764894790481724}
-  - component: {fileID: 907039796261040858}
-  - component: {fileID: 2015869447441771988}
+  - component: {fileID: 6150113010454488397}
   - component: {fileID: 6871539999370347283}
   - component: {fileID: 7953360074859246870}
   - component: {fileID: 5336671064425608650}
@@ -93,30 +92,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &907039796261040858
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1951225913900136845}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.054171413
-  m_Height: 0.21139564
-  m_Direction: 1
-  m_Center: {x: -0.002215419, y: 0.10305639, z: -0.0008042138}
---- !u!65 &2015869447441771988
+--- !u!65 &6150113010454488397
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -135,8 +111,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.10834235, y: 0.01, z: 0.10834283}
-  m_Center: {x: -0.002215419, y: 0, z: -0.0008042138}
+  m_Size: {x: 0.10834235, y: 0.21139564, z: 0.10834283}
+  m_Center: {x: -0.002215419, y: 0.10305639, z: -0.0008042138}
 --- !u!54 &6871539999370347283
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -252,7 +228,7 @@ MonoBehaviour:
   m_StartingInteractionStrengthFilters: []
   m_AttachTransform: {fileID: 0}
   m_SecondaryAttachTransform: {fileID: 0}
-  m_UseDynamicAttach: 0
+  m_UseDynamicAttach: 1
   m_MatchAttachPosition: 1
   m_MatchAttachRotation: 1
   m_SnapToColliderVolume: 1
@@ -299,7 +275,7 @@ MonoBehaviour:
   m_StartingSingleGrabTransformers: []
   m_StartingMultipleGrabTransformers: []
   m_AddDefaultGrabTransformers: 1
-  m_FarAttachMode: 0
+  m_FarAttachMode: 1
 --- !u!114 &2847258627920797003
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -318,7 +294,8 @@ MonoBehaviour:
   Synchronization: 3
   OwnershipTransfer: 1
   observableSearch: 2
-  ObservedComponents: []
+  ObservedComponents:
+  - {fileID: 9034935793313187473}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0

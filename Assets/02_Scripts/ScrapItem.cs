@@ -102,6 +102,7 @@ public class ScrapItem : MonoBehaviour
 			pv.RPC(nameof(SetItemActive), RpcTarget.OthersBuffered, false);
 		}
 
+		xRGrabInteractable.throwOnDetach = false;
 		rb.isKinematic = true;
 		rb.useGravity = false;
 
@@ -115,6 +116,7 @@ public class ScrapItem : MonoBehaviour
 			pv.RPC(nameof(SetItemActive), RpcTarget.OthersBuffered, true);
 		}
 
+		xRGrabInteractable.throwOnDetach = true;
 		rb.isKinematic = false;
 		rb.useGravity = true;
 
