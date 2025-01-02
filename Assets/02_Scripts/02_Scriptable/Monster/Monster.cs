@@ -39,7 +39,8 @@ public class Monster : MonoBehaviour
 	public float curHp;
 	public System.Action dieEvent;
 
-	[SerializeField]BlackboardVariable<float> tem=new BlackboardVariable<float>();
+
+	BlackboardVariable<float> tem = new ();
 
 	public int moduleId;
 
