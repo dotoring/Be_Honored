@@ -98,7 +98,10 @@ public class ScrapItem : MonoBehaviour
 		else
 		{
 			PullOut();
-			bagCtrl.RemoveScrap(this);
+			if(bagCtrl != null)
+			{
+				bagCtrl.RemoveScrap(this);
+			}
 		}
 	}
 

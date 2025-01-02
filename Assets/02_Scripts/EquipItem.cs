@@ -180,7 +180,10 @@ public class EquipItem : ScrapItem
 		else
 		{
 			PullOut();
-			bagCtrl.RemoveScrap(this);
+			if (bagCtrl != null)
+			{
+				bagCtrl.RemoveScrap(this);
+			}
 		}
 	}
 

@@ -61,7 +61,7 @@ public partial class Player : Singleton<Player>
 			App.Instance.Resetposition.Invoke();
 		}
 
-		//hpBar.fillAmount = hp / 50;
+		hpBar.fillAmount = hp / 50;
 	}
 
 	private bool CheckEvade()
