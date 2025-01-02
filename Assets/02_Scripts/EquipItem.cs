@@ -5,7 +5,7 @@ using UnityEngine;
 public class EquipItem : ScrapItem
 {
 	[SerializeField] EquipType typeOfEquip;
-	Transform parentofobject;
+	GameObject parentOfObject;
 
 	Material materialOrigin;
 	[SerializeField] Material materialRed;
@@ -23,7 +23,7 @@ public class EquipItem : ScrapItem
 	{
 		base.Awake();
 		materialOrigin = GetComponent<MeshRenderer>().material;
-		parentofobject = transform.parent;
+		parentOfObject = transform.parent.gameObject;
 
 	}
 	private void OnEnable()
@@ -53,10 +53,25 @@ public class EquipItem : ScrapItem
 		base.Start();
 		xRGrabInteractable.selectEntered.AddListener((args) =>
 		{
-			transform.parent = null;
-			transform.position = Vector3.zero;
-			transform.rotation = Quaternion.identity;
+			//부모가 있으면 삭제
+			if (parentOfObject != null)
+			{
+				Destroy(parentOfObject);
+
+				//다른 플레이어들에게도 전달
+				pv.RPC(nameof(DestroyParent), RpcTarget.OthersBuffered);
+			}
 		});
+	}
+
+	[PunRPC]
+	void DestroyParent()
+	{
+		if(parentOfObject != null)
+		{
+			transform.parent = null;
+			Destroy(parentOfObject);
+		}
 	}
 
 	int GetWeightedRandomCount()

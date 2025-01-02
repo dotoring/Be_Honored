@@ -38,7 +38,7 @@ public class Monster : MonoBehaviour
 	public float curHp;
 	public System.Action dieEvent;
 
-	BlackboardVariable<float> tem = new ();
+	BlackboardVariable<float> tem = new();
 
 	public int moduleId;
 
@@ -54,6 +54,7 @@ public class Monster : MonoBehaviour
 
 	protected virtual void Start()
 	{
+
 		//디버그 할때 주석
 		if (!PhotonNetwork.IsMasterClient)
 		{
@@ -154,7 +155,7 @@ public class Monster : MonoBehaviour
 		Debug.Log($" {gameObject.name} {damage} Damaged remain {curHp}");
 		curHp -= damage;
 		tem.Value = curHp;
-		behaviorAgent.BlackboardReference.SetVariableValue("Hp", tem);
+		behaviorAgent.BlackboardReference.SetVariableValue<float>("Hp", tem);
 		if (hpBar != null)
 		{
 			hpBar.gameObject.SetActive(true);
