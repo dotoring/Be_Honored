@@ -57,6 +57,7 @@ public class Monster : MonoBehaviour
 
 	protected virtual void Start()
 	{
+
 		//디버그 할때 주석
 		if (!PhotonNetwork.IsMasterClient)
 		{

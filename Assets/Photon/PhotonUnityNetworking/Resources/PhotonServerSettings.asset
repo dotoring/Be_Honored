@@ -58,7 +58,10 @@ MonoBehaviour:
   - SetState
   - InvokeDoorOpen
   - Damaged
-  - DieRPC
+  - SetPhysicsInGrab
+  - SetParentNull
+  - DestroyParent
+  - ReSetPosition
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1
