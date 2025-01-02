@@ -11,6 +11,6 @@ public class IronBall : MonoBehaviour
 
 	private void OnTriggerEnter(Collider other)
 	{
-		other.GetComponent<Player>()?.Damaged(damage);
+		other.GetComponent<HitPlayer>()?.Damaged(damage);
 	}
 }

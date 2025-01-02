@@ -2298,9 +2298,10 @@ GameObject:
   - component: {fileID: 8380430561970940447}
   - component: {fileID: 3253076478273942635}
   - component: {fileID: 6884768702564954874}
-  m_Layer: 0
+  - component: {fileID: 2003637990716625032}
+  m_Layer: 10
   m_Name: PlayerHead
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2360,6 +2361,27 @@ MonoBehaviour:
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
+--- !u!65 &2003637990716625032
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7749944757417677235}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.34, y: 0.52, z: 0.32}
+  m_Center: {x: 0, y: -0.4, z: -0.01}
 --- !u!1 &7980612010659830661
 GameObject:
   m_ObjectHideFlags: 0

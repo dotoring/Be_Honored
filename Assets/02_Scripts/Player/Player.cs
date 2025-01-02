@@ -35,7 +35,7 @@ public partial class Player : Singleton<Player>
 	public PlayerEquipMent _armor;
 	float hp = 50;
 	[SerializeField] AudioClip hited;
-	[SerializeField] Image hpBar;
+	public Image hpBar;
 	AudioSource audioSource;
 	EQUIPSTAT playerstat;
 

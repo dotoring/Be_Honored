@@ -14,7 +14,7 @@ public partial class AttackTargetAction : Action
 
 	protected override Status OnStart()
 	{
-		Player.Value.GetComponent<Player>()?.Damaged(Attackpower.Value);
+		Player.Value.GetComponent<HitPlayer>()?.Damaged(Attackpower.Value);
 		Self.Value.transform.forward = (Player.Value.position - Self.Value.transform.position).normalized;
 		return Status.Running;
 	}

@@ -6,10 +6,10 @@ public class PizzaPattern : MonoBehaviour
 {
 	[SerializeField] private BossMonster bossMonster;
 
-	private float angle=60.0f;
-	private float radius=10.0f;
-	[SerializeField]MeshFilter meshFilter;
-	[SerializeField]MeshRenderer meshRenderer;
+	private float angle = 60.0f;
+	private float radius = 10.0f;
+	[SerializeField] MeshFilter meshFilter;
+	[SerializeField] MeshRenderer meshRenderer;
 	[SerializeField] private List<GameObject> playerInConelist = new();
 	[SerializeField] private Material patMat;
 
@@ -27,11 +27,11 @@ public class PizzaPattern : MonoBehaviour
 	private void Update()
 	{
 		DetectTargetsInCone();
-		if(bossMonster.canUseSkill==false)
+		if (bossMonster.canUseSkill == false)
 		{
-			foreach(GameObject obj in playerInConelist)
+			foreach (GameObject obj in playerInConelist)
 			{
-				obj.GetComponentInChildren<Player>()?.Damaged(10);
+				obj.GetComponentInChildren<HitPlayer>()?.Damaged(10);
 			}
 			//플레이어 리스트에 남은 플레이어들의 hp를 깎는 로직
 			gameObject.SetActive(false);
@@ -86,13 +86,13 @@ public class PizzaPattern : MonoBehaviour
 			if (angleToTarget <= angle / 2f)
 			{
 				// 타겟이 범위 안에 있음
-				if(!playerInConelist.Contains(target.transform.root.gameObject))
+				if (!playerInConelist.Contains(target.transform.root.gameObject))
 					playerInConelist.Add(target.transform.root.gameObject);
 				//같은 이름의 객체가 있으면 넣지 않음
 			}
 			else
 			{
-				if(playerInConelist.Contains(target.transform.root.gameObject))
+				if (playerInConelist.Contains(target.transform.root.gameObject))
 					playerInConelist.Remove(target.transform.root.gameObject);
 			}
 		}

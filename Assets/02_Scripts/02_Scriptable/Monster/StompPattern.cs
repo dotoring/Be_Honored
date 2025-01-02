@@ -11,7 +11,7 @@ public class StompPattern : MonoBehaviour
 	[SerializeField] private Material patMat;
 	[SerializeField] private List<GameObject> targets;
 	[SerializeField] private float curTime = 0.0f;
-	[SerializeField] private float chargingTime=3.0f;
+	[SerializeField] private float chargingTime = 3.0f;
 
 	private void OnEnable()
 	{
@@ -37,8 +37,8 @@ public class StompPattern : MonoBehaviour
 
 	private void Update()
 	{
-		curTime+= Time.deltaTime;
-		if(curTime>=chargingTime)
+		curTime += Time.deltaTime;
+		if (curTime >= chargingTime)
 		{
 			gameObject.SetActive(false);
 		}
@@ -49,7 +49,7 @@ public class StompPattern : MonoBehaviour
 	{
 		foreach (var target in targets)
 		{
-			target.GetComponent<Player>()?.Damaged(bossMonster.attackPower*2);
+			target.GetComponent<HitPlayer>()?.Damaged(bossMonster.attackPower * 2);
 		}
 	}
 
