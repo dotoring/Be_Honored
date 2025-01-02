@@ -50,22 +50,26 @@ public class ScrapItem : MonoBehaviour
 				pv.TransferOwnership(PhotonNetwork.LocalPlayer);
 			}
 
-			col.isTrigger = true;
-			rb.isKinematic = true;
-			rb.useGravity = false;
+			pv.RPC(nameof(SetPhysicsInGrab), RpcTarget.AllBuffered, false);
 		});
 
 		xRGrabInteractable.selectExited.AddListener((args) =>
 		{
-			col.isTrigger = false;
-			rb.isKinematic = false;
-			rb.useGravity = true;
+			pv.RPC(nameof(SetPhysicsInGrab), RpcTarget.AllBuffered, true);
 			CheckInBag();
 		});
 
 		App.Instance.interactorManager.AddListener(action);
 
 		//ItemSetter();
+	}
+
+	[PunRPC]
+	protected void SetPhysicsInGrab(bool b)
+	{
+		col.isTrigger = !b;
+		rb.isKinematic = !b;
+		rb.useGravity = b;
 	}
 
 	public virtual void ItemSetter(int value)

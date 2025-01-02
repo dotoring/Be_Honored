@@ -2,6 +2,7 @@ using Unity.Behavior;
 using UnityEngine;
 using UnityEngine.AI;
 using Photon.Pun;
+using UnityEditor.Animations;
 
 
 public enum MonsterType
@@ -38,6 +39,7 @@ public class Monster : MonoBehaviour
 	public float curHp;
 	public System.Action dieEvent;
 
+
 	BlackboardVariable<float> tem = new ();
 
 	public int moduleId;
@@ -46,6 +48,7 @@ public class Monster : MonoBehaviour
 	public BehaviorGraphAgent behaviorAgent;
 	public NavMeshAgent navMeshAgent;
 	public Canvas hpBar;
+	public Animator ani;
 
 	private void Awake()
 	{
@@ -54,6 +57,7 @@ public class Monster : MonoBehaviour
 
 	protected virtual void Start()
 	{
+
 		//디버그 할때 주석
 		if (!PhotonNetwork.IsMasterClient)
 		{
@@ -66,8 +70,16 @@ public class Monster : MonoBehaviour
 		spawner.AddToList(this.gameObject);
 		dieEvent += () => spawner.RemoveFromList(this.gameObject);
 		dieEvent += () => MainFactory.Inst.MonsterDrop(transform);
+		dieEvent += () => pv.RPC(nameof(DieRPC), RpcTarget.AllBuffered);
 		LoadData();
 	}
+
+	[PunRPC]
+	public void DieRPC()
+	{
+		ani.SetTrigger("Die");
+	}
+
 	public void MonsterSetUP(MonsterType monsterTypePram, MonsterLevel monsterLevelPram)
 	{
 		typeOfMonster = monsterTypePram;
@@ -154,7 +166,7 @@ public class Monster : MonoBehaviour
 		Debug.Log($" {gameObject.name} {damage} Damaged remain {curHp}");
 		curHp -= damage;
 		tem.Value = curHp;
-		behaviorAgent.BlackboardReference.SetVariableValue("Hp", tem);
+		behaviorAgent.BlackboardReference.SetVariableValue<float>("Hp", tem);
 		if (hpBar != null)
 		{
 			hpBar.gameObject.SetActive(true);
