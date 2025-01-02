@@ -3,18 +3,16 @@ using Unity.Behavior;
 using UnityEngine;
 using Action = Unity.Behavior.Action;
 using Unity.Properties;
-using Photon.Pun;
 
 [Serializable, GeneratePropertyBag]
-[NodeDescription(name: "StartIdleAni", story: "[BossMonster]", category: "Action", id: "7a1852d945c8a01a033a9ea91f10b295")]
-public partial class StartIdleAniAction : Action
+[NodeDescription(name: "StartMoveAni", story: "[BossMonster]", category: "Action", id: "48afd30a18b3eea255202637c25c8513")]
+public partial class StartMoveAniAction : Action
 {
     [SerializeReference] public BlackboardVariable<BossMonster> BossMonster;
     protected override Status OnStart()
     {
-		BossMonster.Value.StartAnimationRPC("idle");
-		
-        return Status.Running;
+		BossMonster.Value.StartAnimationRPC("run");
+		return Status.Running;
     }
 
     protected override Status OnUpdate()

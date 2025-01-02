@@ -26,7 +26,7 @@ public enum MonsterLevel
 	C
 }
 
-public class Monster : MonoBehaviour
+public class Monster : MonoBehaviourPunCallbacks
 {
 	public MonsterSpawner spawner;
 	[SerializeField] MonsterType typeOfMonster;
@@ -59,18 +59,19 @@ public class Monster : MonoBehaviour
 	{
 
 		//디버그 할때 주석
-		if (!PhotonNetwork.IsMasterClient)
-		{
-			behaviorAgent.enabled = false;
-			navMeshAgent.enabled = false;
-			if(hpBar!=null)
-				hpBar.gameObject.SetActive(false);
-		}
-		spawner = DungeonMgr.instance?.SetModule(moduleId).GetComponent<MonsterSpawner>();
-		spawner.AddToList(this.gameObject);
-		dieEvent += () => spawner.RemoveFromList(this.gameObject);
-		dieEvent += () => MainFactory.Inst.MonsterDrop(transform);
-		dieEvent += () => pv.RPC(nameof(DieRPC), RpcTarget.AllBuffered);
+		//if (!PhotonNetwork.IsMasterClient)
+		//{
+		//	behaviorAgent.enabled = false;
+		//	navMeshAgent.enabled = false;
+		//	if(hpBar!=null)
+		//		hpBar.gameObject.SetActive(false);
+		//}
+		//spawner = DungeonMgr.instance?.SetModule(moduleId).GetComponent<MonsterSpawner>();
+		//spawner.AddToList(this.gameObject);
+		//dieEvent += () => spawner.RemoveFromList(this.gameObject);
+		//dieEvent += () => MainFactory.Inst.MonsterDrop(transform);
+		//if(typeOfMonster!=MonsterType.BOSS)
+		//	dieEvent += () => pv.RPC(nameof(DieRPC), RpcTarget.AllBuffered);
 		LoadData();
 	}
 

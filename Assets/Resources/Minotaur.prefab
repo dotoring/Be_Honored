@@ -887,17 +887,20 @@ MonoBehaviour:
   detectRange: 99
   attackRange: 3
   attackPower: 2
-  hp: 10
+  maxHp: 0
+  curHp: 0
   moduleId: 0
   pv: {fileID: 3814357136974911071}
   behaviorAgent: {fileID: 3335746561713010632}
   navMeshAgent: {fileID: 2421345553411630911}
   hpBar: {fileID: 0}
+  ani: {fileID: 0}
   skillCoolTime: 4
   skillWaitTime: 0
   canUseSkill: 0
   playerList: []
   targetPlayer: {fileID: 0}
+  anim: {fileID: 8502806297500364490}
 --- !u!195 &2421345553411630911
 NavMeshAgent:
   m_ObjectHideFlags: 0
