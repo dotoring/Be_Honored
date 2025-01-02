@@ -53,10 +53,15 @@ public class EquipItem : ScrapItem
 		base.Start();
 		xRGrabInteractable.selectEntered.AddListener((args) =>
 		{
-			transform.parent = null;
-			transform.position = Vector3.zero;
-			transform.rotation = Quaternion.identity;
+			pv.RPC(nameof(ReSetPosition), RpcTarget.AllBuffered);
 		});
+	}
+
+	private void ReSetPosition()
+	{
+		transform.parent = null;
+		transform.position = Vector3.zero;
+		transform.rotation = Quaternion.identity;
 	}
 
 	int GetWeightedRandomCount()
