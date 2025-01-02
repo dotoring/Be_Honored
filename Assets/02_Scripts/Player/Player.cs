@@ -20,7 +20,7 @@ public struct Stat
 }
 
 
-public partial class Player : MonoBehaviour
+public partial class Player : Singleton<Player>
 {
 	[SerializeField] KindOfclass _myClass;
 	/// <summary>
@@ -31,6 +31,7 @@ public partial class Player : MonoBehaviour
 	/// naked body stat;
 	/// </summary>
 	[SerializeField] EQUIPSTAT bodyStat;
+
 	public PlayerEquipMent _armor;
 	float hp = 50;
 	[SerializeField] AudioClip hited;
@@ -38,11 +39,12 @@ public partial class Player : MonoBehaviour
 	AudioSource audioSource;
 	EQUIPSTAT playerstat;
 
-	private void Awake()
+	protected override void Awake()
 	{
+		base.Awake();
 		audioSource = GetComponent<AudioSource>();
-		App.Instance.player = this;
 	}
+
 
 
 	public void Damaged(float damage)
@@ -52,14 +54,14 @@ public partial class Player : MonoBehaviour
 			return;
 		}
 		hp -= math.max(damage - _stat.defence, 1);
-		audioSource.PlayOneShot(hited);
+		//audioSource.PlayOneShot(hited);
 		Debug.Log($" Player {damage} Damaged remain {hp}");
 		if (hp <= 0)
 		{
 			App.Instance.Resetposition.Invoke();
 		}
 
-		hpBar.fillAmount = hp / 50;
+		//hpBar.fillAmount = hp / 50;
 	}
 
 	private bool CheckEvade()

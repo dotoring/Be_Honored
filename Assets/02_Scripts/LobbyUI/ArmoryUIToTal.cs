@@ -10,6 +10,7 @@ public class ArmoryUIToTal : MonoBehaviour
 	private void OnEnable()
 	{
 		App.Instance.ChangeEquip += SetUI;
+		SetUI();
 	}
 	private void OnDisable()
 	{
@@ -19,11 +20,11 @@ public class ArmoryUIToTal : MonoBehaviour
 	void SetUI()
 	{
 
-		App.Instance.player.ToTalStat();
-		TextHp.text = App.Instance.player._stat.hpmax.ToString();
-		TextAttack.text = App.Instance.player._stat.attack.ToString();
-		TextDefence.text = App.Instance.player._stat.defence.ToString();
-		TextEveda.text = App.Instance.player._stat.evade.ToString();
+		Player.Instance.ToTalStat();
+		TextHp.text = Player.Instance._stat.hpmax.ToString();
+		TextAttack.text = Player.Instance._stat.attack.ToString();
+		TextDefence.text = Player.Instance._stat.defence.ToString();
+		TextEveda.text = Player.Instance._stat.evade.ToString();
 	}
 
 }

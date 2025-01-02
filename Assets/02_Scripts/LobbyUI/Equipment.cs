@@ -22,16 +22,16 @@ public class Equipment : MonoBehaviour
 		switch (type)
 		{
 			case EquipType.HEAD:
-				equipStat = App.Instance.player._armor.Head;
+				equipStat = Player.Instance._armor.Head;
 				break;
 			case EquipType.BODY:
-				equipStat = App.Instance.player._armor.Body;
+				equipStat = Player.Instance._armor.Body;
 				break;
 			case EquipType.LEG:
-				equipStat = App.Instance.player._armor.Leg;
+				equipStat = Player.Instance._armor.Leg;
 				break;
 			case EquipType.ARM:
-				equipStat = App.Instance.player._armor.Arm;
+				equipStat = Player.Instance._armor.Arm;
 				break;
 			default:
 				break;

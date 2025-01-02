@@ -1,5 +1,5 @@
 using UnityEngine;
-
+[System.Serializable]
 public struct PlayerEquipMent
 {
 	public EQUIPSTAT Head;
@@ -9,7 +9,7 @@ public struct PlayerEquipMent
 
 
 }
-public partial class Player : MonoBehaviour
+public partial class Player
 {
 
 	public void ArmorChange(EquipType equipType, EQUIPSTAT stat)

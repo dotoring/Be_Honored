@@ -1075,7 +1075,6 @@ GameObject:
   - component: {fileID: 6517294722108663778}
   - component: {fileID: 8574569605506740620}
   - component: {fileID: 290446398995470243}
-  - component: {fileID: 3408182746349630121}
   - component: {fileID: 7641722443051736094}
   m_Layer: 10
   m_Name: XR Origin (VR)
@@ -1185,21 +1184,6 @@ MonoBehaviour:
   m_MotionControllerModeEnded:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &3408182746349630121
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5369989239659784363}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ed81e37789e23e540822730e25ec7ccb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _myClass: 0
-  hited: {fileID: 8300000, guid: 65f51cc928adf8b4780afad5f1139f3c, type: 3}
-  hpBar: {fileID: 7021915070371616832}
 --- !u!82 &7641722443051736094
 AudioSource:
   m_ObjectHideFlags: 0

@@ -180,7 +180,7 @@ public class EquipItem : ScrapItem
 
 	private void PutItOn()
 	{
-		App.Instance.player.ArmorChange(typeOfEquip, equipStat);
+		Player.Instance.ArmorChange(typeOfEquip, equipStat);
 		Debug.Log($" equip item in  {typeOfEquip}");
 		App.Instance.ChangeEquip.Invoke();
 		Destroy(gameObject);

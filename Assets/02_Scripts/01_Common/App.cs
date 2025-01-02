@@ -14,13 +14,12 @@ public class App : Singleton<App>
 
 	public Action ChangeEquip;
 
-	public Player player;
+
 	internal int gold;
 
 	protected override void Awake()
 	{
 		base.Awake();
-
 	}
 	private void Start()
 	{
@@ -36,7 +35,7 @@ public enum EquipType
 	LEG,
 	ARM
 }
-
+[System.Serializable]
 public struct EQUIPSTAT
 {
 	public int hpmax;
