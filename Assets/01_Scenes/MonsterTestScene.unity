@@ -2012,6 +2012,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 136089641555591817, guid: 27a87e9871accf946b04c1885dcf1789, type: 3}
+      propertyPath: m_Range
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2503439358033781598, guid: 27a87e9871accf946b04c1885dcf1789, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.026
+      objectReference: {fileID: 0}
+    - target: {fileID: 2503439358033781598, guid: 27a87e9871accf946b04c1885dcf1789, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.374
+      objectReference: {fileID: 0}
+    - target: {fileID: 2503439358033781598, guid: 27a87e9871accf946b04c1885dcf1789, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.021
+      objectReference: {fileID: 0}
+    - target: {fileID: 2570671378359170747, guid: 27a87e9871accf946b04c1885dcf1789, type: 3}
+      propertyPath: InitialModule.maxNumParticles
+      value: 300
+      objectReference: {fileID: 0}
     - target: {fileID: 2688970201548770074, guid: 27a87e9871accf946b04c1885dcf1789, type: 3}
       propertyPath: bossType
       value: 1
@@ -2030,6 +2050,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6237443138919186765, guid: 27a87e9871accf946b04c1885dcf1789, type: 3}
       propertyPath: sceneViewId
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7389991299526088050, guid: 27a87e9871accf946b04c1885dcf1789, type: 3}
+      propertyPath: m_Materials.Array.size
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9083564063465656767, guid: 27a87e9871accf946b04c1885dcf1789, type: 3}
