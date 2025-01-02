@@ -38,7 +38,7 @@ public class Monster : MonoBehaviourPunCallbacks
 	public float maxHp;
 	public float curHp;
 	public System.Action dieEvent;
-
+	public bool isDie;
 
 	BlackboardVariable<float> tem = new ();
 
@@ -57,7 +57,6 @@ public class Monster : MonoBehaviourPunCallbacks
 
 	protected virtual void Start()
 	{
-
 		//디버그 할때 주석
 		if (!PhotonNetwork.IsMasterClient)
 		{
@@ -70,10 +69,20 @@ public class Monster : MonoBehaviourPunCallbacks
 		spawner.AddToList(this.gameObject);
 		dieEvent += () => spawner.RemoveFromList(this.gameObject);
 		dieEvent += () => MainFactory.Inst.MonsterDrop(transform);
-		if(typeOfMonster!=MonsterType.BOSS)
-			dieEvent += () => pv.RPC(nameof(DieRPC), RpcTarget.AllBuffered);
+		dieEvent += () => isDie = true;
+		//if(typeOfMonster!=MonsterType.BOSS)
+		//	dieEvent += () => pv.RPC(nameof(DieRPC), RpcTarget.AllBuffered);
 		LoadData();
 	}
+
+	private void Update()
+	{
+		if(curHp<=0&&isDie==false)
+		{
+			dieEvent.Invoke();
+		}
+	}
+
 
 	[PunRPC]
 	public void DieRPC()
