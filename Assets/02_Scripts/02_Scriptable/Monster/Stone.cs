@@ -5,20 +5,20 @@ public class Stone : MonoBehaviour
 {
 	[SerializeField] private StonePattern stp;
 	[SerializeField] private Transform point;
- 	[SerializeField] private float waitTime;
+	[SerializeField] private float waitTime;
 	[SerializeField] private float curTime;
 	[SerializeField] private float damage;
 	[SerializeField] private float speed;
 	[SerializeField] private float dis;
 	[SerializeField] private bool chek;
 
-	public void InitStone(StonePattern stp,Transform point,float waitTime, float damage,float speed)
+	public void InitStone(StonePattern stp, Transform point, float waitTime, float damage, float speed)
 	{
 		this.stp = stp;
 		this.point = point;
-		this.waitTime=waitTime;
-		this.damage=damage;
-		this.speed=speed;
+		this.waitTime = waitTime;
+		this.damage = damage;
+		this.speed = speed;
 	}
 
 	private void OnEnable()
@@ -33,7 +33,7 @@ public class Stone : MonoBehaviour
 		{
 			transform.position += -speed * Time.deltaTime * transform.up;
 			dis = Vector3.Distance(transform.position, point.position);
-			if (dis <= 0.1f&&chek==false)
+			if (dis <= 0.1f && chek == false)
 			{
 				chek = true;
 				stp.endPattern.Invoke();
@@ -43,6 +43,6 @@ public class Stone : MonoBehaviour
 
 	private void OnTriggerEnter(Collider other)
 	{
-		other.GetComponent<Player>()?.Damaged(damage);
+		other.GetComponent<HitPlayer>()?.Damaged(damage);
 	}
 }
