@@ -108,6 +108,7 @@ public class EquipItem : ScrapItem
 			if (bag == null)
 			{
 				bag = other.gameObject;
+				bagCtrl = bag.GetComponent<BagCtrl>();
 			}
 		}
 		else if (other.gameObject.GetComponent<Equipment>()?.type == typeOfEquip)
@@ -132,19 +133,24 @@ public class EquipItem : ScrapItem
 
 	protected override void CheckInBag()
 	{
-		if (this.isInBag)
+		if (isInBag)
 		{
-			SetInBag();
+			if (bagCtrl.CheckWeight(weight))
+			{
+				SetInBag();
+				bagCtrl.AddScrap(this);
+			}
 		}
 		else if (isOnSlot)
 		{
 			PutItOn();
+			bagCtrl.RemoveScrap(this);
 		}
 		else
 		{
 			PullOut();
+			bagCtrl.RemoveScrap(this);
 		}
-
 	}
 
 	private void PutItOn()
