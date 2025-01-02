@@ -15,6 +15,7 @@ public class App : Singleton<App>
 	public Action ChangeEquip;
 
 	public Player player;
+	internal int gold;
 
 	protected override void Awake()
 	{
@@ -25,7 +26,7 @@ public class App : Singleton<App>
 	{
 		ChangeEquip.Invoke();
 	}
-}  
+}
 
 
 public enum EquipType

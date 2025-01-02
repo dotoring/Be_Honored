@@ -56,7 +56,7 @@ public class EquipItem : ScrapItem
 			pv.RPC(nameof(ReSetPosition), RpcTarget.AllBuffered);
 		});
 	}
-
+	[PunRPC]
 	private void ReSetPosition()
 	{
 		transform.parent = null;

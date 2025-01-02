@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -7,6 +8,12 @@ public class VendorUI : MonoBehaviour
 	[SerializeField] LayerMask targetlayer;
 	int sumOfVending;
 	int tempitemvalue;
+	List<GameObject> preprereItem;
+
+	private void OnEnable()
+	{
+		preprereItem = new();
+	}
 
 	private void OnCollisionEnter(Collision other)
 	{
@@ -16,6 +23,7 @@ public class VendorUI : MonoBehaviour
 			Debug.Log($"{tempitemvalue}");
 			sumOfVending += tempitemvalue;
 			textValue.text = $"Value :  {sumOfVending}";
+			preprereItem.Add(other.gameObject);
 		}
 		else
 		{
@@ -31,11 +39,24 @@ public class VendorUI : MonoBehaviour
 			Debug.Log($"{tempitemvalue}");
 			sumOfVending -= tempitemvalue;
 			textValue.text = $"Value :  {sumOfVending}";
+			preprereItem.Remove(other.gameObject);
 		}
 		else
 		{
 			textValue.text = sumOfVending.ToString();
 		}
+	}
+
+	public void SellItem()
+	{
+		App.Instance.gold += sumOfVending;
+		sumOfVending = 0;
+		foreach (var item in preprereItem)
+		{
+			Destroy(item);
+		}
+		preprereItem = new();
+		textValue.text = $"Value :  {sumOfVending}";
 	}
 
 }
