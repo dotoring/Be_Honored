@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class TestGizmo : MonoBehaviour
 {
-	[SerializeField] private Player player;
+	[SerializeField] private GameObject player;
 	private void OnDrawGizmos()
 	{
 		Gizmos.color = Color.red;

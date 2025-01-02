@@ -2,6 +2,8 @@ using UnityEngine;
 using System.Collections.Generic;
 using Unity.Behavior;
 using NUnit.Framework;
+using Photon.Pun;
+using Photon.Realtime;
 
 public class BossMonster : Monster
 {
@@ -10,10 +12,43 @@ public class BossMonster : Monster
 	public bool canUseSkill;
 
 	public List<GameObject> playerList;
-
 	public GameObject targetPlayer;
 
-	
+	[SerializeField] private Animation anim;
+
+
+	public void StartAnimationRPC(string animName)
+	{
+		pv.RPC(nameof(StartAnimation), RpcTarget.AllBuffered, animName);
+	}
+
+	[PunRPC]
+	public void StartAnimation(string animName)
+	{
+		anim.Play(animName);
+	}
+
+	public override void OnPlayerEnteredRoom(Photon.Realtime.Player newPlayer)
+	{
+		base.OnPlayerEnteredRoom(newPlayer);
+		GameObject[] temp = GameObject.FindGameObjectsWithTag("Player");
+		playerList.Clear();
+		foreach (GameObject go in temp)
+		{
+			playerList.Add(go);
+		}
+	}
+
+	public override void OnPlayerLeftRoom(Photon.Realtime.Player otherPlayer)
+	{
+		base.OnPlayerLeftRoom(otherPlayer);
+		GameObject[] temp = GameObject.FindGameObjectsWithTag("Player");
+		playerList.Clear();
+		foreach (GameObject go in temp)
+		{
+			playerList.Add(go);
+		}
+	}
 
 	protected override void Start()
 	{
@@ -26,7 +61,6 @@ public class BossMonster : Monster
 	}
 	private void Update()
 	{
-
 		if (behaviorAgent.enabled == true)
 		{
 			skillWaitTime += Time.deltaTime;

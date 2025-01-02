@@ -26,7 +26,7 @@ public enum MonsterLevel
 	C
 }
 
-public class Monster : MonoBehaviour
+public class Monster : MonoBehaviourPunCallbacks
 {
 	public MonsterSpawner spawner;
 	[SerializeField] MonsterType typeOfMonster;
@@ -70,7 +70,8 @@ public class Monster : MonoBehaviour
 		spawner.AddToList(this.gameObject);
 		dieEvent += () => spawner.RemoveFromList(this.gameObject);
 		dieEvent += () => MainFactory.Inst.MonsterDrop(transform);
-		dieEvent += () => pv.RPC(nameof(DieRPC), RpcTarget.AllBuffered);
+		if(typeOfMonster!=MonsterType.BOSS)
+			dieEvent += () => pv.RPC(nameof(DieRPC), RpcTarget.AllBuffered);
 		LoadData();
 	}
 
