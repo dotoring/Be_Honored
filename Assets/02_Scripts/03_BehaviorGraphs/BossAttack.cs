@@ -5,16 +5,13 @@ using Action = Unity.Behavior.Action;
 using Unity.Properties;
 
 [Serializable, GeneratePropertyBag]
-[NodeDescription(name: "BossAttack", story: "[Self] 의 [AttackAni] 를 [Animation] 으로 실행한다", category: "Action", id: "9ba506786b29c946d202813922f5d0c2")]
+[NodeDescription(name: "BossAttack", story: "[BossMonster]", category: "Action", id: "9ba506786b29c946d202813922f5d0c2")]
 public partial class AttackAction : Action
 {
-    [SerializeReference] public BlackboardVariable<GameObject> Self;
-    [SerializeReference] public BlackboardVariable<AnimationClip> AttackAni;
-    [SerializeReference] public BlackboardVariable<Animation> Animation;
+    [SerializeReference] public BlackboardVariable<BossMonster> BossMonster;
     protected override Status OnStart()
     {
-		AttackAni.Value.wrapMode = WrapMode.Once;
-		Animation.Value.Play("attack");
+		BossMonster.Value.StartAnimationRPC("attack");
 		return Status.Running;
     }
 

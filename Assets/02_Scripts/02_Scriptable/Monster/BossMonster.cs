@@ -16,6 +16,7 @@ public class BossMonster : Monster
 
 	[SerializeField] private Animation anim;
 
+	[SerializeField] private List<GameObject> monsterPatternObj;
 
 	public void StartAnimationRPC(string animName)
 	{
@@ -26,6 +27,18 @@ public class BossMonster : Monster
 	public void StartAnimation(string animName)
 	{
 		anim.Play(animName);
+	}
+
+	public void StartPatternRPC(int skillId)
+	{
+		pv.RPC(nameof(StartPattern), RpcTarget.All,skillId);
+	}
+
+	[PunRPC]
+	public void StartPattern(int skillId)
+	{
+		monsterPatternObj[skillId].GetComponent<BossPattern>().InitPattern(this);
+		monsterPatternObj[skillId].SetActive(true);
 	}
 
 	public override void OnPlayerEnteredRoom(Photon.Realtime.Player newPlayer)
@@ -58,9 +71,16 @@ public class BossMonster : Monster
 		{
 			playerList.Add(go);
 		}
+		dieEvent += () =>
+		{
+			print("보스죽음");
+			StartAnimationRPC("death");
+		};
 	}
-	private void Update()
+	protected override void Update()
 	{
+		base.Update();
+
 		if (behaviorAgent.enabled == true)
 		{
 			skillWaitTime += Time.deltaTime;

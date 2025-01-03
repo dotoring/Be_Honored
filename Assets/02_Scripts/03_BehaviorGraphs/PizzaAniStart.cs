@@ -5,16 +5,14 @@ using Action = Unity.Behavior.Action;
 using Unity.Properties;
 
 [Serializable, GeneratePropertyBag]
-[NodeDescription(name: "PizzaAniStart", story: "[Self] [PizzaAni] [Animation]", category: "Action", id: "70dd21f29cd9db4c1db3fa47080771e4")]
+[NodeDescription(name: "PizzaAniStart", story: "[BossMonster]", category: "Action", id: "70dd21f29cd9db4c1db3fa47080771e4")]
 public partial class PizzaAniStartAction : Action
 {
-    [SerializeReference] public BlackboardVariable<GameObject> Self;
-    [SerializeReference] public BlackboardVariable<AnimationClip> PizzaAni;
-    [SerializeReference] public BlackboardVariable<Animation> Animation;
+    [SerializeReference] public BlackboardVariable<BossMonster> BossMonster;
     protected override Status OnStart()
     {
-		PizzaAni.Value.wrapMode = WrapMode.Once;
-		Animation.Value.Play("PizzaPattern");
+		BossMonster.Value.StartAnimationRPC("PizzaPattern");
+		BossMonster.Value.StartPatternRPC(0);
 		return Status.Running;
     }
 

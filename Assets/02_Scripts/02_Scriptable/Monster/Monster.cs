@@ -71,7 +71,7 @@ public class Monster : MonoBehaviourPunCallbacks
 		dieEvent += () => MainFactory.Inst.MonsterDrop(transform);
 		dieEvent += () => isDie = true;
 		if(typeOfMonster!=MonsterType.BOSS)
-			dieEvent += () => pv.RPC(nameof(DieRPC), RpcTarget.AllBuffered);
+			dieEvent += () => pv.RPC(nameof(DieRPC), RpcTarget.All);
 		LoadData();
 	}
 
