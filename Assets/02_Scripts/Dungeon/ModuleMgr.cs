@@ -1,12 +1,14 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using Photon.Pun;
 
 public class ModuleMgr : MonoBehaviour
 {
 	public int moduleId;
 	public ModuleType moduleType;
 	public Action OnRoomOpen = () => { };
+	public bool isOpen;
 
 	void Start()
 	{
@@ -27,8 +29,21 @@ public class ModuleMgr : MonoBehaviour
 				if (hit.collider.CompareTag("Door"))
 				{
 					hit.collider.transform.root.GetComponent<DoorCtrl>().OnDoorOpen += OnRoomOpen;
+					//hit.collider.transform.root.GetComponent<DoorCtrl>().OnDoorOpen += DoRPC;
 				}
 			}
 		}
+	}
+
+	public void DoRPC()
+	{
+		DungeonMgr.instance.pv.RPC(nameof(Test), RpcTarget.AllBuffered);
+	}
+
+	[PunRPC]
+	public void Test()
+	{
+		Debug.Log("문열림" + gameObject.name);
+		isOpen = true;
 	}
 }

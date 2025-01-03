@@ -53,17 +53,18 @@ public class MonsterSpawner : MonoBehaviourPunCallbacks
 
 	void SpawnScraps()
 	{
+		Debug.Log("스크랩 스폰");
 		MainFactory.Inst.ModuleReward(moduleMgr.moduleType, monSpawnPoints);
 	}
 
 	public override void OnMasterClientSwitched(Photon.Realtime.Player newMasterClient)
 	{
-		if (PhotonNetwork.IsMasterClient)
+		//문 열린 모듈만 몬스터 행동 시작
+		if(moduleMgr.isOpen)
 		{
 			foreach (GameObject monster in spawnedMonsters)
 			{
-				monster.GetComponent<Monster>().behaviorAgent.enabled = true;
-				monster.GetComponent<Monster>().navMeshAgent.enabled = true;
+				monster.GetComponent<Monster>().ActiveSelf();
 			}
 		}
 	}
@@ -75,6 +76,4 @@ public class MonsterSpawner : MonoBehaviourPunCallbacks
 			monster.GetComponent<Monster>().ActiveSelf();
 		}
 	}
-
-	
 }

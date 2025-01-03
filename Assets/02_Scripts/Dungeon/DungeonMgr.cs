@@ -1,3 +1,4 @@
+using Photon.Pun;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -5,6 +6,7 @@ public class DungeonMgr : MonoBehaviour
 {
 	public static DungeonMgr instance;
 
+	public PhotonView pv;
     public Dictionary<int, GameObject> modules = new Dictionary<int, GameObject>();
 
 	private void Awake()
@@ -17,6 +19,8 @@ public class DungeonMgr : MonoBehaviour
 		{
 			Destroy(gameObject);
 		}
+
+		pv = GetComponent<PhotonView>();
 	}
 
 	public void AddModule(int id, GameObject module)

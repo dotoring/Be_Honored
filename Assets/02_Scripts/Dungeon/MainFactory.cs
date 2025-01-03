@@ -1,3 +1,4 @@
+using Photon.Pun;
 using UnityEngine;
 
 public class MainFactory : MonoBehaviour
@@ -38,11 +39,17 @@ public class MainFactory : MonoBehaviour
 
 	public void ModuleReward(ModuleType moduleType, Transform[] positions)
 	{
-		sf.SpawnScraps(positions, moduleType);
+		if(PhotonNetwork.IsMasterClient)
+		{
+			sf.SpawnScraps(positions, moduleType);
+		}
 	}
 
 	public void MonsterDrop(Transform pos)
 	{
-		sf.SpawnScrap(pos);
+		if (PhotonNetwork.IsMasterClient)
+		{
+			sf.SpawnScrap(pos);
+		}
 	}
 }

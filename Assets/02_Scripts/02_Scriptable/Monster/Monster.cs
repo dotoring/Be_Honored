@@ -61,7 +61,7 @@ public class Monster : MonoBehaviourPunCallbacks
 		if (!PhotonNetwork.IsMasterClient)
 		{
 			behaviorAgent.enabled = false;
-			navMeshAgent.enabled = false;
+			//navMeshAgent.enabled = false;
 			if(hpBar!=null)
 				hpBar.gameObject.SetActive(false);
 		}
@@ -75,13 +75,13 @@ public class Monster : MonoBehaviourPunCallbacks
 		LoadData();
 	}
 
-	private void Update()
-	{
-		if(curHp<=0&&isDie==false)
-		{
-			dieEvent.Invoke();
-		}
-	}
+	//private void Update()
+	//{
+	//	if(curHp<=0&&isDie==false)
+	//	{
+	//		dieEvent.Invoke();
+	//	}
+	//}
 
 
 	[PunRPC]
@@ -182,6 +182,10 @@ public class Monster : MonoBehaviourPunCallbacks
 			hpBar.gameObject.SetActive(true);
 			float hpPer = curHp / maxHp;
 			hpBar.GetComponent<LookCamera>().UpdateUI(hpPer);
+		}
+		if(curHp <= 0)
+		{
+			dieEvent.Invoke();
 		}
 	}
 

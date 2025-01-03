@@ -5,6 +5,7 @@ public class ScrapFactory : MonoBehaviour
 {
 	public void SpawnScrap(Transform position)
 	{
+		Debug.Log("스크랩 팩토리");
 		int rand = Random.Range(0, 4);
 
 		switch (rand)
@@ -27,6 +28,7 @@ public class ScrapFactory : MonoBehaviour
 
 	public void SpawnScraps(Transform[] positions, ModuleType type)
 	{
+		Debug.Log("스크랩 팩토리");
 		bool isBonus = Random.Range(0, 2) == 0;
 
 		if (isBonus)
