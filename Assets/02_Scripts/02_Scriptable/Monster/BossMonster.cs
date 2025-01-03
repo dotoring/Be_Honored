@@ -71,9 +71,16 @@ public class BossMonster : Monster
 		{
 			playerList.Add(go);
 		}
+		dieEvent += () =>
+		{
+			print("보스죽음");
+			StartAnimationRPC("death");
+		};
 	}
-	private void Update()
+	protected override void Update()
 	{
+		base.Update();
+
 		if (behaviorAgent.enabled == true)
 		{
 			skillWaitTime += Time.deltaTime;

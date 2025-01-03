@@ -14,9 +14,7 @@ public partial class BossDieAction : Action
     [SerializeReference] public BlackboardVariable<Animation> Animation;
     protected override Status OnStart()
     {
-		DieAni.Value.wrapMode = WrapMode.Once;
-		Animation.Value.Play("death");
-		BossMonster.Value.dieEvent.Invoke();
+
         return Status.Running;
     }
 
