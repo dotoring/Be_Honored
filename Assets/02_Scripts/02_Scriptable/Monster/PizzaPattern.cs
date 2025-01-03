@@ -2,22 +2,14 @@ using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
 
-public class PizzaPattern : MonoBehaviour
+public class PizzaPattern : BossPattern
 {
-	[SerializeField] private BossMonster bossMonster;
-
 	private float angle = 60.0f;
 	private float radius = 10.0f;
 	[SerializeField] MeshFilter meshFilter;
 	[SerializeField] MeshRenderer meshRenderer;
 	[SerializeField] private List<GameObject> playerInConelist = new();
 	[SerializeField] private Material patMat;
-
-
-	public void InitThis(BossMonster bossmonster)
-	{
-		bossMonster = bossmonster;
-	}
 
 	private void OnEnable()
 	{
@@ -37,7 +29,6 @@ public class PizzaPattern : MonoBehaviour
 			gameObject.SetActive(false);
 		}
 	}
-
 	public void CreateSectorMesh(float radius, float angle, int segmentCount)
 	{
 		Mesh mesh = new Mesh();

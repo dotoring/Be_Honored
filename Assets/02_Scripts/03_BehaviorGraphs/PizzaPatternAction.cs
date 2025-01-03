@@ -13,8 +13,9 @@ public partial class PizzaTestAction : Action
     [SerializeReference] public BlackboardVariable<GameObject> Self;
     protected override Status OnStart()
     {
+		BossMonster.Value.StartAnimationRPC("PizzaPattern");
+		//모든 클라에서 오브젝트를 setactive하고 마클을 따라가게?
 		PizzaObj.Value.gameObject.SetActive(true);
-		PizzaObj.Value.GetComponent<PizzaPattern>().InitThis(BossMonster.Value);
         return Status.Running;
     }
 
