@@ -14,6 +14,7 @@ public class FireBallPattern : BossPattern
 
 	private void OnEnable()
 	{
+		//targetList.Clear();
 		curTime = 0;
 		foreach (var item in bossMonster.playerList)
 		{
@@ -25,7 +26,7 @@ public class FireBallPattern : BossPattern
 		{
 			foreach (var item in bossMonster.playerList)
 			{
-				float dis = Vector3.SqrMagnitude(item.transform.position - this.transform.root.transform.position);
+				float dis = Vector3.Magnitude(item.transform.position - this.transform.root.transform.position);
 				if (mindis > dis)
 				{
 					mindis = dis;

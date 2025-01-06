@@ -20,7 +20,10 @@ public class BossMonster : Monster
 
 	public void StartAnimationRPC(string animName)
 	{
-		pv.RPC(nameof(StartAnimation), RpcTarget.AllBuffered, animName);
+		if (!PhotonNetwork.IsConnected)
+			StartAnimation(animName);
+		else
+			pv.RPC(nameof(StartAnimation), RpcTarget.AllBuffered, animName);
 	}
 
 	[PunRPC]
@@ -31,7 +34,10 @@ public class BossMonster : Monster
 
 	public void StartPatternRPC(int skillId)
 	{
-		pv.RPC(nameof(StartPattern), RpcTarget.All,skillId);
+		if (!PhotonNetwork.IsConnected)
+			StartPattern(skillId);
+		else
+			pv.RPC(nameof(StartPattern), RpcTarget.AllBuffered,skillId);
 	}
 
 	[PunRPC]
@@ -41,26 +47,37 @@ public class BossMonster : Monster
 		monsterPatternObj[skillId].SetActive(true);
 	}
 
-	public override void OnPlayerEnteredRoom(Photon.Realtime.Player newPlayer)
+	//보스 방에 들어온 사람들을 playerlist에 추가
+	public void InPlayer(Player player)
 	{
-		base.OnPlayerEnteredRoom(newPlayer);
-		GameObject[] temp = GameObject.FindGameObjectsWithTag("Player");
-		playerList.Clear();
-		foreach (GameObject go in temp)
-		{
-			playerList.Add(go);
-		}
+		playerList.Add(player.gameObject);
 	}
 
+	//플레이어가 룸을 떠날 때
+	//playerlist과 서버 룸에 있는 사람과 비교해서 보스방에 있던 사람이 서버룸에 있는 사람목록에 없으면삭제
 	public override void OnPlayerLeftRoom(Photon.Realtime.Player otherPlayer)
 	{
 		base.OnPlayerLeftRoom(otherPlayer);
+		GameObject removeGo=new GameObject();
 		GameObject[] temp = GameObject.FindGameObjectsWithTag("Player");
-		playerList.Clear();
-		foreach (GameObject go in temp)
+		foreach(var go in playerList)
 		{
-			playerList.Add(go);
+			int check = 0;
+			for(int i=0;i<temp.Length;i++)
+			{
+				if (go == temp[i])
+				{
+					check++;
+					break;
+				}
+			}
+			if(check == 0)
+			{
+				removeGo = go;
+			}
 		}
+		if(removeGo!=null)
+			playerList.Remove(removeGo);
 	}
 
 	protected override void Start()

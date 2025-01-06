@@ -29,7 +29,7 @@ public class FireBall : MonoBehaviour
 
 	private void OnTriggerEnter(Collider other)
 	{
-		if (other.tag=="FirePoint")
+		if (other.CompareTag("FirePoint"))
 		{
 			Destroy(target);
 			Instantiate(floor, target.transform.position,Quaternion.identity);

@@ -13,7 +13,6 @@ public partial class StartIdleAniAction : Action
     protected override Status OnStart()
     {
 		BossMonster.Value.StartAnimationRPC("idle");
-		
         return Status.Running;
     }
 

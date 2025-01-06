@@ -20,6 +20,7 @@ public class LazerPattern : BossPattern
 
 	private void OnEnable()
 	{
+		transform.localPosition = Vector3.zero;
 		returnTime = 0;
 		chargingTime = 0;
 		lazingTime = 0;
@@ -32,7 +33,7 @@ public class LazerPattern : BossPattern
 		if (chargingTime < 2.0f)
 		{
 			chargingTime += Time.deltaTime;
-			transform.position += Vector3.up*2*Time.deltaTime;
+			transform.position += Vector3.up*0.5f*Time.deltaTime;
 		}
 		else
 		{

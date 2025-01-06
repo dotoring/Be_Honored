@@ -58,30 +58,22 @@ public class Monster : MonoBehaviourPunCallbacks
 	protected virtual void Start()
 	{
 		//디버그 할때 주석
-		if (!PhotonNetwork.IsMasterClient)
-		{
-			behaviorAgent.enabled = false;
-			//navMeshAgent.enabled = false;
-			if(hpBar!=null)
-				hpBar.gameObject.SetActive(false);
-		}
-		spawner = DungeonMgr.instance?.SetModule(moduleId).GetComponent<MonsterSpawner>();
-		spawner.AddToList(this.gameObject);
-		dieEvent += () => spawner.RemoveFromList(this.gameObject);
-		dieEvent += () => MainFactory.Inst.MonsterDrop(transform);
+		//if (!PhotonNetwork.IsMasterClient)
+		//{
+		//	behaviorAgent.enabled = false;
+		//	//navMeshAgent.enabled = false;
+		//	if(hpBar!=null)
+		//		hpBar.gameObject.SetActive(false);
+		//}
+		//spawner = DungeonMgr.instance?.SetModule(moduleId).GetComponent<MonsterSpawner>();
+		//spawner.AddToList(this.gameObject);
+		//dieEvent += () => spawner.RemoveFromList(this.gameObject);
+		//dieEvent += () => MainFactory.Inst.MonsterDrop(transform);
 		dieEvent += () => isDie = true;
 		if(typeOfMonster!=MonsterType.BOSS)
 			dieEvent += () => pv.RPC(nameof(DieRPC), RpcTarget.All);
 		LoadData();
 	}
-
-	//private void Update()
-	//{
-	//	if(curHp<=0&&isDie==false)
-	//	{
-	//		dieEvent.Invoke();
-	//	}
-	//}
 
 
 	[PunRPC]
@@ -183,7 +175,7 @@ public class Monster : MonoBehaviourPunCallbacks
 			float hpPer = curHp / maxHp;
 			hpBar.GetComponent<LookCamera>().UpdateUI(hpPer);
 		}
-		if(curHp <= 0)
+		if(curHp <= 0&&isDie==false)
 		{
 			dieEvent.Invoke();
 		}
