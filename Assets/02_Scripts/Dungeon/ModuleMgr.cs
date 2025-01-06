@@ -10,11 +10,22 @@ public class ModuleMgr : MonoBehaviour
 	public Action OnRoomOpen = () => { };
 	public bool isOpen;
 
+	[Header("For BossRoom")]
+	[SerializeField] PlayerEnterChecker playerEnterChecker = null;
+	[SerializeField] GameObject exitPortal = null;
+
 	void Start()
 	{
 		DungeonMgr.instance?.AddModule(moduleId, gameObject);
 
-		Invoke(nameof(CheckDoors), 1f);
+		if(moduleType == ModuleType.Boss)
+		{
+			playerEnterChecker.OnPlayerEnter += OnRoomOpen;
+		}
+		else
+		{
+			Invoke(nameof(CheckDoors), 0.5f);
+		}
 	}
 
 	void CheckDoors()
@@ -29,21 +40,14 @@ public class ModuleMgr : MonoBehaviour
 				if (hit.collider.CompareTag("Door"))
 				{
 					hit.collider.transform.root.GetComponent<DoorCtrl>().OnDoorOpen += OnRoomOpen;
-					//hit.collider.transform.root.GetComponent<DoorCtrl>().OnDoorOpen += DoRPC;
+					this.isOpen = hit.collider.transform.root.GetComponent<DoorCtrl>().isOpen;
 				}
 			}
 		}
 	}
 
-	public void DoRPC()
+	public void OpenPortal()
 	{
-		DungeonMgr.instance.pv.RPC(nameof(Test), RpcTarget.AllBuffered);
-	}
-
-	[PunRPC]
-	public void Test()
-	{
-		Debug.Log("문열림" + gameObject.name);
-		isOpen = true;
+		exitPortal.SetActive(true);
 	}
 }

@@ -77,10 +77,8 @@ public class BossMonster : Monster
 			StartAnimationRPC("death");
 		};
 	}
-	protected override void Update()
+	protected void Update()
 	{
-		base.Update();
-
 		if (behaviorAgent.enabled == true)
 		{
 			skillWaitTime += Time.deltaTime;

@@ -9,9 +9,13 @@ public class MonsterSpawner : MonoBehaviourPunCallbacks
 	[SerializeField] Transform[] monSpawnPoints;
 	[SerializeField] List<GameObject> spawnedMonsters;
 
-	private void Start()
+	private void Awake()
 	{
 		moduleMgr = GetComponent<ModuleMgr>();
+	}
+
+	private void Start()
+	{
 		if(PhotonNetwork.IsMasterClient)
 		{
 			MainFactory.Inst.ModuleSpawn(moduleMgr.moduleType, monSpawnPoints, moduleMgr.moduleId);
@@ -53,8 +57,14 @@ public class MonsterSpawner : MonoBehaviourPunCallbacks
 
 	void SpawnScraps()
 	{
-		Debug.Log("스크랩 스폰");
-		MainFactory.Inst.ModuleReward(moduleMgr.moduleType, monSpawnPoints);
+		if(moduleMgr.moduleType == ModuleType.Boss)
+		{
+			moduleMgr.OpenPortal();
+		}
+		else
+		{
+			MainFactory.Inst.ModuleReward(moduleMgr.moduleType, monSpawnPoints);
+		}
 	}
 
 	public override void OnMasterClientSwitched(Photon.Realtime.Player newMasterClient)

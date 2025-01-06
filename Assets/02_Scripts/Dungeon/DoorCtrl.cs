@@ -7,7 +7,7 @@ using UnityEngine;
 public class DoorCtrl : MonoBehaviour
 {
 	[SerializeField] GameObject door;
-	bool isOpen;
+	public bool isOpen;
 
 	public Action OnDoorOpen = () => { };
 
@@ -17,13 +17,13 @@ public class DoorCtrl : MonoBehaviour
 		{
 			GetComponent<PhotonView>().RPC(nameof(OpenCoroutine), RpcTarget.AllBuffered);
 			GetComponent<PhotonView>().RPC(nameof(InvokeDoorOpen), RpcTarget.MasterClient);
-			isOpen = true;
 		}
 	}
 
 	[PunRPC]
 	void OpenCoroutine()
 	{
+		isOpen = true;
 		StartCoroutine(RotateDoor());
 	}
 

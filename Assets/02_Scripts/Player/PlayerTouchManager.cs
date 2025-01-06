@@ -146,7 +146,7 @@ public class PlayerTouchManager : MonoBehaviour
 	private void Attack()
 	{
 		if (!Player.Instance.IsArm) return;
-		audioSource.PlayOneShot(attacksound);  // Todo Test Code for attack
+		//audioSource.PlayOneShot(attacksound);  // Todo Test Code for attack
 		hited = false;
 		Collider[] hitColliders = Physics.OverlapBox(gameObject.transform.position + transform.forward * offset.z + transform.right * offset.x + transform.up * offset.y, sizeOfBox / 2, Quaternion.identity, m_LayerMask);
 

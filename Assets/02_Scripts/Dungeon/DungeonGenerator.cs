@@ -19,9 +19,10 @@ public class DungeonGenerator : MonoBehaviour
 	[SerializeField] PlayerSpawnMgr spawnMgr;
 	[SerializeField] PhotonView photonView;
 	[SerializeField] NavMeshCtrl navMeshCtrl;
-	[SerializeField] MainFactory mainFactory;
 	[SerializeField] ExitMgr exitMgr;
 	[SerializeField] DungeonMgr dungeonMgr;
+
+	[SerializeField] Transform bossSpawnPoint;
 
 	private void Awake()
 	{
@@ -208,7 +209,7 @@ public class DungeonGenerator : MonoBehaviour
 		//}
 
 		//생성될 모듈들의 타입 정하기
-		List<ModuleType> types = new List<ModuleType> { ModuleType.Start, ModuleType.End, ModuleType.Boss };
+		List<ModuleType> types = new List<ModuleType> { ModuleType.Start, ModuleType.End };
 		int baseNum = types.Count;
 		for (int i = baseNum; i < (width * length) - exceptCount; i++)
 		{
@@ -265,9 +266,9 @@ public class DungeonGenerator : MonoBehaviour
 					case ModuleType.Scraps:
 						moduleObject = Instantiate(modulePrefs[(int)ModuleType.Scraps], position, Quaternion.identity);
 						break;
-					case ModuleType.Boss:
-						moduleObject = Instantiate(modulePrefs[(int)ModuleType.Boss], position, Quaternion.identity);
-						break;
+					//case ModuleType.Boss:
+					//	moduleObject = Instantiate(modulePrefs[(int)ModuleType.Boss], position, Quaternion.identity);
+					//	break;
 				}
 				moduleObject.GetComponent<ModuleMgr>().moduleId = id++;
 			}
