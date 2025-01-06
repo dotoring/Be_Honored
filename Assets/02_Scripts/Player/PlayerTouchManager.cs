@@ -1,12 +1,18 @@
 using UnityEngine;
 using System.Collections.Generic;
 using Photon.Pun;
+using Unity.Burst.Intrinsics;
+using System;
 
 public class PlayerTouchManager : MonoBehaviour
 {
 	public List<GameObject> triggerAreas;
-	public Material matgray;
-	public Material matred;
+	[SerializeField] List<Vector3> positionA;
+	[SerializeField] List<Vector3> positionB;
+	bool IsposiA;
+	public Material matgray;  // 회색
+	public Material matred;   // 빨강
+	public Material matblue;  // 파랑
 
 	private int currentOrder = 0;
 	private float lastTriggerTime = 0f;
@@ -25,40 +31,65 @@ public class PlayerTouchManager : MonoBehaviour
 
 	private void Start()
 	{
-		// 시작 시 모든 트리거 영역의 재질을 matgray로 설정 (추가)
-		ResetMaterials();
+		triggerAreas = Player.Instance.Attackon;
+		// 게임 시작 시 currentOrder에 맞는 공만 파랑으로 설정
+		SetAreaToColors(currentOrder);
+	}
+
+	private void Update()
+	{
+		if (Player.Instance.IsArm)
+		{
+
+			// 타임아웃 처리: 현재 공을 터치했으면, 다음 공을 1초 내에 터치하지 않으면 리셋
+			if (currentOrder > 0 && Time.time - lastTriggerTime > 1f)
+			{
+				// 타임아웃되었으면 리셋
+				ResetGame();
+			}
+		}
 	}
 
 	private void OnTriggerEnter(Collider other)
 	{
+		if (!Player.Instance.IsArm) return;
 		if (triggerAreas.Contains(other.gameObject))
 		{
 			int enteredIndex = triggerAreas.IndexOf(other.gameObject);
 
+			// 현재 순서와 일치하는 영역인지 확인
 			if (enteredIndex == currentOrder)
 			{
-				if (Time.time - lastTriggerTime <= 1f || currentOrder == 0)
+				// 터치된 공이 currentOrder 공이라면
+				Debug.Log(other.gameObject.name + " 영역 진입!");
+
+				// 터치된 영역의 재질을 matred로 변경
+				other.GetComponent<Renderer>().material = matred;
+
+				// 터치 시간을 기록
+				lastTriggerTime = Time.time;
+
+				// 현재 순서 증가
+				currentOrder++;
+
+				// 다음 순서의 영역을 matblue로 설정
+				if (currentOrder < triggerAreas.Count)
 				{
-					Debug.Log(other.gameObject.name + " 영역 진입!");
-
-					// 터치된 영역의 재질을 matred로 변경 (추가)
-					other.GetComponent<Renderer>().material = matred;
-
-					currentOrder++;
-					lastTriggerTime = Time.time;
-
-					if (currentOrder >= triggerAreas.Count)
-					{
-						Debug.Log("성공!");
-						Attack();
-						ResetGame(); // 게임 리셋 함수 호출
-					}
+					SetAreaToColors(currentOrder);
 				}
-				else
+
+				// 모든 영역을 터치했다면 공격 및 리셋
+				if (currentOrder >= triggerAreas.Count)
 				{
-					Debug.Log("시간 초과! 다시 시도하세요.");
+					Debug.Log("성공!");
+					SetPositionChange();
+					Attack();
 					ResetGame(); // 게임 리셋 함수 호출
 				}
+			}
+			else if (enteredIndex == (currentOrder - 1))
+			{
+				return;
 			}
 			else
 			{
@@ -68,24 +99,54 @@ public class PlayerTouchManager : MonoBehaviour
 		}
 	}
 
-	// 게임 리셋 함수 (추가)
+	private void SetPositionChange()
+	{
+		if (IsposiA)
+		{
+			for (int i = 0; i < triggerAreas.Count; i++)
+			{
+				triggerAreas[i].transform.localPosition = positionB[i];
+			}
+			IsposiA = !IsposiA;
+		}
+		else
+		{
+			for (int i = 0; i < triggerAreas.Count; i++)
+			{
+				triggerAreas[i].transform.localPosition = positionA[i];
+			}
+			IsposiA = !IsposiA;
+		}
+	}
+
+	// 게임 리셋 함수
 	private void ResetGame()
 	{
 		currentOrder = 0;
-		ResetMaterials();
+		// 현재 상태를 파랑 회색 회색으로 리셋
+		SetAreaToColors(currentOrder);
 	}
 
-	// 모든 트리거 영역의 재질을 matgray로 되돌리는 함수 (추가)
-	private void ResetMaterials()
+	// 각 공의 재질을 설정 (파랑, 회색, 회색)
+	private void SetAreaToColors(int order)
 	{
+		// 모든 영역을 matgray로 리셋
 		foreach (GameObject area in triggerAreas)
 		{
 			area.GetComponent<Renderer>().material = matgray;
+		}
+
+		// currentOrder에 해당하는 공을 matblue로 설정
+		if (order < triggerAreas.Count)
+		{
+			triggerAreas[order].GetComponent<Renderer>().material = matblue;
 		}
 	}
 
 	private void Attack()
 	{
+		if (!Player.Instance.IsArm) return;
+		audioSource.PlayOneShot(attacksound);  // Todo Test Code for attack
 		hited = false;
 		Collider[] hitColliders = Physics.OverlapBox(gameObject.transform.position + transform.forward * offset.z + transform.right * offset.x + transform.up * offset.y, sizeOfBox / 2, Quaternion.identity, m_LayerMask);
 
@@ -94,6 +155,7 @@ public class PlayerTouchManager : MonoBehaviour
 			item.GetComponent<PhotonView>().RPC("Damaged", RpcTarget.AllBuffered, 1 + Player.Instance._stat.attack);
 			hited = true;
 		}
+
 		if (hited) audioSource.PlayOneShot(attacksound);
 	}
 }

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 [System.Serializable]
 public struct PlayerEquipMent
@@ -11,6 +12,7 @@ public struct PlayerEquipMent
 }
 public partial class Player
 {
+	internal List<GameObject> Attackon;
 
 	public void ArmorChange(EquipType equipType, EQUIPSTAT stat)
 	{
