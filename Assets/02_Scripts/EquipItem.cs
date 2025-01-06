@@ -166,10 +166,17 @@ public class EquipItem : ScrapItem
 	{
 		if (isInBag)
 		{
-			if (bagCtrl.CheckWeight(weight))
+			if (!bagCtrl.IsInBag(this))
+			{
+				if (bagCtrl.CheckWeight(weight))
+				{
+					SetInBag();
+					bagCtrl.AddScrap(this);
+				}
+			}
+			else
 			{
 				SetInBag();
-				bagCtrl.AddScrap(this);
 			}
 		}
 		else if (isOnSlot)

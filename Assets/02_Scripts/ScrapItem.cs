@@ -48,14 +48,19 @@ public class ScrapItem : MonoBehaviour
 			if (pv != null || !SceneManager.GetActiveScene().name.Equals("lobbySample_Working1"))
 			{
 				pv.TransferOwnership(PhotonNetwork.LocalPlayer);
+				pv.RPC(nameof(SetPhysicsInGrab), RpcTarget.OthersBuffered, false);
 			}
 
-			pv.RPC(nameof(SetPhysicsInGrab), RpcTarget.AllBuffered, false);
+			SetPhysicsInGrab(false);
 		});
 
 		xRGrabInteractable.selectExited.AddListener((args) =>
 		{
-			pv.RPC(nameof(SetPhysicsInGrab), RpcTarget.AllBuffered, true);
+			if(pv != null)
+			{
+				pv.RPC(nameof(SetPhysicsInGrab), RpcTarget.OthersBuffered, true);
+			}
+			SetPhysicsInGrab(true);
 			CheckInBag();
 		});
 
@@ -90,10 +95,17 @@ public class ScrapItem : MonoBehaviour
 	{
 		if (isInBag)
 		{
-			if (bagCtrl.CheckWeight(weight))
+			if(!bagCtrl.IsInBag(this))
+			{
+				if (bagCtrl.CheckWeight(weight))
+				{
+					SetInBag();
+					bagCtrl.AddScrap(this);
+				}
+			}
+			else
 			{
 				SetInBag();
-				bagCtrl.AddScrap(this);
 			}
 		}
 		else
