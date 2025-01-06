@@ -1,19 +1,23 @@
 using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
+using static UnityEngine.Rendering.HableCurve;
 
 public class PizzaPattern : BossPattern
 {
-	private float angle = 60.0f;
-	private float radius = 10.0f;
+	[SerializeField]private float angle = 60.0f;
+	[SerializeField]private float radius = 10.0f;
 	[SerializeField] MeshFilter meshFilter;
 	[SerializeField] MeshRenderer meshRenderer;
 	[SerializeField] private List<GameObject> playerInConelist = new();
 	[SerializeField] private Material patMat;
 
+
+
+
 	private void OnEnable()
 	{
-		CreateSectorMesh(radius, angle, 30);
+		CreateSectorMesh(radius, angle, 30,3f);
 	}
 
 	private void Update()
@@ -29,36 +33,103 @@ public class PizzaPattern : BossPattern
 			gameObject.SetActive(false);
 		}
 	}
-	public void CreateSectorMesh(float radius, float angle, int segmentCount)
+	public void CreateSectorMesh(float radius, float angle, int segmentCount,float height)
 	{
+		MeshFilter meshFilter = GetComponent<MeshFilter>();
 		Mesh mesh = new Mesh();
 
-		// 정점 설정
-		List<Vector3> vertices = new List<Vector3>();
-		vertices.Add(Vector3.zero); // 중심점
-		float segmentAngle = angle / segmentCount;
+		// 정점 및 삼각형 개수 계산
+		int vertexCount = (segmentCount + 1) * 2 + 2; // 외곽 정점 + 윗면/아랫면 중심
+		int triangleCount = segmentCount * 4 * 3 + 2 * 6; // 윗면, 아랫면, 곡선 옆면, 중심 옆면
 
+		Vector3[] vertices = new Vector3[vertexCount];
+		int[] triangles = new int[triangleCount];
+		Vector2[] uv = new Vector2[vertexCount];
+
+		float angleStep = angle / segmentCount * Mathf.Deg2Rad;
+
+		// 외곽 정점 생성 (윗면과 아랫면)
 		for (int i = 0; i <= segmentCount; i++)
 		{
-			float currentAngle = -angle / 2 + segmentAngle * i;
-			Vector3 direction = Quaternion.Euler(0, currentAngle, 0) * Vector3.forward;
-			vertices.Add(direction * radius);
+			float currentAngle = -angle / 2 * Mathf.Deg2Rad + i * angleStep;
+			float z = Mathf.Cos(currentAngle) * radius;
+			float x = Mathf.Sin(currentAngle) * radius;
+
+			// 아랫면 정점
+			vertices[i] = new Vector3(x, 0, z);
+			uv[i] = new Vector2((x / radius + 1) / 2, (z / radius + 1) / 2);
+
+			// 윗면 정점
+			vertices[i + segmentCount + 1] = new Vector3(x, height, z);
+			uv[i + segmentCount + 1] = new Vector2((x / radius + 1) / 2, (z / radius + 1) / 2);
 		}
 
-		// 삼각형 설정
-		List<int> triangles = new List<int>();
-		for (int i = 1; i < vertices.Count - 1; i++)
+		// 중심 정점 추가 (윗면과 아랫면)
+		vertices[vertexCount - 2] = new Vector3(0, height, 0); // 윗면 중심
+		uv[vertexCount - 2] = new Vector2(0.5f, 0.5f);
+
+		vertices[vertexCount - 1] = new Vector3(0, 0, 0); // 아랫면 중심
+		uv[vertexCount - 1] = new Vector2(0.5f, 0.5f);
+
+		// 윗면 삼각형 생성
+		int triangleIndex = 0;
+		for (int i = 0; i < segmentCount; i++)
 		{
-			triangles.Add(0);
-			triangles.Add(i);
-			triangles.Add(i + 1);
+			triangles[triangleIndex++] = vertexCount - 2; // 윗면 중심
+			triangles[triangleIndex++] = i + segmentCount + 1; // 현재 정점
+			triangles[triangleIndex++] = i + segmentCount + 2; // 다음 정점
 		}
 
-		// Mesh 적용
-		mesh.vertices = vertices.ToArray();
-		mesh.triangles = triangles.ToArray();
+		// 아랫면 삼각형 생성
+		for (int i = 0; i < segmentCount; i++)
+		{
+			triangles[triangleIndex++] = vertexCount - 1; // 아랫면 중심
+			triangles[triangleIndex++] = i + 1; // 다음 정점
+			triangles[triangleIndex++] = i; // 현재 정점
+		}
+
+		// 곡선 옆면 삼각형 생성
+		for (int i = 0; i < segmentCount; i++)
+		{
+			// 첫 번째 삼각형
+			triangles[triangleIndex++] = i;
+			triangles[triangleIndex++] = i + 1;
+			triangles[triangleIndex++] = i + segmentCount + 1;
+
+			// 두 번째 삼각형
+			triangles[triangleIndex++] = i + 1;
+			triangles[triangleIndex++] = i + segmentCount + 2;
+			triangles[triangleIndex++] = i + segmentCount + 1;
+		}
+
+		// 중심으로 연결되는 삼각형 옆면 생성
+		// 왼쪽 끝면
+		triangles[triangleIndex++] = vertexCount - 1; // 아랫면 중심
+		triangles[triangleIndex++] = 0; // 아랫면 첫 번째 정점
+		triangles[triangleIndex++] = vertexCount - 2; // 윗면 중심
+
+		triangles[triangleIndex++] = vertexCount - 2; // 윗면 중심
+		triangles[triangleIndex++] = 0; // 아랫면 첫 번째 정점
+		triangles[triangleIndex++] = segmentCount + 1; // 윗면 첫 번째 정점
+
+		// 오른쪽 끝면
+		triangles[triangleIndex++] = vertexCount - 1; // 아랫면 중심
+		triangles[triangleIndex++] = segmentCount; // 아랫면 마지막 정점
+		triangles[triangleIndex++] = vertexCount - 2; // 윗면 중심
+
+		triangles[triangleIndex++] = vertexCount - 2; // 윗면 중심
+		triangles[triangleIndex++] = segmentCount; // 아랫면 마지막 정점
+		triangles[triangleIndex++] = segmentCount + segmentCount + 1; // 윗면 마지막 정점
+
+		// Mesh 설정
+		mesh.vertices = vertices;
+		mesh.uv = uv;
+		mesh.triangles = triangles;
+
+		// 법선 벡터 계산
 		mesh.RecalculateNormals();
 
+		// Mesh 적용
 		meshFilter.mesh = mesh;
 		meshRenderer.material = patMat;
 
@@ -72,9 +143,9 @@ public class PizzaPattern : BossPattern
 
 			// 부채꼴 중심 방향과 타겟 방향 간의 각도를 계산
 			float angleToTarget = Vector3.Angle(transform.forward, directionToTarget);
-
+			float dis = Vector3.Distance(transform.position, target.transform.position);
 			// 각도가 범위 안에 있으면 감지된 타겟으로 판단
-			if (angleToTarget <= angle / 2f)
+			if (angleToTarget <= angle / 2f && dis <= radius)
 			{
 				// 타겟이 범위 안에 있음
 				if (!playerInConelist.Contains(target.transform.root.gameObject))
