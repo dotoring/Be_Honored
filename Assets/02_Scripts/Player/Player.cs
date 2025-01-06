@@ -1,3 +1,4 @@
+using System;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.UI;
@@ -39,10 +40,20 @@ public partial class Player : Singleton<Player>
 	AudioSource audioSource;
 	EQUIPSTAT playerstat;
 
+	internal bool IsArm;
+	public Action Armed;
+	public Action UnArmed;
+
+
 	protected override void Awake()
 	{
 		base.Awake();
 		audioSource = GetComponent<AudioSource>();
+	}
+
+	private void Start()
+	{
+		Instance.LoadPlayerData();
 	}
 
 

@@ -40,6 +40,7 @@ public class PhotonManager : MonoBehaviourPunCallbacks
 
 			PhotonNetwork.ConnectUsingSettings();
 		}
+
 	}
 
 	private void Start()
@@ -49,6 +50,7 @@ public class PhotonManager : MonoBehaviourPunCallbacks
 		roomInBtns[1].onClick.AddListener(() => MakeRoomBtnOnClick(RoomLevel.Two));
 		roomInBtns[2].onClick.AddListener(() => MakeRoomBtnOnClick(RoomLevel.Three));
 		customRoomOption.Add("Level", RoomLevel.One);
+
 	}
 
 	public void MakeRoomBtnOnClick(RoomLevel level)
@@ -116,6 +118,7 @@ public class PhotonManager : MonoBehaviourPunCallbacks
 
 	public override void OnJoinedRoom()
 	{
+		Player.Instance.SavePlayerData();
 		print("방입장 :" + PhotonNetwork.CurrentRoom.Name);
 		StartCoroutine(NewMethod());
 	}
@@ -136,5 +139,10 @@ public class PhotonManager : MonoBehaviourPunCallbacks
 	public override void OnJoinRandomFailed(short returnCode, string message)
 	{
 		print($"방입장 실패 : {returnCode} : {message}");
+	}
+
+	public override void OnDisconnected(DisconnectCause info)
+	{
+		Player.Instance.SavePlayerData();
 	}
 }

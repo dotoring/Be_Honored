@@ -42,6 +42,7 @@ public struct EQUIPSTAT
 	public int attack;
 	public int defence;
 	public int evade;
+
 	public static EQUIPSTAT operator +(EQUIPSTAT stat1, EQUIPSTAT stat2)
 	{
 		return new EQUIPSTAT

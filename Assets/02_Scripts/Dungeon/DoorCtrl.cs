@@ -23,7 +23,8 @@ public class DoorCtrl : MonoBehaviour
 	[PunRPC]
 	void OpenCoroutine()
 	{
-		isOpen = true;
+		Debug.Log("참깨");
+		this.isOpen = true;
 		StartCoroutine(RotateDoor());
 	}
 

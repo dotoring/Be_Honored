@@ -66,6 +66,11 @@ public class BagCtrl : MonoBehaviour
 		}
 	}
 
+	public bool IsInBag(ScrapItem scrap)
+	{
+		return scraps.Contains(scrap);
+	}
+
 	public void AddScrap(ScrapItem scrap)
 	{
 		if (!scraps.Contains(scrap))
