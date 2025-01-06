@@ -1,9 +1,10 @@
+using Photon.Pun;
 using UnityEngine;
 
 public class ExitPortal : MonoBehaviour
 {
-	ExitMgr exitMgr;
-
+	[SerializeField] ExitMgr exitMgr;
+	[SerializeField] bool isToLobby;
 	public void SetExitMgr(ExitMgr _exitMgr)
 	{
 		exitMgr = _exitMgr;
@@ -12,9 +13,19 @@ public class ExitPortal : MonoBehaviour
 	private void OnTriggerEnter(Collider other)
 	{
 		Debug.Log(other.tag);
-		if (other.gameObject.CompareTag("Player"))
+		if (other.CompareTag("Player"))
 		{
-			exitMgr.ExitDungeon();
+			if(other.GetComponent<PhotonView>().IsMine)
+			{
+				if (isToLobby)
+				{
+					exitMgr.ExitDungeon();
+				}
+				else
+				{
+					exitMgr.TeleportToUnderStage();
+				}
+			}
 		}
 	}
 }
