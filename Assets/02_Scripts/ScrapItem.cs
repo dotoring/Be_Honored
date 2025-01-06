@@ -83,6 +83,7 @@ public class ScrapItem : MonoBehaviour
 		{
 			App.Instance.interactorManager.RemoveListener(action);
 		}
+		ExitMgr.OnExitDungeon -= DestroyPhotonView;
 	}
 
 	protected virtual void CheckInBag()

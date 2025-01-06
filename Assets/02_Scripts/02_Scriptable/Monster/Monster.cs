@@ -165,19 +165,22 @@ public class Monster : MonoBehaviourPunCallbacks
 	[PunRPC]
 	public void Damaged(int damage)
 	{
-		Debug.Log($" {gameObject.name} {damage} Damaged remain {curHp}");
-		curHp -= damage;
-		tem.Value = curHp;
-		behaviorAgent.BlackboardReference.SetVariableValue<float>("Hp", tem);
-		if (hpBar != null)
+		if (curHp > 0)
 		{
-			hpBar.gameObject.SetActive(true);
-			float hpPer = curHp / maxHp;
-			hpBar.GetComponent<LookCamera>().UpdateUI(hpPer);
-		}
-		if(curHp <= 0&&isDie==false)
-		{
-			dieEvent.Invoke();
+			Debug.Log($" {gameObject.name} {damage} Damaged remain {curHp}");
+			curHp -= damage;
+			tem.Value = curHp;
+			behaviorAgent.BlackboardReference.SetVariableValue<float>("Hp", tem);
+			if (hpBar != null)
+			{
+				hpBar.gameObject.SetActive(true);
+				float hpPer = curHp / maxHp;
+				hpBar.GetComponent<LookCamera>().UpdateUI(hpPer);
+			}
+			if (curHp <= 0 && isDie == false)
+			{
+				dieEvent.Invoke();
+			}
 		}
 	}
 

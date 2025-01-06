@@ -10,6 +10,8 @@ public class ExitMgr : MonoBehaviourPunCallbacks
 	[SerializeField] Image loadingbar;
 	[SerializeField] GameObject canvas;
 	public static Action OnExitDungeon;
+	[SerializeField] Transform underStage;
+	[SerializeField] GameObject player;
 
 	public void ExitDungeon()
 	{
@@ -32,7 +34,11 @@ public class ExitMgr : MonoBehaviourPunCallbacks
 			loadingbar.fillAmount = aload.progress;
 			yield return null;
 		}
+	}
 
+	public void TeleportToUnderStage()
+	{
+		player.transform.position = underStage.position;
 	}
 
 	private void OnDestroy()
