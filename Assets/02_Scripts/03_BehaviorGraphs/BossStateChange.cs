@@ -33,7 +33,7 @@ public partial class StateChangeAction : Action
 			if (State.Value != BossState.Skill)
 			{
 				//BossSkills.Value = (CerberusSkills)UnityEngine.Random.Range(0, 4);
-				BossSkills.Value = global::CerberusSkills.Lazer; //디버그용
+				BossSkills.Value = global::CerberusSkills.Howling; //디버그용
 				State.Value = BossState.Skill;
 				BossNavMeshAgent.Value.ResetPath();
 			}

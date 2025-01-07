@@ -80,7 +80,7 @@ public class LazerPattern : BossPattern
 		if (other.CompareTag("Player"))
 		{
 			print("발동");
-			other.GetComponent<Player>()?.Damaged(bossMonster.attackPower);
+			other.GetComponent<HitPlayer>()?.Damaged(bossMonster.attackPower);
 		}
 	}
 }
