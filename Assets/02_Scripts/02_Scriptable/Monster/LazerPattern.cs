@@ -5,7 +5,7 @@ using UnityEngine.UIElements;
 
 public class LazerPattern : BossPattern
 {
-	[SerializeField] private float rotateAngle = 70;
+	[SerializeField] private float rotateAngle = 30;
 	[SerializeField] private GameObject range;
 	[SerializeField] private GameObject syl;
 	[SerializeField] private Collider col;
@@ -24,6 +24,7 @@ public class LazerPattern : BossPattern
 		returnTime = 0;
 		chargingTime = 0;
 		lazingTime = 0;
+		col.enabled = false;
 		range.SetActive(true);
 	}
 
@@ -75,8 +76,10 @@ public class LazerPattern : BossPattern
 
 	private void OnTriggerEnter(Collider other)
 	{
-		if (other.gameObject.tag == "Player")
+		print("dd");
+		if (other.CompareTag("Player"))
 		{
+			print("발동");
 			other.GetComponent<Player>()?.Damaged(bossMonster.attackPower);
 		}
 	}

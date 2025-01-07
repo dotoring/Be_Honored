@@ -12,16 +12,23 @@ public class PizzaPattern : BossPattern
 	[SerializeField] private List<GameObject> playerInConelist = new();
 	[SerializeField] private Material patMat;
 
-
+	[SerializeField] private float curTime;
 
 
 	private void OnEnable()
 	{
 		CreateSectorMesh(radius, angle, 30,3f);
+		transform.localPosition = new Vector3(0, -4f, 0);
+		curTime = 0;
 	}
 
 	private void Update()
 	{
+		if (curTime < 2.0f)
+		{
+			curTime += Time.deltaTime;
+			transform.localPosition += 2 * Time.deltaTime * Vector3.up;
+		}
 		DetectTargetsInCone();
 		if (bossMonster.canUseSkill == false)
 		{
@@ -33,7 +40,7 @@ public class PizzaPattern : BossPattern
 			gameObject.SetActive(false);
 		}
 	}
-	public void CreateSectorMesh(float radius, float angle, int segmentCount,float height)
+	public void CreateSectorMesh(float radius, float angle, int segmentCount,float height)//부채꼴 3D 오브젝트 생성
 	{
 		MeshFilter meshFilter = GetComponent<MeshFilter>();
 		Mesh mesh = new Mesh();

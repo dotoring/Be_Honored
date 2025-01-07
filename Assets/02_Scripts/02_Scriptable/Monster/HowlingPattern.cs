@@ -31,7 +31,7 @@ public class HowlingPattern : BossPattern
 		Collider[] cols = Physics.OverlapSphere(transform.root.transform.position, attackRange, 1 << 10);
 		for (int i = 0; i < cols.Length; i++)
 		{
-			cols[i].GetComponent<HitPlayer>()?.Damaged(bossMonster.attackPower);
+			cols[i].GetComponent<Player>()?.Damaged(bossMonster.attackPower);
 		}
 	}
 }
