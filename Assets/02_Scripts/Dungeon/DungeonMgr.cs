@@ -9,6 +9,8 @@ public class DungeonMgr : MonoBehaviour
 	public PhotonView pv;
     public Dictionary<int, GameObject> modules = new Dictionary<int, GameObject>();
 
+	public List<GameObject> playerListInBoss = new List<GameObject>();
+
 	private void Awake()
 	{
 		if(instance == null)
@@ -31,5 +33,10 @@ public class DungeonMgr : MonoBehaviour
 	public GameObject SetModule(int id)
 	{
 		return modules[id];
+	}
+
+	public void AddPlayer(GameObject go)
+	{
+		playerListInBoss.Add(go);
 	}
 }

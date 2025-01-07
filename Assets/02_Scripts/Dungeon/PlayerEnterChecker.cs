@@ -1,5 +1,7 @@
+using NUnit.Framework;
 using Photon.Pun;
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerEnterChecker : MonoBehaviour
@@ -7,6 +9,8 @@ public class PlayerEnterChecker : MonoBehaviour
 	[SerializeField] GameObject shroud;
 
 	public Action OnPlayerEnter = () => { };
+
+	public List<GameObject> playerList;
 
 	void PlayerEnter()
 	{
@@ -26,6 +30,8 @@ public class PlayerEnterChecker : MonoBehaviour
 			{
 				PlayerEnter();
 			}
+
+			DungeonMgr.instance.AddPlayer(other.gameObject);
 		}
 	}
 }
