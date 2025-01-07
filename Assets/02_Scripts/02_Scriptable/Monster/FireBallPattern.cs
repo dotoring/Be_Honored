@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Unity.Behavior;
 using UnityEngine;
+using UnityEngine.Pool;
 
 public class FireBallPattern : BossPattern
 {
@@ -12,9 +13,13 @@ public class FireBallPattern : BossPattern
 
 	private float curTime;
 
+	[SerializeField] private List<GameObject> firePointObj;
+	[SerializeField] private List<GameObject> firePBallObj;
+
+
 	private void OnEnable()
 	{
-		//targetList.Clear();
+		targetList.Clear();
 		curTime = 0;
 		foreach (var item in bossMonster.playerList)
 		{

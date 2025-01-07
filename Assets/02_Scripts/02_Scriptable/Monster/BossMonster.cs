@@ -11,7 +11,7 @@ public class BossMonster : Monster
 	public float skillWaitTime=0;
 	public bool canUseSkill;
 
-	public List<GameObject> playerList;
+	public List<GameObject> playerList = DungeonMgr.instance.playerListInBoss;
 	public GameObject targetPlayer;
 
 	[SerializeField] private Animation anim;
@@ -48,9 +48,9 @@ public class BossMonster : Monster
 	}
 
 	//보스 방에 들어온 사람들을 playerlist에 추가
-	public void InPlayer(Player player)
+	public void GetPlayerList()
 	{
-		playerList.Add(player.gameObject);
+		playerList=DungeonMgr.instance.playerListInBoss;
 	}
 
 	//플레이어가 룸을 떠날 때
@@ -84,10 +84,6 @@ public class BossMonster : Monster
 	{
 		base.Start();
 		GameObject[] temp = GameObject.FindGameObjectsWithTag("Player");
-		foreach (GameObject go in temp)
-		{
-			playerList.Add(go);
-		}
 		dieEvent += () =>
 		{
 			print("보스죽음");

@@ -42,7 +42,7 @@ public partial class StateChangeAction : Action
 		{
 			Distance.Value = BossMonster.Value.detectRange;
 
-			foreach (GameObject obj in BossMonster.Value.playerList)
+			foreach (GameObject obj in BossMonster.Value.playerList)//DungeonMgr.instance.playerListInBoss)
 			{
 				float dis2 = Vector3.Distance(BossMonster.Value.transform.position, obj.transform.position);
 				if (Distance.Value > dis2)
