@@ -17,6 +17,7 @@ public class ModuleMgr : MonoBehaviour
 	void Start()
 	{
 		DungeonMgr.instance?.AddModule(moduleId, gameObject);
+		OnRoomOpen += () => isOpen = true;
 
 		if(moduleType == ModuleType.Boss)
 		{
