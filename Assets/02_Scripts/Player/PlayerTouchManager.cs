@@ -34,6 +34,7 @@ public class PlayerTouchManager : MonoBehaviour
 		triggerAreas = Player.Instance.Attackon;
 		// 게임 시작 시 currentOrder에 맞는 공만 파랑으로 설정
 		SetAreaToColors(currentOrder);
+		SetPositionChange();
 	}
 
 	private void Update()
@@ -141,6 +142,7 @@ public class PlayerTouchManager : MonoBehaviour
 		{
 			triggerAreas[order].GetComponent<Renderer>().material = matblue;
 		}
+
 	}
 
 	private void Attack()

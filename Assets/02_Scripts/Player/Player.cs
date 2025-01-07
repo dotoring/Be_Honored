@@ -69,7 +69,8 @@ public partial class Player : Singleton<Player>
 		Debug.Log($" Player {damage} Damaged remain {hp}");
 		if (hp <= 0)
 		{
-			App.Instance.Resetposition.Invoke();
+			App.Instance.Resetposition.Invoke();  // TODO : DEAD Action;
+			hp = _stat.hpmax * 10 + bodyStat.hpmax;
 		}
 
 		hpBar.fillAmount = hp / 50;
@@ -96,7 +97,7 @@ public partial class Player : Singleton<Player>
 
 	public void Enterroom()
 	{
-		hp += _stat.hpmax * 10;
+		hp = _stat.hpmax * 10 + bodyStat.hpmax;
 	}
 
 }

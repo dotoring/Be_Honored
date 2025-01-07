@@ -11,6 +11,7 @@ public class Equipment : MonoBehaviour
 	private void OnEnable()
 	{
 		App.Instance.ChangeEquip += SetUI;
+		SetUI();
 	}
 	private void OnDisable()
 	{
