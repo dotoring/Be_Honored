@@ -23,7 +23,7 @@ public class BossMonster : Monster
 		if (!PhotonNetwork.IsConnected)
 			StartAnimation(animName);
 		else
-			pv.RPC(nameof(StartAnimation), RpcTarget.AllBuffered, animName);
+			pv.RPC(nameof(StartAnimation), RpcTarget.All, animName);
 	}
 
 	[PunRPC]
@@ -37,7 +37,7 @@ public class BossMonster : Monster
 		if (!PhotonNetwork.IsConnected)
 			StartPattern(skillId);
 		else
-			pv.RPC(nameof(StartPattern), RpcTarget.AllBuffered,skillId);
+			pv.RPC(nameof(StartPattern), RpcTarget.All,skillId);
 	}
 
 	[PunRPC]

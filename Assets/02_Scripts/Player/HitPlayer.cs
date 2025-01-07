@@ -6,5 +6,4 @@ public class HitPlayer : MonoBehaviour
 	{
 		Player.Instance.Damaged(damage);
 	}
-
 }

@@ -4,6 +4,7 @@ public class EqStat
 {
 	public PlayerEquipMent _armor;
 	public EQUIPSTAT bodyStat;
+	public int gold;
 }
 
 
@@ -45,6 +46,7 @@ public partial class Player
 		_armor.Leg = playerStatData._armor.Leg;
 		_armor.Arm = playerStatData._armor.Arm;
 		bodyStat = playerStatData.bodyStat;
+		App.Instance.gold = playerStatData.gold;
 	}
 
 	public void SavePlayerData()
@@ -58,6 +60,7 @@ public partial class Player
 			Arm = _armor.Arm,
 		};
 		stat.bodyStat = bodyStat;
+		stat.gold = App.Instance.gold;
 
 		// Stat 데이터 저장
 
