@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerEnterChecker : MonoBehaviour
 {
 	[SerializeField] GameObject shroud;
+	
 
 	public Action OnPlayerEnter = () => { };
 

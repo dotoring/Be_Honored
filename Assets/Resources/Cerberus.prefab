@@ -12417,7 +12417,7 @@ MonoBehaviour:
   meshRenderer: {fileID: 5207134256066198850}
   playerInConelist: []
   patMat: {fileID: 2100000, guid: 83bbd909e42ec5f4aab081a294d7733e, type: 2}
-  diss: []
+  curTime: 0
 --- !u!23 &5207134256066198850
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -12635,7 +12635,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 83bbd909e42ec5f4aab081a294d7733e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -22949,6 +22949,7 @@ GameObject:
   - component: {fileID: 9099333558217681363}
   - component: {fileID: 2742204767465145007}
   - component: {fileID: 4215199836119996481}
+  - component: {fileID: 3851605132533282877}
   m_Layer: 11
   m_Name: LazerObj
   m_TagString: Untagged
@@ -22985,7 +22986,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08780634c2bac4a4b9c0294470da176a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotateAngle: 70
+  rotateAngle: 30
   range: {fileID: 6416898900497070463}
   syl: {fileID: 978782223311630815}
   col: {fileID: 4215199836119996481}
@@ -23016,6 +23017,33 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.3665161, y: 2.9942832, z: 15.008888}
   m_Center: {x: -0.030812578, y: 1.2123518, z: 9.888568}
+--- !u!54 &3851605132533282877
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8552700445946727513}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &8618670931248475401
 GameObject:
   m_ObjectHideFlags: 0

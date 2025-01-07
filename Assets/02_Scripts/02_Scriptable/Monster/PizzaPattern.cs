@@ -12,16 +12,23 @@ public class PizzaPattern : BossPattern
 	[SerializeField] private List<GameObject> playerInConelist = new();
 	[SerializeField] private Material patMat;
 
-
+	[SerializeField] private float curTime;
 
 
 	private void OnEnable()
 	{
-		CreateSectorMesh(radius, angle, 30,3f);
+		CreateSectorMesh(radius, angle, 30,6f);
+		transform.localPosition = new Vector3(0, -3f, 0);
+		curTime = 0;
 	}
 
 	private void Update()
 	{
+		if (curTime < 2.0f)
+		{
+			curTime += Time.deltaTime;
+			transform.localPosition += 2 * Time.deltaTime * Vector3.up;
+		}
 		DetectTargetsInCone();
 		if (bossMonster.canUseSkill == false)
 		{
@@ -33,7 +40,7 @@ public class PizzaPattern : BossPattern
 			gameObject.SetActive(false);
 		}
 	}
-	public void CreateSectorMesh(float radius, float angle, int segmentCount,float height)
+	public void CreateSectorMesh(float radius, float angle, int segmentCount,float height)//부채꼴 3D 오브젝트 생성
 	{
 		MeshFilter meshFilter = GetComponent<MeshFilter>();
 		Mesh mesh = new Mesh();
@@ -56,19 +63,19 @@ public class PizzaPattern : BossPattern
 			float x = Mathf.Sin(currentAngle) * radius;
 
 			// 아랫면 정점
-			vertices[i] = new Vector3(x, 0, z);
+			vertices[i] = new Vector3(x, -3, z);
 			uv[i] = new Vector2((x / radius + 1) / 2, (z / radius + 1) / 2);
 
 			// 윗면 정점
-			vertices[i + segmentCount + 1] = new Vector3(x, height, z);
+			vertices[i + segmentCount + 1] = new Vector3(x, height-3, z);
 			uv[i + segmentCount + 1] = new Vector2((x / radius + 1) / 2, (z / radius + 1) / 2);
 		}
 
 		// 중심 정점 추가 (윗면과 아랫면)
-		vertices[vertexCount - 2] = new Vector3(0, height, 0); // 윗면 중심
+		vertices[vertexCount - 2] = new Vector3(0, height-3, 0); // 윗면 중심
 		uv[vertexCount - 2] = new Vector2(0.5f, 0.5f);
 
-		vertices[vertexCount - 1] = new Vector3(0, 0, 0); // 아랫면 중심
+		vertices[vertexCount - 1] = new Vector3(0, -3, 0); // 아랫면 중심
 		uv[vertexCount - 1] = new Vector2(0.5f, 0.5f);
 
 		// 윗면 삼각형 생성
