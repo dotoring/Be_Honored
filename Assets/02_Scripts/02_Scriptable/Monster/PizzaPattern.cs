@@ -144,7 +144,9 @@ public class PizzaPattern : BossPattern
 
 	void DetectTargetsInCone()
 	{
-		foreach (GameObject target in bossMonster.playerList)
+		foreach (GameObject target in bossMonster.
+
+			playerList)
 		{
 			Vector3 directionToTarget = (target.transform.position - transform.position).normalized;
 

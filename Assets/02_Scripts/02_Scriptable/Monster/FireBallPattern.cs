@@ -1,3 +1,5 @@
+using Photon.Pun.Demo.Asteroids;
+using System;
 using System.Collections.Generic;
 using Unity.Behavior;
 using UnityEngine;
@@ -12,10 +14,6 @@ public class FireBallPattern : BossPattern
 	[SerializeField] private List<GameObject> targetList;
 
 	private float curTime;
-
-	[SerializeField] private List<GameObject> firePointObj;
-	[SerializeField] private List<GameObject> firePBallObj;
-
 
 	private void OnEnable()
 	{
