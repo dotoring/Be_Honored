@@ -51,7 +51,7 @@ public partial class Player : Singleton<Player>
 		audioSource = GetComponent<AudioSource>();
 	}
 
-	private void Start()
+	private void OnEnable()
 	{
 		Instance.LoadPlayerData();
 	}
@@ -65,7 +65,7 @@ public partial class Player : Singleton<Player>
 			return;
 		}
 		hp -= math.max(damage - _stat.defence, 1);
-		//audioSource.PlayOneShot(hited);
+		audioSource.PlayOneShot(hited);
 		Debug.Log($" Player {damage} Damaged remain {hp}");
 		if (hp <= 0)
 		{

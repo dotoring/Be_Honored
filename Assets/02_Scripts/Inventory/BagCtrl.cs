@@ -102,6 +102,6 @@ public class BagCtrl : MonoBehaviour
 
 	void RefreshText()
 	{
-		weightTxt.text = $"weight : {curWeight}";
+		weightTxt.text = $"weight : {curWeight}/{maxWeight}";
 	}
 }
