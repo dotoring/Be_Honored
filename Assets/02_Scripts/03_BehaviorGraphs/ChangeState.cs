@@ -39,6 +39,7 @@ public partial class ChangeStateAction : Action
 		{
 			if (AttackRange >= Vector3.Distance(Player.Value.position, Self.Value.transform.position))
 			{
+				Self.Value.GetComponent<Animator>().SetTrigger("AttackReady");
 				State.Value = global::State.Attack;
 			}
 			else
