@@ -11,12 +11,18 @@ public class BossMonster : Monster
 	public float skillWaitTime=0;
 	public bool canUseSkill;
 
-	public List<GameObject> playerList = DungeonMgr.instance.playerListInBoss;
+	public List<GameObject> playerList;
 	public GameObject targetPlayer;
 
 	[SerializeField] private Animation anim;
 
 	[SerializeField] private List<GameObject> monsterPatternObj;
+
+	public override void OnEnable()
+	{
+		base.OnEnable();
+		playerList = DungeonMgr.instance.playerListInBoss;
+	}
 
 	public void StartAnimationRPC(string animName)
 	{
