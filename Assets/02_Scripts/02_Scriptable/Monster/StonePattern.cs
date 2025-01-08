@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using UnityEditor.SceneManagement;
 using UnityEngine;
 
 public class StonePattern : MonoBehaviour

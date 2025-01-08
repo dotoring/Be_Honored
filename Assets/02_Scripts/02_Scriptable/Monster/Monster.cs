@@ -2,7 +2,6 @@ using Unity.Behavior;
 using UnityEngine;
 using UnityEngine.AI;
 using Photon.Pun;
-using UnityEditor.Animations;
 
 
 public enum MonsterType
