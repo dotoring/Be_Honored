@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Magma : MonoBehaviour
 {
-	private float damageTimer;
+	[SerializeField]private float damageTimer;
 
 	private void Start()
 	{
@@ -13,11 +13,12 @@ public class Magma : MonoBehaviour
 	{
 		if (other.CompareTag("Player"))
 		{
+			print("player 있음");
 			damageTimer += Time.deltaTime;
 
 			if (damageTimer >= 1f)
 			{
-				other.GetComponent<Player>()?.Damaged(1);
+				other.GetComponent<HitPlayer>()?.Damaged(1);
 				damageTimer = 0f;
 			}
 		}

@@ -76,10 +76,8 @@ public class LazerPattern : BossPattern
 
 	private void OnTriggerEnter(Collider other)
 	{
-		print("dd");
 		if (other.CompareTag("Player"))
 		{
-			print("발동");
 			other.GetComponent<HitPlayer>()?.Damaged(bossMonster.attackPower);
 		}
 	}

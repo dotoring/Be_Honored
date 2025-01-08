@@ -1,7 +1,4 @@
-using Photon.Pun.Demo.Asteroids;
-using System;
 using System.Collections.Generic;
-using Unity.Behavior;
 using UnityEngine;
 using UnityEngine.Pool;
 
@@ -24,7 +21,7 @@ public class FireBallPattern : BossPattern
 			targetList.Add(item);
 		}
 		float mindis = 99.0f;
-		GameObject remove = new GameObject();
+		GameObject remove = null;
 		if (targetList.Count > 1)//플레이어가 2인 이상일 때
 		{
 			foreach (var item in bossMonster.playerList)
@@ -41,9 +38,12 @@ public class FireBallPattern : BossPattern
 
 		foreach (var item in targetList)
 		{
-			GameObject Point = GameObject.Instantiate(FirePoint, item.transform.root.position, Quaternion.identity);
+			Vector3 temp = item.transform.position;
+			temp.y = bossMonster.transform.position.y;
+			GameObject Point = Instantiate(FirePoint, temp, Quaternion.identity);
 			FirePointList.Add(Point);
 		}
+		
 	}
 	private void Update()
 	{
@@ -59,8 +59,8 @@ public class FireBallPattern : BossPattern
 	{
 		for (int i = 0; i < FirePointList.Count; i++)
 		{
-			GameObject ball = (GameObject)GameObject.Instantiate(FireBallObj, FireStartPoint[i].transform.position, Quaternion.identity);
-			ball.GetComponent<FireBall>().InitBall(bossMonster, FirePointList[i], FireStartPoint[i].transform);
+			GameObject ball = Instantiate(FireBallObj, FireStartPoint[i].transform.position, Quaternion.identity);
+			ball.GetComponent<FireBall>().InitBall(bossMonster.attackPower, FirePointList[i], FireStartPoint[i].transform);
 		}
 		FirePointList.Clear();
 	}

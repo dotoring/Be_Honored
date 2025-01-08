@@ -1,9 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
-using Unity.Behavior;
-using NUnit.Framework;
 using Photon.Pun;
-using Photon.Realtime;
 
 public class BossMonster : Monster
 {

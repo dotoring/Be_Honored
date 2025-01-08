@@ -3,15 +3,15 @@ using UnityEngine;
 
 public class FireBall : MonoBehaviour
 {
-	[SerializeField]private BossMonster boss;
+	[SerializeField] private float damage;
 	[SerializeField]private GameObject target;
 	[SerializeField]private GameObject floor;
 	[SerializeField] private Vector3 startPoint;
 	[SerializeField]private float speed;
 
-	public void InitBall(BossMonster bossMonster,GameObject target,Transform startPoint)
+	public void InitBall(float damaged,GameObject target,Transform startPoint)
 	{
-		boss = bossMonster;
+		damage = damaged;
 		this.target = target;
 		this.startPoint=startPoint.position;
 		speed = Vector3.Distance(target.transform.position, this.startPoint)/2.5f;
@@ -30,10 +30,18 @@ public class FireBall : MonoBehaviour
 
 	private void OnTriggerEnter(Collider other)
 	{
-		if (other.CompareTag("FirePoint")||other.CompareTag("Player"))
+		if (other.CompareTag("FirePoint"))
 		{
 			Destroy(target);
 			Instantiate(floor, target.transform.position,Quaternion.identity);
+			Destroy(gameObject);
+		}
+		if(other.CompareTag("Player"))
+		{
+			Destroy(target);
+			other.GetComponent<HitPlayer>()?.Damaged(damage);
+			//마그마 생성 플레이어 충돌 위치의 바닥으로 변경 예정
+			Instantiate(floor, target.transform.position, Quaternion.identity);
 			Destroy(gameObject);
 		}
 	}
