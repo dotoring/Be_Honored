@@ -32,6 +32,6 @@ public class RoomData : MonoBehaviour
 	private void Update()
 	{
 		isRoomInfoNull = (roomInfo == null);
-		print(gameObject.name + "방 정보 있냐? : "+isRoomInfoNull);
+		//print(gameObject.name + "방 정보 있냐? : "+isRoomInfoNull);
 	}
 }

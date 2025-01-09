@@ -23,7 +23,7 @@ public class App : Singleton<App>
 	}
 	private void Start()
 	{
-		ChangeEquip.Invoke();
+		ChangeEquip?.Invoke();
 	}
 }
 
