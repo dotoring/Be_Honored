@@ -20,8 +20,11 @@ public class AttackTargetOn : MonoBehaviour
 
 	private void OnDisable()
 	{
-		Player.Instance.Armed -= CanvasOn;
-		Player.Instance.UnArmed -= CanVasOff;
+		if (Player.Instance is not null)
+		{
+			Player.Instance.Armed -= CanvasOn;
+			Player.Instance.UnArmed -= CanVasOff;
+		}
 	}
 
 	private void CanVasOff()
