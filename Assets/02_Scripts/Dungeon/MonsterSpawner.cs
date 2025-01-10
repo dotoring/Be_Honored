@@ -81,9 +81,12 @@ public class MonsterSpawner : MonoBehaviourPunCallbacks
 
 	void BeginMonsterBT()
 	{
-		foreach(GameObject monster in spawnedMonsters)
+		if(PhotonNetwork.IsMasterClient)
 		{
-			monster.GetComponent<Monster>().ActiveSelf();
+			foreach (GameObject monster in spawnedMonsters)
+			{
+				monster.GetComponent<Monster>().ActiveSelf();
+			}
 		}
 	}
 }

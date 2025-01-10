@@ -16,7 +16,7 @@ public class DoorCtrl : MonoBehaviour
 		if (!isOpen)
 		{
 			GetComponent<PhotonView>().RPC(nameof(OpenCoroutine), RpcTarget.AllBuffered);
-			GetComponent<PhotonView>().RPC(nameof(InvokeDoorOpen), RpcTarget.MasterClient);
+			GetComponent<PhotonView>().RPC(nameof(InvokeDoorOpen), RpcTarget.All);
 		}
 	}
 
