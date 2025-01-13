@@ -31,11 +31,16 @@ public partial class Player
 			string json = PlayerPrefs.GetString("PlayerStat");
 			playerStat = JsonUtility.FromJson<EqStat>(json);
 			Debug.Log("Stat data loaded.");
+			if (bodyStat.hpmax < 50)
+			{
+				bodyStat.hpmax = 50;
+			}
 			LoadData(playerStat);
 		}
 		else
 		{
 			Debug.Log("No saved data found.");
+			bodyStat.hpmax = 50;
 		}
 	}
 

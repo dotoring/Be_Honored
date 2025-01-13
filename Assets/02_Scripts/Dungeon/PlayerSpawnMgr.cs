@@ -34,6 +34,7 @@ public class PlayerSpawnMgr : MonoBehaviour
 
 	private void OnDestroy()
 	{
+		if(App.Instance is not null)
 		App.Instance.Resetposition -= Respawn;
 	}
 }
