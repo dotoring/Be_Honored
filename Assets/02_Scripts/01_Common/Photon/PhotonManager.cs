@@ -50,8 +50,8 @@ public class PhotonManager : MonoBehaviourPunCallbacks
 		roomInBtns[1].onClick.AddListener(() => MakeRoomBtnOnClick(RoomLevel.Two));
 		roomInBtns[2].onClick.AddListener(() => MakeRoomBtnOnClick(RoomLevel.Three));
 		customRoomOption.Add("Level", RoomLevel.One);
-		if (PhotonNetwork.IsConnected)
-			PhotonNetwork.JoinLobby();
+		// if (PhotonNetwork.IsConnected)
+		// 	PhotonNetwork.JoinLobby();
 	}
 
 	public void MakeRoomBtnOnClick(RoomLevel level)
@@ -121,12 +121,13 @@ public class PhotonManager : MonoBehaviourPunCallbacks
 	{
 		Player.Instance.SavePlayerData();
 		print("방입장 :" + PhotonNetwork.CurrentRoom.Name);
-		StartCoroutine(NewMethod());
+		StartCoroutine(EnterRoomAsync());
 	}
 
-	IEnumerator NewMethod()
+	IEnumerator EnterRoomAsync()
 	{
 		canvas.SetActive(true);
+		Player.Instance.ChangeBGM(1);
 		yield return null;
 		AsyncOperation aload = SceneManager.LoadSceneAsync(PhotonNetwork.CurrentRoom.Name);
 		while (!aload.isDone)
