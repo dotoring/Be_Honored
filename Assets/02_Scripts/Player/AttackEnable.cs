@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
+using UnityEngine.XR.Interaction.Toolkit.Interactors;
 
 public class AttackEnable : MonoBehaviour
 {
@@ -7,12 +8,18 @@ public class AttackEnable : MonoBehaviour
 	private void Awake()
 	{
 		xRGrabInteractable = GetComponent<XRGrabInteractable>();
-		xRGrabInteractable.selectEntered.AddListener(_ =>
+		xRGrabInteractable.selectEntered.AddListener(args =>
 		{
+			args.interactorObject.transform.GetComponent<NearFarInteractor>()
+					.selectActionTrigger =
+				XRBaseInputInteractor.InputTriggerType.Toggle;
 			Player.Instance.Armed.Invoke();
 		});
-		xRGrabInteractable.selectExited.AddListener(_ =>
+		xRGrabInteractable.selectExited.AddListener(args =>
 		{
+			args.interactorObject.transform.GetComponent<NearFarInteractor>()
+			.selectActionTrigger =
+				XRBaseInputInteractor.InputTriggerType.StateChange;
 			Player.Instance.UnArmed.Invoke();
 		});
 
