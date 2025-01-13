@@ -50,7 +50,8 @@ public class PhotonManager : MonoBehaviourPunCallbacks
 		roomInBtns[1].onClick.AddListener(() => MakeRoomBtnOnClick(RoomLevel.Two));
 		roomInBtns[2].onClick.AddListener(() => MakeRoomBtnOnClick(RoomLevel.Three));
 		customRoomOption.Add("Level", RoomLevel.One);
-
+		if (PhotonNetwork.IsConnected)
+			PhotonNetwork.JoinLobby();
 	}
 
 	public void MakeRoomBtnOnClick(RoomLevel level)

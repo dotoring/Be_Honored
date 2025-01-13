@@ -15,6 +15,7 @@ public partial class ChangeStateAction : Action
     [SerializeReference] public BlackboardVariable<float> Distance;
     [SerializeReference] public BlackboardVariable<float> AttackRange;
     [SerializeReference] public BlackboardVariable<State> State;
+	private bool isAttackReady;
     protected override Status OnUpdate()
     {
 		if(Player.Value!= null) 
@@ -25,25 +26,26 @@ public partial class ChangeStateAction : Action
 		float min = DectetRange+1.0f;
 		for(int i=0;i< cols.Length;i++)
 		{
-			float dis=Vector3.Distance(Self.Value.transform.position, cols[i].transform.position);
+			float dis = Vector3.Distance(Self.Value.transform.position, cols[i].transform.position);
 			if(min>dis)
 			{
 				Player.Value = cols[i].transform;
 				min = dis;
-
 			}
 		}
 		if (Player.Value == null)
 			State.Value = global::State.Idle;
 		else
 		{
-			if (AttackRange >= Vector3.Distance(Player.Value.position, Self.Value.transform.position))
+			if (AttackRange >= Vector3.Distance(Player.Value.position, Self.Value.transform.position)&&!isAttackReady)
 			{
-				Self.Value.GetComponent<Animator>().SetTrigger("AttackReady");
+				isAttackReady = true;
+				Self.Value.GetComponent<Animator>().SetBool("AttackReady",isAttackReady);
 				State.Value = global::State.Attack;
 			}
 			else
 			{
+				isAttackReady = false;
 				State.Value = global::State.Move;
 			}
 		}
