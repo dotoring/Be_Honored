@@ -43,6 +43,7 @@ public partial class Player : Singleton<Player>
 	internal bool IsArm;
 	public Action Armed;
 	public Action UnArmed;
+	[SerializeField] private AudioClip[] bgms;
 
 
 	protected override void Awake()
@@ -54,6 +55,9 @@ public partial class Player : Singleton<Player>
 	private void OnEnable()
 	{
 		Instance.LoadPlayerData();
+
+		audioSource.loop = true;
+		ChangeBGM(0);
 	}
 
 
@@ -98,6 +102,22 @@ public partial class Player : Singleton<Player>
 	public void Enterroom()
 	{
 		hp = _stat.hpmax * 10 + bodyStat.hpmax;
+	}
+
+	public void ChangeBGM(int sceneNumber)
+	{
+		if (sceneNumber == 0)
+		{
+			audioSource.Stop();
+			audioSource.clip = bgms[0];
+			audioSource.Play();
+		}
+		else if (sceneNumber == 1)
+		{
+			audioSource.Stop();
+			audioSource.clip = bgms[1];
+			audioSource.Play();
+		}
 	}
 
 }

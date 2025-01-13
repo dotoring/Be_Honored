@@ -8,7 +8,8 @@ public enum MonsterType
 {
 	WARRIOR,
 	ARCHER,
-
+	SORCERCER,
+	FOOTMAN,
 	BOSS,
 }
 public enum BossType
