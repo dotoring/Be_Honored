@@ -29,8 +29,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.458, y: -0.2113911, z: 0.559}
-  m_LocalScale: {x: 0.09999998, y: 0.1, z: 0.09999998}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.19999996, y: 0.19999996, z: 0.19999996}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 8515216988239219049}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -174,8 +174,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.2993523, y: -0.05500028, z: 1.066715}
-  m_LocalScale: {x: 0.09999998, y: 0.1, z: 0.09999998}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.19999996, y: 0.19999996, z: 0.19999996}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 8515216988239219049}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -251,7 +251,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.5
+  m_Radius: 0.6
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &574342214328820497
 GameObject:
@@ -1541,7 +1541,7 @@ GameObject:
   - component: {fileID: 2318933409343580293}
   - component: {fileID: 4145130622440562312}
   m_Layer: 14
-  m_Name: Sphere (3)
+  m_Name: Sphere (2)
   m_TagString: Ball
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1557,8 +1557,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.091, y: -0.2911303, z: 0.494}
-  m_LocalScale: {x: 0.09999998, y: 0.1, z: 0.09999998}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.19999996, y: 0.19999996, z: 0.19999996}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 8515216988239219049}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2400,12 +2400,6 @@ MonoBehaviour:
   ball1: {fileID: 7592220365956178664}
   ball2: {fileID: 6618905136207294244}
   ball3: {fileID: 5198824222659254265}
-  ball4: {fileID: 0}
-  ball5: {fileID: 0}
-  ball6: {fileID: 0}
-  ball7: {fileID: 0}
-  ball8: {fileID: 0}
-  ball9: {fileID: 0}
 --- !u!1001 &4321783903951069632
 PrefabInstance:
   m_ObjectHideFlags: 0
