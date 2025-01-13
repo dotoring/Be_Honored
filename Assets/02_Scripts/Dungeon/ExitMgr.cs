@@ -21,12 +21,16 @@ public class ExitMgr : MonoBehaviourPunCallbacks
 
 	public override void OnLeftRoom()
 	{
-		StartCoroutine(NewMethod());
+		StartCoroutine(LeftRoomAsync());
 	}
 
-	IEnumerator NewMethod()
+	IEnumerator LeftRoomAsync()
 	{
 		canvas.SetActive(true);
+		Debug.Log("Left Room.0");
+		Player.Instance.ChangeBGM(0);
+		PhotonNetwork.JoinLobby();
+
 		yield return null;
 		AsyncOperation aload = SceneManager.LoadSceneAsync("lobbySample_Working1");
 		while (!aload.isDone)
@@ -34,6 +38,7 @@ public class ExitMgr : MonoBehaviourPunCallbacks
 			loadingbar.fillAmount = aload.progress;
 			yield return null;
 		}
+
 	}
 
 	public void TeleportToUnderStage()
