@@ -7,7 +7,7 @@ using UnityEngine;
 public class PlayerEnterChecker : MonoBehaviour
 {
 	[SerializeField] GameObject shroud;
-	
+
 
 	public Action OnPlayerEnter = () => { };
 
@@ -15,6 +15,7 @@ public class PlayerEnterChecker : MonoBehaviour
 
 	void PlayerEnter()
 	{
+		Debug.Log("PlayerEnter");
 		OnPlayerEnter.Invoke();
 	}
 
