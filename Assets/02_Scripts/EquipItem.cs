@@ -141,6 +141,8 @@ public class EquipItem : ScrapItem
 				bag = other.gameObject;
 				bagCtrl = bag.GetComponent<BagCtrl>();
 			}
+
+			bagCtrl.ChangeBagMat(bagCtrl.CheckWeight(this));
 		}
 		else if (other.gameObject.GetComponent<Equipment>()?.type == typeOfEquip)
 		{
@@ -154,6 +156,8 @@ public class EquipItem : ScrapItem
 		if (other.gameObject.CompareTag("Bag"))
 		{
 			isInBag = false;
+
+			bagCtrl.ResetBagMat();
 		}
 		else if (other.gameObject.GetComponent<Equipment>()?.type == typeOfEquip)
 		{
@@ -168,7 +172,7 @@ public class EquipItem : ScrapItem
 		{
 			if (!bagCtrl.IsInBag(this))
 			{
-				if (bagCtrl.CheckWeight(weight))
+				if (bagCtrl.CheckWeight(this))
 				{
 					SetInBag();
 					bagCtrl.AddScrap(this);

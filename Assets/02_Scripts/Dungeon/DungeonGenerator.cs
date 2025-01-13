@@ -1,6 +1,7 @@
 using ExitGames.Client.Photon;
 using Photon.Pun;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class DungeonGenerator : MonoBehaviour
@@ -53,7 +54,7 @@ public class DungeonGenerator : MonoBehaviour
 	{
 		List<DungeonRoomModule> flattened = new List<DungeonRoomModule>();
 
-		foreach (var m in modules)
+		foreach (var m in _modules)
 		{
 			foreach (var module in m)
 			{
@@ -114,7 +115,7 @@ public class DungeonGenerator : MonoBehaviour
 			modules.Add(temp);
 		}
 
-		List<int> points = new List<int>();
+		List<int> points;
 		while (true)
 		{
 			//비활성화 할 모듈 선정
@@ -215,8 +216,25 @@ public class DungeonGenerator : MonoBehaviour
 		{
 			//모듈타입의 값들을 가져온다
 			var enumValues = System.Enum.GetValues(enumType: typeof(ModuleType));
-			//모듈타입의 첫 3가지를 뺀 나머지를 랜덤으로 고르기
-			ModuleType moduleType = (ModuleType)enumValues.GetValue(Random.Range(3, enumValues.Length));
+			//모듈타입의 첫 3가지를 뺀 나머지를 가중치 랜덤으로 고르기
+											//약몹, 강몹, 보물
+			List<int> weight = new List<int> { 2, 2, 1 };
+			int totalWeight = weight.Sum();
+
+			int rand = Random.Range(0, totalWeight);
+			int cumulativeWeight = 0;
+			int randResult = 0;
+			for(int j = 0; j < weight.Count; j++)
+			{
+				cumulativeWeight += weight[j];
+				if (rand < cumulativeWeight)
+				{
+					randResult = j;
+					break;
+				}
+			}
+
+			ModuleType moduleType = (ModuleType)enumValues.GetValue(randResult+3);
 			types.Add(moduleType);
 		}
 

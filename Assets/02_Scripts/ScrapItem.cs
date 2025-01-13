@@ -97,7 +97,7 @@ public class ScrapItem : MonoBehaviour
 		{
 			if(!bagCtrl.IsInBag(this))
 			{
-				if (bagCtrl.CheckWeight(weight))
+				if (bagCtrl.CheckWeight(this))
 				{
 					SetInBag();
 					bagCtrl.AddScrap(this);
@@ -173,6 +173,8 @@ public class ScrapItem : MonoBehaviour
 				bag = other.gameObject;
 				bagCtrl = bag.GetComponent<BagCtrl>();
 			}
+
+			bagCtrl.ChangeBagMat(bagCtrl.CheckWeight(this));
 		}
 	}
 
@@ -181,6 +183,8 @@ public class ScrapItem : MonoBehaviour
 		if (other.gameObject.CompareTag("Bag"))
 		{
 			isInBag = false;
+
+			bagCtrl.ResetBagMat();
 		}
 	}
 
