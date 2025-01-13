@@ -212,8 +212,9 @@ public class Monster : MonoBehaviourPunCallbacks
 	public void Attack()
 	{
 		print("공격");
-		//Player.Value.GetComponent<HitPlayer>()?.Damaged(Attackpower.Value);
-		//Self.Value.transform.forward = (Player.Value.position - Self.Value.transform.position).normalized;
+		behaviorAgent.BlackboardReference.GetVariableValue("Player", out Transform ob);
+		ob.GetComponent<HitPlayer>()?.Damaged(attackPower);
+		transform.forward = (ob.transform.position - transform.position).normalized;
 	}
 
 
