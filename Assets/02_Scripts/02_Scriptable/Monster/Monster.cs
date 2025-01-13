@@ -40,7 +40,7 @@ public class Monster : MonoBehaviourPunCallbacks
 	public bool isDie;
 
 	BlackboardVariable<float> tem = new ();
-
+	//[SerializeField]BlackboardVariable<GameObject> targettem = new ();
 	public int moduleId;
 
 	public PhotonView pv;
@@ -48,6 +48,8 @@ public class Monster : MonoBehaviourPunCallbacks
 	public NavMeshAgent navMeshAgent;
 	public Canvas hpBar;
 	public Animator ani;
+
+	//[SerializeField] private GameObject target;
 
 	private void Awake()
 	{
@@ -60,7 +62,9 @@ public class Monster : MonoBehaviourPunCallbacks
 		if (!PhotonNetwork.IsMasterClient)
 		{
 			behaviorAgent.enabled = false;
-			//navMeshAgent.enabled = false;
+			//behaviorAgent.GetVariable("Player", out targettem);
+			//target = targettem.Value;
+			navMeshAgent.enabled = false;
 			if(hpBar!=null)
 				hpBar.gameObject.SetActive(false);
 		}
@@ -197,4 +201,20 @@ public class Monster : MonoBehaviourPunCallbacks
 	{
 		moduleId = id;
 	}
+
+	[PunRPC]
+	public void AttackAniRPC(bool isAttack)
+	{
+		ani.SetBool("Attack",isAttack);
+	}
+
+
+	public void Attack()
+	{
+		print("공격");
+		//Player.Value.GetComponent<HitPlayer>()?.Damaged(Attackpower.Value);
+		//Self.Value.transform.forward = (Player.Value.position - Self.Value.transform.position).normalized;
+	}
+
+
 }

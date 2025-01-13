@@ -1643,7 +1643,7 @@ Transform:
   m_GameObject: {fileID: 6802575969540919369}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -10.129141, y: -0.0000019073486, z: -32.784306}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1699,6 +1699,7 @@ MonoBehaviour:
   - rid: 7900159867323679398
   - rid: 7900159867323679399
   - rid: 7900159976238481668
+  - rid: 7662302153745892162
   references:
     version: 2
     RefIds:
@@ -1726,6 +1727,14 @@ MonoBehaviour:
           m_Value1: 7970989689133410719
         Name: AttackPower
         m_Value: 0
+    - rid: 7662302153745892162
+      type: {class: 'BlackboardVariable`1[[UnityEngine.Animator, UnityEngine.AnimationModule]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 14330693251341180687
+          m_Value1: 14341908410718977829
+        Name: selfAnimator
+        m_Value: {fileID: 2568811150615561732}
     - rid: 7900159544617336832
       type: {class: 'BlackboardVariable`1[[UnityEngine.GameObject, UnityEngine.CoreModule]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
@@ -1757,7 +1766,7 @@ MonoBehaviour:
           m_Value0: 7221620066530556693
           m_Value1: 11192338553547929540
         Name: AttackCool
-        m_Value: 2
+        m_Value: 10
     - rid: 7900159867323679399
       type: {class: 'BlackboardVariable`1[[System.Single, mscorlib]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
@@ -1864,10 +1873,10 @@ MonoBehaviour:
   prefixField: -1
   Synchronization: 3
   OwnershipTransfer: 1
-  observableSearch: 2
+  observableSearch: 0
   ObservedComponents:
-  - {fileID: 1681245201068522652}
   - {fileID: 6926304408706942}
+  - {fileID: 1681245201068522652}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -1896,8 +1905,11 @@ MonoBehaviour:
     SynchronizeType: 2
     Name: Attack
   - Type: 9
-    SynchronizeType: 0
+    SynchronizeType: 2
     Name: AttackReady
+  - Type: 9
+    SynchronizeType: 0
+    Name: AttackReady1
   m_SynchronizeLayers:
   - SynchronizeType: 2
     LayerIndex: 0
