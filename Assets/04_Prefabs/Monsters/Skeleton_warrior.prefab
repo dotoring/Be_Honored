@@ -752,7 +752,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainCam: {fileID: 0}
   hpImg: {fileID: 533198917096809682}
-  agent: {fileID: 2329026107893350230}
 --- !u!1 &3304869314501718216
 GameObject:
   m_ObjectHideFlags: 0
@@ -1730,15 +1729,19 @@ MonoBehaviour:
   spawner: {fileID: 0}
   typeOfMonster: 0
   monsterLevel: 0
+  bossType: 0
   detectRange: 99
   attackRange: 2
   attackPower: 1
-  hp: 10
+  maxHp: 0
+  curHp: 0
+  isDie: 0
   moduleId: 0
   pv: {fileID: 0}
   behaviorAgent: {fileID: 0}
   navMeshAgent: {fileID: 3170130159670014129}
-  hpBar: {fileID: 3246646716704802451}
+  hpBar: {fileID: 1433524754646761370}
+  ani: {fileID: 0}
 --- !u!1 &6947079179803565841
 GameObject:
   m_ObjectHideFlags: 0
