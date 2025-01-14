@@ -10,9 +10,18 @@ public class RoomData : MonoBehaviour
 	[SerializeField] private string roomNameBase;
 	private RoomInfo roomInfo;
 	[SerializeField] private bool isRoomInfoNull;
+	[SerializeField] public RoomLevel roomLevel;
+
+
+	private void Awake()
+	{
+		print("버튼 aw : " + name);
+	}
 
 	private void Start()
 	{
+		print("버튼 on : "+name);
+		PhotonManager.Instance.roomInBtns.Add(this.GetComponent<Button>());
 		RoomInfo = RoomInfo;
 	}
 
