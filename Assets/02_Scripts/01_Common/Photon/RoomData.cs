@@ -22,6 +22,7 @@ public class RoomData : MonoBehaviour
 	{
 		print("버튼 on : "+name);
 		PhotonManager.Instance.roomInBtns.Add(this.GetComponent<Button>());
+		PhotonManager.Instance.InCount++;
 		RoomInfo = RoomInfo;
 	}
 

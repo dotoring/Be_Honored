@@ -21,8 +21,27 @@ public class PhotonManager : MonoBehaviourPunCallbacks
 
 	[SerializeField] private int invokeCount;
 	//invokeCount로 버튼에 3을 호출시켜서 3에서 버튼이벤트 및 룸 리스트 갱신 해주기
-
-	//[SerializeField] public Button[] roomInBtns = new Button[3];
+	public int InCount
+	{
+		get { return invokeCount; }
+		set
+		{
+			invokeCount= value;
+			if(invokeCount>=3)
+			{
+				roomInBtns.Sort((Button a,Button b) => { return a.GetComponent<RoomData>().roomLevel.CompareTo(b.GetComponent<RoomData>().roomLevel); });
+				roomInBtns[0].onClick.AddListener(() => MakeRoomBtnOnClick(RoomLevel.One));
+				roomInBtns[1].onClick.AddListener(() => MakeRoomBtnOnClick(RoomLevel.Two));
+				roomInBtns[2].onClick.AddListener(() => MakeRoomBtnOnClick(RoomLevel.Three));
+				if(PhotonNetwork.IsConnected)
+					PhotonNetwork.JoinLobby();
+				for (int i = 0; i < roomInBtns.Count; i++)
+				{
+					roomInBtns[i].interactable = true;
+				}
+			}
+		}
+	}
 	[SerializeField] public List<Button> roomInBtns;
 	ExitGames.Client.Photon.Hashtable customRoomOption = new();
 	[SerializeField] Image LoadingBar;
@@ -42,7 +61,6 @@ public class PhotonManager : MonoBehaviourPunCallbacks
 		}
 	}
 
-
 	private void Awake()
 	{
 		if(instance!=null&&instance!=this)
@@ -58,9 +76,6 @@ public class PhotonManager : MonoBehaviourPunCallbacks
 		if (!PhotonNetwork.IsConnected)
 		{
 			print("pn 연결 없음");
-			//for (int i = 0; i < roomInBtns.Count; i++)
-			//	roomInBtns[i].interactable = false;
-
 
 			PhotonNetwork.GameVersion = version;
 			PhotonNetwork.NickName = nickName;
@@ -74,7 +89,6 @@ public class PhotonManager : MonoBehaviourPunCallbacks
 
 	private void Start()
 	{
-		print("PM Start : 버튼 이벤트 설정");
 		//roomInBtns[0].onClick.AddListener(() => MakeRoomBtnOnClick(RoomLevel.One));
 		//roomInBtns[1].onClick.AddListener(() => MakeRoomBtnOnClick(RoomLevel.Two));
 		//roomInBtns[2].onClick.AddListener(() => MakeRoomBtnOnClick(RoomLevel.Three));
@@ -128,7 +142,6 @@ public class PhotonManager : MonoBehaviourPunCallbacks
 				roomdata.GetComponent<RoomData>().RoomInfo = null;
 			}
 		}
-		print("방 리스트 변경 종료");
 	}
 
 	public override void OnLeftRoom()
@@ -145,7 +158,6 @@ public class PhotonManager : MonoBehaviourPunCallbacks
 
 		yield return null;
 		AsyncOperation aload = SceneManager.LoadSceneAsync("lobbySample_Working1");
-		print("로비이동");
 		//while (!aload.isDone)
 		//{
 		//	loadingbar.fillAmount = aload.progress;
@@ -157,31 +169,23 @@ public class PhotonManager : MonoBehaviourPunCallbacks
 	public override void OnConnectedToMaster()
 	{
 		print("서버연결");
-		print(SceneManager.GetActiveScene().name);
-		PhotonNetwork.JoinLobby();
+		if(invokeCount>=3)
+			PhotonNetwork.JoinLobby();
 	}
 
 	public override void OnJoinedLobby()
 	{
 		print("로비입장");
-		print(SceneManager.GetActiveScene().name);
-		//버튼을 입력받아야함
-		//Button[] buttons = FindObjectsByType<Button>(FindObjectsSortMode.InstanceID);
-		//System.Array.Sort(buttons, (a, b) => a.GetComponent<RoomData>().roomLevel.CompareTo(b.GetComponent<RoomData>().roomLevel));
-		//for (int i = 0; i < buttons.Length; i++)
-		//{
-		//	roomInBtns[i]=buttons[i];
-		//}
-		//나중에 발동
-		//roomInBtns[0].onClick.AddListener(() => MakeRoomBtnOnClick(RoomLevel.One));
-		//roomInBtns[1].onClick.AddListener(() => MakeRoomBtnOnClick(RoomLevel.Two));
-		//roomInBtns[2].onClick.AddListener(() => MakeRoomBtnOnClick(RoomLevel.Three));
-		print("로비입장 종료");
 	}
 
 	public override void OnJoinedRoom()
 	{
+		for (int i = 0; i < roomInBtns.Count; i++)
+		{
+			roomInBtns[i].interactable = false;
+		}
 		roomInBtns.Clear();
+		invokeCount = 0;
 		Player.Instance.SavePlayerData();
 		print("방입장 :" + PhotonNetwork.CurrentRoom.Name);
 		StartCoroutine(EnterRoomAsync());
