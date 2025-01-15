@@ -23,8 +23,6 @@ public class DungeonGenerator : MonoBehaviour
 	[SerializeField] ExitMgr exitMgr;
 	[SerializeField] DungeonMgr dungeonMgr;
 
-	[SerializeField] Transform bossSpawnPoint;
-
 	private void Awake()
 	{
 		//DungeonRoomModule타입 포톤에 등록하기
