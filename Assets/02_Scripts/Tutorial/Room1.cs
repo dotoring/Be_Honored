@@ -2,21 +2,19 @@ using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
 
-public class Room0 : MonoBehaviour
+public class Room1 : MonoBehaviour
 {
-    [SerializeField] InputActionProperty move;
-    [SerializeField] InputActionProperty turn;
     [SerializeField] private XRSimpleInteractable pokeButton;
     [SerializeField] private TMP_Text text;
     bool NextStep;
     [SerializeField] GameObject NextRoomSeq;
-
+    [SerializeField]TutoBagPortal tutobag;
+    [SerializeField]TutoScrapItem scrap;
     private void Start()
     {
-        text.text = "Welcome to the New World";
+        text.text = "This room is for UI";
 
         StartCoroutine(seq());
     }
@@ -24,34 +22,34 @@ public class Room0 : MonoBehaviour
     IEnumerator seq()
     {
         yield return new WaitForSeconds(3f);
-        text.text = "This is Tutorial for BeHorned";
+        text.text = "You can opon Bag for you";
         yield return new WaitForSeconds(3f);
-        text.text = "At First, You can Move by Left Hand Thumbstick";
+        text.text = "Tag your ball in left hand to ball in your arm";
+        
+        
+        tutobag.opend += ActionOnPerformed;
+        yield return new WaitUntil(() => NextStep);
+        tutobag.opend -= ActionOnPerformed;
+        NextStep = false;
+        text.text = "Bag is for you, when you need bag, call bag by tag";
+        //yield return new WaitForSeconds(3f);
+        
+        scrap.inbag += ActionOnPerformed;
+        text.text = "Pick scrap in center of room, Put in bag";
+        yield return new WaitUntil(() => NextStep);
+        scrap.inbag -= ActionOnPerformed;
+        NextStep = false;
+        
         yield return new WaitForSeconds(3f);
-        text.text = "Move Your charicter";
-
-        move.action.performed += ActionOnPerformed;
-        yield return new WaitUntil(() => NextStep);
-        move.action.performed -= ActionOnPerformed;
-        NextStep = false;
-
-
-        text.text = "Good Job, then Trun your charicter";
-        text.text = "You can Trun by right Hand Thumbstick";
-        turn.action.performed += ActionOnPerformed;
-        yield return new WaitUntil(() => NextStep);
-        turn.action.performed -= ActionOnPerformed;
-        NextStep = false;
-
+        
         text.text = "Great, Step in This room is over";
         text.text = "You can Go next room by click button";
         pokeButton.selectEntered.AddListener(_ => { NextRoomSeq.SetActive(true); });
 
         yield return new WaitForSeconds(3f);
     }
-
-
-    private void ActionOnPerformed(InputAction.CallbackContext obj)
+    
+    private void ActionOnPerformed()
     {
         Debug.Log("check the action");
         NextStep = true;

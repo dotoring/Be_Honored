@@ -221,4 +221,9 @@ public class Monster : MonoBehaviourPunCallbacks
 	}
 
 
+	public void SocererAttack(GameObject obj)
+	{
+		Instantiate(obj);
+	}
+
 }
