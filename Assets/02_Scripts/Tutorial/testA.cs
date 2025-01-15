@@ -8,7 +8,7 @@ public class buttonABC : MonoBehaviour
     private testA testabb;
     private void OnEnable()
     {
-        testabb.buttonA = this;
+       // testabb.buttonA = this;
         testabb.K = 1;
     }
 }
