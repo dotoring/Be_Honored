@@ -44,6 +44,7 @@ public class Monster : MonoBehaviourPunCallbacks
 	//[SerializeField]BlackboardVariable<GameObject> targettem = new ();
 	public int moduleId;
 
+	public Collider col;
 	public PhotonView pv;
 	public BehaviorGraphAgent behaviorAgent;
 	public NavMeshAgent navMeshAgent;
@@ -74,6 +75,7 @@ public class Monster : MonoBehaviourPunCallbacks
 		dieEvent += () => spawner.RemoveFromList(this.gameObject);
 		dieEvent += () => MainFactory.Inst.MonsterDrop(transform);
 		dieEvent += () => isDie = true;
+		dieEvent += () => col.enabled = false;
 		if(typeOfMonster!=MonsterType.BOSS)
 			dieEvent += () => pv.RPC(nameof(DieRPC), RpcTarget.All);
 		LoadData();
@@ -218,5 +220,10 @@ public class Monster : MonoBehaviourPunCallbacks
 		transform.forward = (ob.transform.position - transform.position).normalized;
 	}
 
+
+	public void SocererAttack(GameObject obj)
+	{
+		Instantiate(obj);
+	}
 
 }

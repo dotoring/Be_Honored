@@ -12192,7 +12192,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawner: {fileID: 0}
-  typeOfMonster: 2
+  typeOfMonster: 4
   monsterLevel: 0
   bossType: 1
   detectRange: 99
@@ -12202,6 +12202,7 @@ MonoBehaviour:
   curHp: 0
   isDie: 0
   moduleId: 0
+  col: {fileID: 3223420636314140525}
   pv: {fileID: 6237443138919186765}
   behaviorAgent: {fileID: 7219358413278482726}
   navMeshAgent: {fileID: 2987729308756095445}
@@ -22885,6 +22886,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4111417665134448376}
   - component: {fileID: 8605785338550467371}
+  - component: {fileID: 4910749577843291696}
   m_Layer: 11
   m_Name: Animation
   m_TagString: Untagged
@@ -22938,6 +22940,19 @@ Animation:
   m_AnimatePhysics: 0
   m_UpdateMode: 1
   m_CullingType: 0
+--- !u!114 &4910749577843291696
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8519014503478380211}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b11442d9d71ac14889420abf00ab08b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boss: {fileID: 2688970201548770074}
 --- !u!1 &8552700445946727513
 GameObject:
   m_ObjectHideFlags: 0
