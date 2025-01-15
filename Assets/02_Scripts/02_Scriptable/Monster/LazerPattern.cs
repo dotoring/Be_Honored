@@ -20,7 +20,7 @@ public class LazerPattern : BossPattern
 
 	private void OnEnable()
 	{
-		transform.localPosition = Vector3.zero;
+		transform.localPosition = Vector3.up*-0.4f;
 		returnTime = 0;
 		chargingTime = 0;
 		lazingTime = 0;
@@ -62,10 +62,13 @@ public class LazerPattern : BossPattern
 					
 					progress = returnTime / goalTime;
 
+					Vector3 temp=(bossMonster.targetPlayer.transform.position - bossMonster.transform.position).normalized;
+					temp.y = 0;
+
 						// 선형 보간(Lerp)을 통해 벡터 변경
 					transform.root.transform.forward = Vector3.Lerp(
 					vec,
-					(bossMonster.targetPlayer.transform.position-bossMonster.transform.position).normalized, progress);
+					temp, progress);
 					
 				}
 			    else

@@ -108,4 +108,12 @@ public class BossMonster : Monster
 		canUseSkill=false;
 		skillWaitTime = 0;
 	}
+
+	public void BossAttack()
+	{
+		print("보스공격");
+		
+		targetPlayer.GetComponent<HitPlayer>()?.Damaged(attackPower);
+		transform.forward = (targetPlayer.transform.position - transform.position).normalized;
+	}
 }

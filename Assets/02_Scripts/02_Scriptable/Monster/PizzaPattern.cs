@@ -18,7 +18,7 @@ public class PizzaPattern : BossPattern
 	private void OnEnable()
 	{
 		CreateSectorMesh(radius, angle, 30,6f);
-		transform.localPosition = new Vector3(0, -3f, 0);
+		transform.localPosition = new Vector3(0, -3f, 1.4f);
 		curTime = 0;
 	}
 
