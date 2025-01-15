@@ -19,8 +19,8 @@ public class PlayerTouchManager : MonoBehaviour
 	[SerializeField] AudioClip attacksound;
 	AudioSource audioSource;
 
-	Vector3 offset = new(0, 0, 1);
-	Vector3 sizeOfBox = new(1, 1, 1.5f);
+	protected Vector3 offset = new(0, 0, 1);
+	protected Vector3 sizeOfBox = new(1, 1, 1.5f);
 	public LayerMask m_LayerMask;
 	bool hited = false;
 
@@ -145,7 +145,7 @@ public class PlayerTouchManager : MonoBehaviour
 
 	}
 
-	private void Attack()
+	protected virtual void Attack()
 	{
 		if (!Player.Instance.IsArm) return;
 		//audioSource.PlayOneShot(attacksound);  // Todo Test Code for attack

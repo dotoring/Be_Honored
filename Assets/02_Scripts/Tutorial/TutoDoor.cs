@@ -27,6 +27,6 @@ public class TutoDoor : MonoBehaviour
             door.transform.localRotation = Quaternion.Slerp(door.transform.localRotation, Quaternion.Euler(0, 90, 0), 0.1f);
             yield return new WaitForSeconds(0.02f);
         }
-        OnDoorOpen.Invoke();
+        //OnDoorOpen.Invoke();
     }
 }
