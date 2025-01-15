@@ -129,11 +129,11 @@ Transform:
   m_GameObject: {fileID: 1203857405269773340}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 18.125, y: -11.3, z: 0}
+  m_LocalPosition: {x: 21.645, y: -5.6400003, z: 0}
   m_LocalScale: {x: 0.2, y: 5.5, z: 3.7}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 7545883211807709467}
+  m_Father: {fileID: 4761437490897687850}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &1535066798453452103
 MeshFilter:
@@ -238,11 +238,11 @@ Transform:
   m_GameObject: {fileID: 1759067887870470105}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 18.537003, y: -11.3, z: 0}
+  m_LocalPosition: {x: 22.057003, y: -5.6400003, z: 0}
   m_LocalScale: {x: 0.2, y: 5.5, z: 3.7}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 7545883211807709467}
+  m_Father: {fileID: 4761437490897687850}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &6317356754121427324
 MeshFilter:
@@ -482,6 +482,8 @@ Transform:
   - {fileID: 1130412264905754069}
   - {fileID: 7545883211807709467}
   - {fileID: 886922455027826112}
+  - {fileID: 7400200992003800361}
+  - {fileID: 648660464739686929}
   - {fileID: 3930236848664753029}
   - {fileID: 972191723077745929}
   m_Father: {fileID: 0}
@@ -736,8 +738,6 @@ Transform:
   - {fileID: 1313063254901985201}
   - {fileID: 2267312415448953225}
   - {fileID: 4545790354498441197}
-  - {fileID: 7400200992003800361}
-  - {fileID: 648660464739686929}
   m_Father: {fileID: 4761437490897687850}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4226257008259375050
@@ -752,7 +752,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4f399484708ffb4a86ea4d8b6736647, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moduleMgr: {fileID: 5817096466438150247}
   monSpawnPoints:
   - {fileID: 972191723077745929}
   spawnedMonsters: []

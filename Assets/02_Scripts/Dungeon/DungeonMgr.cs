@@ -37,6 +37,9 @@ public class DungeonMgr : MonoBehaviour
 
 	public void AddPlayer(GameObject go)
 	{
-		playerListInBoss.Add(go);
+		if (!playerListInBoss.Contains(go))
+		{
+			playerListInBoss.Add(go);
+		}
 	}
 }
