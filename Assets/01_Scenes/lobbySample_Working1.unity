@@ -1333,10 +1333,7 @@ MonoBehaviour:
   version: 1.0
   nickName: 
   invokeCount: 0
-  roomInBtns:
-  - {fileID: 867169263}
-  - {fileID: 867169262}
-  - {fileID: 867169261}
+  roomInBtns: []
   LoadingBar: {fileID: 393996432}
   canvas: {fileID: 1252631820}
 --- !u!4 &263334446
@@ -6105,39 +6102,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 44e70729be725e14eb09932a98c607ba, type: 3}
---- !u!114 &867169261 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5866776753435316628, guid: 44e70729be725e14eb09932a98c607ba, type: 3}
-  m_PrefabInstance: {fileID: 867169260}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &867169262 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7664363537378183306, guid: 44e70729be725e14eb09932a98c607ba, type: 3}
-  m_PrefabInstance: {fileID: 867169260}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &867169263 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7347153521257517496, guid: 44e70729be725e14eb09932a98c607ba, type: 3}
-  m_PrefabInstance: {fileID: 867169260}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &875611081
 PrefabInstance:
   m_ObjectHideFlags: 0
