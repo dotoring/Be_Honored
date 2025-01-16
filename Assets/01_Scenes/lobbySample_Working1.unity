@@ -1332,6 +1332,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 1.0
   nickName: 
+  invokeCount: 0
   roomInBtns:
   - {fileID: 867169263}
   - {fileID: 867169262}
@@ -2293,8 +2294,11 @@ MonoBehaviour:
       defence: 0
       evade: 0
   hp: 50
-  hited: {fileID: 8300000, guid: 65f51cc928adf8b4780afad5f1139f3c, type: 3}
+  hited: {fileID: 8300000, guid: 5b04e512249013a4e959482e5d67ab36, type: 3}
   hpBar: {fileID: 0}
+  bgms:
+  - {fileID: 8300000, guid: 42f2e250da2678841acc35b519121665, type: 3}
+  - {fileID: 8300000, guid: e2fde24545c54794883a59ace907d969, type: 3}
 --- !u!4 &341653046
 Transform:
   m_ObjectHideFlags: 0
@@ -4209,7 +4213,7 @@ TerrainCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_TerrainData: {fileID: 15600000, guid: 88d5c9331459e68438c09cc5c4e0a218, type: 2}
+  m_TerrainData: {fileID: 15600000, guid: cebf415ede0b5e440b30b7df97a1031b, type: 2}
   m_EnableTreeColliders: 1
 --- !u!218 &608358142
 Terrain:
@@ -4220,7 +4224,7 @@ Terrain:
   m_GameObject: {fileID: 608358140}
   m_Enabled: 1
   serializedVersion: 6
-  m_TerrainData: {fileID: 15600000, guid: 88d5c9331459e68438c09cc5c4e0a218, type: 2}
+  m_TerrainData: {fileID: 15600000, guid: cebf415ede0b5e440b30b7df97a1031b, type: 2}
   m_TreeDistance: 5000
   m_TreeBillboardDistance: 50
   m_TreeCrossFadeLength: 5

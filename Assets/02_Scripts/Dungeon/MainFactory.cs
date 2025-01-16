@@ -49,7 +49,12 @@ public class MainFactory : MonoBehaviour
 	{
 		if (PhotonNetwork.IsMasterClient)
 		{
-			sf.SpawnScrap(pos);
+			//확률 드랍
+			int rand = Random.Range(0, 10);
+			if (rand < 4)
+			{
+				sf.SpawnScrap(pos);
+			}
 		}
 	}
 }

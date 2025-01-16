@@ -8,6 +8,7 @@ public class TutoExit : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+	        Destroy(BagCtrl.Instance.gameObject);
             StartCoroutine(Exittuto());
         }
     }
