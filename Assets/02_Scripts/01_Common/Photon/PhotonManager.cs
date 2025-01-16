@@ -97,13 +97,27 @@ public class PhotonManager : MonoBehaviourPunCallbacks
 		// 	PhotonNetwork.JoinLobby();
 	}
 
+	public override void OnEnable()
+	{
+		PhotonNetwork.AddCallbackTarget(this);
+	}
+
 	public void MakeRoomBtnOnClick(RoomLevel level)
 	{
 		print("들어온 값" + (int)level);
 		if (roomInBtns[(int)level].GetComponent<RoomData>().RoomInfo == null || roomInBtns[(int)level].GetComponent<RoomData>().RoomInfo.MaxPlayers == 0)
 			MakeRoom(level);
 		else
+		{
+			print(roomInBtns[(int)level].GetComponent<RoomData>().RoomInfo.Name);
 			PhotonNetwork.JoinRoom(roomInBtns[(int)level].GetComponent<RoomData>().RoomInfo.Name);
+		}
+	}
+
+	public override void OnJoinRoomFailed(short returnCode, string message)
+	{
+		base.OnJoinRoomFailed(returnCode, message);
+		print("방입장실패");
 	}
 
 
@@ -180,10 +194,6 @@ public class PhotonManager : MonoBehaviourPunCallbacks
 
 	public override void OnJoinedRoom()
 	{
-		for (int i = 0; i < roomInBtns.Count; i++)
-		{
-			roomInBtns[i].interactable = false;
-		}
 		roomInBtns.Clear();
 		invokeCount = 0;
 		Player.Instance.SavePlayerData();
@@ -196,13 +206,15 @@ public class PhotonManager : MonoBehaviourPunCallbacks
 		canvas.SetActive(true);
 		Player.Instance.ChangeBGM(1);
 		yield return null;
-		AsyncOperation aload = SceneManager.LoadSceneAsync(PhotonNetwork.CurrentRoom.Name);
-		while (!aload.isDone)
+		if (PhotonNetwork.IsMasterClient)
 		{
-			LoadingBar.fillAmount = aload.progress;
-			yield return null;
+			AsyncOperation aload = SceneManager.LoadSceneAsync(PhotonNetwork.CurrentRoom.Name);
+			while (!aload.isDone)
+			{
+				LoadingBar.fillAmount = aload.progress;
+				yield return null;
+			}
 		}
-
 	}
 
 	public override void OnJoinRandomFailed(short returnCode, string message)

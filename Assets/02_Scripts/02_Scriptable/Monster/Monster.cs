@@ -64,9 +64,6 @@ public class Monster : MonoBehaviourPunCallbacks
 		if (!PhotonNetwork.IsMasterClient)
 		{
 			behaviorAgent.enabled = false;
-			//behaviorAgent.GetVariable("Player", out targettem);
-			//target = targettem.Value;
-			navMeshAgent.enabled = false;
 			if(hpBar!=null)
 				hpBar.gameObject.SetActive(false);
 		}
