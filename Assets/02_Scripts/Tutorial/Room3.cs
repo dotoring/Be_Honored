@@ -22,7 +22,7 @@ public class Room3 : MonoBehaviour
     {
         yield return null;
         yield return new WaitForSeconds(3);
-        text.text = "Move to Cube For Adventure";
+        text.text = "Move to Potal For Adventure";
     }
 
     private void ActionOnPerformed()
