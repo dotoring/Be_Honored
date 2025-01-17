@@ -11,6 +11,8 @@ public class PlayerTracker : MonoBehaviour
 
 	[SerializeField] PhotonView pv;
 
+	[SerializeField] float yPos;
+
 	private void Start()
 	{
 		if (pv.IsMine)
@@ -24,6 +26,7 @@ public class PlayerTracker : MonoBehaviour
 		if (pp != null)
 		{
 			head.position = pp.mc.position;
+			head.position = new Vector3(head.position.x, yPos, head.position.z);
 			Quaternion rotation = pp.mc.rotation;
 			rotation.x = 0;
 			rotation.z = 0;
