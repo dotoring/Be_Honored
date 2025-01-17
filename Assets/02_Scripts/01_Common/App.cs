@@ -13,7 +13,7 @@ public class App : Singleton<App>
 	public Observable<XRInteractionManager> interactorManager;
 
 	public Action ChangeEquip;
-
+	public float xrHeightValue;
 
 	internal int gold;
 

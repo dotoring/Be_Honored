@@ -33,7 +33,7 @@ public class RoomData : MonoBehaviour
 		{
 			roomInfo = value;
 			if(roomInfo != null)
-				roomName.text = roomInfo.Name + "\n" + roomInfo.PlayerCount + " / " + roomInfo.MaxPlayers;
+				roomName.text = "Lv."+(int)roomLevel + "\n" + roomInfo.PlayerCount + " / " + roomInfo.MaxPlayers;
 			else
 				roomName.text = roomNameBase + "\n0 / 0";
 		}
