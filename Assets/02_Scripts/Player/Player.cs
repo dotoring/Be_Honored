@@ -75,7 +75,7 @@ public partial class Player : Singleton<Player>
 		if (hp <= 0)
 		{
 			App.Instance.Resetposition.Invoke();  // TODO : DEAD Action;
-			hp = _stat.hpmax * 10 + bodyStat.hpmax;
+			hp = _stat.hpmax;
 		}
 
 		hpBar.fillAmount = hp / 50;
