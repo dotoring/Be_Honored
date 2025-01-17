@@ -10,16 +10,18 @@ public class Room2 : MonoBehaviour
     bool NextStep;
     [SerializeField] GameObject NextRoomSeq;
     [SerializeField] TutoSandBag sandBag;
-
+    [SerializeField] private GameObject nextRoomBtnText;
     private void Start()
     {
         text.text = "This room is for Arm";
 
+    nextRoomBtnText.SetActive(false);
         StartCoroutine(seq());
     }
 
     IEnumerator seq()
     {
+        pokeButton.enabled = false;
         yield return new WaitForSeconds(3f);
         text.text = "This room is for Arm";
         yield return new WaitForSeconds(3f);
@@ -37,7 +39,8 @@ public class Room2 : MonoBehaviour
         yield return new WaitWhile(() => sandBag.hp > 0.3 );
         // NextStep = false;
         // sandBag.die -= ActionOnPerformed;
-        
+        pokeButton.enabled = true;
+    nextRoomBtnText.SetActive(true);
         text.text = "Great, Step in This room is over";
         text.text = "You can Go next room by click button";
         pokeButton.selectEntered.AddListener(_ => { NextRoomSeq.SetActive(true); });

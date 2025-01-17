@@ -13,16 +13,19 @@ public class Room0 : MonoBehaviour
     [SerializeField] private TMP_Text text;
     bool NextStep;
     [SerializeField] GameObject NextRoomSeq;
+    [SerializeField] private GameObject nextRoomBtnText;
 
     private void Start()
     {
         text.text = "Welcome to the New World";
 
+    nextRoomBtnText.SetActive(false);
         StartCoroutine(seq());
     }
 
     IEnumerator seq()
     {
+        pokeButton.enabled = false;
         yield return new WaitForSeconds(3f);
         text.text = "This is Tutorial for BeHorned";
         yield return new WaitForSeconds(3f);
@@ -42,7 +45,8 @@ public class Room0 : MonoBehaviour
         yield return new WaitUntil(() => NextStep);
         turn.action.performed -= ActionOnPerformed;
         NextStep = false;
-
+        pokeButton.enabled = true;
+    nextRoomBtnText.SetActive(true);
         text.text = "Great, Step in This room is over";
         text.text = "You can Go next room by click button";
         pokeButton.selectEntered.AddListener(_ => { NextRoomSeq.SetActive(true); });
