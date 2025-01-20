@@ -879,7 +879,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0.027116776, b: 1, a: 1}
+  m_Color: {r: 1, g: 0.17090283, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1176,7 +1176,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1.5, y: 0.5}
+  m_AnchoredPosition: {x: -1.7, y: 0.5}
   m_SizeDelta: {x: 160, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &4216859523560619471
@@ -1886,7 +1886,58 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   xrOrigin: {fileID: 7364209737921860576}
-  slider: {fileID: 0}
+  sliderHeight: {fileID: 2893445571867171586}
+  sliderVolume: {fileID: 4216859523560619471}
+  au: {fileID: 7641722443051736094}
+  inputActions: {fileID: -944628639613478452, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  xButtonAction:
+    m_UseReference: 1
+    m_Action:
+      m_Name: X Button
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: a0d257fe-e356-4313-b1ce-8d827c19a1e8
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: 1890760753578375752, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  yButtonAction:
+    m_UseReference: 1
+    m_Action:
+      m_Name: Y Button
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 22a18e42-16be-4d3d-b984-efc2efc308f8
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: 3114250834740346383, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  aButtonAction:
+    m_UseReference: 1
+    m_Action:
+      m_Name: A Button
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 33d30128-de49-4a35-a91a-60ee58b79334
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: 5879906344891116806, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  bButtonAction:
+    m_UseReference: 1
+    m_Action:
+      m_Name: B Button
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: b95946a6-2392-49d7-b1d2-a2121969c878
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: 7107830483620736064, guid: c348712bda248c246b8c49b3db54643f, type: 3}
 --- !u!1 &5513802406487962530
 GameObject:
   m_ObjectHideFlags: 0
