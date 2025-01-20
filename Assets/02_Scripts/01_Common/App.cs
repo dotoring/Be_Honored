@@ -14,6 +14,7 @@ public class App : Singleton<App>
 
 	public Action ChangeEquip;
 	public float xrHeightValue;
+	public float audioValue;
 
 	internal int gold;
 
