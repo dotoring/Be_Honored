@@ -13,14 +13,37 @@ public class XRHeight : MonoBehaviour
 	[SerializeField] private AudioSource au;
 	private float heightCaption=0.1f;
 	private float volumeCaption=0.1f;
+	private float offTime=3.0f;
 
+	[SerializeField] private float curTimeHeight;
+	[SerializeField] private float curTimeVolume;
 
-
-	public InputActionAsset inputActions; // XRI Default Input Actions 파일
 	[SerializeField]private InputActionProperty xButtonAction;
 	[SerializeField]private InputActionProperty yButtonAction;
 	[SerializeField]private InputActionProperty aButtonAction;
 	[SerializeField]private InputActionProperty bButtonAction;
+
+	private void Update()
+	{
+		if (sliderHeight.gameObject.activeSelf)
+		{
+			curTimeHeight += Time.deltaTime;
+			if (curTimeHeight >= offTime)
+			{
+				sliderHeight.gameObject.SetActive(false);
+				curTimeHeight = 0;
+			}
+		}
+		if (sliderVolume.gameObject.activeSelf)
+		{
+			curTimeVolume += Time.deltaTime;
+			if (curTimeVolume >= offTime)
+			{
+				sliderVolume.gameObject.SetActive(false);
+				curTimeVolume = 0;
+			}
+		}
+	}
 
 	private void Awake()
 	{
@@ -68,21 +91,48 @@ public class XRHeight : MonoBehaviour
 	public void XTest(InputAction.CallbackContext context)
 	{
 		print("X버튼눌림");
-		sliderVolume.value -= volumeCaption;
+		if (!sliderVolume.gameObject.activeSelf)
+			sliderVolume.gameObject.SetActive(true);
+		else
+		{
+			curTimeVolume = 0;
+			sliderVolume.value -= volumeCaption;
+		}
 	}
 	public void YTest(InputAction.CallbackContext context)
 	{
 		print("Y버튼눌림");
-		sliderVolume.value += volumeCaption;
+		if (!sliderVolume.gameObject.activeSelf)
+			sliderVolume.gameObject.SetActive(true);
+		else
+
+		{
+			curTimeVolume = 0;
+			sliderVolume.value += volumeCaption;
+		}
 	}
 	public void ATest(InputAction.CallbackContext context)
 	{
 		print("A버튼눌림");
-		sliderHeight.value -= heightCaption;
+		if (!sliderHeight.gameObject.activeSelf)
+			sliderHeight.gameObject.SetActive(true);
+		else
+
+		{
+			curTimeHeight = 0;
+			sliderHeight.value -= heightCaption;
+		}
 	}
 	public void BTest(InputAction.CallbackContext context)
 	{
 		print("B버튼눌림");
-		sliderHeight.value += heightCaption;
+		if (!sliderHeight.gameObject.activeSelf)
+			sliderHeight.gameObject.SetActive(true);
+		else
+
+		{
+			curTimeHeight = 0;
+			sliderHeight.value += heightCaption;
+		}
 	}
 }
