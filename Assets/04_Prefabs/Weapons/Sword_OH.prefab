@@ -338,11 +338,12 @@ GameObject:
   - component: {fileID: 4587531162522210490}
   - component: {fileID: 6461167588221226198}
   - component: {fileID: 4327732462137739397}
+  - component: {fileID: 2127723908590659758}
   - component: {fileID: 7395102042832452170}
   - component: {fileID: 5422083992366571494}
   - component: {fileID: 7808080293339673076}
   - component: {fileID: 6184765885834952445}
-  m_Layer: 0
+  m_Layer: 29
   m_Name: Sword_OH
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -597,6 +598,18 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.167945, y: 0.048887283, z: 1.2150667}
   m_Center: {x: -0.0000001899898, y: -0.00011270773, z: 0.47850552}
+--- !u!114 &2127723908590659758
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2732525947263008982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55ccace4e3a469540807d1ad1e56eebc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &7395102042832452170
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -2065,8 +2065,8 @@ MonoBehaviour:
   Archer1: {fileID: 11400000, guid: 87fd36ff340b95146a04a5982df4eba1, type: 2}
   Cerbe1: {fileID: 11400000, guid: 1c7d2f78e3f28124aa622b938faa3efe, type: 2}
   Mino1: {fileID: 11400000, guid: 665797a3621bf9a4b87ab338d847c509, type: 2}
-  xrHeightValue: 0
-  audioValue: 0
+  xrHeightValue: 0.5
+  audioValue: 1
 --- !u!4 &315347601
 Transform:
   m_ObjectHideFlags: 0
@@ -4221,7 +4221,7 @@ TerrainCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_TerrainData: {fileID: 15600000, guid: 88d5c9331459e68438c09cc5c4e0a218, type: 2}
+  m_TerrainData: {fileID: 15600000, guid: cebf415ede0b5e440b30b7df97a1031b, type: 2}
   m_EnableTreeColliders: 1
 --- !u!218 &608358142
 Terrain:
@@ -4232,7 +4232,7 @@ Terrain:
   m_GameObject: {fileID: 608358140}
   m_Enabled: 1
   serializedVersion: 6
-  m_TerrainData: {fileID: 15600000, guid: 88d5c9331459e68438c09cc5c4e0a218, type: 2}
+  m_TerrainData: {fileID: 15600000, guid: cebf415ede0b5e440b30b7df97a1031b, type: 2}
   m_TreeDistance: 5000
   m_TreeBillboardDistance: 50
   m_TreeCrossFadeLength: 5
@@ -15836,7 +15836,7 @@ PrefabInstance:
       objectReference: {fileID: 1568535929}
     - target: {fileID: 1930073048132135721, guid: 5de334ca3666ad646a57035190ce7070, type: 3}
       propertyPath: m_VersionIndex
-      value: 17
+      value: 29
       objectReference: {fileID: 0}
     - target: {fileID: 3578472210362472727, guid: 5de334ca3666ad646a57035190ce7070, type: 3}
       propertyPath: m_AnchorMax.y
@@ -15852,7 +15852,7 @@ PrefabInstance:
       objectReference: {fileID: 229703833}
     - target: {fileID: 3898951257660768571, guid: 5de334ca3666ad646a57035190ce7070, type: 3}
       propertyPath: m_VersionIndex
-      value: 2551
+      value: 2563
       objectReference: {fileID: 0}
     - target: {fileID: 4072276039490444593, guid: 5de334ca3666ad646a57035190ce7070, type: 3}
       propertyPath: m_ClearFlags
@@ -15892,7 +15892,7 @@ PrefabInstance:
       objectReference: {fileID: 1903688031}
     - target: {fileID: 5539752488512865012, guid: 5de334ca3666ad646a57035190ce7070, type: 3}
       propertyPath: m_VersionIndex
-      value: 2551
+      value: 2563
       objectReference: {fileID: 0}
     - target: {fileID: 6618905136207294244, guid: 5de334ca3666ad646a57035190ce7070, type: 3}
       propertyPath: m_LocalScale.x
@@ -15916,7 +15916,7 @@ PrefabInstance:
       objectReference: {fileID: 832288920}
     - target: {fileID: 6931606338756880614, guid: 5de334ca3666ad646a57035190ce7070, type: 3}
       propertyPath: m_VersionIndex
-      value: 17
+      value: 29
       objectReference: {fileID: 0}
     - target: {fileID: 7592220365956178664, guid: 5de334ca3666ad646a57035190ce7070, type: 3}
       propertyPath: m_LocalScale.x

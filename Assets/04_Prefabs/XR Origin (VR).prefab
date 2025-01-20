@@ -684,7 +684,6 @@ MonoBehaviour:
   - {fileID: 4145409354355658640}
   - {fileID: 4863201310624238687}
   - {fileID: 6387554762393422450}
-  AttackOnB: []
   position1:
   - {x: 0.2993523, y: -0.05500028, z: 1.066715}
   - {x: -0.09154671, y: -0.2113911, z: 1.055529}
@@ -693,8 +692,6 @@ MonoBehaviour:
   - {x: 0.1545491, y: 0.09891337, z: 1.046399}
   - {x: 0.05670893, y: -0.387953, z: 1.06469}
   - {x: -0.1023287, y: -0.7330824, z: 0.9261309}
-  rotation1: []
-  rotation2: []
 --- !u!1 &1035361559939594004
 GameObject:
   m_ObjectHideFlags: 0
@@ -2434,7 +2431,7 @@ GameObject:
   - component: {fileID: 8115517801371044621}
   - component: {fileID: 2318933409343580293}
   - component: {fileID: 4145130622440562312}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: Sphere (2)
   m_TagString: Ball
   m_Icon: {fileID: 0}
@@ -3850,7 +3847,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1255647619390271626, guid: 3df3e1220f2164f448701a6de8084f92, type: 3}
       propertyPath: m_RaycastMask.m_Bits
-      value: 2147491873
+      value: 2952798241
       objectReference: {fileID: 0}
     - target: {fileID: 1323442585405899171, guid: 3df3e1220f2164f448701a6de8084f92, type: 3}
       propertyPath: m_Layer
@@ -3988,6 +3985,10 @@ PrefabInstance:
     - target: {fileID: 8229381180640938747, guid: b200f6587d118224eba8467281481800, type: 3}
       propertyPath: m_CastDistance
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8229381180640938747, guid: b200f6587d118224eba8467281481800, type: 3}
+      propertyPath: m_RaycastMask.m_Bits
+      value: 2952790049
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
