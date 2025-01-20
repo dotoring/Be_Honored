@@ -582,9 +582,8 @@ GameObject:
   - component: {fileID: 5967131050869992413}
   - component: {fileID: 9056188602167241504}
   - component: {fileID: 7309174291181906425}
-  - component: {fileID: 5093326526352905507}
-  m_Layer: 10
-  m_Name: Sphere
+  m_Layer: 0
+  m_Name: SwordHolder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -659,27 +658,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &5093326526352905507
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2576377124941177137}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2631548992936833454
 GameObject:
   m_ObjectHideFlags: 0
@@ -3300,15 +3278,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3453920150164078393, guid: 122008471cc04ea4fbcaa482909a56a6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.203
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3453920150164078393, guid: 122008471cc04ea4fbcaa482909a56a6, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.054
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3453920150164078393, guid: 122008471cc04ea4fbcaa482909a56a6, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.209
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3453920150164078393, guid: 122008471cc04ea4fbcaa482909a56a6, type: 3}
       propertyPath: m_LocalRotation.w
