@@ -18,6 +18,7 @@ public class BossMonster : Monster
 	public override void OnEnable()
 	{
 		base.OnEnable();
+		//디버그할때 주석
 		playerList = DungeonMgr.instance.playerListInBoss;
 	}
 
