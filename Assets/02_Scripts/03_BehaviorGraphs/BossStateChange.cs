@@ -28,7 +28,7 @@ public partial class StateChangeAction : Action
 	{
 		if (BossMonster.Value.playerList.Count == 0)
 		{
-			Resetpos.Value = BossMonster.Value.resetPos;
+			Resetpos.Value = BossMonster.Value.resetPos;	
 			State.Value = BossState.Idle;
 			return Status.Success;
 		}

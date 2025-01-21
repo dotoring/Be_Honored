@@ -11,6 +11,8 @@ public class BossMonster : Monster
 	public List<GameObject> playerList;
 	public GameObject targetPlayer;
 
+
+	BossState bossstate;
 	[SerializeField] private Animation anim;
 	public Transform resetPos;
 	[SerializeField] private List<GameObject> monsterPatternObj;
@@ -20,6 +22,7 @@ public class BossMonster : Monster
 		base.OnEnable();
 		//디버그할때 주석
 		playerList = DungeonMgr.instance.playerListInBoss;
+		behaviorAgent.BlackboardReference.GetVariableValue("BossState", out bossstate);
 	}
 
 	public void StartAnimationRPC(string animName)
@@ -94,7 +97,7 @@ public class BossMonster : Monster
 	}
 	private void Update()
 	{
-		if (behaviorAgent.enabled == true)
+		if (behaviorAgent.enabled == true&&bossstate!=BossState.Idle)
 		{
 			skillWaitTime += Time.deltaTime;
 			if (skillCoolTime <= skillWaitTime)
