@@ -1,3 +1,4 @@
+using Photon.Pun;
 using UnityEngine;
 
 public class Magma : MonoBehaviour
@@ -18,7 +19,10 @@ public class Magma : MonoBehaviour
 
 			if (damageTimer >= 1f)
 			{
-				other.GetComponent<HitPlayer>()?.Damaged(1);
+				if (PhotonNetwork.IsMasterClient)
+				{
+					other.GetComponent<HitPlayer>()?.Damaged(1);
+				}
 				damageTimer = 0f;
 			}
 		}

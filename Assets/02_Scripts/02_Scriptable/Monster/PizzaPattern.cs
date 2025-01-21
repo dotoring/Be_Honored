@@ -1,3 +1,4 @@
+using Photon.Pun;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -30,11 +31,13 @@ public class PizzaPattern : BossPattern
 		DetectTargetsInCone();
 		if(curTime>=3.0f)
 		{
-			foreach (GameObject obj in playerInConelist)
+			if (PhotonNetwork.IsMasterClient)
 			{
-				obj.GetComponentInChildren<HitPlayer>()?.Damaged(10);
+				foreach (GameObject obj in playerInConelist)
+				{
+					obj.GetComponentInChildren<HitPlayer>()?.Damaged(bossMonster.attackPower * 2);
+				}
 			}
-			//플레이어 리스트에 남은 플레이어들의 hp를 깎는 로직
 			gameObject.SetActive(false);
 		}
 	}

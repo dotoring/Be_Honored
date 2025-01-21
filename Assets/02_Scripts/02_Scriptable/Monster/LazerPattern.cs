@@ -1,3 +1,4 @@
+using Photon.Pun;
 using System;
 using UnityEngine;
 using UnityEngine.Rendering;
@@ -79,7 +80,7 @@ public class LazerPattern : BossPattern
 
 	private void OnTriggerEnter(Collider other)
 	{
-		if (other.CompareTag("Player"))
+		if (other.CompareTag("Player")&&PhotonNetwork.IsMasterClient)
 		{
 			other.GetComponent<HitPlayer>()?.Damaged(bossMonster.attackPower);
 		}

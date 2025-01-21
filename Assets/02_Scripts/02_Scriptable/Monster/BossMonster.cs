@@ -12,7 +12,7 @@ public class BossMonster : Monster
 	public GameObject targetPlayer;
 
 	[SerializeField] private Animation anim;
-
+	public Transform resetPos;
 	[SerializeField] private List<GameObject> monsterPatternObj;
 
 	public override void OnEnable()
@@ -87,7 +87,6 @@ public class BossMonster : Monster
 	protected override void Start()
 	{
 		base.Start();
-		GameObject[] temp = GameObject.FindGameObjectsWithTag("Player");
 		dieEvent += () =>
 		{
 			StartAnimationRPC("death");
@@ -112,7 +111,6 @@ public class BossMonster : Monster
 	public void BossAttack()
 	{
 		print("보스공격");
-		
 		targetPlayer.GetComponent<HitPlayer>()?.Damaged(attackPower);
 		transform.forward = (targetPlayer.transform.position - transform.position).normalized;
 	}
