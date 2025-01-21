@@ -24,8 +24,6 @@ public class ScrapItem : MonoBehaviour
 	protected private int price = 1;
 	public int weight = 5;
 
-	protected Action<XRInteractionManager> action;
-
 	public int Price { get => price; set => price = value; }
 
 	protected void Awake()
@@ -38,14 +36,14 @@ public class ScrapItem : MonoBehaviour
 
 	protected virtual void Start()
 	{
+		Debug.Log("Start");
 		ExitMgr.OnExitDungeon += DestroyPhotonView;
-		action += SetInteractionMgr;
 
 		xRGrabInteractable.selectEntered.AddListener((args) =>
 		{
 			//오브젝트의 PhotonView에서 Ownership Transfer를 Takeover로 설정하면 소유권(컨트롤러 포함)을 강제로 가져올 수 있도록 한다
 			//TransferOwnership(Player) -> 현재 PhotonView의 소유권을 Player로 바꾸는 함수
-			if (pv != null || !SceneManager.GetActiveScene().name.Equals("lobbySample_Working1"))
+			if (pv != null && !SceneManager.GetActiveScene().name.Equals("lobbySample_Working1"))
 			{
 				pv.TransferOwnership(PhotonNetwork.LocalPlayer);
 				pv.RPC(nameof(SetPhysicsInGrab), RpcTarget.OthersBuffered, false);
@@ -64,7 +62,7 @@ public class ScrapItem : MonoBehaviour
 			CheckInBag();
 		});
 
-		App.Instance.interactorManager.AddListener(action);
+		App.Instance.interactorManager.AddListener(SetInteractionMgr);
 
 		//ItemSetter();
 	}
@@ -86,7 +84,7 @@ public class ScrapItem : MonoBehaviour
 	{
 		if (App.Instance != null)
 		{
-			App.Instance.interactorManager.RemoveListener(action);
+			App.Instance.interactorManager.RemoveListener(SetInteractionMgr);
 		}
 		ExitMgr.OnExitDungeon -= DestroyPhotonView;
 	}
@@ -120,7 +118,7 @@ public class ScrapItem : MonoBehaviour
 
 	protected void SetInBag()
 	{
-		if (pv != null || !SceneManager.GetActiveScene().name.Equals("lobbySample_Working1"))
+		if (pv != null && !SceneManager.GetActiveScene().name.Equals("lobbySample_Working1"))
 		{
 			pv.RPC(nameof(SetItemActive), RpcTarget.OthersBuffered, false);
 		}
@@ -134,7 +132,7 @@ public class ScrapItem : MonoBehaviour
 
 	protected void PullOut()
 	{
-		if (pv != null || !SceneManager.GetActiveScene().name.Equals("lobbySample_Working1"))
+		if (pv != null && !SceneManager.GetActiveScene().name.Equals("lobbySample_Working1"))
 		{
 			pv.RPC(nameof(SetItemActive), RpcTarget.OthersBuffered, true);
 		}
@@ -163,7 +161,7 @@ public class ScrapItem : MonoBehaviour
 		xRGrabInteractable.interactionManager = mgr;
 	}
 
-	protected void OnTriggerEnter(Collider other)
+	protected virtual void OnTriggerEnter(Collider other)
 	{
 		if (other.gameObject.CompareTag("Bag"))
 		{

@@ -5,7 +5,7 @@ using UnityEngine.XR.Interaction.Toolkit.Interactables;
 
 public class TutoScrapItem : ScrapItem
 {
-    public Action inbag; 
+    public Action inbag;
 
     private void Awake()
     {
@@ -16,19 +16,12 @@ public class TutoScrapItem : ScrapItem
 
     private void Start()
     {
-        action += SetInteractionMgr;
         xRGrabInteractable.selectEntered.AddListener((args) => { SetPhysicsInGrab(false); });
         xRGrabInteractable.selectExited.AddListener((args) =>
         {
             SetPhysicsInGrab(true);
-            CheckInBag(); 
+            CheckInBag();
         });
-    }
-
-
-    public void SetInteractionMgr(XRInteractionManager mgr)
-    {
-        xRGrabInteractable.interactionManager = mgr;
     }
 
     protected void SetPhysicsInGrab(bool b)
@@ -37,7 +30,7 @@ public class TutoScrapItem : ScrapItem
         rb.isKinematic = !b;
         rb.useGravity = b;
     }
-    
+
     protected virtual void CheckInBag()
     {
         if (isInBag)
@@ -64,10 +57,10 @@ public class TutoScrapItem : ScrapItem
             }
         }
     }
-    
+
     protected void SetInBag()
     {
-        
+
 
         xRGrabInteractable.throwOnDetach = false;
         rb.isKinematic = true;
@@ -75,12 +68,12 @@ public class TutoScrapItem : ScrapItem
 
         transform.SetParent(bag.transform, true);
         inbag.Invoke();
-        
+
     }
-    
+
     protected void PullOut()
     {
-        
+
 
         xRGrabInteractable.throwOnDetach = true;
         rb.isKinematic = false;
@@ -88,5 +81,5 @@ public class TutoScrapItem : ScrapItem
 
         transform.SetParent(null, true);
     }
-    
+
 }
