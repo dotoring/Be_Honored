@@ -38,7 +38,7 @@ public partial class Player : Singleton<Player>
 	[SerializeField] float hp = 50;
 	[SerializeField] AudioClip hited;
 	public Image hpBar;
-	AudioSource audioSource;
+	public AudioSource audioSource;
 	EQUIPSTAT playerstat;
 
 	internal bool IsArm;
@@ -119,6 +119,12 @@ public partial class Player : Singleton<Player>
 		{
 			audioSource.Stop();
 			audioSource.clip = bgms[1];
+			audioSource.Play();
+		}
+		else if(sceneNumber==2)
+		{
+			audioSource.Stop();
+			audioSource.clip = bgms[2];
 			audioSource.Play();
 		}
 	}

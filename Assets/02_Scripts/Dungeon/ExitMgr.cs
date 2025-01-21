@@ -13,6 +13,8 @@ public class ExitMgr : MonoBehaviourPunCallbacks
 	[SerializeField] Transform underStage;
 	[SerializeField] GameObject player;
 
+	[SerializeField] AudioClip bossScreem;
+
 	public void ExitDungeon()
 	{
 		OnExitDungeon?.Invoke();
@@ -24,6 +26,8 @@ public class ExitMgr : MonoBehaviourPunCallbacks
 	public void TeleportToUnderStage()
 	{
 		player.transform.position = underStage.position;
+		Player.Instance.ChangeBGM(2);
+		Player.Instance.audioSource.PlayOneShot(bossScreem);
 	}
 
 	private void OnDestroy()
