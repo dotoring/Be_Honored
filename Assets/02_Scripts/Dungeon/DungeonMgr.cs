@@ -1,3 +1,4 @@
+using System;
 using Photon.Pun;
 using System.Collections.Generic;
 using UnityEngine;
@@ -40,6 +41,14 @@ public class DungeonMgr : MonoBehaviour
 		if (!playerListInBoss.Contains(go))
 		{
 			playerListInBoss.Add(go);
+		}
+	}
+
+	public void RemovePlayer(GameObject go)
+	{
+		if (playerListInBoss.Contains(go))
+		{
+			playerListInBoss.Remove(go);
 		}
 	}
 }

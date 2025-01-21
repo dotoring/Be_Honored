@@ -46,6 +46,7 @@ public partial class Player : Singleton<Player>
 	public Action UnArmed;
 	[SerializeField] private AudioClip[] bgms;
 
+	public Action OnPlayerDie;
 
 	protected override void Awake()
 	{
@@ -75,6 +76,7 @@ public partial class Player : Singleton<Player>
 		if (hp <= 0)
 		{
 			App.Instance.Resetposition.Invoke();  // TODO : DEAD Action;
+			OnPlayerDie.Invoke();
 			hp = _stat.hpmax;
 		}
 

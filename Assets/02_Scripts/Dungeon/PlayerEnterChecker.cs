@@ -11,7 +11,15 @@ public class PlayerEnterChecker : MonoBehaviour
 
 	public Action OnPlayerEnter = () => { };
 
-	public List<GameObject> playerList;
+	private void Start()
+	{
+		Player.Instance.OnPlayerDie += OpenShroud;
+	}
+
+	private void OnDestroy()
+	{
+		Player.Instance.OnPlayerDie -= OpenShroud;
+	}
 
 	void PlayerEnter()
 	{
@@ -35,5 +43,10 @@ public class PlayerEnterChecker : MonoBehaviour
 
 			DungeonMgr.instance.AddPlayer(other.gameObject);
 		}
+	}
+
+	void OpenShroud()
+	{
+		shroud.layer = LayerMask.NameToLayer("None");
 	}
 }
