@@ -1,7 +1,5 @@
 using System.Collections.Generic;
-using Unity.Mathematics;
 using UnityEngine;
-using static UnityEngine.Rendering.HableCurve;
 
 public class PizzaPattern : BossPattern
 {
@@ -24,13 +22,13 @@ public class PizzaPattern : BossPattern
 
 	private void Update()
 	{
+		curTime += Time.deltaTime;
 		if (curTime < 2.0f)
 		{
-			curTime += Time.deltaTime;
 			transform.localPosition += 2 * Time.deltaTime * Vector3.up;
 		}
 		DetectTargetsInCone();
-		if (bossMonster.canUseSkill == false)
+		if(curTime>=3.0f)
 		{
 			foreach (GameObject obj in playerInConelist)
 			{

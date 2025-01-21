@@ -11212,6 +11212,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5526093325232168845}
   - component: {fileID: 3825993859861349423}
+  - component: {fileID: 8897004250634126264}
   m_Layer: 11
   m_Name: FireBallObj
   m_TagString: Untagged
@@ -11254,6 +11255,22 @@ MonoBehaviour:
   FirePointList: []
   FireBallObj: {fileID: 3280925522133896336, guid: e8c21b0c757de014694b895c697194ac, type: 3}
   targetList: []
+--- !u!114 &8897004250634126264
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4224290971608091080}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 0
+  m_UseLocal: 1
 --- !u!1 &4492617420939198186
 GameObject:
   m_ObjectHideFlags: 0
@@ -11381,6 +11398,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8281681634645526637}
   - component: {fileID: 8338067324902088230}
+  - component: {fileID: 6618184410603104374}
   m_Layer: 0
   m_Name: HowliingObj
   m_TagString: Untagged
@@ -11417,6 +11435,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   curTime: 0
   attackRange: 7
+--- !u!114 &6618184410603104374
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4590368618890890115}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 0
+  m_UseLocal: 1
 --- !u!1 &4608501915456874855
 GameObject:
   m_ObjectHideFlags: 0
@@ -12172,6 +12206,10 @@ MonoBehaviour:
   observableSearch: 2
   ObservedComponents:
   - {fileID: 5629175970984183366}
+  - {fileID: 564225554358248135}
+  - {fileID: 7770932581904663079}
+  - {fileID: 8897004250634126264}
+  - {fileID: 6618184410603104374}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -12268,6 +12306,7 @@ GameObject:
   - component: {fileID: 7021791494222695844}
   - component: {fileID: 5207134256066198850}
   - component: {fileID: 8813921561808841698}
+  - component: {fileID: 564225554358248135}
   m_Layer: 11
   m_Name: PizzaObj
   m_TagString: Untagged
@@ -12362,6 +12401,22 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6200567467033271950}
   m_Mesh: {fileID: 0}
+--- !u!114 &564225554358248135
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6200567467033271950}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 0
+  m_UseLocal: 1
 --- !u!1 &6217785165084793182
 GameObject:
   m_ObjectHideFlags: 0
@@ -27758,6 +27813,7 @@ GameObject:
   - component: {fileID: 2742204767465145007}
   - component: {fileID: 4215199836119996481}
   - component: {fileID: 5500989928358671157}
+  - component: {fileID: 7770932581904663079}
   m_Layer: 11
   m_Name: LazerObj
   m_TagString: Untagged
@@ -27852,6 +27908,22 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &7770932581904663079
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8552700445946727513}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 0
+  m_UseLocal: 1
 --- !u!1 &8618670931248475401
 GameObject:
   m_ObjectHideFlags: 0

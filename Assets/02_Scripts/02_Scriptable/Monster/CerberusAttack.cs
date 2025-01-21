@@ -8,4 +8,9 @@ public class CerberusAttack : MonoBehaviour
 	{
 		boss.BossAttack();
 	}
+
+	public void ActivePattern(int skillId)
+	{
+		boss.StartPattern(skillId);
+	}
 }

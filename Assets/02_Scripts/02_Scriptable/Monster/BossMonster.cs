@@ -38,17 +38,17 @@ public class BossMonster : Monster
 
 	public void StartPatternRPC(int skillId)
 	{
-		if (!PhotonNetwork.IsConnected)
-			StartPattern(skillId);
-		else
-			pv.RPC(nameof(StartPattern), RpcTarget.All,skillId);
+		pv.RPC(nameof(StartPattern), RpcTarget.All,skillId);
 	}
 
 	[PunRPC]
 	public void StartPattern(int skillId)
 	{
-		monsterPatternObj[skillId].GetComponent<BossPattern>().InitPattern(this);
-		monsterPatternObj[skillId].SetActive(true);
+		if (monsterPatternObj[skillId].activeSelf == false)
+		{
+			monsterPatternObj[skillId].SetActive(true);
+			monsterPatternObj[skillId].GetComponent<BossPattern>().InitPattern(this);
+		}
 	}
 
 	//보스 방에 들어온 사람들을 playerlist에 추가
@@ -90,7 +90,6 @@ public class BossMonster : Monster
 		GameObject[] temp = GameObject.FindGameObjectsWithTag("Player");
 		dieEvent += () =>
 		{
-			print("보스죽음");
 			StartAnimationRPC("death");
 		};
 	}
