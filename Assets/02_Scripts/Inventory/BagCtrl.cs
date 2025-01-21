@@ -33,10 +33,7 @@ public class BagCtrl : MonoBehaviour
 
 	private void Start()
 	{
-		App.Instance.interactorManager.AddListener((mgr) =>
-		{
-			SetInteractionMgr(mgr);
-		});
+		App.Instance.interactorManager.AddListener(SetInteractionMgr);
 
 		RefreshText();
 	}

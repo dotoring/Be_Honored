@@ -83,6 +83,17 @@ public partial class Player : Singleton<Player>
 		hpBar.fillAmount = hp / 50;
 	}
 
+	public void Heal(float heal)
+	{
+		hp += heal;
+		if (hp > _stat.hpmax)
+		{
+			hp = _stat.hpmax;
+		}
+
+		hpBar.fillAmount = hp / 50;
+	}
+
 	private bool CheckEvade()
 	{
 		int roll = UnityEngine.Random.Range(0, 100);
