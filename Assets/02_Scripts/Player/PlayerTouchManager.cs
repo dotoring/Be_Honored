@@ -11,7 +11,7 @@ public class PlayerTouchManager : MonoBehaviour
 	[SerializeField] List<Vector3> positionB;
 	[SerializeField] List<Vector3> rotationA;
 	[SerializeField] List<Vector3> rotationB;
-	
+
 	bool IsposiA;
 	public Material matgray;  // 회색
 	public Material matred;   // 빨강
@@ -107,8 +107,8 @@ public class PlayerTouchManager : MonoBehaviour
 			for (int i = 0; i < triggerAreas.Count; i++)
 			{
 				triggerAreas[i].transform.localPosition = positionB[i];
-				triggerAreas[i].transform.rotation = Quaternion.Euler(rotationB[i]);
-					
+				triggerAreas[i].transform.localRotation = Quaternion.Euler(rotationB[i]);
+
 			}
 			IsposiA = !IsposiA;
 		}
@@ -117,7 +117,7 @@ public class PlayerTouchManager : MonoBehaviour
 			for (int i = 0; i < triggerAreas.Count; i++)
 			{
 				triggerAreas[i].transform.localPosition = positionA[i];
-				triggerAreas[i].transform.rotation = Quaternion.Euler(rotationA[i]);
+				triggerAreas[i].transform.localRotation = Quaternion.Euler(rotationA[i]);
 			}
 			IsposiA = !IsposiA;
 		}
@@ -141,8 +141,8 @@ public class PlayerTouchManager : MonoBehaviour
 			{
 				VARIABLE.material = matgray;
 			}
-			
-			
+
+
 			 //area.GetComponentsInChildren<Renderer>().material = matgray;
 		}
 

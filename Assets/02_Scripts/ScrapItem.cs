@@ -171,7 +171,7 @@ public class ScrapItem : MonoBehaviour
 			if (bag == null)
 			{
 				bag = other.gameObject;
-				bagCtrl = bag.GetComponent<BagCtrl>();
+				bagCtrl = bag.GetComponentInParent<BagCtrl>();
 			}
 
 			bagCtrl.ChangeBagMat(bagCtrl.CheckWeight(this));
@@ -180,6 +180,7 @@ public class ScrapItem : MonoBehaviour
 
 	protected void OnTriggerExit(Collider other)
 	{
+		//가방이 트리거면 안됨
 		if (other.gameObject.CompareTag("Bag"))
 		{
 			isInBag = false;

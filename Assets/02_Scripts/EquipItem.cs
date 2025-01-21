@@ -139,7 +139,7 @@ public class EquipItem : ScrapItem
 			if (bag == null)
 			{
 				bag = other.gameObject;
-				bagCtrl = bag.GetComponent<BagCtrl>();
+				bagCtrl = bag.GetComponentInParent<BagCtrl>();
 			}
 
 			bagCtrl.ChangeBagMat(bagCtrl.CheckWeight(this));
