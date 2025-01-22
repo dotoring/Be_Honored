@@ -19,8 +19,8 @@ public class PlayerTouchManager : MonoBehaviour
 
 	private int currentOrder = 0;
 	private float lastTriggerTime = 0f;
-	[SerializeField] AudioClip attacksound;
-	AudioSource audioSource;
+	[SerializeField] private protected AudioClip attacksound;
+	private protected AudioSource audioSource;
 
 	protected Vector3 offset = new(0, 0, 1);
 	protected Vector3 sizeOfBox = new(1, 1, 1.5f);

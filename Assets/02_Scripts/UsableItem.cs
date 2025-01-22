@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class UsableItem : ScrapItem
 {
-	void TakePotion()
+	protected virtual void TakePotion()
 	{
 		Player.Instance.Heal(20);
 		Destroy(gameObject);

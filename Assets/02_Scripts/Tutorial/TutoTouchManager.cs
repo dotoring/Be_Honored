@@ -16,6 +16,7 @@ public class TutoTouchManager : PlayerTouchManager
             if (item.name.Equals("SandBag"))
             {
                 item.GetComponent<TutoSandBag>().Damaged();
+                audioSource.PlayOneShot(attacksound);
                 hit?.Invoke();
             }
         }
