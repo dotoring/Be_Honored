@@ -5,6 +5,7 @@ using UnityEngine;
 public class VendorUI : MonoBehaviour
 {
 	[SerializeField] TMP_Text textValue;
+	[SerializeField] private TMP_Text textGold;
 	[SerializeField] LayerMask targetlayer;
 	int sumOfVending;
 	int tempitemvalue;
@@ -57,6 +58,7 @@ public class VendorUI : MonoBehaviour
 		}
 		preprereItem = new();
 		textValue.text = $"Value :  {sumOfVending}";
+		textGold.text = $"Gold :  {App.Instance.gold}";
 	}
 
 }
