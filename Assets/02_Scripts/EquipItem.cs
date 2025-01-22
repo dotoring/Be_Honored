@@ -7,8 +7,6 @@ public class EquipItem : ScrapItem
 	[SerializeField] EquipType typeOfEquip;
 	GameObject parentOfObject;
 
-	Material materialOrigin;
-	[SerializeField] Material materialRed;
 	bool isOnSlot = false;
 	EQUIPSTAT equipStat;
 
@@ -22,7 +20,6 @@ public class EquipItem : ScrapItem
 	private new void Awake()
 	{
 		base.Awake();
-		materialOrigin = GetComponent<MeshRenderer>().material;
 		parentOfObject = transform.parent.gameObject;
 
 	}

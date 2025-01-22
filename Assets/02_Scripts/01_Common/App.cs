@@ -26,6 +26,16 @@ public class App : Singleton<App>
 	{
 		ChangeEquip?.Invoke();
 	}
+
+	public void EarnGold(int amount)
+	{
+		gold += amount;
+	}
+
+	public void UseGold(int amount)
+	{
+		gold -= amount;
+	}
 }
 
 
