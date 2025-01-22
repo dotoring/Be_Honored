@@ -12,6 +12,8 @@ public class WeakMonsterFactory : MonoBehaviour
 			case 0:
 				for (int i = 0; i < 2; i++)
 				{
+					//몬스터 디버그용
+					//GameObject go = PhotonNetwork.InstantiateRoomObject("Skeleton_Sorcerer", positions[i].position, Quaternion.identity);
 					GameObject go = PhotonNetwork.InstantiateRoomObject("Skeleton_warrior", positions[i].position, Quaternion.identity);
 					go.GetComponent<PhotonView>().RPC("SetId", RpcTarget.AllBuffered, moduleId);
 				}
@@ -19,6 +21,8 @@ public class WeakMonsterFactory : MonoBehaviour
 			case 1:
 				for (int i = 0; i < 3; i++)
 				{
+					//몬스터 디버그용
+					//GameObject go = PhotonNetwork.InstantiateRoomObject("Skeleton_Sorcerer", positions[i].position, Quaternion.identity);
 					GameObject go = PhotonNetwork.InstantiateRoomObject("Skeleton_warrior", positions[i].position, Quaternion.identity);
 					go.GetComponent<PhotonView>().RPC("SetId", RpcTarget.AllBuffered, moduleId);
 				}

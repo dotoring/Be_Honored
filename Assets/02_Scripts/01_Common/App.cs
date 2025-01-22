@@ -6,6 +6,7 @@ public class App : Singleton<App>
 {
 	public MonsterStat Warrior1;
 	public MonsterStat Archer1;
+	public MonsterStat Sorcerer1;
 	public MonsterStat Cerbe1;
 	public MonsterStat Mino1;
 	public Action Resetposition;
@@ -25,6 +26,16 @@ public class App : Singleton<App>
 	private void Start()
 	{
 		ChangeEquip?.Invoke();
+	}
+
+	public void EarnGold(int amount)
+	{
+		gold += amount;
+	}
+
+	public void UseGold(int amount)
+	{
+		gold -= amount;
 	}
 }
 

@@ -12,7 +12,10 @@ public partial class AttackAnimatorAction : Action
     [SerializeReference] public BlackboardVariable<Monster> Monster;
     protected override Status OnStart()
     {
-		Monster.Value.pv.RPC(nameof(Monster.Value.AttackAniRPC),RpcTarget.All,true);
+		if (PhotonNetwork.IsConnected)
+			Monster.Value.pv.RPC(nameof(Monster.Value.AttackAniRPC), RpcTarget.All, true);
+		else
+			Monster.Value.ani.SetBool("Attack",true);
         return Status.Running;
     }
 
