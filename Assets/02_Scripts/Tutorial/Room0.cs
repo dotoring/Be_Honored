@@ -63,7 +63,7 @@ public class Room0 : MonoBehaviour
         
         audioSource.clip = _manager.audioClips[3];
         audioSource.Play();
-        text.text = "수고하셨습니ㅏㄷ. 다음방 가는 버튼을 눌러 다음방 문을 열어보세요";
+        text.text = "수고하셨습니다. 다음방 가는 버튼을 눌러 다음방 문을 열어보세요";
         //text.text = "You can Go next room by click button";
         pokeButton.selectEntered.AddListener(_ => { NextRoomSeq.SetActive(true); });
 

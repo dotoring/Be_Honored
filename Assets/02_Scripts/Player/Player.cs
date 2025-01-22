@@ -59,6 +59,7 @@ public partial class Player : Singleton<Player>
 		Instance.LoadPlayerData();
 
 		audioSource.loop = true;
+		ToTalStat();
 		ChangeBGM(0);
 	}
 

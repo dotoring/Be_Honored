@@ -116,7 +116,7 @@ public class ScrapItem : MonoBehaviour
 		}
 	}
 
-	protected void SetInBag()
+	protected virtual void SetInBag()
 	{
 		if (pv != null && !SceneManager.GetActiveScene().name.Equals("lobbySample_Working1"))
 		{
