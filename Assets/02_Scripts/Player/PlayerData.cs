@@ -51,7 +51,7 @@ public partial class Player
 		_armor.Leg = playerStatData._armor.Leg;
 		_armor.Arm = playerStatData._armor.Arm;
 		bodyStat = playerStatData.bodyStat;
-		App.Instance.gold = playerStatData.gold;
+		App.Instance.gold.Value = playerStatData.gold;
 	}
 
 	public void SavePlayerData()
@@ -65,7 +65,7 @@ public partial class Player
 			Arm = _armor.Arm,
 		};
 		stat.bodyStat = bodyStat;
-		stat.gold = App.Instance.gold;
+		stat.gold = App.Instance.gold.Value;
 
 		// Stat 데이터 저장
 

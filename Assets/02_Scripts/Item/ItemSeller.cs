@@ -20,7 +20,7 @@ public class ItemSeller : MonoBehaviour
 
 	private void OnSelectEntered(SelectEnterEventArgs args)
 	{
-		if (price > App.Instance.gold)
+		if (price > App.Instance.gold.Value)
 		{
 			//잡기 이벤트만 발생시키고 잡기 해제
 			xrGrab.interactionManager.CancelInteractableSelection(args.interactableObject);

@@ -17,7 +17,7 @@ public class App : Singleton<App>
 	public float xrHeightValue;
 	public float audioValue;
 
-	internal int gold;
+	public Observable<int> gold = new Observable<int>(0);
 
 	protected override void Awake()
 	{
@@ -30,12 +30,14 @@ public class App : Singleton<App>
 
 	public void EarnGold(int amount)
 	{
-		gold += amount;
+		gold.Value += amount;
+		// gold += amount;
 	}
 
 	public void UseGold(int amount)
 	{
-		gold -= amount;
+		gold.Value -= amount;
+		// gold -= amount;
 	}
 }
 

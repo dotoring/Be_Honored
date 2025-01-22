@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -14,6 +15,16 @@ public class VendorUI : MonoBehaviour
 	private void OnEnable()
 	{
 		preprereItem = new();
+	}
+
+	private void Start()
+	{
+		App.Instance.gold.AddListener(RefreshGoldText);
+	}
+
+	private void OnDestroy()
+	{
+		App.Instance?.gold.RemoveListener(RefreshGoldText);
 	}
 
 	private void OnCollisionEnter(Collision other)
@@ -50,7 +61,7 @@ public class VendorUI : MonoBehaviour
 
 	public void SellItem()
 	{
-		App.Instance.gold += sumOfVending;
+		App.Instance.EarnGold(sumOfVending);
 		sumOfVending = 0;
 		foreach (var item in preprereItem)
 		{
@@ -58,7 +69,10 @@ public class VendorUI : MonoBehaviour
 		}
 		preprereItem = new();
 		textValue.text = $"Value :  {sumOfVending}";
-		textGold.text = $"Gold :  {App.Instance.gold}";
 	}
 
+	public void RefreshGoldText(int _)
+	{
+		textGold.text = $"Gold :  {App.Instance.gold.Value}";
+	}
 }
