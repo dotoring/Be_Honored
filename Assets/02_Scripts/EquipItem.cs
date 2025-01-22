@@ -155,7 +155,10 @@ public class EquipItem : ScrapItem
 	{
 		if (other.gameObject.CompareTag("Bag"))
 		{
-			isInBag = false;
+			if (isGrabed)
+			{
+				isInBag = false;
+			}
 
 			bagCtrl.ResetBagMat();
 		}

@@ -11,7 +11,7 @@ public class UsableItem : ScrapItem
 	protected override void OnTriggerEnter(Collider other)
 	{
 		base.OnTriggerEnter(other);
-		if (other.CompareTag("Mouse"))
+		if (other.CompareTag("Mouse") && !isInBag)
 		{
 			TakePotion();
 		}
