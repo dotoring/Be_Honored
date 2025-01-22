@@ -136,7 +136,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 987461659487001407}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f0038c16c34866b4f9e25c9c0dc0f7e6, type: 3}
   m_Name: 
@@ -145,6 +145,11 @@ MonoBehaviour:
   m_BlackboardVariableOverridesList:
   - rid: 7662302218410001065
   - rid: 7662302218410001122
+  - rid: 7662302423530078473
+  - rid: 7662302423530078474
+  - rid: 7662302423530078475
+  - rid: 7662302425812041759
+  - rid: 7662302425812042324
   references:
     version: 2
     RefIds:
@@ -164,6 +169,46 @@ MonoBehaviour:
           m_Value1: 8802682990319284743
         Name: monster
         m_Value: {fileID: 884019255672469844}
+    - rid: 7662302423530078473
+      type: {class: 'BlackboardVariable`1[[System.Single, mscorlib]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 9986518956507343024
+          m_Value1: 7442031742086720048
+        Name: NavDis
+        m_Value: 8.5
+    - rid: 7662302423530078474
+      type: {class: 'BlackboardVariable`1[[System.Single, mscorlib]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 7221620066530556693
+          m_Value1: 11192338553547929540
+        Name: AttackCool
+        m_Value: 4
+    - rid: 7662302423530078475
+      type: {class: 'BlackboardVariable`1[[System.String, mscorlib]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 12543482376743641549
+          m_Value1: 3040587765021569307
+        Name: PlayerTag
+        m_Value: Player
+    - rid: 7662302425812041759
+      type: {class: 'BlackboardVariable`1[[UnityEngine.Animator, UnityEngine.AnimationModule]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 14330693251341180687
+          m_Value1: 14341908410718977829
+        Name: selfAnimator
+        m_Value: {fileID: 5382111491827916840}
+    - rid: 7662302425812042324
+      type: {class: 'BlackboardVariable`1[[System.Int32, mscorlib]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 12033038100119186783
+          m_Value1: 7999636574688671953
+        Name: PlayerLayer
+        m_Value: 10
 --- !u!114 &884019255672469844
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -193,6 +238,8 @@ MonoBehaviour:
   navMeshAgent: {fileID: 3956050713293641216}
   hpBar: {fileID: 4366159955213679379}
   ani: {fileID: 5382111491827916840}
+  shootPoint: {fileID: 1115963507297155897}
+  Ball: {fileID: 1718406012875442688, guid: 1fe1928654aa7e94f9cfa97338791e3a, type: 3}
 --- !u!114 &7634492622981315725
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1668,7 +1715,8 @@ Transform:
   m_LocalPosition: {x: -0.0000000667572, y: 0.0000012969971, z: -0.0000006866455}
   m_LocalScale: {x: 1.0000001, y: 0.99999994, z: 0.9999999}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1115963507297155897}
   m_Father: {fileID: 83687943343284346}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &3112837397507472821
@@ -1853,6 +1901,37 @@ Transform:
   m_Children:
   - {fileID: 9183411317195664037}
   m_Father: {fileID: 5333915318325163661}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &7656564046840693261
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1115963507297155897}
+  m_Layer: 0
+  m_Name: shootPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1115963507297155897
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7656564046840693261}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.6451047, y: -0.20697543, z: 0.6865992, w: 0.2637853}
+  m_LocalPosition: {x: -0.66, y: -0.01, z: -0.02}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1002493258288596473}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7948822879651483214
 GameObject:

@@ -6,6 +6,7 @@ public class App : Singleton<App>
 {
 	public MonsterStat Warrior1;
 	public MonsterStat Archer1;
+	public MonsterStat Sorcerer1;
 	public MonsterStat Cerbe1;
 	public MonsterStat Mino1;
 	public Action Resetposition;

@@ -51,7 +51,9 @@ public class Monster : MonoBehaviourPunCallbacks
 	public Canvas hpBar;
 	public Animator ani;
 
-	//[SerializeField] private GameObject target;
+	[SerializeField] private Transform shootPoint;
+
+	public GameObject Ball;
 
 	private void Awake()
 	{
@@ -121,6 +123,20 @@ public class Monster : MonoBehaviourPunCallbacks
 						attackRange		= App.Instance.Archer1.attackRange;
 						attackPower		= App.Instance.Archer1.attackPower;
 						maxHp			= App.Instance.Archer1.hp;
+						curHp = maxHp;
+						break;
+				}
+				break;
+			case MonsterType.SORCERCER:
+				switch (monsterLevel)
+				{
+					case MonsterLevel.A:
+					case MonsterLevel.B:
+					case MonsterLevel.C:
+						detectRange = App.Instance.Sorcerer1.detectRange;
+						attackRange = App.Instance.Sorcerer1.attackRange;
+						attackPower = App.Instance.Sorcerer1.attackPower;
+						maxHp		= App.Instance.Sorcerer1.hp;
 						curHp = maxHp;
 						break;
 				}
@@ -211,19 +227,23 @@ public class Monster : MonoBehaviourPunCallbacks
 
 	public void Attack()
 	{
-		print("공격");
-		if (behaviorAgent.enabled == true)
+		behaviorAgent.BlackboardReference.GetVariableValue("Player", out Transform ob);
+		Vector3 temp = ob.transform.position - transform.position;
+		temp.y = transform.position.y;
+		transform.forward = temp.normalized;
+		if (typeOfMonster == MonsterType.SORCERCER)
 		{
-			behaviorAgent.BlackboardReference.GetVariableValue("Player", out Transform ob);
-			ob.GetComponent<HitPlayer>()?.Damaged(attackPower);
-			transform.forward = (ob.transform.position - transform.position).normalized;
+			GameObject ball = PhotonNetwork.Instantiate("SocererFireBall", shootPoint.position, Quaternion.identity);
+			ball.GetComponent<SorcererFireBall>().InitData(transform.forward,3.0f, attackPower);
+		}
+		else
+		{
+			if (behaviorAgent.enabled == true)
+			{
+				ob.GetComponent<HitPlayer>()?.Damaged(attackPower);
+			}
 		}
 	}
 
-
-	public void SocererAttack(GameObject obj)
-	{
-		Instantiate(obj);
-	}
 
 }
