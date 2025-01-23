@@ -1,5 +1,7 @@
+using System.Numerics;
 using Photon.Pun;
 using UnityEngine;
+using Vector3 = UnityEngine.Vector3;
 
 public class MainFactory : MonoBehaviour
 {
