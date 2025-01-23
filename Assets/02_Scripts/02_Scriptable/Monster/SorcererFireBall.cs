@@ -35,7 +35,7 @@ public class SorcererFireBall : MonoBehaviour
 		{
 			if (PhotonNetwork.IsMasterClient)
 			{
-				other.GetComponent<HitPlayer>()?.Damaged(1.5f*damage);
+				other.GetComponent<HitPlayer>()?.Damaged(1f*damage);
 			}
 			PhotonNetwork.Destroy(gameObject);
 		}

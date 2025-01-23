@@ -35,7 +35,7 @@ public class PizzaPattern : BossPattern
 			{
 				foreach (GameObject obj in playerInConelist)
 				{
-					obj.GetComponentInChildren<HitPlayer>()?.Damaged(bossMonster.attackPower * 2);
+					obj.GetComponentInChildren<HitPlayer>()?.Damaged(10);
 				}
 			}
 			gameObject.SetActive(false);

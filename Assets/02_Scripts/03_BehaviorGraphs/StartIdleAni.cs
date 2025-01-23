@@ -10,9 +10,10 @@ using Photon.Pun;
 public partial class StartIdleAniAction : Action
 {
     [SerializeReference] public BlackboardVariable<BossMonster> BossMonster;
-    [SerializeReference] public BlackboardVariable<Transform> ResetPos;
+	[SerializeReference] public BlackboardVariable<Transform> ResetPos;
     protected override Status OnStart()
     {
+		ResetPos.Value = BossMonster.Value.resetPos;
 		bool check;
 		check= (Vector3.Distance(BossMonster.Value.transform.position, ResetPos.Value.transform.position)<0.5f);
 		if (check)
