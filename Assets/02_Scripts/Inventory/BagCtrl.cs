@@ -51,6 +51,8 @@ public class BagCtrl : MonoBehaviour
 	private void OnDestroy()
 	{
 		App.Instance.Resetposition -= DestroyBag;
+		App.Instance.interactorManager.RemoveListener(SetInteractionMgr);
+
 	}
 
 	public bool CheckWeight(ScrapItem item)
