@@ -141,4 +141,10 @@ public partial class Player : Singleton<Player>
 		}
 	}
 
+	protected override void OnApplicationQuit()
+	{
+		Instance.SavePlayerData();
+	}
+	
+
 }

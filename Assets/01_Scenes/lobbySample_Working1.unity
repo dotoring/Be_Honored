@@ -2053,7 +2053,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Warrior1: {fileID: 11400000, guid: 601a5fd1a86563244b3b0e851ac993c9, type: 2}
   Archer1: {fileID: 11400000, guid: 87fd36ff340b95146a04a5982df4eba1, type: 2}
-  Sorcerer1: {fileID: 0}
+  Sorcerer1: {fileID: 11400000, guid: ce36fe76c4553e140bab29474988095c, type: 2}
   Cerbe1: {fileID: 11400000, guid: 1c7d2f78e3f28124aa622b938faa3efe, type: 2}
   Mino1: {fileID: 11400000, guid: 665797a3621bf9a4b87ab338d847c509, type: 2}
   xrHeightValue: 0.5
@@ -2298,6 +2298,7 @@ MonoBehaviour:
   audioSource: {fileID: 0}
   bgms:
   - {fileID: 8300000, guid: 42f2e250da2678841acc35b519121665, type: 3}
+  - {fileID: 8300000, guid: 8dce237085518ef4897dbd894beed84d, type: 3}
   - {fileID: 8300000, guid: e2fde24545c54794883a59ace907d969, type: 3}
 --- !u!4 &341653046
 Transform:
@@ -4213,7 +4214,7 @@ TerrainCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_TerrainData: {fileID: 15600000, guid: 88d5c9331459e68438c09cc5c4e0a218, type: 2}
+  m_TerrainData: {fileID: 15600000, guid: 070ca7f528b0c984b80fb701159c2e46, type: 2}
   m_EnableTreeColliders: 1
 --- !u!218 &608358142
 Terrain:
@@ -4224,7 +4225,7 @@ Terrain:
   m_GameObject: {fileID: 608358140}
   m_Enabled: 1
   serializedVersion: 6
-  m_TerrainData: {fileID: 15600000, guid: 88d5c9331459e68438c09cc5c4e0a218, type: 2}
+  m_TerrainData: {fileID: 15600000, guid: 070ca7f528b0c984b80fb701159c2e46, type: 2}
   m_TreeDistance: 5000
   m_TreeBillboardDistance: 50
   m_TreeCrossFadeLength: 5

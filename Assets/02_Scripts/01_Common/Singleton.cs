@@ -50,7 +50,7 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
     }
 
     // This method is called when the application quits or the scene is unloaded
-    private void OnApplicationQuit()
+    protected virtual void OnApplicationQuit()
     {
         _isApplicationQuitting = true;
     }
