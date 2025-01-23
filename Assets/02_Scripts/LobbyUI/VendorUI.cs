@@ -20,6 +20,7 @@ public class VendorUI : MonoBehaviour
 	private void Start()
 	{
 		App.Instance.gold.AddListener(RefreshGoldText);
+		RefreshGoldText();
 	}
 
 	private void OnDestroy()
@@ -71,7 +72,7 @@ public class VendorUI : MonoBehaviour
 		textValue.text = $"정산금 :  {sumOfVending}";
 	}
 
-	public void RefreshGoldText(int _)
+	public void RefreshGoldText(int _ = 0)
 	{
 		textGold.text = $"Gold :  {App.Instance.gold.Value}";
 	}
