@@ -8,7 +8,7 @@ public class FireBallPattern : BossPattern
 	[SerializeField] private List<Transform> FireStartPoint;
 	[SerializeField] private List<GameObject> FirePointList;
 	[SerializeField] private GameObject FireBallObj;
-	[SerializeField] private List<GameObject> targetList;
+	[SerializeField] private List<GameObject> targetList=new();
 
 	private float curTime;
 
