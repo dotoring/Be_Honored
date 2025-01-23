@@ -34,7 +34,7 @@ public class VendorUI : MonoBehaviour
 			tempitemvalue = other.gameObject.GetComponent<ScrapItem>().Getvalue();
 			Debug.Log($"{tempitemvalue}");
 			sumOfVending += tempitemvalue;
-			textValue.text = $"Value :  {sumOfVending}";
+			textValue.text = $"정산금 :  {sumOfVending}";
 			preprereItem.Add(other.gameObject);
 		}
 		else
@@ -50,7 +50,7 @@ public class VendorUI : MonoBehaviour
 			tempitemvalue = other.gameObject.GetComponent<ScrapItem>().Getvalue();
 			Debug.Log($"{tempitemvalue}");
 			sumOfVending -= tempitemvalue;
-			textValue.text = $"Value :  {sumOfVending}";
+			textValue.text = $"정산금 :  {sumOfVending}";
 			preprereItem.Remove(other.gameObject);
 		}
 		else
@@ -68,7 +68,7 @@ public class VendorUI : MonoBehaviour
 			Destroy(item);
 		}
 		preprereItem = new();
-		textValue.text = $"Value :  {sumOfVending}";
+		textValue.text = $"정산금 :  {sumOfVending}";
 	}
 
 	public void RefreshGoldText(int _)
