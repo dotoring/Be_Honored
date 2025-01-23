@@ -167,7 +167,7 @@ public class PlayerTouchManager : MonoBehaviour
 
 		foreach (var item in hitColliders)
 		{
-			item.GetComponent<PhotonView>().RPC("Damaged", RpcTarget.AllBuffered, 1 + Player.Instance._stat.attack);
+			item.GetComponent<PhotonView>().RPC("Damaged", RpcTarget.AllBuffered, Player.Instance._stat.attack);
 			hited = true;
 		}
 

@@ -51,6 +51,8 @@ public partial class Player
 		_armor.Leg = playerStatData._armor.Leg;
 		_armor.Arm = playerStatData._armor.Arm;
 		bodyStat = playerStatData.bodyStat;
+		if (bodyStat.hpmax < 200) bodyStat.hpmax = 200;
+		if (bodyStat.attack < 5) bodyStat.attack = 5;
 		App.Instance.gold.Value = playerStatData.gold;
 	}
 
