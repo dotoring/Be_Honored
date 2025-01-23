@@ -8,6 +8,7 @@ public class TutoUsableItem : UsableItem
 
     protected override void TakePotion()
     {
+        if (posionTake is null) return;
         Player.Instance.Heal(20);
         posionTake.Invoke();
         posionTake = null;
@@ -16,8 +17,9 @@ public class TutoUsableItem : UsableItem
 
     protected override void SetInBag()
     {
+        
         Debug.Log("TutoUsableItem.SetInBag");
-        inbag.Invoke();
         base.SetInBag();
+        inbag.Invoke();
     }
 }
