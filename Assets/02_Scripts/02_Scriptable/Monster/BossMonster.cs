@@ -97,7 +97,7 @@ public class BossMonster : Monster
 	}
 	private void Update()
 	{
-		if (behaviorAgent.enabled == true&&bossstate!=BossState.Idle)
+		if (behaviorAgent.enabled == true)
 		{
 			skillWaitTime += Time.deltaTime;
 			if (skillCoolTime <= skillWaitTime)

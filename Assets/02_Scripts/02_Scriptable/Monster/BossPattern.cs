@@ -2,9 +2,10 @@ using UnityEngine;
 
 public class BossPattern : MonoBehaviour
 {
-	protected BossMonster bossMonster;
+	[SerializeField]protected BossMonster bossMonster;
     public void InitPattern(BossMonster boss)
 	{
-		bossMonster= boss;
+		if(bossMonster==null)
+			bossMonster= boss;
 	}
 }
