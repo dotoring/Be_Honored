@@ -49,7 +49,7 @@ public class RoomPosion : MonoBehaviour
         hpbtn.onClick.AddListener(ActionOnPerformed);
         audioSource.clip = _manager.audioClips[17];
         audioSource.Play();
-        text.text = "왼팔을 들어 체력 상황을 확인해 보세요.";
+        text.text = "왼팔을 들어 체력 상황을 확인해 보세요. 오른손으로 왼쪽팔의 체력바를 터치해 주세요";
         yield return new WaitUntil(() => NextStep);
         hpbtn.onClick.RemoveListener(ActionOnPerformed);
         hpbtn.enabled = false;

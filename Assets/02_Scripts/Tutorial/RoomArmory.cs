@@ -44,7 +44,7 @@ public class RoomArmory : MonoBehaviour
         //장비를 장착하고 
         audioSource.clip = _manager.audioClips[11];
         audioSource.Play();
-        text.text = "장비를 왼쪽 큐브모양의 슬롯에 넣어보세요 \n이곳은 튜토리얼이라 던전에서 장비를 입을수 있지만 \n실제 던전에서는 마을에 가셔야 합니다.";
+        text.text = "장비를 오른쪽 큐브모양의 슬롯에 넣어보세요 \n이곳은 튜토리얼이라 던전에서 장비를 입을수 있지만 \n실제 던전에서는 마을에 가셔야 합니다.";
         tutoequip.equip += ActionOnPerformed;
         yield return new WaitUntil(() => NextStep);
         tutoequip.equip -= ActionOnPerformed;
