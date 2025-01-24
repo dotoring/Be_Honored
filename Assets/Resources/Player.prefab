@@ -677,6 +677,7 @@ MonoBehaviour:
   isEmpty: 0
   swordGI: {fileID: 2466967913273241184}
   xrGrab: {fileID: 2718118295666776916}
+  swordPv: {fileID: 9113742875361554351}
 --- !u!135 &849269620207505424
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -3517,6 +3518,10 @@ PrefabInstance:
       propertyPath: m_IsKinematic
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6212861855623914326, guid: 122008471cc04ea4fbcaa482909a56a6, type: 3}
+      propertyPath: m_UseLocal
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6461167588221226198, guid: 122008471cc04ea4fbcaa482909a56a6, type: 3}
       propertyPath: m_ThrowOnDetach
       value: 0
@@ -3556,3 +3561,14 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3453920150164078393, guid: 122008471cc04ea4fbcaa482909a56a6, type: 3}
   m_PrefabInstance: {fileID: 8905520333407232694}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &9113742875361554351 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 426794493093448985, guid: 122008471cc04ea4fbcaa482909a56a6, type: 3}
+  m_PrefabInstance: {fileID: 8905520333407232694}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

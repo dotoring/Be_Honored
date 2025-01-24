@@ -1,3 +1,4 @@
+using Photon.Pun;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
@@ -11,7 +12,7 @@ public class SwordHolder : MonoBehaviour
     public bool isEmpty;
     [SerializeField] private XRGrabInteractable swordGI;
     [SerializeField] XRGrabInteractable xrGrab;
-
+    [SerializeField] private PhotonView swordPv;
     private void Start()
     {
 	    xrGrab.selectEntered.AddListener(OnSelectEntered);
@@ -27,6 +28,9 @@ public class SwordHolder : MonoBehaviour
 	    if (isEmpty) return;
 	    //잡기 이벤트만 발생시키고 잡기 해제
 	    xrGrab.interactionManager.CancelInteractableSelection(args.interactableObject);
-	    swordGI.interactionManager.SelectEnter(args.interactorObject, swordGI);
+	    if (swordPv.IsMine)
+	    {
+		    swordGI.interactionManager.SelectEnter(args.interactorObject, swordGI);
+	    }
     }
 }
