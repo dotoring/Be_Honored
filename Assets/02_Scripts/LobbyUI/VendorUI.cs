@@ -74,6 +74,6 @@ public class VendorUI : MonoBehaviour
 
 	public void RefreshGoldText(int _ = 0)
 	{
-		textGold.text = $"Gold :  {App.Instance.gold.Value}";
+		textGold.text = $"소지금 :  {App.Instance.gold.Value}";
 	}
 }

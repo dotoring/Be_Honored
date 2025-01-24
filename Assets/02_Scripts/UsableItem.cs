@@ -4,7 +4,7 @@ public class UsableItem : ScrapItem
 {
 	protected virtual void TakePotion()
 	{
-		Player.Instance.Heal(20);
+		Player.Instance.Heal(50);
 		Destroy(gameObject);
 	}
 
