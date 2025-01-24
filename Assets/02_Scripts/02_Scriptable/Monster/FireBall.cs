@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using Photon.Pun;
 using UnityEngine;
 
 public class FireBall : MonoBehaviour
@@ -39,7 +40,10 @@ public class FireBall : MonoBehaviour
 		if(other.CompareTag("Player"))
 		{
 			Destroy(target);
-			other.GetComponent<HitPlayer>()?.Damaged(damage);
+			if (PhotonNetwork.IsMasterClient)
+			{
+				other.GetComponent<HitPlayer>()?.Damaged(damage);
+			}
 			//마그마 생성 플레이어 충돌 위치의 바닥으로 변경 예정
 			Instantiate(floor, target.transform.position, Quaternion.identity);
 			Destroy(gameObject);

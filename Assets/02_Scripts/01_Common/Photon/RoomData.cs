@@ -10,9 +10,19 @@ public class RoomData : MonoBehaviour
 	[SerializeField] private string roomNameBase;
 	private RoomInfo roomInfo;
 	[SerializeField] private bool isRoomInfoNull;
+	[SerializeField] public RoomLevel roomLevel;
+
+
+	private void Awake()
+	{
+		print("버튼 aw : " + name);
+	}
 
 	private void Start()
 	{
+		print("버튼 on : "+name);
+		PhotonManager.Instance.roomInBtns.Add(this.GetComponent<Button>());
+		PhotonManager.Instance.InCount++;
 		RoomInfo = RoomInfo;
 	}
 
@@ -23,7 +33,7 @@ public class RoomData : MonoBehaviour
 		{
 			roomInfo = value;
 			if(roomInfo != null)
-				roomName.text = roomInfo.Name + "\n" + roomInfo.PlayerCount + " / " + roomInfo.MaxPlayers;
+				roomName.text = "Lv."+((int)roomLevel+1) + "\n" + roomInfo.PlayerCount + " / " + roomInfo.MaxPlayers;
 			else
 				roomName.text = roomNameBase + "\n0 / 0";
 		}

@@ -13,7 +13,7 @@ public class BallTouchManager : MonoBehaviour
 	public Material matGray; // 기본 마테리얼
 
 	private int touchOrder = 0; // 현재 터치 순서를 추적 (0 = 아직 시작 안함, 1 = A, 2 = B, 3 = C)
-	private float touchTimeout = 1f; // 터치 간의 유효 시간 (1초)
+	private float touchTimeout = 2f; // 터치 간의 유효 시간 (1초)
 	private bool isProcessing = false; // 비동기 작업 중인지 확인하는 플래그
 
 	Vector3 offset = new(0, 0, 1);

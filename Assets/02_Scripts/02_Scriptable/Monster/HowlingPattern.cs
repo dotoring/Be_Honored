@@ -1,3 +1,4 @@
+using Photon.Pun;
 using UnityEngine;
 
 public class HowlingPattern : BossPattern
@@ -28,10 +29,13 @@ public class HowlingPattern : BossPattern
 
 	private void AttackPattern()
     {
-		Collider[] cols = Physics.OverlapSphere(transform.root.transform.position, attackRange, 1 << 10);
-		for (int i = 0; i < cols.Length; i++)
+		if (PhotonNetwork.IsMasterClient)
 		{
-			cols[i].GetComponent<HitPlayer>()?.Damaged(bossMonster.attackPower);
+			Collider[] cols = Physics.OverlapSphere(transform.root.transform.position, attackRange, 1 << 10);
+			for (int i = 0; i < cols.Length; i++)
+			{
+				cols[i].GetComponent<HitPlayer>()?.Damaged(bossMonster.attackPower);
+			}
 		}
 	}
 }

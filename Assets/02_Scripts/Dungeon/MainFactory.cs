@@ -1,5 +1,7 @@
+using System.Numerics;
 using Photon.Pun;
 using UnityEngine;
+using Vector3 = UnityEngine.Vector3;
 
 public class MainFactory : MonoBehaviour
 {
@@ -49,7 +51,12 @@ public class MainFactory : MonoBehaviour
 	{
 		if (PhotonNetwork.IsMasterClient)
 		{
-			sf.SpawnScrap(pos);
+			//확률 드랍
+			int rand = Random.Range(0, 10);
+			if (rand < 4)
+			{
+				sf.SpawnScrap(pos);
+			}
 		}
 	}
 }

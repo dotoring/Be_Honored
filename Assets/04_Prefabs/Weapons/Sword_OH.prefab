@@ -338,11 +338,12 @@ GameObject:
   - component: {fileID: 4587531162522210490}
   - component: {fileID: 6461167588221226198}
   - component: {fileID: 4327732462137739397}
+  - component: {fileID: 2127723908590659758}
   - component: {fileID: 7395102042832452170}
   - component: {fileID: 5422083992366571494}
   - component: {fileID: 7808080293339673076}
   - component: {fileID: 6184765885834952445}
-  m_Layer: 0
+  m_Layer: 29
   m_Name: Sword_OH
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -597,6 +598,18 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.167945, y: 0.048887283, z: 1.2150667}
   m_Center: {x: -0.0000001899898, y: -0.00011270773, z: 0.47850552}
+--- !u!114 &2127723908590659758
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2732525947263008982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55ccace4e3a469540807d1ad1e56eebc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &7395102042832452170
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -633,10 +646,18 @@ MonoBehaviour:
   - {x: 0.1545491, y: 0.09891337, z: 1.046399}
   - {x: 0.05670893, y: -0.387953, z: 1.06469}
   - {x: -0.1023287, y: -0.7330824, z: 0.9261309}
+  rotationA:
+  - {x: -68.2, y: 266.36, z: 0}
+  - {x: -77.37, y: 249.67, z: 0}
+  - {x: 0, y: 0, z: 0}
+  rotationB:
+  - {x: -11.55, y: 280.59, z: 0}
+  - {x: -31.43, y: 228.94, z: 0}
+  - {x: 0, y: 0, z: 0}
   matgray: {fileID: 2100000, guid: 110e43fe9b09d7e4c805426b3765e3c0, type: 2}
   matred: {fileID: 2100000, guid: d028639c12b369d4d9cdae5d118d9560, type: 2}
   matblue: {fileID: 2100000, guid: 47d2629e82296e140a0b929fb6117840, type: 2}
-  attacksound: {fileID: 8300000, guid: 4274b063fee4ff747b8489ab4fcfb25d, type: 3}
+  attacksound: {fileID: 8300000, guid: e7d824d2e33aa3f4aa39b5f7f3100ca1, type: 3}
   m_LayerMask:
     serializedVersion: 2
     m_Bits: 2048
@@ -656,12 +677,6 @@ MonoBehaviour:
   ball1: {fileID: 4699222268302307724}
   ball2: {fileID: 3768659625420090319}
   ball3: {fileID: 4504330890831639986}
-  ball4: {fileID: 5012280429085074170}
-  ball5: {fileID: 8980313074307627757}
-  ball6: {fileID: 3588493431068052544}
-  ball7: {fileID: 772502843858754058}
-  ball8: {fileID: 4099538569334387346}
-  ball9: {fileID: 755580551709627398}
 --- !u!82 &6184765885834952445
 AudioSource:
   m_ObjectHideFlags: 0

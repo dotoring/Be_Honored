@@ -15,6 +15,8 @@ public class BagCtrl : MonoBehaviour
 	[SerializeField] TextMeshProUGUI weightTxt;
 	List<ScrapItem> scraps = new List<ScrapItem>();
 
+	[SerializeField] Material bagMat;
+
 	private void Awake()
 	{
 		xRGrabInteractable = GetComponent<XRGrabInteractable>();
@@ -31,10 +33,7 @@ public class BagCtrl : MonoBehaviour
 
 	private void Start()
 	{
-		App.Instance.interactorManager.AddListener((mgr) =>
-		{
-			SetInteractionMgr(mgr);
-		});
+		App.Instance.interactorManager.AddListener(SetInteractionMgr);
 
 		RefreshText();
 	}
@@ -52,18 +51,18 @@ public class BagCtrl : MonoBehaviour
 	private void OnDestroy()
 	{
 		App.Instance.Resetposition -= DestroyBag;
+		App.Instance.interactorManager.RemoveListener(SetInteractionMgr);
+
 	}
 
-	public bool CheckWeight(int weight)
+	public bool CheckWeight(ScrapItem item)
 	{
-		if ((maxWeight - curWeight) >= weight)
+		if (scraps.Contains(item))
 		{
 			return true;
 		}
-		else
-		{
-			return false;
-		}
+
+		return (maxWeight - curWeight) >= item.weight;
 	}
 
 	public bool IsInBag(ScrapItem scrap)
@@ -103,5 +102,15 @@ public class BagCtrl : MonoBehaviour
 	void RefreshText()
 	{
 		weightTxt.text = $"weight : {curWeight}/{maxWeight}";
+	}
+
+	public void ChangeBagMat(bool b)
+	{
+		bagMat.color = b ? new Color(0, 1, 0, 0.2f) : new Color(1, 0, 0, 0.2f);
+	}
+
+	public void ResetBagMat()
+	{
+		bagMat.color = new Color(1, 1, 1, 0.2f);
 	}
 }

@@ -6,6 +6,7 @@ public class App : Singleton<App>
 {
 	public MonsterStat Warrior1;
 	public MonsterStat Archer1;
+	public MonsterStat Sorcerer1;
 	public MonsterStat Cerbe1;
 	public MonsterStat Mino1;
 	public Action Resetposition;
@@ -13,9 +14,10 @@ public class App : Singleton<App>
 	public Observable<XRInteractionManager> interactorManager;
 
 	public Action ChangeEquip;
+	public float xrHeightValue;
+	public float audioValue;
 
-
-	internal int gold;
+	public Observable<int> gold = new Observable<int>(0);
 
 	protected override void Awake()
 	{
@@ -24,6 +26,18 @@ public class App : Singleton<App>
 	private void Start()
 	{
 		ChangeEquip?.Invoke();
+	}
+
+	public void EarnGold(int amount)
+	{
+		gold.Value += amount;
+		// gold += amount;
+	}
+
+	public void UseGold(int amount)
+	{
+		gold.Value -= amount;
+		// gold -= amount;
 	}
 }
 

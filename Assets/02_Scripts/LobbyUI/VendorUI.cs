@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -5,6 +6,7 @@ using UnityEngine;
 public class VendorUI : MonoBehaviour
 {
 	[SerializeField] TMP_Text textValue;
+	[SerializeField] private TMP_Text textGold;
 	[SerializeField] LayerMask targetlayer;
 	int sumOfVending;
 	int tempitemvalue;
@@ -15,6 +17,17 @@ public class VendorUI : MonoBehaviour
 		preprereItem = new();
 	}
 
+	private void Start()
+	{
+		App.Instance.gold.AddListener(RefreshGoldText);
+		RefreshGoldText();
+	}
+
+	private void OnDestroy()
+	{
+		App.Instance?.gold.RemoveListener(RefreshGoldText);
+	}
+
 	private void OnCollisionEnter(Collision other)
 	{
 		if (other.gameObject.GetComponent<ScrapItem>() != null)
@@ -22,7 +35,7 @@ public class VendorUI : MonoBehaviour
 			tempitemvalue = other.gameObject.GetComponent<ScrapItem>().Getvalue();
 			Debug.Log($"{tempitemvalue}");
 			sumOfVending += tempitemvalue;
-			textValue.text = $"Value :  {sumOfVending}";
+			textValue.text = $"정산금 :  {sumOfVending}";
 			preprereItem.Add(other.gameObject);
 		}
 		else
@@ -38,7 +51,7 @@ public class VendorUI : MonoBehaviour
 			tempitemvalue = other.gameObject.GetComponent<ScrapItem>().Getvalue();
 			Debug.Log($"{tempitemvalue}");
 			sumOfVending -= tempitemvalue;
-			textValue.text = $"Value :  {sumOfVending}";
+			textValue.text = $"정산금 :  {sumOfVending}";
 			preprereItem.Remove(other.gameObject);
 		}
 		else
@@ -49,14 +62,18 @@ public class VendorUI : MonoBehaviour
 
 	public void SellItem()
 	{
-		App.Instance.gold += sumOfVending;
+		App.Instance.EarnGold(sumOfVending);
 		sumOfVending = 0;
 		foreach (var item in preprereItem)
 		{
 			Destroy(item);
 		}
 		preprereItem = new();
-		textValue.text = $"Value :  {sumOfVending}";
+		textValue.text = $"정산금 :  {sumOfVending}";
 	}
 
+	public void RefreshGoldText(int _ = 0)
+	{
+		textGold.text = $"소지금 :  {App.Instance.gold.Value}";
+	}
 }

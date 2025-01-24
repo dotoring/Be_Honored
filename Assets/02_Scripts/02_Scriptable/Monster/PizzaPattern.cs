@@ -1,7 +1,6 @@
+using Photon.Pun;
 using System.Collections.Generic;
-using Unity.Mathematics;
 using UnityEngine;
-using static UnityEngine.Rendering.HableCurve;
 
 public class PizzaPattern : BossPattern
 {
@@ -18,25 +17,27 @@ public class PizzaPattern : BossPattern
 	private void OnEnable()
 	{
 		CreateSectorMesh(radius, angle, 30,6f);
-		transform.localPosition = new Vector3(0, -3f, 0);
+		transform.localPosition = new Vector3(0, -3f, 1.4f);
 		curTime = 0;
 	}
 
 	private void Update()
 	{
+		curTime += Time.deltaTime;
 		if (curTime < 2.0f)
 		{
-			curTime += Time.deltaTime;
 			transform.localPosition += 2 * Time.deltaTime * Vector3.up;
 		}
 		DetectTargetsInCone();
-		if (bossMonster.canUseSkill == false)
+		if(curTime>=3.0f)
 		{
-			foreach (GameObject obj in playerInConelist)
+			if (PhotonNetwork.IsMasterClient)
 			{
-				obj.GetComponentInChildren<HitPlayer>()?.Damaged(10);
+				foreach (GameObject obj in playerInConelist)
+				{
+					obj.GetComponentInChildren<HitPlayer>()?.Damaged(10);
+				}
 			}
-			//플레이어 리스트에 남은 플레이어들의 hp를 깎는 로직
 			gameObject.SetActive(false);
 		}
 	}

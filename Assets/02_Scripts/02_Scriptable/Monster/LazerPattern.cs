@@ -1,3 +1,4 @@
+using Photon.Pun;
 using System;
 using UnityEngine;
 using UnityEngine.Rendering;
@@ -17,14 +18,16 @@ public class LazerPattern : BossPattern
 	[SerializeField] float goalTime = 1.1f;
 	[SerializeField] float progress;
 	[SerializeField] Vector3 vec;
+	[SerializeField] bool startShoot;
 
 	private void OnEnable()
 	{
-		transform.localPosition = Vector3.zero;
+		transform.localPosition = Vector3.up*-0.4f;
 		returnTime = 0;
 		chargingTime = 0;
 		lazingTime = 0;
 		col.enabled = false;
+		startShoot = false;
 		range.SetActive(true);
 	}
 
@@ -38,10 +41,15 @@ public class LazerPattern : BossPattern
 		}
 		else
 		{
-			col.enabled = true;
-			range.SetActive(false);
-			syl.SetActive(true);
-			if (lazingTime < 2.0f)
+			if (!startShoot)
+			{
+				col.enabled = true;
+				range.SetActive(false);
+				if (!syl.activeSelf)
+					syl.SetActive(true);
+				startShoot= true;
+			}
+			if (lazingTime < 5.0f)
 			{
 				lazingTime += Time.deltaTime;
 				transform.root.transform.eulerAngles += rotateAngle * Time.deltaTime * Vector3.up;
@@ -62,10 +70,13 @@ public class LazerPattern : BossPattern
 					
 					progress = returnTime / goalTime;
 
+					Vector3 temp=(bossMonster.targetPlayer.transform.position - bossMonster.transform.position).normalized;
+					temp.y = 0;
+
 						// 선형 보간(Lerp)을 통해 벡터 변경
 					transform.root.transform.forward = Vector3.Lerp(
 					vec,
-					(bossMonster.targetPlayer.transform.position-bossMonster.transform.position).normalized, progress);
+					temp, progress);
 					
 				}
 			    else
@@ -76,7 +87,7 @@ public class LazerPattern : BossPattern
 
 	private void OnTriggerEnter(Collider other)
 	{
-		if (other.CompareTag("Player"))
+		if (other.CompareTag("Player")&&PhotonNetwork.IsMasterClient)
 		{
 			other.GetComponent<HitPlayer>()?.Damaged(bossMonster.attackPower);
 		}

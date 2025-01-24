@@ -9,6 +9,9 @@ public class PlayerTouchManager : MonoBehaviour
 	public List<GameObject> triggerAreas;
 	[SerializeField] List<Vector3> positionA;
 	[SerializeField] List<Vector3> positionB;
+	[SerializeField] List<Vector3> rotationA;
+	[SerializeField] List<Vector3> rotationB;
+
 	bool IsposiA;
 	public Material matgray;  // 회색
 	public Material matred;   // 빨강
@@ -16,11 +19,11 @@ public class PlayerTouchManager : MonoBehaviour
 
 	private int currentOrder = 0;
 	private float lastTriggerTime = 0f;
-	[SerializeField] AudioClip attacksound;
-	AudioSource audioSource;
+	[SerializeField] private protected AudioClip attacksound;
+	private protected AudioSource audioSource;
 
-	Vector3 offset = new(0, 0, 1);
-	Vector3 sizeOfBox = new(1, 1, 1.5f);
+	protected Vector3 offset = new(0, 0, 1);
+	protected Vector3 sizeOfBox = new(1, 1, 1.5f);
 	public LayerMask m_LayerMask;
 	bool hited = false;
 
@@ -64,9 +67,6 @@ public class PlayerTouchManager : MonoBehaviour
 				// 터치된 공이 currentOrder 공이라면
 				Debug.Log(other.gameObject.name + " 영역 진입!");
 
-				// 터치된 영역의 재질을 matred로 변경
-				other.GetComponent<Renderer>().material = matred;
-
 				// 터치 시간을 기록
 				lastTriggerTime = Time.time;
 
@@ -107,6 +107,8 @@ public class PlayerTouchManager : MonoBehaviour
 			for (int i = 0; i < triggerAreas.Count; i++)
 			{
 				triggerAreas[i].transform.localPosition = positionB[i];
+				triggerAreas[i].transform.localRotation = Quaternion.Euler(rotationB[i]);
+
 			}
 			IsposiA = !IsposiA;
 		}
@@ -115,6 +117,7 @@ public class PlayerTouchManager : MonoBehaviour
 			for (int i = 0; i < triggerAreas.Count; i++)
 			{
 				triggerAreas[i].transform.localPosition = positionA[i];
+				triggerAreas[i].transform.localRotation = Quaternion.Euler(rotationA[i]);
 			}
 			IsposiA = !IsposiA;
 		}
@@ -134,18 +137,28 @@ public class PlayerTouchManager : MonoBehaviour
 		// 모든 영역을 matgray로 리셋
 		foreach (GameObject area in triggerAreas)
 		{
-			area.GetComponent<Renderer>().material = matgray;
+			foreach (var VARIABLE in area.GetComponentsInChildren<Renderer>())
+			{
+				VARIABLE.material = matgray;
+			}
+
+
+			 //area.GetComponentsInChildren<Renderer>().material = matgray;
 		}
 
 		// currentOrder에 해당하는 공을 matblue로 설정
 		if (order < triggerAreas.Count)
 		{
-			triggerAreas[order].GetComponent<Renderer>().material = matblue;
+			foreach (var VARIABLE in triggerAreas[order].GetComponentsInChildren<Renderer>())
+			{
+				VARIABLE.material = matblue;
+			}
+			//triggerAreas[order].GetComponent<Renderer>().material = matblue;
 		}
 
 	}
 
-	private void Attack()
+	protected virtual void Attack()
 	{
 		if (!Player.Instance.IsArm) return;
 		//audioSource.PlayOneShot(attacksound);  // Todo Test Code for attack
@@ -154,7 +167,7 @@ public class PlayerTouchManager : MonoBehaviour
 
 		foreach (var item in hitColliders)
 		{
-			item.GetComponent<PhotonView>().RPC("Damaged", RpcTarget.AllBuffered, 1 + Player.Instance._stat.attack);
+			item.GetComponent<PhotonView>().RPC("Damaged", RpcTarget.AllBuffered, Player.Instance._stat.attack);
 			hited = true;
 		}
 

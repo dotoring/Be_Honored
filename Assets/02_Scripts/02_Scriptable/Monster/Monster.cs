@@ -8,7 +8,8 @@ public enum MonsterType
 {
 	WARRIOR,
 	ARCHER,
-
+	SORCERCER,
+	FOOTMAN,
 	BOSS,
 }
 public enum BossType
@@ -40,14 +41,19 @@ public class Monster : MonoBehaviourPunCallbacks
 	public bool isDie;
 
 	BlackboardVariable<float> tem = new ();
-
+	//[SerializeField]BlackboardVariable<GameObject> targettem = new ();
 	public int moduleId;
 
+	public Collider col;
 	public PhotonView pv;
 	public BehaviorGraphAgent behaviorAgent;
 	public NavMeshAgent navMeshAgent;
 	public Canvas hpBar;
 	public Animator ani;
+
+	[SerializeField] private Transform shootPoint;
+
+	public GameObject Ball;
 
 	private void Awake()
 	{
@@ -60,7 +66,6 @@ public class Monster : MonoBehaviourPunCallbacks
 		if (!PhotonNetwork.IsMasterClient)
 		{
 			behaviorAgent.enabled = false;
-			//navMeshAgent.enabled = false;
 			if(hpBar!=null)
 				hpBar.gameObject.SetActive(false);
 		}
@@ -69,6 +74,7 @@ public class Monster : MonoBehaviourPunCallbacks
 		dieEvent += () => spawner.RemoveFromList(this.gameObject);
 		dieEvent += () => MainFactory.Inst.MonsterDrop(transform);
 		dieEvent += () => isDie = true;
+		dieEvent += () => col.enabled = false;
 		if(typeOfMonster!=MonsterType.BOSS)
 			dieEvent += () => pv.RPC(nameof(DieRPC), RpcTarget.All);
 		LoadData();
@@ -117,6 +123,20 @@ public class Monster : MonoBehaviourPunCallbacks
 						attackRange		= App.Instance.Archer1.attackRange;
 						attackPower		= App.Instance.Archer1.attackPower;
 						maxHp			= App.Instance.Archer1.hp;
+						curHp = maxHp;
+						break;
+				}
+				break;
+			case MonsterType.SORCERCER:
+				switch (monsterLevel)
+				{
+					case MonsterLevel.A:
+					case MonsterLevel.B:
+					case MonsterLevel.C:
+						detectRange = App.Instance.Sorcerer1.detectRange;
+						attackRange = App.Instance.Sorcerer1.attackRange;
+						attackPower = App.Instance.Sorcerer1.attackPower;
+						maxHp		= App.Instance.Sorcerer1.hp;
 						curHp = maxHp;
 						break;
 				}
@@ -196,5 +216,42 @@ public class Monster : MonoBehaviourPunCallbacks
 	public void SetId(int id)
 	{
 		moduleId = id;
+	}
+
+	[PunRPC]
+	public void AttackAniRPC(bool isAttack)
+	{
+		ani.SetBool("Attack",isAttack);
+	}
+
+
+	public void Attack()
+	{
+		behaviorAgent.BlackboardReference.GetVariableValue("Player", out Transform ob);
+		Vector3 temp = ob.transform.position - transform.position;
+		temp.y = 0;
+		transform.forward = temp.normalized;
+		if (typeOfMonster == MonsterType.SORCERCER)
+		{
+			Vector3 ballDis =(ob.position - shootPoint.position);
+			ballDis.y = 0;
+			ballDis=ballDis.normalized;
+			GameObject ball = PhotonNetwork.Instantiate("SocererFireBall", shootPoint.position, Quaternion.identity);
+			ball.GetComponent<SorcererFireBall>().InitData(ballDis,3.0f, attackPower);
+		}
+		else
+		{
+			if (behaviorAgent.enabled == true)
+			{
+				ob.GetComponent<HitPlayer>()?.Damaged(attackPower);
+			}
+		}
+	}
+
+
+	private void OnDrawGizmos()
+	{
+		Gizmos.color = Color.red;
+		Gizmos.DrawLine(transform.position, transform.forward*10+transform.position);
 	}
 }

@@ -11,14 +11,18 @@ public class BossMonster : Monster
 	public List<GameObject> playerList;
 	public GameObject targetPlayer;
 
-	[SerializeField] private Animation anim;
 
+	BossState bossstate;
+	[SerializeField] private Animation anim;
+	public Transform resetPos;
 	[SerializeField] private List<GameObject> monsterPatternObj;
 
 	public override void OnEnable()
 	{
 		base.OnEnable();
+		//디버그할때 주석
 		playerList = DungeonMgr.instance.playerListInBoss;
+		behaviorAgent.BlackboardReference.GetVariableValue("BossState", out bossstate);
 	}
 
 	public void StartAnimationRPC(string animName)
@@ -37,17 +41,17 @@ public class BossMonster : Monster
 
 	public void StartPatternRPC(int skillId)
 	{
-		if (!PhotonNetwork.IsConnected)
-			StartPattern(skillId);
-		else
-			pv.RPC(nameof(StartPattern), RpcTarget.All,skillId);
+		pv.RPC(nameof(StartPattern), RpcTarget.All,skillId);
 	}
 
 	[PunRPC]
 	public void StartPattern(int skillId)
 	{
-		monsterPatternObj[skillId].GetComponent<BossPattern>().InitPattern(this);
-		monsterPatternObj[skillId].SetActive(true);
+		if (monsterPatternObj[skillId].activeSelf == false)
+		{
+			monsterPatternObj[skillId].SetActive(true);
+			monsterPatternObj[skillId].GetComponent<BossPattern>().InitPattern(this);
+		}
 	}
 
 	//보스 방에 들어온 사람들을 playerlist에 추가
@@ -86,10 +90,8 @@ public class BossMonster : Monster
 	protected override void Start()
 	{
 		base.Start();
-		GameObject[] temp = GameObject.FindGameObjectsWithTag("Player");
 		dieEvent += () =>
 		{
-			print("보스죽음");
 			StartAnimationRPC("death");
 		};
 	}
@@ -107,5 +109,12 @@ public class BossMonster : Monster
 	{
 		canUseSkill=false;
 		skillWaitTime = 0;
+	}
+
+	public void BossAttack()
+	{
+		print("보스공격");
+		targetPlayer.GetComponent<HitPlayer>()?.Damaged(attackPower);
+		transform.forward = (targetPlayer.transform.position - transform.position).normalized;
 	}
 }

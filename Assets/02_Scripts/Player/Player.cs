@@ -1,6 +1,7 @@
 using System;
 using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.UI;
 
 public enum KindOfclass
@@ -37,13 +38,15 @@ public partial class Player : Singleton<Player>
 	[SerializeField] float hp = 50;
 	[SerializeField] AudioClip hited;
 	public Image hpBar;
-	AudioSource audioSource;
+	public AudioSource audioSource;
 	EQUIPSTAT playerstat;
 
 	internal bool IsArm;
 	public Action Armed;
 	public Action UnArmed;
+	[SerializeField] private AudioClip[] bgms;
 
+	public Action OnPlayerDie;
 
 	protected override void Awake()
 	{
@@ -54,6 +57,11 @@ public partial class Player : Singleton<Player>
 	private void OnEnable()
 	{
 		Instance.LoadPlayerData();
+
+		audioSource.loop = true;
+		ToTalStat();
+		hp = _stat.hpmax;
+		ChangeBGM(0);
 	}
 
 
@@ -70,10 +78,22 @@ public partial class Player : Singleton<Player>
 		if (hp <= 0)
 		{
 			App.Instance.Resetposition.Invoke();  // TODO : DEAD Action;
-			hp = _stat.hpmax * 10 + bodyStat.hpmax;
+			OnPlayerDie.Invoke();
+			hp = _stat.hpmax;
 		}
 
-		hpBar.fillAmount = hp / 50;
+		hpBar.fillAmount = hp / _stat.hpmax;
+	}
+
+	public void Heal(float heal)
+	{
+		hp += heal;
+		if (hp > _stat.hpmax)
+		{
+			hp = _stat.hpmax;
+		}
+
+		hpBar.fillAmount = hp / _stat.hpmax;
 	}
 
 	private bool CheckEvade()
@@ -99,5 +119,33 @@ public partial class Player : Singleton<Player>
 	{
 		hp = _stat.hpmax * 10 + bodyStat.hpmax;
 	}
+
+	public void ChangeBGM(int sceneNumber)
+	{
+		if (sceneNumber == 0)
+		{
+			audioSource.Stop();
+			audioSource.clip = bgms[0];
+			audioSource.Play();
+		}
+		else if (sceneNumber == 1)
+		{
+			audioSource.Stop();
+			audioSource.clip = bgms[1];
+			audioSource.Play();
+		}
+		else if(sceneNumber==2)
+		{
+			audioSource.Stop();
+			audioSource.clip = bgms[2];
+			audioSource.Play();
+		}
+	}
+
+	protected override void OnApplicationQuit()
+	{
+		Instance.SavePlayerData();
+	}
+	
 
 }
