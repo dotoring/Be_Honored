@@ -21,6 +21,7 @@ public class ScrapItem : MonoBehaviour
 	protected GameObject bag;
 	protected BagCtrl bagCtrl;
 	protected bool isInBag;
+	protected bool isGrabed;
 	protected private int price = 1;
 	public int weight = 5;
 
@@ -36,7 +37,6 @@ public class ScrapItem : MonoBehaviour
 
 	protected virtual void Start()
 	{
-		Debug.Log("Start");
 		ExitMgr.OnExitDungeon += DestroyPhotonView;
 
 		xRGrabInteractable.selectEntered.AddListener((args) =>
@@ -49,6 +49,7 @@ public class ScrapItem : MonoBehaviour
 				pv.RPC(nameof(SetPhysicsInGrab), RpcTarget.OthersBuffered, false);
 			}
 
+			isGrabed = true;
 			SetPhysicsInGrab(false);
 		});
 
@@ -59,6 +60,7 @@ public class ScrapItem : MonoBehaviour
 				pv.RPC(nameof(SetPhysicsInGrab), RpcTarget.OthersBuffered, true);
 			}
 			SetPhysicsInGrab(true);
+			isGrabed = false;
 			CheckInBag();
 		});
 
@@ -116,7 +118,7 @@ public class ScrapItem : MonoBehaviour
 		}
 	}
 
-	protected void SetInBag()
+	protected virtual void SetInBag()
 	{
 		if (pv != null && !SceneManager.GetActiveScene().name.Equals("lobbySample_Working1"))
 		{
@@ -181,7 +183,10 @@ public class ScrapItem : MonoBehaviour
 		//가방이 트리거면 안됨
 		if (other.gameObject.CompareTag("Bag"))
 		{
-			isInBag = false;
+			if (isGrabed)
+			{
+				isInBag = false;
+			}
 
 			bagCtrl.ResetBagMat();
 		}

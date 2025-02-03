@@ -10,7 +10,7 @@ public class BossMonster : Monster
 
 	public List<GameObject> playerList;
 	public GameObject targetPlayer;
-
+	[SerializeField] Material mat;
 
 	BossState bossstate;
 	[SerializeField] private Animation anim;
@@ -23,6 +23,8 @@ public class BossMonster : Monster
 		//디버그할때 주석
 		playerList = DungeonMgr.instance.playerListInBoss;
 		behaviorAgent.BlackboardReference.GetVariableValue("BossState", out bossstate);
+		mat.EnableKeyword("_EMISSION");
+		mat.SetColor("_EmissionColor", Color.red * 1000.0f);
 	}
 
 	public void StartAnimationRPC(string animName)
@@ -97,7 +99,7 @@ public class BossMonster : Monster
 	}
 	private void Update()
 	{
-		if (behaviorAgent.enabled == true&&bossstate!=BossState.Idle)
+		if (behaviorAgent.enabled == true)
 		{
 			skillWaitTime += Time.deltaTime;
 			if (skillCoolTime <= skillWaitTime)

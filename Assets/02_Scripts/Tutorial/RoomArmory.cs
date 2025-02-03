@@ -12,7 +12,7 @@ public class RoomArmory : MonoBehaviour
     bool NextStep;
     [SerializeField] GameObject NextRoomSeq;
     [SerializeField] private GameObject nextRoomBtnText;
-    [SerializeField] private GameObject canvas;
+    [SerializeField] private GameObject canvas;  // activation check
     [SerializeField] private XRBaseInteractable grab;
     [SerializeField] private Tutoequip tutoequip;
     private void Start()
@@ -29,7 +29,7 @@ public class RoomArmory : MonoBehaviour
         yield return new WaitUntil(() => canvas.activeInHierarchy);
         audioSource.clip = _manager.audioClips[10];
         audioSource.Play();
-        text.text = "이방은 장비에 관한 방입니다. 왼쪽에 바지가 있습니다. 장비는 적을 처치시 획득할수있습니다. 장비를 들어보세요";
+        text.text = "이방은 장비에 관한 방입니다. 왼쪽에 바지가 있습니다. \n장비는 적을 처치시 획득할수있습니다. 장비를 들어보세요";
         pokeButton.enabled = false;
         yield return new WaitForSeconds(3f);  // 시작 루틴
         
@@ -44,7 +44,7 @@ public class RoomArmory : MonoBehaviour
         //장비를 장착하고 
         audioSource.clip = _manager.audioClips[11];
         audioSource.Play();
-        text.text = "장비를 왼쪽 큐브모양의 슬롯에 넣어보세요 이곳은 튜토리얼이라 던전에서 장비를 입을수 있지만 실제 던전에서는 마을에 가셔야 합니다.";
+        text.text = "장비를 오른쪽 큐브모양의 슬롯에 넣어보세요 \n이곳은 튜토리얼이라 던전에서 장비를 입을수 있지만 \n실제 던전에서는 마을에 가셔야 합니다.";
         tutoequip.equip += ActionOnPerformed;
         yield return new WaitUntil(() => NextStep);
         tutoequip.equip -= ActionOnPerformed;
@@ -58,8 +58,7 @@ public class RoomArmory : MonoBehaviour
         // 다음방 가는 루틴
         pokeButton.enabled = true;
         nextRoomBtnText.SetActive(true);
-        text.text = "Great, Step in This room is over";
-        text.text = "You can Go next room by click button";
+        text.text = "수고하셨습니다. 다음방 가는 버튼을 눌러 다음방 문을 열어보세요";
         pokeButton.selectEntered.AddListener(_ => { NextRoomSeq.SetActive(true); }); 
         audioSource.clip = _manager.audioClips[3];
         audioSource.Play();

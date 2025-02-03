@@ -229,12 +229,15 @@ public class Monster : MonoBehaviourPunCallbacks
 	{
 		behaviorAgent.BlackboardReference.GetVariableValue("Player", out Transform ob);
 		Vector3 temp = ob.transform.position - transform.position;
-		temp.y = transform.position.y;
+		temp.y = 0;
 		transform.forward = temp.normalized;
 		if (typeOfMonster == MonsterType.SORCERCER)
 		{
+			Vector3 ballDis =(ob.position - shootPoint.position);
+			ballDis.y = 0;
+			ballDis=ballDis.normalized;
 			GameObject ball = PhotonNetwork.Instantiate("SocererFireBall", shootPoint.position, Quaternion.identity);
-			ball.GetComponent<SorcererFireBall>().InitData(transform.forward,3.0f, attackPower);
+			ball.GetComponent<SorcererFireBall>().InitData(ballDis,3.0f, attackPower);
 		}
 		else
 		{
@@ -246,4 +249,9 @@ public class Monster : MonoBehaviourPunCallbacks
 	}
 
 
+	private void OnDrawGizmos()
+	{
+		Gizmos.color = Color.red;
+		Gizmos.DrawLine(transform.position, transform.forward*10+transform.position);
+	}
 }

@@ -1,25 +1,27 @@
 using Photon.Pun;
 using UnityEngine;
+using Quaternion = UnityEngine.Quaternion;
 
 public class ScrapFactory : MonoBehaviour
 {
 	public void SpawnScrap(Transform position)
 	{
 		int rand = Random.Range(0, 4);
-
+		Vector3 pos = position.position;
+		pos.y += 0.2f;
 		switch (rand)
 		{
 			case 0:
-				PhotonNetwork.InstantiateRoomObject("Glove", position.position, Quaternion.identity);
+				PhotonNetwork.InstantiateRoomObject("Glove", pos, Quaternion.identity);
 				break;
 			case 1:
-				PhotonNetwork.InstantiateRoomObject("Helmet", position.position, Quaternion.identity);
+				PhotonNetwork.InstantiateRoomObject("Helmet", pos, Quaternion.identity);
 				break;
 			case 2:
-				PhotonNetwork.InstantiateRoomObject("Pants", position.position, Quaternion.identity);
+				PhotonNetwork.InstantiateRoomObject("Pants", pos, Quaternion.identity);
 				break;
 			case 3:
-				PhotonNetwork.InstantiateRoomObject("Tunic", position.position, Quaternion.identity);
+				PhotonNetwork.InstantiateRoomObject("Tunic", pos, Quaternion.identity);
 				break;
 
 		}

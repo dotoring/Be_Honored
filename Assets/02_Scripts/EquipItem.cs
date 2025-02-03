@@ -5,10 +5,7 @@ using UnityEngine;
 public class EquipItem : ScrapItem
 {
 	[SerializeField] EquipType typeOfEquip;
-	GameObject parentOfObject;
 
-	Material materialOrigin;
-	[SerializeField] Material materialRed;
 	bool isOnSlot = false;
 	EQUIPSTAT equipStat;
 
@@ -17,15 +14,6 @@ public class EquipItem : ScrapItem
 	[SerializeField] TMP_Text TextDefence;
 	[SerializeField] TMP_Text TextEveda;
 
-
-
-	private new void Awake()
-	{
-		base.Awake();
-		materialOrigin = GetComponent<MeshRenderer>().material;
-		parentOfObject = transform.parent.gameObject;
-
-	}
 	private void OnEnable()
 	{
 		if (PhotonNetwork.IsMasterClient)
@@ -46,38 +34,6 @@ public class EquipItem : ScrapItem
 			}
 
 			pv.RPC(nameof(SetState), RpcTarget.AllBuffered, vars);
-		}
-	}
-	protected override void Start()
-	{
-		base.Start();
-		xRGrabInteractable.selectEntered.AddListener((args) =>
-		{
-			//부모가 있으면 삭제
-			if (parentOfObject != null)
-			{
-				Destroy(parentOfObject);
-
-				//다른 플레이어들에게도 전달
-				pv.RPC(nameof(DestroyParent), RpcTarget.OthersBuffered);
-			}
-		});
-	}
-	[PunRPC]
-	private void ReSetPosition()
-	{
-		transform.parent = null;
-		transform.position = Vector3.zero;
-		transform.rotation = Quaternion.identity;
-	}
-
-	[PunRPC]
-	void DestroyParent()
-	{
-		if(parentOfObject != null)
-		{
-			transform.parent = null;
-			Destroy(parentOfObject);
 		}
 	}
 
@@ -155,7 +111,10 @@ public class EquipItem : ScrapItem
 	{
 		if (other.gameObject.CompareTag("Bag"))
 		{
-			isInBag = false;
+			if (isGrabed)
+			{
+				isInBag = false;
+			}
 
 			bagCtrl.ResetBagMat();
 		}

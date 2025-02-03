@@ -19,8 +19,8 @@ public class PlayerTouchManager : MonoBehaviour
 
 	private int currentOrder = 0;
 	private float lastTriggerTime = 0f;
-	[SerializeField] AudioClip attacksound;
-	AudioSource audioSource;
+	[SerializeField] private protected AudioClip attacksound;
+	private protected AudioSource audioSource;
 
 	protected Vector3 offset = new(0, 0, 1);
 	protected Vector3 sizeOfBox = new(1, 1, 1.5f);
@@ -167,7 +167,7 @@ public class PlayerTouchManager : MonoBehaviour
 
 		foreach (var item in hitColliders)
 		{
-			item.GetComponent<PhotonView>().RPC("Damaged", RpcTarget.AllBuffered, 1 + Player.Instance._stat.attack);
+			item.GetComponent<PhotonView>().RPC("Damaged", RpcTarget.AllBuffered, Player.Instance._stat.attack);
 			hited = true;
 		}
 

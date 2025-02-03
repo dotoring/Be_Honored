@@ -8,11 +8,11 @@ public class SorcererFireBall : MonoBehaviour
 	Vector3 dis;
 
 	float radius=3.0f;
-	public void InitData(Vector3 distance,float speeds,float damaged)
+	public void InitData(Vector3 distance, float speeds, float damaged)
 	{
 		speed=speeds;
 		damage=damaged;
-		dis= distance;
+		dis = distance;
 	}
 
 	private void Start()
@@ -35,7 +35,7 @@ public class SorcererFireBall : MonoBehaviour
 		{
 			if (PhotonNetwork.IsMasterClient)
 			{
-				other.GetComponent<HitPlayer>()?.Damaged(0.5f*damage);
+				other.GetComponent<HitPlayer>()?.Damaged(1f*damage);
 			}
 			PhotonNetwork.Destroy(gameObject);
 		}

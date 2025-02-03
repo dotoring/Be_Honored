@@ -13,10 +13,10 @@ GameObject:
   - component: {fileID: 7403764894790481724}
   - component: {fileID: 6150113010454488397}
   - component: {fileID: 6871539999370347283}
-  - component: {fileID: 7953360074859246870}
   - component: {fileID: 5336671064425608650}
   - component: {fileID: 2847258627920797003}
   - component: {fileID: 9034935793313187473}
+  - component: {fileID: 7627853880731660288}
   m_Layer: 0
   m_Name: GoldCup_02
   m_TagString: Item
@@ -140,20 +140,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &7953360074859246870
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1951225913900136845}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b00ac4f4536ed104e98c94441e4fb43a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  typeOfItem: 1
-  weight: 5
 --- !u!114 &5336671064425608650
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -315,3 +301,17 @@ MonoBehaviour:
   m_SynchronizeRotation: 1
   m_SynchronizeScale: 0
   m_UseLocal: 1
+--- !u!114 &7627853880731660288
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1951225913900136845}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cdee94dc5ba0f94a8307649e058d4df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  typeOfItem: 1
+  weight: 5

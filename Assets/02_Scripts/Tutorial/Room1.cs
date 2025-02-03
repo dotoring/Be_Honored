@@ -33,7 +33,7 @@ public class Room1 : MonoBehaviour
         pokeButton.enabled = false;
         // yield return new WaitForSeconds(3f);
         // text.text = "You can opon Bag for you";
-        yield return new WaitForSeconds(3f);
+        //yield return new WaitForSeconds(3f);
         text.text = "오른 손목에 있는 회색공을 왼손 컨트롤러 중지 그랩버튼으로 집어보세요";
 
 
@@ -55,7 +55,7 @@ public class Room1 : MonoBehaviour
         scrap.inbag -= ActionOnPerformed;
         NextStep = false;
 
-        yield return new WaitForSeconds(3f);
+        //yield return new WaitForSeconds(3f);
         pokeButton.enabled = true;
         nextRoomBtnText.SetActive(true);
         text.text = "수고하셧습니다. 다음방 가는 버튼을 눌러 다음방 문을 열어보세요";
@@ -63,7 +63,7 @@ public class Room1 : MonoBehaviour
         audioSource.clip = _manager.audioClips[3];
         audioSource.Play();
 
-        yield return new WaitForSeconds(3f);
+        //yield return new WaitForSeconds(3f);
     }
 
     private void ActionOnPerformed()

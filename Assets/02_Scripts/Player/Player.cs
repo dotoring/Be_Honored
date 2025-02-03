@@ -59,6 +59,8 @@ public partial class Player : Singleton<Player>
 		Instance.LoadPlayerData();
 
 		audioSource.loop = true;
+		ToTalStat();
+		hp = _stat.hpmax;
 		ChangeBGM(0);
 	}
 
@@ -80,7 +82,7 @@ public partial class Player : Singleton<Player>
 			hp = _stat.hpmax;
 		}
 
-		hpBar.fillAmount = hp / 50;
+		hpBar.fillAmount = hp / _stat.hpmax;
 	}
 
 	public void Heal(float heal)
@@ -91,7 +93,7 @@ public partial class Player : Singleton<Player>
 			hp = _stat.hpmax;
 		}
 
-		hpBar.fillAmount = hp / 50;
+		hpBar.fillAmount = hp / _stat.hpmax;
 	}
 
 	private bool CheckEvade()
@@ -139,5 +141,11 @@ public partial class Player : Singleton<Player>
 			audioSource.Play();
 		}
 	}
+
+	protected override void OnApplicationQuit()
+	{
+		Instance.SavePlayerData();
+	}
+	
 
 }

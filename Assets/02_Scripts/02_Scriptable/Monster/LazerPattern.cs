@@ -18,6 +18,7 @@ public class LazerPattern : BossPattern
 	[SerializeField] float goalTime = 1.1f;
 	[SerializeField] float progress;
 	[SerializeField] Vector3 vec;
+	[SerializeField] bool startShoot;
 
 	private void OnEnable()
 	{
@@ -26,6 +27,7 @@ public class LazerPattern : BossPattern
 		chargingTime = 0;
 		lazingTime = 0;
 		col.enabled = false;
+		startShoot = false;
 		range.SetActive(true);
 	}
 
@@ -39,10 +41,15 @@ public class LazerPattern : BossPattern
 		}
 		else
 		{
-			col.enabled = true;
-			range.SetActive(false);
-			syl.SetActive(true);
-			if (lazingTime < 2.0f)
+			if (!startShoot)
+			{
+				col.enabled = true;
+				range.SetActive(false);
+				if (!syl.activeSelf)
+					syl.SetActive(true);
+				startShoot= true;
+			}
+			if (lazingTime < 5.0f)
 			{
 				lazingTime += Time.deltaTime;
 				transform.root.transform.eulerAngles += rotateAngle * Time.deltaTime * Vector3.up;
