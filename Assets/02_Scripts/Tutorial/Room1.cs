@@ -12,7 +12,7 @@ public class Room1 : MonoBehaviour
     [SerializeField] private TMP_Text text;
     bool NextStep;
     [SerializeField] GameObject NextRoomSeq;
-    [SerializeField] TutoBagPortal tutobag;
+    [SerializeField] TutoBag tutobag;
     [SerializeField] TutoScrapItem scrap;
     [SerializeField] private GameObject nextRoomBtnText;
     [SerializeField] private GameObject canvas;
