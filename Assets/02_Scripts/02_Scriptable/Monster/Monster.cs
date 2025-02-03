@@ -31,7 +31,7 @@ public class Monster : MonoBehaviourPunCallbacks
 	public MonsterSpawner spawner;
 	[SerializeField] MonsterType typeOfMonster;
 	[SerializeField] MonsterLevel monsterLevel;
-	[SerializeField] BossType bossType;
+	[SerializeField] protected BossType bossType;
 	public float detectRange;
 	public float attackRange;
 	public float attackPower;
@@ -51,8 +51,12 @@ public class Monster : MonoBehaviourPunCallbacks
 	public Canvas hpBar;
 	public Animator ani;
 
+	[SerializeField] protected Material mat;
 	[SerializeField] private Transform shootPoint;
 
+	[SerializeField] private float maxIntensity;
+	[SerializeField] private float minIntensity;
+	[SerializeField] private float intensity;
 	public GameObject Ball;
 
 	private void Awake()
@@ -78,6 +82,11 @@ public class Monster : MonoBehaviourPunCallbacks
 		if(typeOfMonster!=MonsterType.BOSS)
 			dieEvent += () => pv.RPC(nameof(DieRPC), RpcTarget.All);
 		LoadData();
+		if (bossType == BossType.CERBERUS)
+		{
+			mat.EnableKeyword("_EMISSION");
+			mat.SetColor("_EmissionColor", Color.red * maxIntensity);
+		}
 	}
 
 
@@ -182,7 +191,7 @@ public class Monster : MonoBehaviourPunCallbacks
 	}
 
 	[PunRPC]
-	public void Damaged(int damage)
+	public virtual void Damaged(int damage)
 	{
 		if (curHp > 0)
 		{
@@ -190,12 +199,15 @@ public class Monster : MonoBehaviourPunCallbacks
 			curHp -= damage;
 			tem.Value = curHp;
 			behaviorAgent.BlackboardReference.SetVariableValue<float>("Hp", tem);
+			float hpPer = curHp / maxHp;
+			intensity = minIntensity + hpPer * (maxIntensity-minIntensity);
 			if (hpBar != null)
 			{
 				hpBar.gameObject.SetActive(true);
-				float hpPer = curHp / maxHp;
 				hpBar.GetComponent<LookCamera>().UpdateUI(hpPer);
 			}
+			if (bossType == BossType.CERBERUS)
+				mat.SetColor("_EmissionColor", intensity*Color.red);
 			if (curHp <= 0 && isDie == false)
 			{
 				dieEvent.Invoke();
