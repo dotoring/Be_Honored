@@ -2,6 +2,8 @@ using Unity.Behavior;
 using UnityEngine;
 using UnityEngine.AI;
 using Photon.Pun;
+using UnityEngine.Rendering;
+using System.Collections.Generic;
 
 
 public enum MonsterType
@@ -58,6 +60,9 @@ public class Monster : MonoBehaviourPunCallbacks
 	[SerializeField] private float minIntensity;
 	[SerializeField] private float intensity;
 	public GameObject Ball;
+
+	[SerializeField] private List<Transform> hitPoint = new();
+
 
 	private void Awake()
 	{
@@ -191,8 +196,10 @@ public class Monster : MonoBehaviourPunCallbacks
 	}
 
 	[PunRPC]
-	public virtual void Damaged(int damage)
+	public void Damaged(int damage)
 	{
+		PhotonNetwork.Instantiate("HitEffectMonster", hitPoint[Random.Range(0, hitPoint.Count)].position, Quaternion.identity);
+		
 		if (curHp > 0)
 		{
 			Debug.Log($" {gameObject.name} {damage} Damaged remain {curHp}");
