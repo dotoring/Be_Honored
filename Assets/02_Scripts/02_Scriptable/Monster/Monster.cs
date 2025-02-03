@@ -2,6 +2,8 @@ using Unity.Behavior;
 using UnityEngine;
 using UnityEngine.AI;
 using Photon.Pun;
+using UnityEngine.Rendering;
+using System.Collections.Generic;
 
 
 public enum MonsterType
@@ -31,7 +33,7 @@ public class Monster : MonoBehaviourPunCallbacks
 	public MonsterSpawner spawner;
 	[SerializeField] MonsterType typeOfMonster;
 	[SerializeField] MonsterLevel monsterLevel;
-	[SerializeField] BossType bossType;
+	[SerializeField] protected BossType bossType;
 	public float detectRange;
 	public float attackRange;
 	public float attackPower;
@@ -51,9 +53,16 @@ public class Monster : MonoBehaviourPunCallbacks
 	public Canvas hpBar;
 	public Animator ani;
 
+	[SerializeField] protected Material mat;
 	[SerializeField] private Transform shootPoint;
 
+	[SerializeField] private float maxIntensity;
+	[SerializeField] private float minIntensity;
+	[SerializeField] private float intensity;
 	public GameObject Ball;
+
+	[SerializeField] private List<Transform> hitPoint = new();
+
 
 	private void Awake()
 	{
@@ -78,6 +87,11 @@ public class Monster : MonoBehaviourPunCallbacks
 		if(typeOfMonster!=MonsterType.BOSS)
 			dieEvent += () => pv.RPC(nameof(DieRPC), RpcTarget.All);
 		LoadData();
+		if (bossType == BossType.CERBERUS)
+		{
+			mat.EnableKeyword("_EMISSION");
+			mat.SetColor("_EmissionColor", Color.red * maxIntensity);
+		}
 	}
 
 
@@ -184,18 +198,23 @@ public class Monster : MonoBehaviourPunCallbacks
 	[PunRPC]
 	public void Damaged(int damage)
 	{
+		PhotonNetwork.Instantiate("HitEffectMonster", hitPoint[Random.Range(0, hitPoint.Count)].position, Quaternion.identity);
+		
 		if (curHp > 0)
 		{
 			Debug.Log($" {gameObject.name} {damage} Damaged remain {curHp}");
 			curHp -= damage;
 			tem.Value = curHp;
 			behaviorAgent.BlackboardReference.SetVariableValue<float>("Hp", tem);
+			float hpPer = curHp / maxHp;
+			intensity = minIntensity + hpPer * (maxIntensity-minIntensity);
 			if (hpBar != null)
 			{
 				hpBar.gameObject.SetActive(true);
-				float hpPer = curHp / maxHp;
 				hpBar.GetComponent<LookCamera>().UpdateUI(hpPer);
 			}
+			if (bossType == BossType.CERBERUS)
+				mat.SetColor("_EmissionColor", intensity*Color.red);
 			if (curHp <= 0 && isDie == false)
 			{
 				dieEvent.Invoke();
