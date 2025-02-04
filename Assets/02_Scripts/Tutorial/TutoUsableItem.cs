@@ -20,6 +20,6 @@ public class TutoUsableItem : UsableItem
         
         Debug.Log("TutoUsableItem.SetInBag");
         base.SetInBag();
-        inbag.Invoke();
+        inbag?.Invoke();
     }
 }
