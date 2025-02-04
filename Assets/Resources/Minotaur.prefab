@@ -698,7 +698,7 @@ GameObject:
   - component: {fileID: 1609880375982340849}
   m_Layer: 11
   m_Name: Minotaur
-  m_TagString: Untagged
+  m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -898,12 +898,20 @@ MonoBehaviour:
   navMeshAgent: {fileID: 2421345553411630911}
   hpBar: {fileID: 0}
   ani: {fileID: 0}
+  mat: {fileID: 0}
+  shootPoint: {fileID: 0}
+  maxIntensity: 0
+  minIntensity: 0
+  intensity: 0
+  Ball: {fileID: 0}
+  hitPoint: []
   skillCoolTime: 4
   skillWaitTime: 0
   canUseSkill: 0
   playerList: []
   targetPlayer: {fileID: 0}
   anim: {fileID: 8502806297500364490}
+  resetPos: {fileID: 0}
   monsterPatternObj: []
 --- !u!195 &2421345553411630911
 NavMeshAgent:

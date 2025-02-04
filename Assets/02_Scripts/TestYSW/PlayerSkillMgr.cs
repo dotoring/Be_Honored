@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Photon.Pun;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -11,6 +12,7 @@ public class PlayerSkillMgr : MonoBehaviour
 
 	[SerializeField] GameObject ball;
 	[SerializeField] GameObject box;
+	[SerializeField] private ParticleSystem lightning;
 
 	List<int> pattern = new List<int>();
 	Coroutine timerCoroutine;
@@ -48,12 +50,20 @@ public class PlayerSkillMgr : MonoBehaviour
 
 		switch (skill)
 		{
-			case "012345":
-				GameObject go = Instantiate(ball, shotPoint.position, Quaternion.identity);
-				go.GetComponent<Rigidbody>().AddForce(shotPoint.forward * 200f);
+			case "012345": //파이어볼
+				GameObject ball = PhotonNetwork.Instantiate("PlayerFireBall", shotPoint.position, Quaternion.identity);
+				ball.GetComponent<SorcererFireBall>().InitData(shotPoint.forward,1.5f, Player.Instance._stat.attack);
+				// GameObject go = Instantiate(ball, shotPoint.position, Quaternion.identity);
+				// go.GetComponent<Rigidbody>().AddForce(shotPoint.forward * 200f);
 				break;
 			case "1245":
 				Instantiate(box, shotPoint.position, Quaternion.identity);
+				break;
+			case "0523": //전기충격
+				lightning.Play();
+				break;
+			default: //실패 시
+				Debug.Log("실패");
 				break;
 		}
 	}
