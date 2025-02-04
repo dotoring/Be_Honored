@@ -41,7 +41,7 @@ public class Monster : MonoBehaviourPunCallbacks
 	public float curHp;
 	public System.Action dieEvent;
 	public bool isDie;
-
+	
 	BlackboardVariable<float> tem = new ();
 	//[SerializeField]BlackboardVariable<GameObject> targettem = new ();
 	public int moduleId;
@@ -80,10 +80,13 @@ public class Monster : MonoBehaviourPunCallbacks
 		}
 		spawner = DungeonMgr.instance?.SetModule(moduleId).GetComponent<MonsterSpawner>();
 		spawner.AddToList(this.gameObject);
-		dieEvent += () => spawner.RemoveFromList(this.gameObject);
-		dieEvent += () => MainFactory.Inst.MonsterDrop(transform);
-		dieEvent += () => isDie = true;
-		dieEvent += () => col.enabled = false;
+		dieEvent += () =>
+		{
+			spawner.RemoveFromList(this.gameObject);
+			MainFactory.Inst.MonsterDrop(transform);
+			isDie = true;
+			col.enabled = false;
+		};
 		if(typeOfMonster!=MonsterType.BOSS)
 			dieEvent += () => pv.RPC(nameof(DieRPC), RpcTarget.All);
 		LoadData();
