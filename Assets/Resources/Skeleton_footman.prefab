@@ -147,7 +147,7 @@ GameObject:
   - component: {fileID: 3154724110875293012}
   m_Layer: 0
   m_Name: Skeleton_footman
-  m_TagString: Untagged
+  m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -259,7 +259,11 @@ MonoBehaviour:
   ani: {fileID: 438715036460926572}
   mat: {fileID: 2100000, guid: 22f2c331dd79e184d84e80bb5c3ee177, type: 2}
   shootPoint: {fileID: 0}
+  maxIntensity: 0
+  minIntensity: 0
+  intensity: 0
   Ball: {fileID: 0}
+  hitPoint: []
 --- !u!114 &511046280090709066
 MonoBehaviour:
   m_ObjectHideFlags: 0
