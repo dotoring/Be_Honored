@@ -48,12 +48,17 @@ public class PlayerSkillMgr : MonoBehaviour
 
 		switch (skill)
 		{
-			case "012345":
+			case "012345": //파이어볼
 				GameObject go = Instantiate(ball, shotPoint.position, Quaternion.identity);
 				go.GetComponent<Rigidbody>().AddForce(shotPoint.forward * 200f);
 				break;
 			case "1245":
 				Instantiate(box, shotPoint.position, Quaternion.identity);
+				break;
+			case "0523": //전기충격
+				break;
+			default: //실패 시
+				Debug.Log("실패");
 				break;
 		}
 	}
