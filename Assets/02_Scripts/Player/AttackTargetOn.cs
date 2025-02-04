@@ -4,12 +4,26 @@ using UnityEngine;
 public class AttackTargetOn : MonoBehaviour
 {
 	[SerializeField] List<GameObject> AttackOn;
+	[SerializeField] List<GameObject> warriorAttack;
+	[SerializeField] List<GameObject> mageAttack;
 	[SerializeField] List<Vector3> position1;
 	[SerializeField] List<Vector3> position2;
 
 	private void Awake()
 	{
-		foreach (var item in AttackOn)
+		if (Player.Instance.myClass == KindOfclass.Warrior)
+		{
+			AttackOn = warriorAttack;
+		}
+		else if (Player.Instance.myClass == KindOfclass.Mage)
+		{
+			AttackOn = mageAttack;
+		}
+		foreach (var item in warriorAttack)
+		{
+			item.SetActive(false);
+		}
+		foreach (var item in mageAttack)
 		{
 			item.SetActive(false);
 		}
