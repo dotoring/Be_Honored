@@ -5258,7 +5258,7 @@ MonoBehaviour:
   pokeButton: {fileID: 574807242}
   text: {fileID: 1447952592}
   NextRoomSeq: {fileID: 809807102}
-  tutobag: {fileID: 0}
+  tutobag: {fileID: 9193620770460383767}
   scrap: {fileID: 6993575147174710958}
   nextRoomBtnText: {fileID: 4504276728417215170}
   canvas: {fileID: 2086509149}
@@ -9199,7 +9199,12 @@ GameObject:
   m_Component:
   - component: {fileID: 552779501}
   - component: {fileID: 552779502}
-  m_Layer: 14
+  - component: {fileID: 552779506}
+  - component: {fileID: 552779505}
+  - component: {fileID: 552779504}
+  - component: {fileID: 552779503}
+  - component: {fileID: 552779507}
+  m_Layer: 13
   m_Name: SowrdHolder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9216,7 +9221,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0.60659796, y: 0.68137395, z: -0.20132715, w: 0.35670146}
   m_LocalPosition: {x: 0.215, y: -0.815, z: 0.135}
-  m_LocalScale: {x: 0.20000002, y: 0.20000003, z: 0.2}
+  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1278496053}
@@ -9236,7 +9241,230 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isEmpty: 0
   swordGI: {fileID: 1278496059}
-  xrGrab: {fileID: 1278496059}
+  xrGrab: {fileID: 552779503}
+--- !u!114 &552779503
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 552779500}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ad34abafad169848a38072baa96cdb2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_InteractionManager: {fileID: 0}
+  m_Colliders: []
+  m_InteractionLayers:
+    m_Bits: 1
+  m_DistanceCalculationMode: 1
+  m_SelectMode: 0
+  m_FocusMode: 1
+  m_CustomReticle: {fileID: 0}
+  m_AllowGazeInteraction: 0
+  m_AllowGazeSelect: 0
+  m_OverrideGazeTimeToSelect: 0
+  m_GazeTimeToSelect: 0.5
+  m_OverrideTimeToAutoDeselectGaze: 0
+  m_TimeToAutoDeselectGaze: 3
+  m_AllowGazeAssistance: 0
+  m_FirstHoverEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  m_LastHoverExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_HoverEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  m_HoverExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FirstSelectEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  m_LastSelectExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_SelectEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  m_SelectExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FirstFocusEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  m_LastFocusExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FocusEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FocusExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Activated:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Deactivated:
+    m_PersistentCalls:
+      m_Calls: []
+  m_StartingHoverFilters: []
+  m_StartingSelectFilters: []
+  m_StartingInteractionStrengthFilters: []
+  m_AttachTransform: {fileID: 0}
+  m_SecondaryAttachTransform: {fileID: 0}
+  m_UseDynamicAttach: 0
+  m_MatchAttachPosition: 1
+  m_MatchAttachRotation: 1
+  m_SnapToColliderVolume: 1
+  m_ReinitializeDynamicAttachEverySingleGrab: 1
+  m_AttachEaseInTime: 0.15
+  m_MovementType: 2
+  m_VelocityDamping: 1
+  m_VelocityScale: 1
+  m_AngularVelocityDamping: 1
+  m_AngularVelocityScale: 1
+  m_TrackPosition: 1
+  m_SmoothPosition: 0
+  m_SmoothPositionAmount: 8
+  m_TightenPosition: 0.1
+  m_TrackRotation: 1
+  m_SmoothRotation: 0
+  m_SmoothRotationAmount: 8
+  m_TightenRotation: 0.1
+  m_TrackScale: 1
+  m_SmoothScale: 0
+  m_SmoothScaleAmount: 8
+  m_TightenScale: 0.1
+  m_ThrowOnDetach: 1
+  m_ThrowSmoothingDuration: 0.25
+  m_ThrowSmoothingCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  m_ThrowVelocityScale: 1.5
+  m_ThrowAngularVelocityScale: 1
+  m_ForceGravityOnDetach: 0
+  m_RetainTransformParent: 1
+  m_StartingSingleGrabTransformers: []
+  m_StartingMultipleGrabTransformers: []
+  m_AddDefaultGrabTransformers: 1
+  m_FarAttachMode: 0
+--- !u!33 &552779504
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 552779500}
+  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &552779505
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 552779500}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: fc226930e8fad4c499969204cecfbc05, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!54 &552779506
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 552779500}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!135 &552779507
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 552779500}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.50000024
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &555557297
 GameObject:
   m_ObjectHideFlags: 0
@@ -15163,18 +15391,18 @@ MonoBehaviour:
   m_TrackedDeviceDragThresholdMultiplier: 2
   m_TrackedScrollDeltaMultiplier: 5
   m_BypassUIToolkitEvents: 0
-  m_ActiveInputMode: 0
+  m_ActiveInputMode: 1
   m_EnableXRInput: 1
   m_EnableMouseInput: 1
   m_EnableTouchInput: 1
-  m_PointAction: {fileID: 0}
-  m_LeftClickAction: {fileID: 0}
-  m_MiddleClickAction: {fileID: 0}
-  m_RightClickAction: {fileID: 0}
-  m_ScrollWheelAction: {fileID: 0}
-  m_NavigateAction: {fileID: 0}
-  m_SubmitAction: {fileID: 0}
-  m_CancelAction: {fileID: 0}
+  m_PointAction: {fileID: 2869410428622933342, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  m_LeftClickAction: {fileID: 1855836014308820768, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  m_MiddleClickAction: {fileID: -6289560987278519447, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  m_RightClickAction: {fileID: -2562941478296515153, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  m_ScrollWheelAction: {fileID: 5825226938762934180, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  m_NavigateAction: {fileID: -7967456002180160679, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  m_SubmitAction: {fileID: 3994978066732806534, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  m_CancelAction: {fileID: 2387711382375263438, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   m_EnableBuiltinActionsAsFallback: 1
   m_EnableGamepadInput: 1
   m_EnableJoystickInput: 1
@@ -19319,7 +19547,7 @@ GameObject:
   - component: {fileID: 1278496055}
   - component: {fileID: 1278496054}
   - component: {fileID: 1278496063}
-  m_Layer: 0
+  m_Layer: 29
   m_Name: Sword_OH (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19336,8 +19564,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 4, y: 4, z: 4}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 791677355}
   - {fileID: 160817254}
@@ -19677,8 +19905,8 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
+  m_UseGravity: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 1
@@ -24224,6 +24452,7 @@ MonoBehaviour:
   hp: 50
   hited: {fileID: 8300000, guid: 65f51cc928adf8b4780afad5f1139f3c, type: 3}
   hpBar: {fileID: 0}
+  hpBar_V2: {fileID: 2100000, guid: 81fce60a4d4ec20408a3348fb67affb3, type: 2}
   audioSource: {fileID: 0}
   bgms:
   - {fileID: 8300000, guid: 42f2e250da2678841acc35b519121665, type: 3}
@@ -32720,7 +32949,7 @@ MonoBehaviour:
   m_AimTargetObject: {fileID: 3514099719902780946}
   m_RaycastMask:
     serializedVersion: 2
-    m_Bits: 2684354593
+    m_Bits: 2952798241
   m_RaycastTriggerInteraction: 1
   m_RaycastSnapVolumeInteraction: 1
   m_TargetNumCurveSegments: 1
@@ -36272,7 +36501,7 @@ SphereCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -36294,14 +36523,6 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0.15, y: 2.6, z: -1.75}
   m_TimeToStationary: 0.5
---- !u!33 &2185269819519041858
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8180854977961066066}
-  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!65 &2222882181808741274
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -58211,7 +58432,7 @@ MonoBehaviour:
   m_AimTargetObject: {fileID: 0}
   m_PhysicsLayerMask:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 805314561
   m_PhysicsTriggerInteraction: 1
   m_CastRadius: 0.1
 --- !u!4 &4623109957152350155
@@ -59425,7 +59646,7 @@ Transform:
   m_GameObject: {fileID: 574342212710358498}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.1176, z: 0}
+  m_LocalPosition: {x: 0, y: 1.7, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -59516,7 +59737,7 @@ MonoBehaviour:
   m_AimTargetObject: {fileID: 8990050498710652345}
   m_RaycastMask:
     serializedVersion: 2
-    m_Bits: 2147483681
+    m_Bits: 2952798241
   m_RaycastTriggerInteraction: 1
   m_RaycastSnapVolumeInteraction: 1
   m_TargetNumCurveSegments: 1
@@ -59692,7 +59913,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &5602184873534458971
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -61081,7 +61302,7 @@ GameObject:
   - component: {fileID: 8115517800843113982}
   - component: {fileID: 2318933408798856822}
   - component: {fileID: 4145130621911539835}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: Sphere (2)
   m_TagString: Ball
   m_Icon: {fileID: 0}
@@ -64108,12 +64329,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6322290552926735902}
-  - component: {fileID: 2185269819519041858}
-  - component: {fileID: 9193620770460383765}
   - component: {fileID: 2140262369037320907}
   - component: {fileID: 6171012439982020939}
-  - component: {fileID: 9193620770460383767}
   - component: {fileID: 9193620770460383766}
+  - component: {fileID: 9193620770460383767}
   m_Layer: 13
   m_Name: BagPortal
   m_TagString: Untagged
@@ -64482,7 +64701,7 @@ MonoBehaviour:
   m_AimTargetObject: {fileID: 0}
   m_PhysicsLayerMask:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 805314561
   m_PhysicsTriggerInteraction: 1
   m_CastRadius: 0.1
 --- !u!1 &8341260128378683822
@@ -66534,51 +66753,6 @@ Transform:
   - {fileID: 4312594467706423842}
   m_Father: {fileID: 5935124570008954445}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!23 &9193620770460383765
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8180854977961066066}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!114 &9193620770460383766
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -66710,7 +66884,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8180854977961066066}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc1b283880acca441aa6d727c42886f0, type: 3}
+  m_Script: {fileID: 11500000, guid: f02e5915ba114ec4e829962b624d9736, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   bagPref: {fileID: 4130928169224751713, guid: 1da0a5a375d03c04991d36312f2d6600, type: 3}
