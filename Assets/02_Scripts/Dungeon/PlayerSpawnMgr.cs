@@ -22,8 +22,15 @@ public class PlayerSpawnMgr : MonoBehaviour
 	void SpawnPlayer()
 	{
 		xrOrigin.transform.position = spawnPoint.position;
-
-		GameObject go = PhotonNetwork.Instantiate("Player", spawnPoint.position, Quaternion.identity);
+		GameObject go;
+		if (Player.Instance.myClass == KindOfclass.Mage)
+		{
+			go = PhotonNetwork.Instantiate("Player_Mage", spawnPoint.position, Quaternion.identity);
+		}
+		else
+		{
+			go = PhotonNetwork.Instantiate("Player", spawnPoint.position, Quaternion.identity);
+		}
 		go.GetComponent<PlayerTracker>().pp = this.pp;
 	}
 

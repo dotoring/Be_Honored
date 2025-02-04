@@ -37,7 +37,7 @@ public class PhotonManager : MonoBehaviourPunCallbacks
 					PhotonNetwork.JoinLobby();
 				for (int i = 0; i < roomInBtns.Count; i++)
 				{
-					roomInBtns[i].interactable = true;
+					roomInBtns[i].GetComponent<RoomData>().btnActivate.Invoke(App.Instance.gold.Value);
 				}
 			}
 		}
@@ -105,6 +105,7 @@ public class PhotonManager : MonoBehaviourPunCallbacks
 	public void MakeRoomBtnOnClick(RoomLevel level)
 	{
 		print("들어온 값" + (int)level);
+		App.Instance.UseGold(roomInBtns[(int)level].GetComponent<RoomData>().cost);
 		if (roomInBtns[(int)level].GetComponent<RoomData>().RoomInfo == null || roomInBtns[(int)level].GetComponent<RoomData>().RoomInfo.MaxPlayers == 0)
 			MakeRoom(level);
 		else

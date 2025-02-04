@@ -198,7 +198,8 @@ public class Monster : MonoBehaviourPunCallbacks
 	[PunRPC]
 	public void Damaged(int damage)
 	{
-		PhotonNetwork.Instantiate("HitEffectMonster", hitPoint[Random.Range(0, hitPoint.Count)].position, Quaternion.identity);
+		if(typeOfMonster!=MonsterType.BOSS)
+			PhotonNetwork.Instantiate("HitEffectMonster", hitPoint[Random.Range(0, hitPoint.Count)].position, Quaternion.identity);
 		
 		if (curHp > 0)
 		{
@@ -256,7 +257,7 @@ public class Monster : MonoBehaviourPunCallbacks
 			ballDis.y = 0;
 			ballDis=ballDis.normalized;
 			GameObject ball = PhotonNetwork.Instantiate("SocererFireBall", shootPoint.position, Quaternion.identity);
-			ball.GetComponent<SorcererFireBall>().InitData(ballDis,3.0f, attackPower);
+			ball.GetComponent<SorcererFireBall>().InitData(ballDis,1.5f, attackPower);
 		}
 		else
 		{
