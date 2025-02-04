@@ -24,7 +24,7 @@ public struct Stat
 
 public partial class Player : Singleton<Player>
 {
-	[SerializeField] KindOfclass _myClass;
+	public KindOfclass myClass;
 	/// <summary>
 	/// current totoal stat
 	/// </summary>
@@ -146,6 +146,6 @@ public partial class Player : Singleton<Player>
 	{
 		Instance.SavePlayerData();
 	}
-	
+
 
 }

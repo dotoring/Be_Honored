@@ -1,12 +1,11 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.XR.Interaction.Toolkit.Inputs.Readers;
+using UnityEngine.InputSystem;
 
 public class PlayerSkillMgr : MonoBehaviour
 {
-	public List<GameObject> triggerAreas;
+	[SerializeField] List<GameObject> triggerAreas;
 	public Material matgray;
 	public Material matred;
 
@@ -15,19 +14,21 @@ public class PlayerSkillMgr : MonoBehaviour
 
 	List<int> pattern = new List<int>();
 	Coroutine timerCoroutine;
-	bool isShot;
-	[SerializeField]
-	XRInputValueReader<float> m_TriggerInput = new XRInputValueReader<float>("Trigger");
+	bool isShot = false;
+	[SerializeField] InputActionProperty triggerInput;
+	[SerializeField] Transform shotPoint;
 
 	private void Start()
 	{
+		triggerAreas = Player.Instance.Attackon;
+
 		// 시작 시 모든 트리거 영역의 재질을 matgray로 설정 (추가)
 		ResetMaterials();
 	}
 
 	private void Update()
 	{
-        var triggerVal = m_TriggerInput.ReadValue();
+		var triggerVal = triggerInput.action.ReadValue<float>();
 		if(triggerVal > 0.1f && !isShot)
 		{
 			UseSkill();
@@ -48,11 +49,11 @@ public class PlayerSkillMgr : MonoBehaviour
 		switch (skill)
 		{
 			case "012345":
-				GameObject go = Instantiate(ball, transform.position, Quaternion.identity);
-				go.GetComponent<Rigidbody>().AddForce(transform.forward * 200f);
+				GameObject go = Instantiate(ball, shotPoint.position, Quaternion.identity);
+				go.GetComponent<Rigidbody>().AddForce(shotPoint.forward * 200f);
 				break;
-			case "0235":
-				Instantiate(box, transform.position, Quaternion.identity);
+			case "1245":
+				Instantiate(box, shotPoint.position, Quaternion.identity);
 				break;
 		}
 	}
