@@ -27,13 +27,17 @@ public class PlayerTouchManager : MonoBehaviour
 	public LayerMask m_LayerMask;
 	bool hited = false;
 
+	PhotonView pv;
+
 	private void Awake()
 	{
 		audioSource = GetComponent<AudioSource>();
+		pv = GetComponent<PhotonView>();
 	}
 
 	private void Start()
 	{
+		if (!pv.IsMine) return;
 		triggerAreas = Player.Instance.Attackon;
 		// 게임 시작 시 currentOrder에 맞는 공만 파랑으로 설정
 		SetAreaToColors(currentOrder);
