@@ -10,9 +10,8 @@ public class PlayerSkillMgr : MonoBehaviour
 	public Material matgray;
 	public Material matred;
 
-	[SerializeField] GameObject ball;
 	[SerializeField] GameObject box;
-	[SerializeField] private ParticleSystem lightning;
+	[SerializeField] GameObject failSmoke;
 
 	List<int> pattern = new List<int>();
 	Coroutine timerCoroutine;
@@ -52,7 +51,7 @@ public class PlayerSkillMgr : MonoBehaviour
 		{
 			case "012345": //파이어볼
 				GameObject ball = PhotonNetwork.Instantiate("PlayerFireBall", shotPoint.position, Quaternion.identity);
-				ball.GetComponent<SorcererFireBall>().InitData(shotPoint.forward,1.5f, Player.Instance._stat.attack);
+				ball.GetComponent<SorcererFireBall>().InitData(shotPoint.forward,3f, Player.Instance._stat.attack);
 				// GameObject go = Instantiate(ball, shotPoint.position, Quaternion.identity);
 				// go.GetComponent<Rigidbody>().AddForce(shotPoint.forward * 200f);
 				break;
@@ -60,10 +59,15 @@ public class PlayerSkillMgr : MonoBehaviour
 				Instantiate(box, shotPoint.position, Quaternion.identity);
 				break;
 			case "0523": //전기충격
-				lightning.Play();
+				Vector3 pos = shotPoint.position;
+				pos.y = 0;
+				Quaternion rot = Quaternion.LookRotation(shotPoint.forward);
+				rot = Quaternion.Euler(0, rot.eulerAngles.y, 0);
+				GameObject lightning = PhotonNetwork.Instantiate("LightningShock", pos, rot);
 				break;
 			default: //실패 시
 				Debug.Log("실패");
+				failSmoke.SetActive(true);
 				break;
 		}
 	}
