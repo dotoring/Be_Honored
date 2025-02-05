@@ -7,6 +7,7 @@ public class SorcererFireBall : MonoBehaviour
 	int damage;
 	Vector3 dis;
 	[SerializeField] bool isPlayers;
+	[SerializeField] LayerMask layerMask;
 
 	float radius=3.0f;
 	public void InitData(Vector3 distance, float speeds, float damaged)
@@ -61,19 +62,18 @@ public class SorcererFireBall : MonoBehaviour
 	{
 		if (isPlayers)
 		{
-			Collider[] col = Physics.OverlapSphere(transform.position, radius,11);
+			Collider[] col = Physics.OverlapSphere(transform.position, radius,layerMask);
 			if(PhotonNetwork.IsMasterClient)
 			{
 				foreach(Collider c in col)
 				{
-					Debug.Log(c.gameObject.name);
-					c.GetComponent<PhotonView>().RPC("Damaged", RpcTarget.AllBuffered, 5*damage);
+					c.GetComponent<PhotonView>()?.RPC("Damaged", RpcTarget.AllBuffered, 5*damage);
 				}
 			}
 		}
 		else
 		{
-			Collider[] col = Physics.OverlapSphere(transform.position, radius,10);
+			Collider[] col = Physics.OverlapSphere(transform.position, radius,layerMask);
 			if(PhotonNetwork.IsMasterClient)
 			{
 				foreach(Collider c in col)
