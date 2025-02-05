@@ -18,6 +18,7 @@ public class PlayerSkillMgr : MonoBehaviour
 	bool isShot = false;
 	[SerializeField] InputActionProperty triggerInput;
 	[SerializeField] Transform shotPoint;
+	[SerializeField] Transform modelPos;
 
 	private void Start()
 	{
@@ -60,7 +61,7 @@ public class PlayerSkillMgr : MonoBehaviour
 				break;
 			case "0523": //전기충격
 				Vector3 pos = shotPoint.position;
-				pos.y = 0;
+				pos.y = modelPos.position.y;
 				Quaternion rot = Quaternion.LookRotation(shotPoint.forward);
 				rot = Quaternion.Euler(0, rot.eulerAngles.y, 0);
 				GameObject lightning = PhotonNetwork.Instantiate("LightningShock", pos, rot);
