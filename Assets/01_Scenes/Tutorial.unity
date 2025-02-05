@@ -24417,7 +24417,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed81e37789e23e540822730e25ec7ccb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _myClass: 0
+  myClass: 0
   _stat:
     hpmax: 0
     attack: 0
@@ -56390,6 +56390,12 @@ MonoBehaviour:
   - {fileID: 1975431017}
   - {fileID: 2012267539}
   - {fileID: 6387554762922456193}
+  warriorAttack:
+  - {fileID: 1975431017}
+  - {fileID: 2012267539}
+  - {fileID: 6387554762922456193}
+  mageAttack:
+  - {fileID: 48328962388406487}
   position1:
   - {x: 0.2993523, y: -0.05500028, z: 1.066715}
   - {x: -0.09154671, y: -0.2113911, z: 1.055529}
@@ -61865,20 +61871,20 @@ MonoBehaviour:
   matred: {fileID: 2100000, guid: c70dbaf8b30f431489d43b4544809f4c, type: 2}
   ball: {fileID: 4612954161707054653, guid: 9d973372cb758ef40b1ee029cb2c778b, type: 3}
   box: {fileID: 1593143703712376248, guid: 8609ffad5c8cc034aac7cc7d04f86af1, type: 3}
-  m_TriggerInput:
-    m_InputSourceMode: 2
-    m_InputAction:
-      m_Name: Trigger
+  lightning: {fileID: 0}
+  triggerInput:
+    m_UseReference: 0
+    m_Action:
+      m_Name: 
       m_Type: 0
-      m_ExpectedControlType: Axis
-      m_Id: b4f1c469-8eb0-43b8-9970-fe72958683b8
+      m_ExpectedControlType: 
+      m_Id: d9d9d349-c54e-44ad-b966-047382b8bc63
       m_Processors: 
       m_Interactions: 
       m_SingletonActionBindings: []
       m_Flags: 0
-    m_InputActionReference: {fileID: 83097790271614945, guid: c348712bda248c246b8c49b3db54643f, type: 3}
-    m_ObjectReferenceObject: {fileID: 0}
-    m_ManualValue: 0
+    m_Reference: {fileID: 0}
+  shotPoint: {fileID: 0}
 --- !u!4 &6868239709132655179
 Transform:
   m_ObjectHideFlags: 0
