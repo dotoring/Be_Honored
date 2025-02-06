@@ -17,7 +17,7 @@ public class PlayerTouchManager : MonoBehaviour
 	public Material matred;   // 빨강
 	public Material matblue;  // 파랑
 
-	private int currentOrder = 0;
+	protected int currentOrder = 0;
 	private float lastTriggerTime = 0f;
 	[SerializeField] private protected AudioClip attacksound;
 	private protected AudioSource audioSource;
@@ -104,7 +104,7 @@ public class PlayerTouchManager : MonoBehaviour
 		}
 	}
 
-	private void SetPositionChange()
+	protected void SetPositionChange()
 	{
 		if (IsposiA)
 		{
@@ -136,7 +136,7 @@ public class PlayerTouchManager : MonoBehaviour
 	}
 
 	// 각 공의 재질을 설정 (파랑, 회색, 회색)
-	private void SetAreaToColors(int order)
+	protected void SetAreaToColors(int order)
 	{
 		// 모든 영역을 matgray로 리셋
 		foreach (GameObject area in triggerAreas)
@@ -147,7 +147,7 @@ public class PlayerTouchManager : MonoBehaviour
 			}
 
 
-			 //area.GetComponentsInChildren<Renderer>().material = matgray;
+			//area.GetComponentsInChildren<Renderer>().material = matgray;
 		}
 
 		// currentOrder에 해당하는 공을 matblue로 설정

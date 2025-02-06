@@ -44,8 +44,8 @@ public class PhotonManager : MonoBehaviourPunCallbacks
 	}
 	[SerializeField] public List<Button> roomInBtns;
 	ExitGames.Client.Photon.Hashtable customRoomOption = new();
-	[SerializeField] Image LoadingBar;
-	[SerializeField] GameObject canvas;
+	//[SerializeField] Image LoadingBar;
+	//[SerializeField] GameObject canvas;
 
 	public static PhotonManager Instance
 	{
@@ -166,7 +166,7 @@ public class PhotonManager : MonoBehaviourPunCallbacks
 
 	IEnumerator LeftRoomAsync()
 	{
-		canvas.SetActive(true);
+
 		Debug.Log("Left Room.0");
 		Player.Instance.ChangeBGM(0);
 		//PhotonNetwork.JoinLobby();
@@ -204,7 +204,7 @@ public class PhotonManager : MonoBehaviourPunCallbacks
 
 	IEnumerator EnterRoomAsync()
 	{
-		canvas.SetActive(true);
+
 		Player.Instance.ChangeBGM(1);
 		yield return null;
 		if (PhotonNetwork.IsMasterClient)
@@ -212,7 +212,7 @@ public class PhotonManager : MonoBehaviourPunCallbacks
 			AsyncOperation aload = SceneManager.LoadSceneAsync(PhotonNetwork.CurrentRoom.Name);
 			while (!aload.isDone)
 			{
-				LoadingBar.fillAmount = aload.progress;
+				//LoadingBar.fillAmount = aload.progress;
 				yield return null;
 			}
 		}
