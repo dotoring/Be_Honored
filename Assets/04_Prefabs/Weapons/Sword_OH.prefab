@@ -613,8 +613,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   grabInteractable: {fileID: 0}
-  col: {fileID: 0}
-  rb: {fileID: 0}
+  swordHolder: {fileID: 0}
 --- !u!114 &7395102042832452170
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -842,13 +841,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3778085833604008043}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.40557975, y: 0.40557975, z: 0.579228, w: 0.579228}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
+  m_LocalPosition: {x: 0.03, y: 0, z: 0.06}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3453920150164078393}
-  m_LocalEulerAnglesHint: {x: 0, y: 70, z: 90}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
 --- !u!1 &4517469205029479165
 GameObject:
   m_ObjectHideFlags: 0
