@@ -163,7 +163,6 @@ public class PhotonManager : MonoBehaviourPunCallbacks
 	{
 
 		Debug.Log("Left Room.0");
-		Player.Instance.ChangeBGM(0);
 
 		yield return null;
 		AsyncOperation aload = SceneManager.LoadSceneAsync("lobbySample_Working1");
@@ -172,7 +171,7 @@ public class PhotonManager : MonoBehaviourPunCallbacks
 		//	loadingbar.fillAmount = aload.progress;
 		//	yield return null;
 		//}
-		
+
 	}
 
 	public override void OnConnectedToMaster()
@@ -185,6 +184,7 @@ public class PhotonManager : MonoBehaviourPunCallbacks
 	public override void OnJoinedLobby()
 	{
 		print("로비입장");
+		Player.Instance.ChangeBGM(0);
 	}
 
 	public override void OnJoinedRoom()

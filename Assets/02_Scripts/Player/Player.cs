@@ -62,7 +62,7 @@ public partial class Player : Singleton<Player>
 		audioSource.loop = true;
 		ToTalStat();
 		hp = _stat.hpmax;
-		ChangeBGM(0);
+		// ChangeBGM(0);
 		hpBar_V2.SetFloat("_Fill_Height", -0.5f);
 	}
 
