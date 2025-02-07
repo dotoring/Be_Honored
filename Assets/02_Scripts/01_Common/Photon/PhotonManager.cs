@@ -89,12 +89,7 @@ public class PhotonManager : MonoBehaviourPunCallbacks
 
 	private void Start()
 	{
-		//roomInBtns[0].onClick.AddListener(() => MakeRoomBtnOnClick(RoomLevel.One));
-		//roomInBtns[1].onClick.AddListener(() => MakeRoomBtnOnClick(RoomLevel.Two));
-		//roomInBtns[2].onClick.AddListener(() => MakeRoomBtnOnClick(RoomLevel.Three));
 		customRoomOption.Add("Level", RoomLevel.One);
-		// if (PhotonNetwork.IsConnected)
-		// 	PhotonNetwork.JoinLobby();
 	}
 
 	public override void OnEnable()
@@ -169,7 +164,6 @@ public class PhotonManager : MonoBehaviourPunCallbacks
 
 		Debug.Log("Left Room.0");
 		Player.Instance.ChangeBGM(0);
-		//PhotonNetwork.JoinLobby();
 
 		yield return null;
 		AsyncOperation aload = SceneManager.LoadSceneAsync("lobbySample_Working1");

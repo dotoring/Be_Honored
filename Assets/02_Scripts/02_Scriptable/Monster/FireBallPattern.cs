@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Pool;
 
 public class FireBallPattern : BossPattern
 {
@@ -26,7 +25,8 @@ public class FireBallPattern : BossPattern
 		{
 			foreach (var item in bossMonster.playerList)
 			{
-				float dis = Vector3.Magnitude(item.transform.position - this.transform.root.transform.position);
+				float dis = Vector3.SqrMagnitude(
+					item.transform.position - this.transform.root.transform.position);
 				if (mindis > dis)
 				{
 					mindis = dis;

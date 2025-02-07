@@ -18,7 +18,6 @@ public class RoomData : MonoBehaviour
 	[SerializeField] public int cost;
 
 	public Action<int> btnActivate;
-	public Action<int> btnDeactivate;
 	private void Awake()
 	{
 		print("버튼 aw : " + name);
