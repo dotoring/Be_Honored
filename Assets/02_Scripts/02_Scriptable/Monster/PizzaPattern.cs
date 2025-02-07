@@ -41,7 +41,7 @@ public class PizzaPattern : BossPattern
 			gameObject.SetActive(false);
 		}
 	}
-	public void CreateSectorMesh(float radius, float angle, int segmentCount,float height)//부채꼴 3D 오브젝트 생성
+	private void CreateSectorMesh(float radius, float angle, int segmentCount,float height)//부채꼴 3D 오브젝트 생성
 	{
 		MeshFilter meshFilter = GetComponent<MeshFilter>();
 		Mesh mesh = new Mesh();
@@ -143,11 +143,9 @@ public class PizzaPattern : BossPattern
 
 	}
 
-	void DetectTargetsInCone()
+	private void DetectTargetsInCone()
 	{
-		foreach (GameObject target in bossMonster.
-
-			playerList)
+		foreach (GameObject target in bossMonster.playerList)
 		{
 			Vector3 directionToTarget = (target.transform.position - transform.position).normalized;
 
@@ -167,12 +165,6 @@ public class PizzaPattern : BossPattern
 				if (playerInConelist.Contains(target.transform.root.gameObject))
 					playerInConelist.Remove(target.transform.root.gameObject);
 			}
-		}
-
-		// 감지된 타겟들 출력 (디버깅용)
-		foreach (GameObject target in playerInConelist)
-		{
-			Debug.Log($"Detected Target: {target.name}");
 		}
 	}
 }
