@@ -82,7 +82,7 @@ public class ScrapItem : MonoBehaviour
 		Price = value;
 	}
 
-	protected void OnDestroy()
+	protected virtual void OnDestroy()
 	{
 		if (App.Instance != null)
 		{

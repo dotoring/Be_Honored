@@ -21,6 +21,11 @@ public class PlayerDieCaption : MonoBehaviour
 		Player.Instance.OnPlayerDie += CaptionOn;
 	}
 
+	private void OnDestroy()
+	{
+		Player.Instance.OnPlayerDie -= CaptionOn;
+	}
+
 	private void CaptionOn()
 	{
 		backCol.a = 1;

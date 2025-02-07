@@ -64,7 +64,7 @@ public class PlayerSkillMgr : MonoBehaviour
 				pos.y = modelPos.position.y;
 				Quaternion rot = Quaternion.LookRotation(shotPoint.forward);
 				rot = Quaternion.Euler(0, rot.eulerAngles.y, 0);
-				GameObject lightning = PhotonNetwork.Instantiate("LightningShock", pos, rot);
+				PhotonNetwork.Instantiate("LightningShock", pos, rot);
 				break;
 			default: //실패 시
 				Debug.Log("실패");
