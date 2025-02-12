@@ -4,14 +4,16 @@ using UnityEngine;
 public class SorcererFireBall : MonoBehaviour
 {
 	float speed;
-	float damage;
+	int damage;
 	Vector3 dis;
+	[SerializeField] bool isPlayers;
+	[SerializeField] LayerMask layerMask;
 
 	float radius=3.0f;
 	public void InitData(Vector3 distance, float speeds, float damaged)
 	{
 		speed=speeds;
-		damage=damaged;
+		damage=(int)damaged;
 		dis = distance;
 	}
 
@@ -31,24 +33,53 @@ public class SorcererFireBall : MonoBehaviour
 	}
 	private void OnTriggerEnter(Collider other)
 	{
-		if(other.CompareTag("Player"))
+		if (isPlayers)
 		{
-			if (PhotonNetwork.IsMasterClient)
+			if (other.CompareTag("Monster"))
 			{
-				other.GetComponent<HitPlayer>()?.Damaged(1f*damage);
+				if (PhotonNetwork.IsMasterClient)
+				{
+					other.GetComponent<PhotonView>().RPC("Damaged",
+						RpcTarget.AllBuffered, 10*damage);
+				}
+				PhotonNetwork.Destroy(gameObject);
 			}
-			PhotonNetwork.Destroy(gameObject);
+		}
+		else
+		{
+			if(other.CompareTag("Player"))
+			{
+				if (PhotonNetwork.IsMasterClient)
+				{
+					other.GetComponent<HitPlayer>()?.Damaged(1f*damage);
+				}
+				PhotonNetwork.Destroy(gameObject);
+			}
 		}
 	}
 
 	private void Explosion()
 	{
-		Collider[] col = Physics.OverlapSphere(transform.position, radius,10);
-		if(PhotonNetwork.IsMasterClient)
+		if (isPlayers)
 		{
-			foreach(Collider c in col)
+			Collider[] col = Physics.OverlapSphere(transform.position, radius,layerMask);
+			if(PhotonNetwork.IsMasterClient)
 			{
-				c.GetComponent<HitPlayer>()?.Damaged(0.5f*damage);
+				foreach(Collider c in col)
+				{
+					c.GetComponent<PhotonView>()?.RPC("Damaged", RpcTarget.AllBuffered, 5*damage);
+				}
+			}
+		}
+		else
+		{
+			Collider[] col = Physics.OverlapSphere(transform.position, radius,layerMask);
+			if(PhotonNetwork.IsMasterClient)
+			{
+				foreach(Collider c in col)
+				{
+					c.GetComponent<HitPlayer>()?.Damaged(0.5f*damage);
+				}
 			}
 		}
 	}

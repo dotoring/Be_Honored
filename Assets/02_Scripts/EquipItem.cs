@@ -1,20 +1,47 @@
 using Photon.Pun;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.XR.Interaction.Toolkit;
 
 public class EquipItem : ScrapItem
 {
 	[SerializeField] EquipType typeOfEquip;
 
+	private int activeCount = 0;
 	bool isOnSlot = false;
 	EQUIPSTAT equipStat;
 
+	[SerializeField] GameObject statCanvas;
 	[SerializeField] TMP_Text TextHp;
 	[SerializeField] TMP_Text TextAttack;
 	[SerializeField] TMP_Text TextDefence;
 	[SerializeField] TMP_Text TextEveda;
 
-	private void OnEnable()
+	// private void OnAwake()
+	// {
+	// 	if (PhotonNetwork.IsMasterClient)
+	// 	{
+	// 		int[] vars = new int[] { equipStat.hpmax, equipStat.attack, equipStat.defence, equipStat.evade };
+	//
+	// 		// Random으로 선택할 변수의 개수 (0, 1, 2 중에서 선택)
+	// 		int selectedCount = GetWeightedRandomCount();
+	//
+	// 		// 선택된 변수들에 1~3 사이의 값 부여
+	// 		for (int i = 0; i < selectedCount; i++)
+	// 		{
+	// 			// 0부터 3까지의 랜덤 인덱스를 선택
+	// 			int selectedIndex = Random.Range(0, 4);  // 0 ~ 3
+	//
+	// 			// 해당 인덱스 변수에 1~3 사이의 랜덤 값 부여
+	// 			vars[selectedIndex] = Random.Range(1, 4);  // 1, 2, 3 중 랜덤 값
+	// 		}
+	//
+	// 		pv.RPC(nameof(SetState), RpcTarget.AllBuffered, vars);
+	// 	}
+	// }
+
+	protected override void Start()
 	{
 		if (PhotonNetwork.IsMasterClient)
 		{
@@ -35,6 +62,24 @@ public class EquipItem : ScrapItem
 
 			pv.RPC(nameof(SetState), RpcTarget.AllBuffered, vars);
 		}
+
+		base.Start();
+
+		xRGrabInteractable.hoverEntered.AddListener(OnHover);
+		xRGrabInteractable.hoverExited.AddListener(OnHoverExit);
+		xRGrabInteractable.selectEntered.AddListener(OnSelect);
+		xRGrabInteractable.selectExited.AddListener(OnSelectExit);
+	}
+
+
+
+	protected override void OnDestroy()
+	{
+		base.OnDestroy();
+		xRGrabInteractable.hoverEntered.RemoveListener(OnHover);
+		xRGrabInteractable.hoverExited.RemoveListener(OnHoverExit);
+		xRGrabInteractable.selectEntered.RemoveListener(OnSelect);
+		xRGrabInteractable.selectExited.RemoveListener(OnSelectExit);
 	}
 
 	int GetWeightedRandomCount()
@@ -164,5 +209,34 @@ public class EquipItem : ScrapItem
 		App.Instance.ChangeEquip.Invoke();
 		Destroy(gameObject);
 
+	}
+
+	private void OnHover(HoverEnterEventArgs arg0)
+	{
+		activeCount++;
+		SetCanvas();
+	}
+
+	private void OnHoverExit(HoverExitEventArgs arg0)
+	{
+		activeCount--;
+		SetCanvas();
+	}
+
+	private void OnSelect(SelectEnterEventArgs arg0)
+	{
+		activeCount++;
+		SetCanvas();
+	}
+
+	private void OnSelectExit(SelectExitEventArgs arg0)
+	{
+		activeCount--;
+		SetCanvas();
+	}
+
+	void SetCanvas()
+	{
+		statCanvas.SetActive(activeCount > 0);
 	}
 }

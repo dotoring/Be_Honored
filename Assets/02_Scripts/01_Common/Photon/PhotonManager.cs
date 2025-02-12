@@ -37,15 +37,15 @@ public class PhotonManager : MonoBehaviourPunCallbacks
 					PhotonNetwork.JoinLobby();
 				for (int i = 0; i < roomInBtns.Count; i++)
 				{
-					roomInBtns[i].interactable = true;
+					roomInBtns[i].GetComponent<RoomData>().btnActivate.Invoke(App.Instance.gold.Value);
 				}
 			}
 		}
 	}
 	[SerializeField] public List<Button> roomInBtns;
 	ExitGames.Client.Photon.Hashtable customRoomOption = new();
-	[SerializeField] Image LoadingBar;
-	[SerializeField] GameObject canvas;
+	//[SerializeField] Image LoadingBar;
+	//[SerializeField] GameObject canvas;
 
 	public static PhotonManager Instance
 	{
@@ -89,12 +89,7 @@ public class PhotonManager : MonoBehaviourPunCallbacks
 
 	private void Start()
 	{
-		//roomInBtns[0].onClick.AddListener(() => MakeRoomBtnOnClick(RoomLevel.One));
-		//roomInBtns[1].onClick.AddListener(() => MakeRoomBtnOnClick(RoomLevel.Two));
-		//roomInBtns[2].onClick.AddListener(() => MakeRoomBtnOnClick(RoomLevel.Three));
 		customRoomOption.Add("Level", RoomLevel.One);
-		// if (PhotonNetwork.IsConnected)
-		// 	PhotonNetwork.JoinLobby();
 	}
 
 	public override void OnEnable()
@@ -105,6 +100,7 @@ public class PhotonManager : MonoBehaviourPunCallbacks
 	public void MakeRoomBtnOnClick(RoomLevel level)
 	{
 		print("들어온 값" + (int)level);
+		App.Instance.UseGold(roomInBtns[(int)level].GetComponent<RoomData>().cost);
 		if (roomInBtns[(int)level].GetComponent<RoomData>().RoomInfo == null || roomInBtns[(int)level].GetComponent<RoomData>().RoomInfo.MaxPlayers == 0)
 			MakeRoom(level);
 		else
@@ -165,10 +161,8 @@ public class PhotonManager : MonoBehaviourPunCallbacks
 
 	IEnumerator LeftRoomAsync()
 	{
-		canvas.SetActive(true);
+
 		Debug.Log("Left Room.0");
-		Player.Instance.ChangeBGM(0);
-		//PhotonNetwork.JoinLobby();
 
 		yield return null;
 		AsyncOperation aload = SceneManager.LoadSceneAsync("lobbySample_Working1");
@@ -177,7 +171,7 @@ public class PhotonManager : MonoBehaviourPunCallbacks
 		//	loadingbar.fillAmount = aload.progress;
 		//	yield return null;
 		//}
-		
+
 	}
 
 	public override void OnConnectedToMaster()
@@ -190,6 +184,7 @@ public class PhotonManager : MonoBehaviourPunCallbacks
 	public override void OnJoinedLobby()
 	{
 		print("로비입장");
+		Player.Instance.ChangeBGM(0);
 	}
 
 	public override void OnJoinedRoom()
@@ -203,7 +198,7 @@ public class PhotonManager : MonoBehaviourPunCallbacks
 
 	IEnumerator EnterRoomAsync()
 	{
-		canvas.SetActive(true);
+
 		Player.Instance.ChangeBGM(1);
 		yield return null;
 		if (PhotonNetwork.IsMasterClient)
@@ -211,7 +206,7 @@ public class PhotonManager : MonoBehaviourPunCallbacks
 			AsyncOperation aload = SceneManager.LoadSceneAsync(PhotonNetwork.CurrentRoom.Name);
 			while (!aload.isDone)
 			{
-				LoadingBar.fillAmount = aload.progress;
+				//LoadingBar.fillAmount = aload.progress;
 				yield return null;
 			}
 		}

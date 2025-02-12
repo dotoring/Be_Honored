@@ -58,7 +58,7 @@ public class LazerPattern : BossPattern
 			else
 			{
 				syl.SetActive(false);
-				this.GetComponent<BoxCollider>().enabled = false;
+				col.enabled = false;
 				if (returnTime < goalTime)
 				{
 

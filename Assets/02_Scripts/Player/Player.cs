@@ -24,7 +24,7 @@ public struct Stat
 
 public partial class Player : Singleton<Player>
 {
-	[SerializeField] KindOfclass _myClass;
+	public KindOfclass myClass;
 	/// <summary>
 	/// current totoal stat
 	/// </summary>
@@ -38,6 +38,7 @@ public partial class Player : Singleton<Player>
 	[SerializeField] float hp = 50;
 	[SerializeField] AudioClip hited;
 	public Image hpBar;
+	public Material hpBar_V2;
 	public AudioSource audioSource;
 	EQUIPSTAT playerstat;
 
@@ -61,7 +62,8 @@ public partial class Player : Singleton<Player>
 		audioSource.loop = true;
 		ToTalStat();
 		hp = _stat.hpmax;
-		ChangeBGM(0);
+		// ChangeBGM(0);
+		hpBar_V2.SetFloat("_Fill_Height", -0.5f);
 	}
 
 
@@ -82,7 +84,9 @@ public partial class Player : Singleton<Player>
 			hp = _stat.hpmax;
 		}
 
-		hpBar.fillAmount = hp / _stat.hpmax;
+		//hpBar.fillAmount = hp / _stat.hpmax;
+		hpBar_V2.SetFloat("_Fill_Height", 0.5f - (hp / _stat.hpmax));
+
 	}
 
 	public void Heal(float heal)
@@ -93,7 +97,8 @@ public partial class Player : Singleton<Player>
 			hp = _stat.hpmax;
 		}
 
-		hpBar.fillAmount = hp / _stat.hpmax;
+		//hpBar.fillAmount = hp / _stat.hpmax;
+		hpBar_V2.SetFloat("_Fill_Height", 0.5f - (hp / _stat.hpmax));
 	}
 
 	private bool CheckEvade()
@@ -146,6 +151,6 @@ public partial class Player : Singleton<Player>
 	{
 		Instance.SavePlayerData();
 	}
-	
+
 
 }

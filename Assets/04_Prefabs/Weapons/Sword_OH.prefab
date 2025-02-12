@@ -343,6 +343,8 @@ GameObject:
   - component: {fileID: 5422083992366571494}
   - component: {fileID: 7808080293339673076}
   - component: {fileID: 6184765885834952445}
+  - component: {fileID: 426794493093448985}
+  - component: {fileID: 6212861855623914326}
   m_Layer: 29
   m_Name: Sword_OH
   m_TagString: Untagged
@@ -450,8 +452,8 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
+  m_UseGravity: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 1
@@ -610,6 +612,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55ccace4e3a469540807d1ad1e56eebc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  grabInteractable: {fileID: 0}
+  swordHolder: {fileID: 0}
 --- !u!114 &7395102042832452170
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -774,6 +778,45 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &426794493093448985
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2732525947263008982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents:
+  - {fileID: 6212861855623914326}
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
+--- !u!114 &6212861855623914326
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2732525947263008982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 0
+  m_UseLocal: 1
 --- !u!1 &3778085833604008043
 GameObject:
   m_ObjectHideFlags: 0
@@ -798,13 +841,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3778085833604008043}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.40557975, y: 0.40557975, z: 0.579228, w: 0.579228}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0.27059805, y: 0.27059805, z: 0.6532815, w: 0.6532815}
+  m_LocalPosition: {x: 0.03, y: 0, z: 0.06}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3453920150164078393}
-  m_LocalEulerAnglesHint: {x: 0, y: 70, z: 90}
+  m_LocalEulerAnglesHint: {x: 0, y: 45, z: 90}
 --- !u!1 &4517469205029479165
 GameObject:
   m_ObjectHideFlags: 0

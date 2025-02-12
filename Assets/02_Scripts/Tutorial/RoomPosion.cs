@@ -16,7 +16,7 @@ public class RoomPosion : MonoBehaviour
     [SerializeField] private GameObject canvas;
 
     [SerializeField] private TutoUsableItem posion;
-    [SerializeField] private Button hpbtn;
+    [SerializeField] private tutoHPBar hpbtn;
 
     private void Start()
     {
@@ -34,7 +34,7 @@ public class RoomPosion : MonoBehaviour
         audioSource.Play();
         text.text = "이방은 던전에서 회복에 관한 방입니다. 던전 내에서는 포션을 사용하여 체력을 회복할수 있습니다.";
         pokeButton.enabled = false;
-        yield return new WaitForSeconds(3f); // start logic end  
+        yield return new WaitForSeconds(3f); // start logic end
 
         posion.inbag += ActionOnPerformed;
         audioSource.clip = _manager.audioClips[14];
@@ -45,14 +45,14 @@ public class RoomPosion : MonoBehaviour
         NextStep = false;
 
 
-        hpbtn.enabled = true;
-        hpbtn.onClick.AddListener(ActionOnPerformed);
+
+		hpbtn.touch += ActionOnPerformed;
         audioSource.clip = _manager.audioClips[17];
         audioSource.Play();
         text.text = "왼팔을 들어 체력 상황을 확인해 보세요. 오른손으로 왼쪽팔의 체력바를 터치해 주세요";
         yield return new WaitUntil(() => NextStep);
-        hpbtn.onClick.RemoveListener(ActionOnPerformed);
-        hpbtn.enabled = false;
+hpbtn.touch -= ActionOnPerformed;
+
         NextStep = false;
 
 

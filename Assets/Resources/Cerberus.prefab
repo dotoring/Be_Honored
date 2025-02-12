@@ -176,7 +176,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &7253500069919718675
 Transform:
   m_ObjectHideFlags: 0
@@ -422,13 +422,13 @@ GameObject:
   m_Component:
   - component: {fileID: 4003963757273244036}
   - component: {fileID: 8974181500907645859}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Syl
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4003963757273244036
 Transform:
   m_ObjectHideFlags: 0
@@ -475,7 +475,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4989605989714649281
 Transform:
   m_ObjectHideFlags: 0
@@ -11109,7 +11109,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4551720035425117000
 Transform:
   m_ObjectHideFlags: 0
@@ -11228,7 +11228,7 @@ GameObject:
   - component: {fileID: 5526093325232168845}
   - component: {fileID: 3825993859861349423}
   - component: {fileID: 8897004250634126264}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: FireBallObj
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11531,7 +11531,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2814238598286206076
 Transform:
   m_ObjectHideFlags: 0
@@ -11866,7 +11866,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &5364975845477554845
 Transform:
   m_ObjectHideFlags: 0
@@ -11991,7 +11991,7 @@ GameObject:
   - component: {fileID: 5629175970984183366}
   m_Layer: 11
   m_Name: Cerberus
-  m_TagString: Untagged
+  m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12164,8 +12164,13 @@ MonoBehaviour:
   navMeshAgent: {fileID: 2987729308756095445}
   hpBar: {fileID: 0}
   ani: {fileID: 0}
+  mat: {fileID: 2100000, guid: eb0862d5def972d4abe723e081e6fcab, type: 2}
   shootPoint: {fileID: 0}
+  maxIntensity: 8
+  minIntensity: -3
+  intensity: 0
   Ball: {fileID: 0}
+  hitPoint: []
   skillCoolTime: 6
   skillWaitTime: 0
   canUseSkill: 0
@@ -12324,6 +12329,7 @@ Transform:
   m_LocalScale: {x: 1, y: 0.99999994, z: 0.99999994}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 2854095289302883085}
   - {fileID: 317828857769336625}
   - {fileID: 1693877330975884707}
   - {fileID: 9218751057316801329}
@@ -12343,7 +12349,7 @@ GameObject:
   - component: {fileID: 8813921561808841698}
   - component: {fileID: 564225554358248135}
   - component: {fileID: 4026985680845086487}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: PizzaObj
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12578,14 +12584,13 @@ GameObject:
   - component: {fileID: 8533392636163557118}
   - component: {fileID: 4697429377333177343}
   - component: {fileID: 1642941496297823553}
-  - component: {fileID: 2332273578824289623}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8533392636163557118
 Transform:
   m_ObjectHideFlags: 0
@@ -12654,27 +12659,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &2332273578824289623
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6416898900497070463}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6481054519913104818
 GameObject:
   m_ObjectHideFlags: 0
@@ -12895,12 +12879,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7312047692003756470}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.00000012529321, y: -0.00000001200964, z: -0.000000033528785, w: 1}
-  m_LocalPosition: {x: -1.5, y: 53, z: 71.7}
-  m_LocalScale: {x: 46.53548, y: 46.535477, z: 46.535484}
+  m_LocalRotation: {x: 0.0041340636, y: -0.49891284, z: -0.8666413, w: 0.0013179808}
+  m_LocalPosition: {x: 0.026502207, y: 0.2729412, z: -0.047352366}
+  m_LocalScale: {x: 1.4848008, y: 1.4847988, z: 1.4848008}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 6485193432835332713}
+  m_Father: {fileID: 6583976965964398323}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!108 &7725506674972603210
 Light:
@@ -27865,7 +27849,7 @@ GameObject:
   - component: {fileID: 4215199836119996481}
   - component: {fileID: 5500989928358671157}
   - component: {fileID: 7770932581904663079}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: LazerObj
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28006,8 +27990,7 @@ Transform:
   m_LocalPosition: {x: 0, y: -0.84496784, z: 0}
   m_LocalScale: {x: 0.031906854, y: 0.03190685, z: 0.031906854}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 2854095289302883085}
+  m_Children: []
   m_Father: {fileID: 4111417665134448376}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!137 &375368688056619743

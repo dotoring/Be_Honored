@@ -32,12 +32,18 @@ public class App : Singleton<App>
 	{
 		gold.Value += amount;
 		// gold += amount;
+		PhotonManager.Instance.roomInBtns[0].GetComponent<RoomData>().btnActivate.Invoke(gold.Value);
+		PhotonManager.Instance.roomInBtns[1].GetComponent<RoomData>().btnActivate.Invoke(gold.Value);
+		PhotonManager.Instance.roomInBtns[2].GetComponent<RoomData>().btnActivate.Invoke(gold.Value);
 	}
 
 	public void UseGold(int amount)
 	{
 		gold.Value -= amount;
 		// gold -= amount;
+		PhotonManager.Instance.roomInBtns[0].GetComponent<RoomData>().btnActivate.Invoke(gold.Value);
+		PhotonManager.Instance.roomInBtns[1].GetComponent<RoomData>().btnActivate.Invoke(gold.Value);
+		PhotonManager.Instance.roomInBtns[2].GetComponent<RoomData>().btnActivate.Invoke(gold.Value);
 	}
 }
 

@@ -25,12 +25,11 @@ public class Room2 : MonoBehaviour
     IEnumerator seq()
     {
         yield return new WaitUntil(() => canvas.activeInHierarchy);
-        text.text = "이방은 전투에 관한 방입니다. 오른손 그랩버튼으로 무기를 집어드세요";
+        text.text = "이방은 전투에 관한 방입니다. \n 오른손 그랩버튼으로 허리에 있는 무기를 집어드세요";
         audioSource.clip = _manager.audioClips[7];
         audioSource.Play();
         pokeButton.enabled = false;
         Player.Instance.Armed += ActionOnPerformed;
-        yield return new WaitForSeconds(3f);
         yield return new WaitForSeconds(3f);
         //text.text = "Pick up waepon by Right Grab Button";
 

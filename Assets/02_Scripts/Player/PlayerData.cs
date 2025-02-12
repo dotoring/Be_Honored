@@ -19,7 +19,7 @@ public partial class Player
 		string json = JsonUtility.ToJson(playerStat);
 		PlayerPrefs.SetString("PlayerStat", json);
 		PlayerPrefs.Save();
-		Debug.Log("Stat data saved.");
+		//Debug.Log("Stat data saved.");
 	}
 
 	// 데이터 로드
@@ -53,6 +53,7 @@ public partial class Player
 		bodyStat = playerStatData.bodyStat;
 		if (bodyStat.hpmax < 200) bodyStat.hpmax = 200;
 		if (bodyStat.attack < 5) bodyStat.attack = 5;
+		if(playerStatData.gold < 2) playerStatData.gold = 2; 
 		App.Instance.gold.Value = playerStatData.gold;
 	}
 
